@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aviso Legal | Bloques Barruca</title>
+  <meta name="description" content="Aviso legal de Bloques Barruca S.L., fabricante de bloques de hormigón prefabricado en Burgos." />
+  <meta name="robots" content="noindex, follow" />
+
+  <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/tailwind.css" />
+
+  <style>
+    :root { --c-bg: #f7f6f2; }
+    .bg-offwhite { background-color: var(--c-bg); }
+    .glass-nav {
+      background: rgba(250,250,249,0.88);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-top: 3px solid #c2410c;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+    }
+    .nav-link { position: relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1.5px; background:#c2410c; transition:width 0.15s cubic-bezier(0.16,1,0.3,1); }
+    .nav-link:hover::after { width:100%; }
+    .btn-primary { transition: background-color 0.2s, transform 0.1s; }
+    .btn-primary:active { transform: translateY(1px) scale(0.98); }
+    .dropdown-menu { opacity:0; visibility:hidden; transform:translateY(6px); transition:opacity 0.2s, visibility 0.2s, transform 0.2s cubic-bezier(0.16,1,0.3,1); }
+    .dropdown-parent:hover .dropdown-menu { opacity:1; visibility:visible; transform:translateY(0); }
+    .legal-body h2 { font-size:1.25rem; font-weight:700; letter-spacing:-0.02em; color:#18181b; margin:2rem 0 0.75rem; }
+    .legal-body h3 { font-size:1rem; font-weight:600; color:#3f3f46; margin:1.25rem 0 0.5rem; }
+    .legal-body p  { font-size:0.9375rem; color:#52525b; line-height:1.8; margin-bottom:0.875rem; }
+    .legal-body ul { list-style:disc; padding-left:1.5rem; margin-bottom:0.875rem; }
+    .legal-body li { font-size:0.9375rem; color:#52525b; line-height:1.8; margin-bottom:0.25rem; }
+    .legal-body a  { color:#b91c1c; text-decoration:underline; text-underline-offset:2px; }
+  </style>
+</head>
+<body class="bg-offwhite text-zinc-900 font-sans antialiased">
+
+  <!-- ── NAV ── -->
+  <header class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="/"><img src="https://www.barruca.es/images/logo-barruca-web.png" alt="Bloques Barruca" class="h-9 w-auto" /></a>
+        <nav class="hidden lg:flex items-center gap-7">
+          <a href="/"           class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Inicio</a>
+          <div class="dropdown-parent relative">
+            <a href="/#productos" class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors flex items-center gap-1">
+              Productos <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-px"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-4 w-56 bg-offwhite border border-zinc-100 rounded-2xl shadow-xl shadow-zinc-200/50 py-2">
+              <a href="producto-coupe.html"    class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">Coupe Caravista</a>
+              <a href="producto-fireproof.html" class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">Ladrillo Fireproof®</a>
+              <a href="producto-hib.html"      class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">HIB</a>
+              <a href="producto-bloque.html"   class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">Bloque de Hormigón</a>
+            </div>
+          </div>
+          <a href="/#nosotros"    class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Nosotros</a>
+          <a href="blog.html"     class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Blog</a>
+          <a href="proyectos.html" class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Proyectos</a>
+          <a href="/#contacto"    class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Contacto</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="/#contacto" class="btn-primary hidden lg:inline-flex items-center gap-2 bg-accent-700 hover:bg-accent-800 text-white text-sm font-medium px-4 py-2 rounded-xl">Contactar</a>
+          <button id="menu-btn" class="lg:hidden p-2 rounded-xl hover:bg-zinc-100 transition-colors" aria-label="Abrir menú">
+            <svg id="icon-open"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden lg:hidden bg-offwhite border-t border-zinc-100">
+      <div class="max-w-7xl mx-auto px-4 py-4 space-y-1">
+        <a href="/"             class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Inicio</a>
+        <a href="/#productos"   class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Productos</a>
+        <a href="/#nosotros"    class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Nosotros</a>
+        <a href="blog.html"     class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Blog</a>
+        <a href="proyectos.html" class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Proyectos</a>
+        <a href="/#contacto"   class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Contacto</a>
+        <div class="pt-2"><a href="/#contacto" class="m-link btn-primary block text-center bg-accent-700 hover:bg-accent-800 text-white text-sm font-medium px-4 py-3 rounded-xl">Contactar</a></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-28 pb-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+
+      <a href="/" class="inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-700 transition-colors mb-8">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Volver al inicio
+      </a>
+
+      <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-700 mb-4">
+        <span class="w-1 h-4 rounded-sm bg-accent-600 flex-shrink-0"></span>Información legal
+      </span>
+      <h1 class="text-4xl font-extrabold tracking-tighter text-zinc-900 mb-2">Aviso Legal</h1>
+      <p class="text-zinc-500 text-sm mb-10">Última actualización: enero de 2025</p>
+
+      <div class="bg-white border border-zinc-100 rounded-2xl p-8 shadow-sm legal-body">
+
+        <h2>1. Datos identificativos del titular</h2>
+        <p>En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSICE), se informa:</p>
+        <ul>
+          <li><strong>Denominación social:</strong> Bloques Barruca S.L.</li>
+          <li><strong>Domicilio social:</strong> C/López Bravo n.º 14, 09001 Burgos, España</li>
+          <li><strong>Teléfono:</strong> <a href="tel:+34947298278">947 29 82 78</a></li>
+          <li><strong>Correo electrónico:</strong> <a href="mailto:barruca@barruca.es">barruca@barruca.es</a></li>
+          <li><strong>Actividad:</strong> Fabricación y comercialización de bloques y ladrillos de hormigón prefabricado</li>
+        </ul>
+
+        <h2>2. Objeto y ámbito de aplicación</h2>
+        <p>El presente aviso legal regula el acceso y uso del sitio web <strong>bloquesbarruca.netlify.app</strong> (en adelante, «el Sitio»), del que es titular Bloques Barruca S.L. El acceso al Sitio implica la aceptación plena y sin reservas de las condiciones establecidas en este aviso. Bloques Barruca S.L. se reserva el derecho a modificar, en cualquier momento y sin previo aviso, el contenido del Sitio.</p>
+
+        <h2>3. Propiedad intelectual e industrial</h2>
+        <p>Todos los contenidos del Sitio —textos, imágenes, gráficos, logotipos, iconos, software y demás elementos— son propiedad de Bloques Barruca S.L. o de terceros que han autorizado su uso, y están protegidos por la legislación española e internacional de propiedad intelectual e industrial.</p>
+        <p>Queda expresamente prohibida la reproducción, distribución, comunicación pública o transformación de dichos contenidos sin la autorización expresa y por escrito de Bloques Barruca S.L., salvo para uso personal y privado.</p>
+
+        <h2>4. Exclusión de garantías y responsabilidad</h2>
+        <p>Bloques Barruca S.L. no garantiza la disponibilidad continua del Sitio ni la ausencia de errores en su contenido. La empresa no se responsabiliza de los daños o perjuicios derivados del uso de la información contenida en el Sitio ni de la existencia de virus u otros elementos lesivos en los contenidos accesibles a través de enlaces externos.</p>
+        <p>Los enlaces a sitios web de terceros se facilitan únicamente a efectos informativos. Bloques Barruca S.L. no controla ni se hace responsable del contenido de dichos sitios.</p>
+
+        <h2>5. Legislación aplicable y jurisdicción</h2>
+        <p>El presente aviso legal se rige por la legislación española vigente. Para la resolución de cualquier controversia derivada del acceso o uso del Sitio, las partes se someten, con renuncia expresa a cualquier otro fuero que pudiera corresponderles, a los juzgados y tribunales de la ciudad de Burgos.</p>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-zinc-950 text-zinc-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
+      <div class="border-b border-zinc-800/70 pb-10 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+        <img src="https://www.barruca.es/images/logo-barruca-web.png" alt="Bloques Barruca" class="h-7 w-auto opacity-70" />
+        <p class="text-sm text-zinc-500 max-w-[44ch]">Fabricantes de bloques de hormigón prefabricado en Burgos desde 1980.</p>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-600">
+        <span>&copy; 2024 Bloques Barruca S.L. Todos los derechos reservados.</span>
+        <div class="flex gap-5">
+          <a href="aviso-legal.html"      class="text-zinc-400 hover:text-zinc-200 transition-colors">Aviso legal</a>
+          <a href="politica-cookies.html" class="hover:text-zinc-400 transition-colors">Cookies</a>
+          <a href="privacidad.html"       class="hover:text-zinc-400 transition-colors">Privacidad</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn=document.getElementById('menu-btn'),mobileNav=document.getElementById('mobile-menu'),iconOpen=document.getElementById('icon-open'),iconClose=document.getElementById('icon-close');
+    menuBtn.addEventListener('click',()=>{const open=!mobileNav.classList.contains('hidden');mobileNav.classList.toggle('hidden',open);iconOpen.classList.toggle('hidden',!open);iconClose.classList.toggle('hidden',open);});
+    document.querySelectorAll('.m-link').forEach(l=>l.addEventListener('click',()=>{mobileNav.classList.add('hidden');iconOpen.classList.remove('hidden');iconClose.classList.add('hidden');}));
+  </script>
+</body>
+</html>

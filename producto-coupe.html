@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ladrillo Coupe Caravista en Burgos | Barruca Prefabricados</title>
+  <meta name="description" content="Ladrillo Coupe Caravista fabricado en Burgos: acabado arquitectónico de alta calidad para fachadas y cerramientos. Disponible en múltiples colores. Fabricante en Castilla y León." />
+  <!-- Geo meta tags -->
+  <meta name="geo.region" content="ES-BU" />
+  <meta name="geo.placename" content="Burgos, Castilla y León, España" />
+  <meta name="geo.position" content="42.3440;-3.6969" />
+
+  <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+
+  <link rel="canonical" href="https://bloquesbarruca.netlify.app/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:url" content="https://bloquesbarruca.netlify.app/" />
+  <meta property="og:title" content="Bloques Barruca — Hormigón Prefabricado desde 1980" />
+  <meta property="og:description" content="Fabricante de bloques de hormigón prefabricado en Burgos. Más de 40 años de experiencia. Ladrillo Fireproof®, Coupe Caravista, HIB y bloques de hormigón." />
+  <meta property="og:image" content="https://bloquesbarruca.netlify.app/assets/Muro.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Barruca Prefabricados" />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bloques Barruca — Hormigón Prefabricado desde 1980" />
+  <meta name="twitter:description" content="Fabricante de bloques de hormigón prefabricado en Burgos. Ladrillo Fireproof®, Coupe Caravista, HIB y más." />
+  <meta name="twitter:image" content="https://bloquesbarruca.netlify.app/assets/Muro.jpg" />
+  <meta name="twitter:image:alt" content="Muro de bloques de hormigón prefabricado Barruca en Burgos" />
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://bloquesbarruca.netlify.app/#empresa",
+    "name": "Bloques Barruca",
+    "url": "https://bloquesbarruca.netlify.app/",
+    "image": "https://bloquesbarruca.netlify.app/assets/Muro.jpg",
+    "description": "Fabricante de bloques de hormigón prefabricado en Burgos. Más de 40 años de experiencia. Ladrillo Fireproof®, Coupe Caravista, HIB.",
+    "foundingDate": "1980",
+    "telephone": "+34947298278",
+    "email": "barruca@barruca.es",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "C/López Bravo n.º 14",
+      "postalCode": "09001",
+      "addressLocality": "Burgos",
+      "addressRegion": "Castilla y León",
+      "addressCountry": "ES"
+    },
+    "openingHours": [
+      "Mo-Th 08:30-13:00",
+      "Mo-Th 15:00-19:00",
+      "Fr 08:00-12:30"
+    ],
+    "sameAs": [
+      "https://www.facebook.com/BloquesBarruca",
+      "https://twitter.com/BloquesBarruca",
+      "https://www.linkedin.com/company/bloques-barruca",
+      "https://www.instagram.com/BloquesBarruca"
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/tailwind.css" />
+
+  <style>
+    :root { --c-bg: #f7f6f2; }
+    .bg-offwhite { background-color: var(--c-bg); }
+
+    /* ── Coupe hero: texto izquierda / vídeo derecha ── */
+    .coupe-hero-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    @media (max-width: 639px) { .coupe-hero-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 100ms; }
+    .delay-2 { transition-delay: 200ms; }
+    .delay-3 { transition-delay: 300ms; }
+    .delay-4 { transition-delay: 400ms; }
+    .delay-5 { transition-delay: 500ms; }
+
+    /* ── Glassmorphism nav ── */
+    .glass-nav {
+      background: rgba(250, 250, 249, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-top: 3px solid #c2410c;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+    }
+
+    /* ── Brick section divider ── */
+    .brick-sep { line-height: 0; overflow: hidden; display: block; }
+    .brick-sep svg { display: block; width: 100%; }
+
+    /* ── Nav underline hover ── */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1.5px;
+      background: #c2410c;
+      transition: width 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* ── Button tactile press ── */
+    .btn-primary { transition: background-color 0.2s, transform 0.1s; }
+    .btn-primary:active { transform: translateY(1px) scale(0.98); }
+
+    /* ── Product card hover lift ── */
+    .card-lift {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .card-lift:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px -12px rgba(0,0,0,0.1);
+    }
+
+    /* ── Blog image zoom ── */
+    .blog-img { overflow: hidden; }
+    .blog-img img {
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .blog-card:hover .blog-img img { transform: scale(1.05); }
+
+    /* ── Hero text shadows ── */
+    .hero-title   { text-shadow: 0 2px 20px rgba(0,0,0,0.85), 0 1px 4px rgba(0,0,0,0.6); }
+    .hero-body    { text-shadow: 0 1px 10px rgba(0,0,0,0.7); }
+    .hero-btn-shadow { box-shadow: 0 4px 24px rgba(0,0,0,0.45); }
+
+    /* ── Arch grid gap trick ── */
+    .arch-grid > a {
+      transition: background-color 0.25s;
+    }
+
+    /* ── Dropdown ── */
+    .dropdown-menu {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(6px);
+      transition: opacity 0.2s, visibility 0.2s, transform 0.2s cubic-bezier(0.16,1,0.3,1);
+    }
+    .dropdown-parent:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* ── Form focus ring ── */
+    .field:focus {
+      outline: none;
+      border-color: #c2410c;
+      box-shadow: 0 0 0 3px rgba(194, 65, 12, 0.12);
+    }
+
+    /* ── SPA pages ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── PDF card ── */
+    .pdf-dl {
+      transition: border-color 0.2s, background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .pdf-dl:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px -6px rgba(0,0,0,0.09);
+    }
+
+    /* ── Marquee ── */
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .marquee-track { animation: marquee 28s linear infinite; }
+    .marquee-track:hover { animation-play-state: paused; }
+
+    /* ── Falling brick column ── */
+    #brick-column {
+      position: fixed;
+      bottom: 0;
+      /* left / width / height set by JS */
+      z-index: 45;
+      pointer-events: none;
+    }
+
+    .brick-item {
+      position: absolute;
+      opacity: 0;
+      will-change: transform, opacity;
+      filter: grayscale(30%) drop-shadow(-5px 0px 7px rgba(0,0,0,0.5));
+    }
+    .brick-item.landed {
+      animation: brickDrop var(--brick-dur, 0.72s) linear forwards;
+    }
+    .brick-item.rising {
+      animation: brickRise var(--rise-dur, 0.42s) ease-in forwards;
+    }
+
+    @keyframes brickDrop {
+      0%   { transform: translateY(-130vh); opacity: 1; }
+      10%  { transform: translateY(-117vh); }
+      25%  { transform: translateY(-88vh);  }
+      45%  { transform: translateY(-50vh);  }
+      62%  { transform: translateY(-14vh);  }
+      70%  { transform: translateY(0);      }
+      77%  { transform: translateY(-13px);  }
+      83%  { transform: translateY(0);      }
+      88%  { transform: translateY(-5px);   }
+      93%  { transform: translateY(0);      }
+      96%  { transform: translateY(-2px);   }
+      100% { transform: translateY(0); opacity: 0.68; }
+    }
+
+    @keyframes brickRise {
+      0%   { transform: translateY(0);       opacity: 0.68; }
+      80%  { transform: translateY(-110vh);  opacity: 0.35; }
+      100% { transform: translateY(-130vh);  opacity: 0;    }
+    }
+
+    /* ── Catálogo brick reveal ── */
+    .productos-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='40'><rect x='1' y='1' width='38' height='17' rx='1' fill='white' fill-opacity='.07' stroke='white' stroke-opacity='.35' stroke-width='1.5'/><rect x='41' y='1' width='38' height='17' rx='1' fill='white' fill-opacity='.07' stroke='white' stroke-opacity='.35' stroke-width='1.5'/><rect x='-19' y='21' width='38' height='17' rx='1' fill='white' fill-opacity='.07' stroke='white' stroke-opacity='.35' stroke-width='1.5'/><rect x='21' y='21' width='38' height='17' rx='1' fill='white' fill-opacity='.07' stroke='white' stroke-opacity='.35' stroke-width='1.5'/><rect x='61' y='21' width='38' height='17' rx='1' fill='white' fill-opacity='.07' stroke='white' stroke-opacity='.35' stroke-width='1.5'/></svg>");
+      background-size: 80px 40px;
+      -webkit-mask-image: radial-gradient(circle 300px at var(--cat-mx,50%) var(--cat-my,50%), black 30%, transparent 100%);
+      mask-image: radial-gradient(circle 300px at var(--cat-mx,50%) var(--cat-my,50%), black 30%, transparent 100%);
+      opacity: 0;
+      transition: opacity .5s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .productos-card:hover::after { opacity: 1; }
+    .productos-card > * { position: relative; z-index: 1; }
+
+    /* text on red card */
+    .productos-card .reveal > span.rounded-full {
+      color: rgba(255,255,255,0.9);
+      border-color: rgba(255,255,255,0.2);
+      background-color: rgba(255,255,255,0.12);
+    }
+    .productos-card .reveal > h3 { color: white; }
+    .productos-card .reveal > p  { color: rgba(255,255,255,0.75); }
+    .productos-card .reveal > a  { color: white; }
+    .productos-card .reveal > a:hover { color: rgba(255,255,255,0.8); }
+
+    /* ── Hero logo glow ── */
+    .hero-logo-wrap {
+      position: relative;
+      max-width: 360px;
+      width: 100%;
+    }
+    .hero-logo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -50px;
+      background: radial-gradient(circle, rgba(185,28,28,0.45) 0%, rgba(185,28,28,0.18) 38%, transparent 68%);
+      opacity: 0;
+      transition: opacity 0.65s ease;
+      pointer-events: none;
+      filter: blur(32px);
+      border-radius: 50%;
+    }
+    .hero-logo-wrap:hover::before { opacity: 1; }
+    .hero-logo-img {
+      filter: drop-shadow(0 0 80px rgba(255,255,255,0.12)) brightness(0) invert(1);
+      opacity: 0.88;
+      transition: filter 0.55s ease, opacity 0.45s ease;
+    }
+    .hero-logo-wrap:hover .hero-logo-img {
+      filter: drop-shadow(0 0 110px rgba(255,255,255,0.32)) brightness(0) invert(1);
+      opacity: 1;
+    }
+
+    /* ── Cookie banner ── */
+    #cookie-banner {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(calc(100% + 3rem));
+      z-index: 9999;
+      width: calc(100% - 2rem);
+      max-width: 740px;
+      background: #18181b;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1rem;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      transition: transform 0.55s cubic-bezier(0.34,1.4,0.64,1), opacity 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    #cookie-banner.visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #cookie-banner.hiding {
+      transform: translateX(-50%) translateY(calc(100% + 3rem));
+      opacity: 0;
+      pointer-events: none;
+    }
+    #cookie-banner p {
+      flex: 1;
+      min-width: 0;
+      font-size: 0.8125rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.65);
+      margin: 0;
+    }
+    #cookie-banner p strong { color: #fff; font-weight: 600; }
+    #cookie-banner p a {
+      color: #fca5a5;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .cookie-btns { display: flex; gap: 0.625rem; flex-shrink: 0; }
+    .cookie-btn-accept {
+      background: #b91c1c;
+      color: #fff;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      padding: 0.5rem 1.25rem;
+      border-radius: 0.5rem;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.18s;
+    }
+    .cookie-btn-accept:hover { background: #991b1b; }
+    .cookie-btn-reject {
+      background: transparent;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.18s, border-color 0.18s;
+    }
+    .cookie-btn-reject:hover { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.28); }
+
+    /* ── Social FAB ── */
+    #social-fab {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 9998;
+    }
+    #social-fab-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #b91c1c;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(185,28,28,0.45);
+      transition: background 0.2s, transform 0.3s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.2s;
+      position: relative;
+      z-index: 2;
+    }
+    #social-fab-btn:hover { background: #991b1b; box-shadow: 0 6px 28px rgba(185,28,28,0.55); }
+    #social-fab-btn.open { transform: rotate(45deg); background: #27272a; box-shadow: 0 4px 20px rgba(0,0,0,0.35); }
+    #social-fab-btn svg { transition: opacity 0.2s; }
+
+    #social-fab-menu {
+      position: absolute;
+      bottom: 64px;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.6rem;
+      pointer-events: none;
+    }
+    .fab-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      opacity: 0;
+      transform: translateY(12px) scale(0.85);
+      transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.34,1.4,0.64,1);
+      pointer-events: none;
+    }
+    #social-fab-menu.open .fab-item { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+    #social-fab-menu.open .fab-item:nth-child(1) { transition-delay: 0ms; }
+    #social-fab-menu.open .fab-item:nth-child(2) { transition-delay: 50ms; }
+    #social-fab-menu.open .fab-item:nth-child(3) { transition-delay: 100ms; }
+    #social-fab-menu.open .fab-item:nth-child(4) { transition-delay: 150ms; }
+    .fab-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #fff;
+      background: #18181b;
+      padding: 0.3rem 0.65rem;
+      border-radius: 0.5rem;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .fab-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+      flex-shrink: 0;
+      transition: transform 0.2s cubic-bezier(0.34,1.4,0.64,1);
+    }
+    .fab-icon:hover { transform: scale(1.12); }
+    .fab-icon-fb   { background: #1877f2; }
+    .fab-icon-tw   { background: #18181b; }
+    .fab-icon-li   { background: #0a66c2; }
+    .fab-icon-ig   { background: radial-gradient(circle at 30% 110%, #f9a825, #e1306c 50%, #833ab4); }
+
+    /* ── Mobile adjustments ── */
+    @media (max-width: 640px) {
+      /* Marquee: smaller text + gaps + slower speed (narrower viewport = items pass faster) */
+      .marquee-track { animation-duration: 36s; }
+      .marquee-track > span {
+        gap: 2rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        font-size: 0.8125rem;
+      }
+      .marquee-track > span > span.text-2xl { font-size: 1.125rem; }
+
+      /* Section separators: shorter on mobile */
+      .brick-sep svg { height: 30px !important; }
+
+      /* Section vertical padding: py-24 is too tall on mobile */
+      section.py-24 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+    }
+
+    @media (max-width: 540px) {
+      #cookie-banner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.9rem;
+        padding: 1rem 1.1rem;
+        bottom: 0.75rem;
+        border-radius: 0.875rem;
+      }
+      #cookie-banner p { font-size: 0.78rem; }
+      .cookie-btns { width: 100%; justify-content: stretch; }
+      .cookie-btn-accept,
+      .cookie-btn-reject { flex: 1; text-align: center; justify-content: center; }
+    }
+
+    /* ─── Blog modal ─── */
+    #blog-modal {
+      position: fixed; inset: 0; z-index: 9000;
+      display: flex; align-items: flex-start; justify-content: center;
+      overflow-y: auto; padding: 1.5rem 1rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #blog-modal.open { opacity: 1; pointer-events: auto; }
+    #blog-modal-bd {
+      position: fixed; inset: 0; background: rgba(9,9,11,0.72);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+    #blog-modal-panel {
+      position: relative; background: var(--c-bg); border-radius: 1.25rem;
+      max-width: 800px; width: 100%;
+      box-shadow: 0 32px 96px rgba(0,0,0,0.28);
+      transform: translateY(20px) scale(0.98);
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+      overflow: hidden; margin-bottom: 2rem;
+    }
+    #blog-modal.open #blog-modal-panel { transform: translateY(0) scale(1); }
+    #blog-modal-close {
+      position: absolute; top: 0.875rem; right: 0.875rem; z-index: 3;
+      width: 38px; height: 38px; border-radius: 50%;
+      background: rgba(247,246,242,0.92); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: background 0.15s;
+    }
+    #blog-modal-close:hover { background: var(--c-bg); }
+    #blog-modal-hero { width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+    #blog-modal-hero img { width: 100%; height: 100%; object-fit: cover; }
+    #blog-modal-body { padding: 1.75rem 2rem 2.25rem; }
+    #blog-modal-body h2 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.03em; color: #18181b; margin: 0.5rem 0 1.1rem; line-height: 1.25; }
+    #blog-modal-body .bm-text { color: #52525b; line-height: 1.8; font-size: 0.9375rem; }
+    #blog-modal-body .bm-text p { margin-bottom: 0.875rem; }
+    #blog-modal-body .bm-text a { color: #b91c1c; text-decoration: underline; }
+    #blog-modal-body iframe { width: 100% !important; aspect-ratio: 16/9; height: auto !important; border: 0; border-radius: 0.75rem; margin-top: 1.25rem; display: block; }
+    .bm-imgs { display: grid; gap: 0.625rem; margin-top: 1.25rem; }
+    .bm-imgs.cols-1 { grid-template-columns: 1fr; }
+    .bm-imgs.cols-2 { grid-template-columns: 1fr 1fr; }
+    .bm-imgs.cols-3 { grid-template-columns: 1fr 1fr; }
+    .bm-imgs.cols-4 { grid-template-columns: 1fr 1fr; }
+    .bm-imgs img { width: 100%; height: auto; display: block; border-radius: 0.625rem; }
+    @media (max-width: 540px) {
+      #blog-modal-body { padding: 1.25rem 1.25rem 1.75rem; }
+      .bm-imgs.cols-2, .bm-imgs.cols-3, .bm-imgs.cols-4 { grid-template-columns: 1fr; }
+    }
+
+    /* ─── FAB: hover para dispositivos con ratón ─── */
+    @media (hover: hover) and (pointer: fine) {
+      #social-fab-menu { padding-bottom: 0.6rem; bottom: 52px; }
+      #social-fab:hover #social-fab-menu { pointer-events: auto; }
+      #social-fab:hover .fab-item {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+      }
+      #social-fab:hover .fab-item:nth-child(1) { transition-delay: 0ms; }
+      #social-fab:hover .fab-item:nth-child(2) { transition-delay: 50ms; }
+      #social-fab:hover .fab-item:nth-child(3) { transition-delay: 100ms; }
+      #social-fab:hover .fab-item:nth-child(4) { transition-delay: 150ms; }
+      #social-fab:hover #social-fab-btn:not(.open) { background: #991b1b; box-shadow: 0 6px 28px rgba(185,28,28,0.55); }
+    }
+
+    /* ─── FAQ acordeón ─── */
+    .faq-item { border: 1px solid #e4e4e7; border-radius: 1rem; background: var(--c-bg); overflow: hidden; transition: border-color 0.2s; }
+    .faq-item[open] { border-color: #fca5a5; }
+    .faq-item summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 1.5rem; font-weight: 600; font-size: 0.95rem; color: #18181b; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary .faq-icon { flex-shrink: 0; width: 1.25rem; height: 1.25rem; color: #b91c1c; transition: transform 0.3s ease; }
+    .faq-item[open] summary .faq-icon { transform: rotate(45deg); }
+    .faq-body { padding: 0 1.5rem 1.25rem; font-size: 0.9rem; color: #52525b; line-height: 1.7; border-top: 1px solid #f4f4f5; padding-top: 1rem; }
+  </style>
+</head>
+<body class="bg-stone-50 text-zinc-900 font-sans antialiased">
+
+  <!-- ── Blog post modal ── -->
+  <div id="blog-modal" role="dialog" aria-modal="true" aria-labelledby="bm-title">
+    <div id="blog-modal-bd"></div>
+    <div id="blog-modal-panel">
+      <button id="blog-modal-close" aria-label="Cerrar artículo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#18181b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div id="blog-modal-hero"></div>
+      <div id="blog-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ── Cookie consent banner ── -->
+  <div id="cookie-banner" role="dialog" aria-modal="false" aria-label="Aviso de cookies">
+    <p>
+      <strong>Usamos cookies</strong> — propias y de terceros para analizar el tráfico y mejorar tu experiencia de navegación.
+      Puedes aceptarlas o rechazarlas; tu elección se guarda para futuras visitas.
+    </p>
+    <div class="cookie-btns">
+      <button class="cookie-btn-reject" id="cookie-reject">Rechazar</button>
+      <button class="cookie-btn-accept" id="cookie-accept">Aceptar todas</button>
+    </div>
+  </div>
+
+  <!-- ── Social FAB ── -->
+  <div id="social-fab">
+    <div id="social-fab-menu">
+      <div class="fab-item">
+        <span class="fab-label">Facebook</span>
+        <a href="https://www.facebook.com/BloquesBarruca" target="_blank" rel="noopener" aria-label="Facebook" class="fab-icon fab-icon-fb">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+      <div class="fab-item">
+        <span class="fab-label">Twitter / X</span>
+        <a href="https://twitter.com/BloquesBarruca" target="_blank" rel="noopener" aria-label="Twitter" class="fab-icon fab-icon-tw">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+        </a>
+      </div>
+      <div class="fab-item">
+        <span class="fab-label">LinkedIn</span>
+        <a href="https://www.linkedin.com/company/bloques-barruca" target="_blank" rel="noopener" aria-label="LinkedIn" class="fab-icon fab-icon-li">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+      <div class="fab-item">
+        <span class="fab-label">Instagram</span>
+        <a href="https://www.instagram.com/BloquesBarruca" target="_blank" rel="noopener" aria-label="Instagram" class="fab-icon fab-icon-ig">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+      </div>
+    </div>
+    <button id="social-fab-btn" aria-label="Redes sociales" aria-expanded="false">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"/></svg>
+    </button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════ -->
+  <header class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo -->
+        <a href="/" class="flex-shrink-0">
+          <img src="https://www.barruca.es/images/logo-barruca-web.png"
+               alt="Bloques Barruca" class="h-9 w-auto" />
+        </a>
+
+        <!-- Desktop links -->
+        <nav class="hidden lg:flex items-center gap-7">
+          <a href="/"      class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Inicio</a>
+
+          <!-- Productos dropdown -->
+          <div class="dropdown-parent relative">
+            <a href="/#productos" class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors flex items-center gap-1">
+              Productos
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-px"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-4 w-56 bg-offwhite border border-zinc-100 rounded-2xl shadow-xl shadow-zinc-200/50 py-2">
+              <a href="/#producto-fireproof" class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">Ladrillo Fireproof®</a>
+              <a href="/#producto-coupe"     class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">Coupe Caravista</a>
+              <a href="/#producto-hib"       class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">HIB</a>
+              <a href="/#producto-bloque"    class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">Bloque de Hormigón</a>
+            </div>
+          </div>
+
+          <a href="/#nosotros"    class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Nosotros</a>
+          <a href="/#faq"         class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">FAQ</a>
+          <a href="/#arquitectos" class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Arquitectos</a>
+          <a href="blog.html"        class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Blog</a>
+          <a href="proyectos.html"   class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Proyectos</a>
+          <a href="/#contacto"    class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Contacto</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="/#contacto"
+             class="btn-primary hidden lg:inline-flex items-center gap-2 bg-accent-700 hover:bg-accent-800 text-white text-sm font-medium px-4 py-2 rounded-xl">
+            Contactar
+          </a>
+          <!-- Click to call (mobile only) -->
+          <a href="tel:+34947298278"
+             class="lg:hidden p-2 rounded-xl hover:bg-zinc-100 transition-colors text-accent-700"
+             aria-label="Llamar al 947 29 82 78">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.68h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.1a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
+          </a>
+          <!-- Mobile burger -->
+          <button id="menu-btn"
+                  class="lg:hidden p-2 rounded-xl hover:bg-zinc-100 transition-colors"
+                  aria-label="Abrir menú">
+            <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="6"  x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+            <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6"  y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-offwhite border-t border-zinc-100">
+      <div class="max-w-7xl mx-auto px-4 py-4 space-y-1">
+        <a href="/"         class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Inicio</a>
+        <a href="/#productos"      class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Productos</a>
+        <a href="/#nosotros"       class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Nosotros</a>
+        <a href="/#faq"            class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">FAQ</a>
+        <a href="/#arquitectos"    class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Arquitectos</a>
+        <a href="blog.html"           class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Blog</a>
+        <a href="proyectos.html"      class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Proyectos</a>
+        <a href="/#contacto"       class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Contacto</a>
+        <div class="pt-2">
+          <a href="/#contacto"
+             class="m-link btn-primary block text-center bg-accent-700 hover:bg-accent-800 text-white text-sm font-medium px-4 py-3 rounded-xl">
+            Contactar
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+
+    <div class="bg-zinc-800 pt-28 pb-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <a href="/#productos"
+           class="inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-300 transition-colors mb-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Volver a inicio
+        </a>
+        <div class="grid items-center coupe-hero-grid">
+          <!-- Left: title + description -->
+          <div>
+            <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-400 mb-4">
+              <span class="w-1 h-4 rounded-sm bg-accent-600 flex-shrink-0"></span>Ladrillo caravista de hormigón
+            </span>
+            <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter leading-none text-white mb-3">
+              Coupe<br/><span class="text-accent-400">Caravista</span>
+            </h2>
+            <p class="text-accent-400 text-lg font-semibold tracking-tight mb-5">La sostenibilidad hecha ladrillo.</p>
+            <p class="text-zinc-400 leading-relaxed max-w-[52ch]">
+              Solución caravista prefabricada que combina estética, resistencia y eficiencia para proyectos que exigen acabados vistos de calidad sin sacrificar las prestaciones técnicas del hormigón prefabricado.
+            </p>
+            <div class="flex flex-wrap gap-3 mt-8">
+              <span class="inline-flex items-center gap-1.5 bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-medium px-3.5 py-2 rounded-full">Normal</span>
+              <span class="inline-flex items-center gap-1.5 bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-medium px-3.5 py-2 rounded-full">Caras Lisas</span>
+              <span class="inline-flex items-center gap-1.5 bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-medium px-3.5 py-2 rounded-full">Esquina</span>
+              <span class="inline-flex items-center gap-1.5 bg-zinc-900 border border-zinc-800 text-zinc-300 text-xs font-medium px-3.5 py-2 rounded-full">Zuncho</span>
+            </div>
+          </div>
+          <!-- Right: video -->
+          <div class="relative rounded-2xl overflow-hidden bg-zinc-950 shadow-2xl shadow-zinc-950/50" style="aspect-ratio:16/9;">
+            <iframe
+              src="https://www.youtube.com/embed/87TdzvQ4EXM?rel=0&modestbranding=1&color=white"
+              title="Coupe Caravista — La sostenibilidad hecha ladrillo"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy"
+              class="absolute inset-0 w-full h-full border-0">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-stone-50 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+        <!-- Hero: Normal variant -->
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-20 items-center pb-10 border-b border-zinc-200">
+          <div class="reveal">
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-offwhite border border-zinc-100 flex items-center justify-center p-10 shadow-sm">
+              <img src="/assets/images/ladrillo_coupe_0.png" alt="Coupe Caravista Normal" class="w-full h-full object-contain transition-transform duration-500 hover:scale-105" />
+            </div>
+          </div>
+          <div class="reveal delay-1">
+            <span class="inline-block text-xs font-semibold uppercase tracking-widest text-accent-700 border border-accent-200 bg-accent-50 px-2.5 py-1 rounded-full mb-4">Acabado caravista</span>
+            <h2 class="text-2xl md:text-3xl font-bold tracking-tighter text-zinc-900 mb-4">Coupe Normal</h2>
+            <p class="text-zinc-500 leading-relaxed mb-5 max-w-[52ch]">Versión estándar del ladrillo caravista de hormigón. Acabado uniforme y dimensionalmente preciso, elimina la necesidad de revestimientos posteriores y reduce los costes de mantenimiento a largo plazo.</p>
+            <ul class="space-y-1.5 mb-6 text-sm">
+              <li class="flex items-start gap-2 text-zinc-600"><svg class="mt-0.5 flex-shrink-0 text-accent-600" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Alta resistencia mecánica y a la intemperie (agua, sol, viento, heladas)</li>
+              <li class="flex items-start gap-2 text-zinc-600"><svg class="mt-0.5 flex-shrink-0 text-accent-600" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Inercia térmica: favorece la eficiencia energética y estabiliza la temperatura interior</li>
+              <li class="flex items-start gap-2 text-zinc-600"><svg class="mt-0.5 flex-shrink-0 text-accent-600" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Colocación rápida y precisa — mejora la productividad en obra</li>
+              <li class="flex items-start gap-2 text-zinc-600"><svg class="mt-0.5 flex-shrink-0 text-accent-600" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Contribuye a la economía circular: fabricación optimizada y residuo mínimo</li>
+            </ul>
+            <div class="grid grid-cols-2 gap-3 mb-6">
+              <div class="bg-offwhite border border-zinc-100 rounded-xl p-3.5">
+                <div class="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Dimensiones</div>
+                <div class="text-sm font-semibold text-zinc-800">390 × 140 × 50 mm</div>
+              </div>
+              <div class="bg-offwhite border border-zinc-100 rounded-xl p-3.5">
+                <div class="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Unidades/palé</div>
+                <div class="text-sm font-semibold text-zinc-800">210 ud.</div>
+              </div>
+              <div class="bg-offwhite border border-zinc-100 rounded-xl p-3.5">
+                <div class="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Peso unitario</div>
+                <div class="text-sm font-semibold text-zinc-800">4 kg</div>
+              </div>
+              <div class="bg-offwhite border border-zinc-100 rounded-xl p-3.5">
+                <div class="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider mb-1">Color</div>
+                <div class="text-sm font-semibold text-zinc-800">Blanco</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 remaining variants -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- Caras Lisas -->
+          <div class="reveal card-lift bg-offwhite border border-zinc-100 rounded-2xl overflow-hidden">
+            <div class="aspect-video bg-stone-50 flex items-center justify-center p-8">
+              <img src="https://www.barruca.es/images/caraslisas_copia.png" alt="Coupe Caras Lisas" class="h-full object-contain" />
+            </div>
+            <div class="p-6">
+              <span class="inline-block text-xs font-semibold uppercase tracking-widest text-accent-700 border border-accent-200 bg-accent-50 px-2.5 py-1 rounded-full mb-3">Superficies planas</span>
+              <h3 class="text-lg font-bold tracking-tight text-zinc-900 mb-3">Caras Lisas</h3>
+              <div class="space-y-2 text-sm">
+                <div class="flex justify-between"><span class="text-zinc-500">Dimensiones</span><span class="font-medium text-zinc-800">390 × 140 × 50 mm</span></div>
+                <div class="flex justify-between"><span class="text-zinc-500">Ud./palé</span><span class="font-medium text-zinc-800">210 ud.</span></div>
+                <div class="flex justify-between"><span class="text-zinc-500">Peso</span><span class="font-medium text-zinc-800">4 kg</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Esquina -->
+          <div class="reveal delay-1 card-lift bg-offwhite border border-zinc-100 rounded-2xl overflow-hidden">
+            <div class="aspect-video bg-stone-50 flex items-center justify-center p-8">
+              <img src="https://www.barruca.es/images/esquinaPeq-296x300.png" alt="Coupe Esquina" class="h-full object-contain" />
+            </div>
+            <div class="p-6">
+              <span class="inline-block text-xs font-semibold uppercase tracking-widest text-accent-700 border border-accent-200 bg-accent-50 px-2.5 py-1 rounded-full mb-3">Encuentros y esquinas</span>
+              <h3 class="text-lg font-bold tracking-tight text-zinc-900 mb-3">Esquina</h3>
+              <div class="space-y-2 text-sm">
+                <div class="flex justify-between"><span class="text-zinc-500">Dimensiones</span><span class="font-medium text-zinc-800">390 × 190 × 50 mm</span></div>
+                <div class="flex justify-between"><span class="text-zinc-500">Ud./palé</span><span class="font-medium text-zinc-800">180 ud.</span></div>
+                <div class="flex justify-between"><span class="text-zinc-500">Peso</span><span class="font-medium text-zinc-800">4 kg</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Zuncho -->
+          <div class="reveal delay-2 card-lift bg-offwhite border border-zinc-100 rounded-2xl overflow-hidden">
+            <div class="aspect-video bg-stone-50 flex items-center justify-center p-8">
+              <img src="https://www.barruca.es/images/04-ZUNCHO.png" alt="Coupe Zuncho" class="h-full object-contain" />
+            </div>
+            <div class="p-6">
+              <span class="inline-block text-xs font-semibold uppercase tracking-widest text-accent-700 border border-accent-200 bg-accent-50 px-2.5 py-1 rounded-full mb-3">Remate y coronación</span>
+              <h3 class="text-lg font-bold tracking-tight text-zinc-900 mb-3">Zuncho</h3>
+              <div class="space-y-2 text-sm">
+                <div class="flex justify-between"><span class="text-zinc-500">Dimensiones</span><span class="font-medium text-zinc-800">390 × 140 × 5 mm</span></div>
+                <div class="flex justify-between"><span class="text-zinc-500">Ud./palé</span><span class="font-medium text-zinc-800">210 ud.</span></div>
+                <div class="flex justify-between"><span class="text-zinc-500">Peso</span><span class="font-medium text-zinc-800">4 kg</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="bg-zinc-950 rounded-3xl p-10 lg:p-14 flex flex-col sm:flex-row items-center justify-between gap-8">
+          <div>
+            <h3 class="text-xl font-extrabold tracking-tighter text-white mb-2">Ensayos y certificaciones Coupe</h3>
+            <p class="text-zinc-400 text-sm max-w-[44ch]">Resistencia a compresión, heladicidad, absorción de agua, reflectancia y sistemas de fachada documentados.</p>
+          </div>
+          <div class="flex flex-wrap gap-3 flex-shrink-0">
+            <a href="#ensayos" class="inline-flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-white font-medium px-5 py-3 rounded-xl text-sm transition-colors">Ver ensayos</a>
+            <a href="#contacto" class="btn-primary inline-flex items-center gap-2 bg-accent-700 hover:bg-accent-800 text-white font-semibold px-5 py-3 rounded-xl text-sm">
+              Contactar
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer class="bg-zinc-950 text-zinc-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr] gap-10 mb-14">
+
+        <!-- Brand -->
+        <div>
+          <img src="https://www.barruca.es/images/logo-barruca-web.png"
+               alt="Bloques Barruca" class="h-8 w-auto mb-5 opacity-80" />
+          <p class="text-sm leading-relaxed max-w-[42ch] text-zinc-500 mb-6">
+            Fabricantes de bloques y ladrillos de hormigón prefabricado en Burgos desde 1980. Más de 40 años al servicio de la construcción española.
+          </p>
+          <div class="flex gap-2.5">
+            <a href="https://www.facebook.com/BloquesBarruca" aria-label="Facebook"
+               class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://twitter.com/BloquesBarruca" aria-label="Twitter / X"
+               class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/bloques-barruca" aria-label="LinkedIn"
+               class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.instagram.com/BloquesBarruca" aria-label="Instagram"
+               class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Productos -->
+        <div>
+          <h4 class="text-[10px] font-semibold uppercase tracking-widest text-zinc-300 mb-5">Productos</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#fireproof"       class="hover:text-zinc-200 transition-colors">Ladrillo Fireproof®</a></li>
+            <li><a href="#coupe"           class="hover:text-zinc-200 transition-colors">Coupe Caravista</a></li>
+            <li><a href="#hib"             class="hover:text-zinc-200 transition-colors">HIB</a></li>
+            <li><a href="#bloque-hormigon" class="hover:text-zinc-200 transition-colors">Bloque de Hormigón</a></li>
+          </ul>
+        </div>
+
+        <!-- Empresa -->
+        <div>
+          <h4 class="text-[10px] font-semibold uppercase tracking-widest text-zinc-300 mb-5">Empresa</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#nosotros"                            class="hover:text-zinc-200 transition-colors">Nosotros</a></li>
+            <li><a href="#arquitectos"                         class="hover:text-zinc-200 transition-colors">Arquitectos</a></li>
+            <li><a href="#ensayos"       class="hover:text-zinc-200 transition-colors">Ensayos</a></li>
+            <li><a href="#prestaciones" class="hover:text-zinc-200 transition-colors">Prestaciones</a></li>
+            <li><a href="proyectos.html"                       class="hover:text-zinc-200 transition-colors">Proyectos</a></li>
+            <li><a href="blog.html"                           class="hover:text-zinc-200 transition-colors">Blog</a></li>
+            <li><a href="#contacto"                            class="hover:text-zinc-200 transition-colors">Contacto</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-zinc-800/70 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-600">
+        <span>&copy; 2024 Bloques Barruca S.L. Todos los derechos reservados.</span>
+        <div class="flex gap-5">
+          <a href="aviso-legal.html"       class="hover:text-zinc-400 transition-colors">Aviso legal</a>
+          <a href="politica-cookies.html"  class="hover:text-zinc-400 transition-colors">Cookies</a>
+          <a href="privacidad.html"        class="hover:text-zinc-400 transition-colors">Privacidad</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Falling brick column (fixed, left side) -->
+  <div id="brick-column" aria-hidden="true"></div>
+
+  <script src="/assets/main.js" defer></script>
+
+</body>
+</html>

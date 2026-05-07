@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyectos y Obras con Hormigón Prefabricado en Burgos | Barruca</title>
+  <meta name="description" content="Galería de proyectos construidos con bloques y ladrillos Barruca. IES Huércal Almería, urbanización Los Cerros y KINA — hormigón prefabricado fabricado en Burgos desde 1980." />
+
+  <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+
+  <link rel="canonical" href="https://bloquesbarruca.netlify.app/proyectos.html" />
+
+  <!-- Geo / Local SEO -->
+  <meta name="geo.region" content="ES-BU" />
+  <meta name="geo.placename" content="Burgos, Castilla y León, España" />
+  <meta name="geo.position" content="42.3440;-3.6969" />
+  <meta name="ICBM" content="42.3440, -3.6969" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:url" content="https://bloquesbarruca.netlify.app/proyectos.html" />
+  <meta property="og:title" content="Proyectos y Obras con Hormigón Prefabricado | Barruca Burgos" />
+  <meta property="og:description" content="Galería de proyectos realizados con bloques y ladrillos Barruca en Burgos. IES Huércal Almería, Los Cerros, KINA y más obras de referencia." />
+  <meta property="og:image" content="https://bloquesbarruca.netlify.app/assets/Muro.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Barruca Prefabricados" />
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Proyectos y Obras con Hormigón Prefabricado | Barruca Burgos" />
+  <meta name="twitter:description" content="Galería de obras realizadas con bloques y ladrillos prefabricados de Barruca, fabricante en Burgos desde 1980." />
+  <meta name="twitter:image" content="https://bloquesbarruca.netlify.app/assets/Muro.jpg" />
+  <meta name="twitter:image:alt" content="Obras y proyectos con hormigón prefabricado Barruca" />
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": "https://bloquesbarruca.netlify.app/proyectos.html",
+    "name": "Proyectos y Obras — Bloques Barruca",
+    "description": "Galería fotográfica de proyectos construidos con hormigón prefabricado Barruca en España.",
+    "url": "https://bloquesbarruca.netlify.app/proyectos.html",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Bloques Barruca",
+      "url": "https://bloquesbarruca.netlify.app/"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/assets/tailwind.css" />
+
+  <style>
+    :root { --c-bg: #f7f6f2; }
+    .bg-offwhite { background-color: var(--c-bg); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 100ms; }
+    .delay-2 { transition-delay: 200ms; }
+
+    .glass-nav {
+      background: rgba(250, 250, 249, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-top: 3px solid #c2410c;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+    }
+
+    .brick-sep { line-height: 0; overflow: hidden; display: block; }
+    .brick-sep svg { display: block; width: 100%; }
+
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1.5px;
+      background: #c2410c;
+      transition: width 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    .btn-primary { transition: background-color 0.2s, transform 0.1s; }
+    .btn-primary:active { transform: translateY(1px) scale(0.98); }
+
+    .dropdown-menu {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(6px);
+      transition: opacity 0.2s, visibility 0.2s, transform 0.2s cubic-bezier(0.16,1,0.3,1);
+    }
+    .dropdown-parent:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* ── Project tabs ── */
+    .proj-tab {
+      padding: 0.5rem 1.25rem;
+      border-radius: 2rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.55);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .proj-tab:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
+    .proj-tab.active { background: #b91c1c; color: #fff; border-color: #b91c1c; }
+
+    /* ── Sticky project bar ── */
+    #proj-bar {
+      position: sticky;
+      top: 64px;
+      z-index: 40;
+      background: rgba(250,250,249,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    /* ── Masonry photo grid ── */
+    .photo-grid {
+      columns: 4 220px;
+      column-gap: 6px;
+    }
+    .photo-item {
+      break-inside: avoid;
+      margin-bottom: 6px;
+      overflow: hidden;
+      border-radius: 0.5rem;
+      cursor: zoom-in;
+      background: #e4e4e7;
+      position: relative;
+    }
+    .photo-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .photo-item:hover img { transform: scale(1.05); }
+    .photo-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background 0.2s;
+      pointer-events: none;
+    }
+    .photo-item:hover::after { background: rgba(0,0,0,0.1); }
+
+    @media (max-width: 640px) {
+      .photo-grid { columns: 2 120px; }
+    }
+
+    /* ── Lightbox ── */
+    /* ── Lightbox ── */
+    #lb {
+      position: fixed; inset: 0; z-index: 9999;
+      background: rgba(5,5,7,0.96);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    #lb.open { opacity: 1; pointer-events: auto; }
+    #lb-bd { position: fixed; inset: 0; }
+
+    /* Image */
+    #lb-wrap {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      width: calc(100vw - 160px);
+      max-height: 90vh;
+    }
+    #lb-img {
+      max-width: 100%; max-height: 86vh;
+      object-fit: contain; border-radius: 4px;
+      transition: opacity 0.18s ease;
+      display: block;
+      user-select: none;
+    }
+    #lb-img.fading { opacity: 0; }
+
+    /* Close */
+    #lb-close {
+      position: fixed; top: 1.1rem; right: 1.1rem; z-index: 3;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(6px);
+      cursor: pointer; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, transform 0.15s;
+    }
+    #lb-close:hover { background: rgba(255,255,255,0.24); transform: scale(1.08); }
+
+    /* Prev / Next */
+    #lb-prev, #lb-next {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      z-index: 3; cursor: pointer;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(255,255,255,0.13);
+      border: 1.5px solid rgba(255,255,255,0.22);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, transform 0.15s;
+    }
+    #lb-prev:hover, #lb-next:hover {
+      background: rgba(255,255,255,0.26);
+      transform: translateY(-50%) scale(1.1);
+    }
+    #lb-prev { left: 1.5rem; }
+    #lb-next { right: 1.5rem; }
+
+    /* Counter */
+    #lb-counter {
+      position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.05em;
+      background: rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 0.35rem 1rem; border-radius: 2rem;
+      pointer-events: none; white-space: nowrap;
+    }
+
+    @media (max-width: 640px) {
+      #lb-wrap { width: 100vw; }
+      #lb-img  { max-height: 80vh; max-width: 100vw; border-radius: 0; }
+      #lb-prev { left: 0.5rem; width: 44px; height: 44px; }
+      #lb-next { right: 0.5rem; width: 44px; height: 44px; }
+    }
+
+    /* ── Cookie banner ── */
+    #cookie-banner {
+      position: fixed; bottom: 1.5rem; left: 50%;
+      transform: translateX(-50%) translateY(calc(100% + 3rem));
+      z-index: 9000; width: calc(100% - 2rem); max-width: 740px;
+      background: #18181b; border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1rem; padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      transition: transform 0.55s cubic-bezier(0.34,1.4,0.64,1), opacity 0.4s ease;
+      opacity: 0; pointer-events: none;
+    }
+    #cookie-banner.visible { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
+    #cookie-banner.hiding  { transform: translateX(-50%) translateY(calc(100% + 3rem)); opacity: 0; pointer-events: none; }
+    #cookie-banner p { flex: 1; min-width: 0; font-size: 0.8125rem; line-height: 1.55; color: rgba(255,255,255,0.65); margin: 0; }
+    #cookie-banner p strong { color: #fff; font-weight: 600; }
+    .cookie-btns { display: flex; gap: 0.625rem; flex-shrink: 0; }
+    .cookie-btn-accept { background: #b91c1c; color: #fff; font-size: 0.8125rem; font-weight: 600; padding: 0.5rem 1.25rem; border-radius: 0.5rem; border: none; cursor: pointer; transition: background 0.18s; }
+    .cookie-btn-accept:hover { background: #991b1b; }
+    .cookie-btn-reject { background: transparent; color: rgba(255,255,255,0.45); font-size: 0.8125rem; font-weight: 500; padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid rgba(255,255,255,0.12); cursor: pointer; transition: color 0.18s, border-color 0.18s; }
+    .cookie-btn-reject:hover { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.28); }
+
+    /* ── Social FAB ── */
+    #social-fab { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 8998; }
+    #social-fab-btn {
+      width: 52px; height: 52px; border-radius: 50%; background: #b91c1c; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(185,28,28,0.45);
+      transition: background 0.2s, transform 0.3s cubic-bezier(0.34,1.4,0.64,1);
+      position: relative; z-index: 2;
+    }
+    #social-fab-btn:hover { background: #991b1b; }
+    #social-fab-btn.open { transform: rotate(45deg); background: #27272a; }
+    #social-fab-menu { position: absolute; bottom: 64px; right: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem; pointer-events: none; }
+    .fab-item { display: flex; align-items: center; gap: 0.6rem; opacity: 0; transform: translateY(12px) scale(0.85); transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.34,1.4,0.64,1); pointer-events: none; }
+    #social-fab-menu.open .fab-item { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+    #social-fab-menu.open .fab-item:nth-child(1) { transition-delay: 0ms; }
+    #social-fab-menu.open .fab-item:nth-child(2) { transition-delay: 50ms; }
+    #social-fab-menu.open .fab-item:nth-child(3) { transition-delay: 100ms; }
+    #social-fab-menu.open .fab-item:nth-child(4) { transition-delay: 150ms; }
+    .fab-label { font-size: 0.75rem; font-weight: 600; color: #fff; background: #18181b; padding: 0.3rem 0.65rem; border-radius: 0.5rem; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+    .fab-icon { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.25); flex-shrink: 0; transition: transform 0.2s cubic-bezier(0.34,1.4,0.64,1); }
+    .fab-icon:hover { transform: scale(1.12); }
+    .fab-icon-fb { background: #1877f2; }
+    .fab-icon-tw { background: #18181b; }
+    .fab-icon-li { background: #0a66c2; }
+    .fab-icon-ig { background: radial-gradient(circle at 30% 110%, #f9a825, #e1306c 50%, #833ab4); }
+
+    @media (hover: hover) and (pointer: fine) {
+      #social-fab-menu { padding-bottom: 0.6rem; bottom: 52px; }
+      #social-fab:hover #social-fab-menu { pointer-events: auto; }
+      #social-fab:hover .fab-item { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+      #social-fab:hover .fab-item:nth-child(1) { transition-delay: 0ms; }
+      #social-fab:hover .fab-item:nth-child(2) { transition-delay: 50ms; }
+      #social-fab:hover .fab-item:nth-child(3) { transition-delay: 100ms; }
+      #social-fab:hover .fab-item:nth-child(4) { transition-delay: 150ms; }
+    }
+
+    #brick-column { position: fixed; bottom: 0; z-index: 45; pointer-events: none; }
+    .brick-item { position: absolute; opacity: 0; will-change: transform, opacity; filter: grayscale(30%) drop-shadow(-5px 0px 7px rgba(0,0,0,0.5)); }
+    .brick-item.landed { animation: brickDrop var(--brick-dur, 0.72s) linear forwards; }
+    .brick-item.rising  { animation: brickRise var(--rise-dur, 0.42s) ease-in forwards; }
+    @keyframes brickDrop {
+      0%   { transform: translateY(-130vh); opacity: 1; }
+      70%  { transform: translateY(0); }
+      77%  { transform: translateY(-13px); }
+      83%  { transform: translateY(0); }
+      88%  { transform: translateY(-5px); }
+      93%  { transform: translateY(0); }
+      96%  { transform: translateY(-2px); }
+      100% { transform: translateY(0); opacity: 0.68; }
+    }
+    @keyframes brickRise {
+      0%   { transform: translateY(0); opacity: 0.68; }
+      80%  { transform: translateY(-110vh); opacity: 0.35; }
+      100% { transform: translateY(-130vh); opacity: 0; }
+    }
+
+    @media (max-width: 540px) {
+      #cookie-banner { flex-direction: column; align-items: stretch; gap: 0.9rem; padding: 1rem 1.1rem; bottom: 0.75rem; }
+      .cookie-btns { width: 100%; justify-content: stretch; }
+      .cookie-btn-accept, .cookie-btn-reject { flex: 1; text-align: center; }
+    }
+  </style>
+</head>
+<body class="bg-stone-50 text-zinc-900 font-sans antialiased">
+
+  <!-- ── Cookie consent banner ── -->
+  <div id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
+    <p><strong>Usamos cookies</strong> — propias y de terceros para analizar el tráfico y mejorar tu experiencia de navegación.</p>
+    <div class="cookie-btns">
+      <button class="cookie-btn-reject" id="cookie-reject">Rechazar</button>
+      <button class="cookie-btn-accept" id="cookie-accept">Aceptar todas</button>
+    </div>
+  </div>
+
+  <!-- ── Social FAB ── -->
+  <div id="social-fab">
+    <div id="social-fab-menu">
+      <div class="fab-item">
+        <span class="fab-label">Facebook</span>
+        <a href="https://www.facebook.com/BloquesBarruca" target="_blank" rel="noopener" aria-label="Facebook" class="fab-icon fab-icon-fb">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+      <div class="fab-item">
+        <span class="fab-label">Twitter / X</span>
+        <a href="https://twitter.com/BloquesBarruca" target="_blank" rel="noopener" aria-label="Twitter" class="fab-icon fab-icon-tw">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+        </a>
+      </div>
+      <div class="fab-item">
+        <span class="fab-label">LinkedIn</span>
+        <a href="https://www.linkedin.com/company/bloques-barruca" target="_blank" rel="noopener" aria-label="LinkedIn" class="fab-icon fab-icon-li">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+      <div class="fab-item">
+        <span class="fab-label">Instagram</span>
+        <a href="https://www.instagram.com/BloquesBarruca" target="_blank" rel="noopener" aria-label="Instagram" class="fab-icon fab-icon-ig">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+      </div>
+    </div>
+    <button id="social-fab-btn" aria-label="Redes sociales" aria-expanded="false">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"/></svg>
+    </button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════ -->
+  <header class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <a href="/" class="flex-shrink-0">
+          <img src="https://www.barruca.es/images/logo-barruca-web.png"
+               alt="Bloques Barruca" class="h-9 w-auto" />
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-7">
+          <a href="/"      class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Inicio</a>
+
+          <div class="dropdown-parent relative">
+            <a href="/#productos" class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors flex items-center gap-1">
+              Productos
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-px"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-4 w-56 bg-offwhite border border-zinc-100 rounded-2xl shadow-xl shadow-zinc-200/50 py-2">
+              <a href="producto-fireproof.html" class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">Ladrillo Fireproof®</a>
+              <a href="producto-coupe.html"     class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">Coupe Caravista</a>
+              <a href="producto-hib.html"       class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">HIB</a>
+              <a href="producto-bloque.html"    class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">Bloque de Hormigón</a>
+            </div>
+          </div>
+
+          <a href="/#nosotros"    class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Nosotros</a>
+          <a href="/#faq"         class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">FAQ</a>
+          <a href="/#arquitectos" class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Arquitectos</a>
+          <a href="proyectos.html" class="nav-link text-sm font-semibold text-accent-700 hover:text-accent-900 transition-colors">Proyectos</a>
+          <a href="blog.html"     class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Blog</a>
+          <a href="/#contacto"    class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Contacto</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="/#contacto"
+             class="btn-primary hidden lg:inline-flex items-center gap-2 bg-accent-700 hover:bg-accent-800 text-white text-sm font-medium px-4 py-2 rounded-xl">
+            Contactar
+          </a>
+          <a href="tel:+34947298278"
+             class="lg:hidden p-2 rounded-xl hover:bg-zinc-100 transition-colors text-accent-700"
+             aria-label="Llamar al 947 29 82 78">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.4a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.68h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.1a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
+          </a>
+          <button id="menu-btn"
+                  class="lg:hidden p-2 rounded-xl hover:bg-zinc-100 transition-colors"
+                  aria-label="Abrir menú">
+            <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="6"  x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+            <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6"  y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-offwhite border-t border-zinc-100">
+      <div class="max-w-7xl mx-auto px-4 py-4 space-y-1">
+        <a href="/"             class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Inicio</a>
+        <a href="/#productos"   class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Productos</a>
+        <a href="/#nosotros"    class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Nosotros</a>
+        <a href="/#faq"         class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">FAQ</a>
+        <a href="/#arquitectos" class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Arquitectos</a>
+        <a href="proyectos.html" class="m-link block px-3 py-2.5 text-sm font-semibold text-accent-700 hover:bg-stone-50 rounded-xl transition-colors">Proyectos</a>
+        <a href="blog.html"     class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Blog</a>
+        <a href="/#contacto"    class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Contacto</a>
+        <div class="pt-2">
+          <a href="/#contacto"
+             class="m-link btn-primary block text-center bg-accent-700 hover:bg-accent-800 text-white text-sm font-medium px-4 py-3 rounded-xl">
+            Contactar
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Hero ── -->
+    <div class="bg-zinc-800 pt-28 pb-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <a href="/"
+           class="inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-300 transition-colors mb-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Volver a inicio
+        </a>
+        <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-400 mb-4">
+          <span class="w-1 h-4 rounded-sm bg-accent-600 flex-shrink-0"></span>Portfolio de obras
+        </span>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter leading-none text-white mb-5">
+          Proyectos.
+        </h1>
+        <p class="text-zinc-400 leading-relaxed max-w-[56ch] mb-10">
+          Obras reales construidas con bloques y ladrillos de hormigón prefabricado Barruca. Más de 40 años de producción desde Burgos, Castilla y León, presentes en toda España.
+        </p>
+
+        <!-- Project jump tabs -->
+        <div class="flex flex-wrap gap-2.5">
+          <a href="#ies" class="proj-tab">IES Huércal Almería <span class="ml-1 opacity-60 text-xs">54 fotos</span></a>
+          <a href="#cerros" class="proj-tab">Los Cerros <span class="ml-1 opacity-60 text-xs">63 fotos</span></a>
+          <a href="#kina" class="proj-tab">KINA <span class="ml-1 opacity-60 text-xs">16 fotos</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Sticky project bar ── -->
+    <div id="proj-bar">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-1 overflow-x-auto scrollbar-hide py-3">
+          <a href="#ies"    class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">IES Huércal Almería</a>
+          <a href="#cerros" class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Los Cerros</a>
+          <a href="#kina"   class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">KINA</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         PROJECT 1 — IES HUÉRCAL ALMERÍA
+    ══════════════════════════════════════ -->
+    <section id="ies" class="py-16 scroll-mt-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div>
+            <span class="inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-blue-700 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-full mb-3">Educación</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-900 leading-tight">IES Huércal Almería</h2>
+            <p class="text-zinc-500 text-sm mt-2 flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Huércal, Almería
+            </p>
+          </div>
+          <span class="text-sm text-zinc-400 font-medium flex-shrink-0">54 fotografías</span>
+        </div>
+
+        <div class="reveal delay-1 photo-grid" id="grid-ies"></div>
+      </div>
+    </section>
+
+    <!-- Separador -->
+    <div class="h-px bg-zinc-100 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"></div>
+
+    <!-- ══════════════════════════════════════
+         PROJECT 2 — LOS CERROS
+    ══════════════════════════════════════ -->
+    <section id="cerros" class="py-16 bg-stone-100/60 scroll-mt-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div>
+            <span class="inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-full mb-3">Residencial</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-900 leading-tight">Los Cerros</h2>
+            <p class="text-zinc-500 text-sm mt-2 flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Urbanización residencial
+            </p>
+          </div>
+          <span class="text-sm text-zinc-400 font-medium flex-shrink-0">63 fotografías</span>
+        </div>
+
+        <div class="reveal delay-1 photo-grid" id="grid-cerros"></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         PROJECT 3 — KINA
+    ══════════════════════════════════════ -->
+    <section id="kina" class="py-16 scroll-mt-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div>
+            <span class="inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-accent-700 bg-accent-50 border border-accent-100 px-2.5 py-1 rounded-full mb-3">Proyecto</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-900 leading-tight">KINA</h2>
+            <p class="text-zinc-500 text-sm mt-2 flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+              Hormigón prefabricado Barruca
+            </p>
+          </div>
+          <span class="text-sm text-zinc-400 font-medium flex-shrink-0">16 fotografías</span>
+        </div>
+
+        <div class="reveal delay-1 photo-grid" id="grid-kina"></div>
+      </div>
+    </section>
+
+    <!-- ── CTA contacto ── -->
+    <div class="bg-zinc-900 py-20">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
+        <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-400 mb-4">
+          <span class="w-1 h-4 rounded-sm bg-accent-600 flex-shrink-0"></span>¿Tienes un proyecto?
+        </span>
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+          Cuéntanos tu obra.
+        </h2>
+        <p class="text-zinc-400 leading-relaxed mb-8 max-w-[48ch] mx-auto">
+          Nuestro equipo en Burgos puede asesorarte sobre qué producto se adapta mejor a tu proyecto, plazos y necesidades técnicas.
+        </p>
+        <a href="/#contacto"
+           class="btn-primary inline-flex items-center gap-2 bg-accent-700 hover:bg-accent-800 text-white text-sm font-semibold px-7 py-3.5 rounded-2xl">
+          Contactar con nosotros
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ── Lightbox ── -->
+  <div id="lb" role="dialog" aria-modal="true" aria-label="Visor de imágenes">
+    <div id="lb-bd"></div>
+    <div id="lb-wrap">
+      <img id="lb-img" src="" alt="" />
+    </div>
+    <button id="lb-close" aria-label="Cerrar">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button id="lb-prev" aria-label="Foto anterior">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button id="lb-next" aria-label="Foto siguiente">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div id="lb-counter"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer class="bg-zinc-950 text-zinc-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr] gap-10 mb-14">
+
+        <!-- Brand -->
+        <div>
+          <img src="https://www.barruca.es/images/logo-barruca-web.png"
+               alt="Bloques Barruca" class="h-8 w-auto mb-5 opacity-80" />
+          <p class="text-sm leading-relaxed max-w-[42ch] text-zinc-500 mb-6">
+            Fabricantes de bloques y ladrillos de hormigón prefabricado en Burgos desde 1980. Más de 40 años al servicio de la construcción española.
+          </p>
+          <div class="flex gap-2.5">
+            <a href="https://www.facebook.com/BloquesBarruca" aria-label="Facebook"
+               class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="https://twitter.com/BloquesBarruca" aria-label="Twitter / X"
+               class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/bloques-barruca" aria-label="LinkedIn"
+               class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.instagram.com/BloquesBarruca" aria-label="Instagram"
+               class="w-8 h-8 rounded-xl bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Productos -->
+        <div>
+          <h4 class="text-[10px] font-semibold uppercase tracking-widest text-zinc-300 mb-5">Productos</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="producto-fireproof.html"  class="hover:text-zinc-200 transition-colors">Ladrillo Fireproof®</a></li>
+            <li><a href="producto-coupe.html"       class="hover:text-zinc-200 transition-colors">Coupe Caravista</a></li>
+            <li><a href="producto-hib.html"         class="hover:text-zinc-200 transition-colors">HIB</a></li>
+            <li><a href="producto-bloque.html"      class="hover:text-zinc-200 transition-colors">Bloque de Hormigón</a></li>
+          </ul>
+        </div>
+
+        <!-- Empresa -->
+        <div>
+          <h4 class="text-[10px] font-semibold uppercase tracking-widest text-zinc-300 mb-5">Empresa</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="/#nosotros"        class="hover:text-zinc-200 transition-colors">Nosotros</a></li>
+            <li><a href="/#arquitectos"     class="hover:text-zinc-200 transition-colors">Arquitectos</a></li>
+            <li><a href="proyectos.html"    class="hover:text-zinc-200 transition-colors">Proyectos</a></li>
+            <li><a href="ensayos.html"      class="hover:text-zinc-200 transition-colors">Ensayos</a></li>
+            <li><a href="prestaciones.html" class="hover:text-zinc-200 transition-colors">Prestaciones</a></li>
+            <li><a href="blog.html"         class="hover:text-zinc-200 transition-colors">Blog</a></li>
+            <li><a href="/#contacto"        class="hover:text-zinc-200 transition-colors">Contacto</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-zinc-800/70 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-zinc-600">
+        <span>&copy; 2024 Bloques Barruca S.L. Todos los derechos reservados.</span>
+        <div class="flex gap-5">
+          <a href="aviso-legal.html"       class="hover:text-zinc-400 transition-colors">Aviso legal</a>
+          <a href="politica-cookies.html"  class="hover:text-zinc-400 transition-colors">Cookies</a>
+          <a href="privacidad.html"        class="hover:text-zinc-400 transition-colors">Privacidad</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="brick-column" aria-hidden="true"></div>
+
+  <script src="/assets/main.js" defer></script>
+
+  <script>
+  /* ═══════════════════════════════════════
+     GALLERY DATA
+  ═══════════════════════════════════════ */
+  const BASE = 'assets/Fotos-opt/';
+
+  const ALT_IES = [
+    'Fachada exterior IES Huércal Almería — ladrillo prefabricado Barruca',
+    'Detalle de muro con bloque de hormigón Barruca en IES Huércal Almería',
+    'Vista de la obra IES Huércal Almería construida con prefabricado Barruca',
+    'Cerramiento exterior en IES Huércal Almería, Almería — Barruca',
+    'Interior del IES Huércal Almería con bloque de hormigón Barruca',
+    'Construcción educativa en Almería con ladrillo prefabricado Barruca',
+  ];
+
+  const ALT_CERROS = [
+    'Fachada de ladrillo Barruca en urbanización Los Cerros',
+    'Vista exterior residencial Los Cerros — hormigón prefabricado Barruca',
+    'Detalle constructivo con bloque de hormigón Barruca — Los Cerros',
+    'Cerramiento de vivienda en Los Cerros con ladrillo prefabricado Barruca',
+    'Obra residencial Los Cerros — bloques Barruca fabricados en Burgos',
+    'Muro de bloque de hormigón Barruca en urbanización Los Cerros',
+  ];
+
+  const ALT_KINA = [
+    'Obra de hormigón prefabricado Barruca — proyecto KINA',
+    'Detalle constructivo con bloque Barruca en proyecto KINA',
+    'Fachada proyecto KINA — ladrillo prefabricado Barruca desde Burgos',
+    'Vista del proyecto KINA realizado con bloques de hormigón Barruca',
+  ];
+
+  const GALLERIES = {
+    ies: {
+      el: 'grid-ies',
+      alts: ALT_IES,
+      files: [
+        'IESHu%C3%A9rcalAlmer%C3%ADa-01.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-02.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-03.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-04.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-05.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-06.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-07.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-10.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-11.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-12.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-13.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-14.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-15.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-16.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-17.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-18.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-19.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-20.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-21.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-22.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-23.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-24.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-33.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-37.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-38.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-39.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-43.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-45.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-46.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-47.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-48.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-49.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-50.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-51.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-52.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-53.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-54.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-55.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-56.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-57.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-59.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-60.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-62.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-63.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-64.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-65.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-66.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-67.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-68.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-69.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-70.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-71.jpg',
+        'IESHu%C3%A9rcalAlmer%C3%ADa-72.jpg','IESHu%C3%A9rcalAlmer%C3%ADa-73.jpg',
+      ]
+    },
+    cerros: {
+      el: 'grid-cerros',
+      alts: ALT_CERROS,
+      files: [
+        'LosCerros-01.jpg','LosCerros-02%20%281%29.jpg','LosCerros-03.jpg',
+        'LosCerros-04.jpg','LosCerros-05.jpg','LosCerros-06.jpg',
+        'LosCerros-07.jpg','LosCerros-08.jpg','LosCerros-09.jpg',
+        'LosCerros-11.jpg','LosCerros-12.jpg','LosCerros-13.jpg',
+        'LosCerros-21.jpg','LosCerros-22.jpg','LosCerros-23.jpg',
+        'LosCerros-25.jpg','LosCerros-26.jpg','LosCerros-34.jpg',
+        'LosCerros-35.jpg','LosCerros-36.jpg','LosCerros-37.jpg',
+        'LosCerros-38.jpg','LosCerros-39.jpg','LosCerros-40.jpg',
+        'LosCerros-41.jpg','LosCerros-42.jpg','LosCerros-43.jpg',
+        'LosCerros-44.jpg','LosCerros-45.jpg','LosCerros-46.jpg',
+        'LosCerros-47.jpg','LosCerros-48.jpg','LosCerros-49.jpg',
+        'LosCerros-50.jpg','LosCerros-51.jpg','LosCerros-52.jpg',
+        'LosCerros-53.jpg','LosCerros-54.jpg','LosCerros-55.jpg',
+        'LosCerros-56.jpg','LosCerros-57.jpg','LosCerros-58.jpg',
+        'LosCerros-59.jpg','LosCerros-60.jpg','LosCerros-61.jpg',
+        'LosCerros-62.jpg','LosCerros-63.jpg','LosCerros-71.jpg',
+        'LosCerros-72.jpg','LosCerros-73.jpg','LosCerros-74.jpg',
+        'LosCerros-75.jpg','LosCerros-76.jpg','LosCerros-77.jpg',
+        'LosCerros-78.jpg','LosCerros-79.jpg','LosCerros-80.jpg',
+        'LosCerros-81.jpg','LosCerros-82.jpg','LosCerros-83.jpg',
+        'LosCerros-84.jpg','LosCerros-85.jpg','LosCerros-86.jpg',
+      ]
+    },
+    kina: {
+      el: 'grid-kina',
+      alts: ALT_KINA,
+      files: [
+        'KINA%201.jpg','KINA%202.jpg','KINA%204.jpg',
+        'KINA%208.jpg','KINA%2015.jpg',
+        'Kina_1%20%281%29.jpg','Kina_1%20%282%29.jpg','Kina_1%20%283%29.jpg',
+        'Kina_1%20%284%29.jpg','Kina_1%20%285%29.jpg','Kina_1%20%286%29.jpg',
+        'Kina_1%20%287%29.jpg','Kina_1%20%288%29.jpg','Kina_1%20%289%29.jpg',
+        'Kina_1%20%2810%29.jpg','Kina_1%20%2811%29.jpg',
+      ]
+    }
+  };
+
+  /* ═══════════════════════════════════════
+     BUILD GALLERIES
+  ═══════════════════════════════════════ */
+  const galleryImgs = {}; // key → NodeList-like array for lightbox
+
+  Object.keys(GALLERIES).forEach(key => {
+    const g = GALLERIES[key];
+    const grid = document.getElementById(g.el);
+    const imgs = [];
+
+    g.files.forEach((file, i) => {
+      const alt = g.alts[i % g.alts.length];
+      const item = document.createElement('div');
+      item.className = 'photo-item';
+
+      const img = document.createElement('img');
+      img.src = BASE + file;
+      img.alt = alt;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.dataset.gallery = key;
+      img.dataset.index = i;
+
+      item.addEventListener('click', () => openLb(key, i));
+
+      item.appendChild(img);
+      grid.appendChild(item);
+      imgs.push({ src: BASE + file, alt });
+    });
+
+    galleryImgs[key] = imgs;
+  });
+
+  /* ═══════════════════════════════════════
+     LIGHTBOX
+  ═══════════════════════════════════════ */
+  const lb      = document.getElementById('lb');
+  const lbImg   = document.getElementById('lb-img');
+  const lbCount = document.getElementById('lb-counter');
+  const lbBd    = document.getElementById('lb-bd');
+
+  let lbGallery = null;
+  let lbIndex   = 0;
+
+  function openLb(gallery, index) {
+    lbGallery = gallery;
+    lbIndex   = index;
+    setLbImg();
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function setLbImg() {
+    const imgs = galleryImgs[lbGallery];
+    const p    = imgs[lbIndex];
+    lbImg.classList.add('fading');
+    setTimeout(() => {
+      lbImg.src = p.src;
+      lbImg.alt = p.alt;
+      lbCount.textContent = (lbIndex + 1) + ' / ' + imgs.length;
+      lbImg.classList.remove('fading');
+    }, 120);
+  }
+
+  function navLb(dir) {
+    const total = galleryImgs[lbGallery].length;
+    lbIndex = (lbIndex + dir + total) % total;
+    setLbImg();
+  }
+
+  document.getElementById('lb-close').addEventListener('click', closeLb);
+  lbBd.addEventListener('click', closeLb);
+  document.getElementById('lb-prev').addEventListener('click', () => navLb(-1));
+  document.getElementById('lb-next').addEventListener('click', () => navLb(1));
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')      closeLb();
+    if (e.key === 'ArrowLeft')   navLb(-1);
+    if (e.key === 'ArrowRight')  navLb(1);
+  });
+
+  /* Touch swipe */
+  let touchX = null;
+  lb.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) navLb(dx < 0 ? 1 : -1);
+    touchX = null;
+  });
+
+  /* ═══════════════════════════════════════
+     MOBILE NAV
+  ═══════════════════════════════════════ */
+  const menuBtn   = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen  = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  menuBtn.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden', !open);
+    iconClose.classList.toggle('hidden', open);
+    menuBtn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+  });
+  document.querySelectorAll('.m-link').forEach(l => {
+    l.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      iconOpen.classList.remove('hidden');
+      iconClose.classList.add('hidden');
+    });
+  });
+
+  /* ═══════════════════════════════════════
+     SCROLL REVEAL
+  ═══════════════════════════════════════ */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ═══════════════════════════════════════
+     COOKIES
+  ═══════════════════════════════════════ */
+  const banner = document.getElementById('cookie-banner');
+  if (!localStorage.getItem('cookies-choice')) {
+    setTimeout(() => banner.classList.add('visible'), 1200);
+  }
+  function dismissCookies(choice) {
+    localStorage.setItem('cookies-choice', choice);
+    banner.classList.add('hiding');
+    setTimeout(() => banner.remove(), 600);
+  }
+  document.getElementById('cookie-accept').addEventListener('click', () => dismissCookies('accepted'));
+  document.getElementById('cookie-reject').addEventListener('click', () => dismissCookies('rejected'));
+
+  /* ═══════════════════════════════════════
+     SOCIAL FAB
+  ═══════════════════════════════════════ */
+  const fabBtn  = document.getElementById('social-fab-btn');
+  const fabMenu = document.getElementById('social-fab-menu');
+  fabBtn.addEventListener('click', () => {
+    const open = fabMenu.classList.toggle('open');
+    fabBtn.classList.toggle('open', open);
+    fabBtn.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', e => {
+    if (!document.getElementById('social-fab').contains(e.target)) {
+      fabMenu.classList.remove('open');
+      fabBtn.classList.remove('open');
+      fabBtn.setAttribute('aria-expanded', false);
+    }
+  });
+  </script>
+
+</body>
+</html>

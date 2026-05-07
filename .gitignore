@@ -1,0 +1,21 @@
+# Dependencias npm
+node_modules/
+
+# Fotos originales sin comprimir (usar assets/Fotos-opt/ en su lugar)
+assets/Fotos/
+
+# Scripts y herramientas de desarrollo
+compress-fotos.js
+input.css
+skill.sh
+
+# Carpetas de skills de Claude Code
+examples/
+skills/
+imagegen-skills/
+research/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+*.log
