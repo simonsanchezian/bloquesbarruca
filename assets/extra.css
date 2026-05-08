@@ -77,6 +77,27 @@
   z-index: 0;
 }
 
+/* ── Para profesionales: mobile — patrón siempre visible, "Acceder" visible ── */
+@media (hover: none), (max-width: 1023px) {
+  #arquitectos::before {
+    -webkit-mask-image: none;
+    mask-image: none;
+    opacity: 0.07;
+  }
+  .arch-card::before {
+    -webkit-mask-image: none;
+    mask-image: none;
+    opacity: 0.09;
+  }
+  .arch-card .opacity-0 {
+    opacity: 1 !important;
+  }
+  /* Hint arrow visible on all cards */
+  .arch-card span.inline-flex.items-center {
+    opacity: 1 !important;
+  }
+}
+
 /* ── Reseñas Google — marquee infinito ── */
 
 .rv-card {

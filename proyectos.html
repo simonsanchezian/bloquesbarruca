@@ -2,7 +2,7 @@
 <html lang="es" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Proyectos y Obras con Hormigón Prefabricado en Burgos | Barruca</title>
   <meta name="description" content="Galería de proyectos construidos con bloques y ladrillos Barruca. IES Huércal Almería, urbanización Los Cerros y KINA — hormigón prefabricado fabricado en Burgos desde 1980." />
 
@@ -568,7 +568,6 @@
           <a href="/#arquitectos" class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Arquitectos</a>
           <a href="proyectos.html" class="nav-link text-sm font-medium text-accent-700 hover:text-accent-900 transition-colors">Proyectos</a>
           <a href="blog.html"     class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Blog</a>
-          <a href="/#contacto"    class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Contacto</a>
         </nav>
 
         <div class="flex items-center gap-3">
@@ -620,7 +619,6 @@
         <a href="/#arquitectos" class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Arquitectos</a>
         <a href="proyectos.html" class="m-link block px-3 py-2.5 text-sm font-medium text-accent-700 hover:bg-stone-50 rounded-xl transition-colors">Proyectos</a>
         <a href="blog.html"     class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Blog</a>
-        <a href="/#contacto"    class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Contacto</a>
         <div class="pt-2">
           <a href="/#contacto"
              class="m-link btn-primary block text-center bg-accent-700 hover:bg-accent-800 text-white text-sm font-medium px-4 py-3 rounded-xl">
@@ -820,15 +818,15 @@
     </section>
 
     <!-- ── CTA contacto ── -->
-    <div class="bg-zinc-900 py-20">
+    <div class="bg-white py-20 border-t border-zinc-100">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-        <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-400 mb-4">
+        <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-700 mb-4">
           <span class="w-1 h-4 rounded-sm bg-accent-600 flex-shrink-0"></span>¿Tienes un proyecto?
         </span>
-        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-4 leading-tight">
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-900 mb-4 leading-tight">
           Cuéntanos tu obra.
         </h2>
-        <p class="text-zinc-400 leading-relaxed mb-8 max-w-[48ch] mx-auto">
+        <p class="text-zinc-500 leading-relaxed mb-8 max-w-[48ch] mx-auto">
           Nuestro equipo en Burgos puede asesorarte sobre qué producto se adapta mejor a tu proyecto, plazos y necesidades técnicas.
         </p>
         <a href="/#contacto"
@@ -1223,11 +1221,11 @@
      COOKIES
   ═══════════════════════════════════════ */
   const banner = document.getElementById('cookie-banner');
-  if (!localStorage.getItem('cookies-choice')) {
+  if (!localStorage.getItem('barruca_cookie_consent')) {
     setTimeout(() => banner.classList.add('visible'), 1200);
   }
   function dismissCookies(choice) {
-    localStorage.setItem('cookies-choice', choice);
+    localStorage.setItem('barruca_cookie_consent', choice);
     banner.classList.add('hiding');
     setTimeout(() => banner.remove(), 600);
   }

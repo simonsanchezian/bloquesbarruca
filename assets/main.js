@@ -1,4 +1,18 @@
-﻿    // ── Mobile menu ──────────────────────────────
+﻿    // ── Back/forward scroll restoration ─────────
+    // Disable smooth-scroll during browser history restore so the position
+    // snaps instantly instead of animating from the top.
+    if (performance && performance.getEntriesByType) {
+      var navEntry = performance.getEntriesByType('navigation')[0];
+      if (navEntry && navEntry.type === 'back_forward') {
+        document.documentElement.style.scrollBehavior = 'auto';
+        window.addEventListener('scroll', function () {
+          setTimeout(function () { document.documentElement.style.scrollBehavior = ''; }, 60);
+        }, { once: true, passive: true });
+      }
+    }
+    if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
+
+    // ── Mobile menu ──────────────────────────────
     const menuBtn   = document.getElementById('menu-btn');
     const mobileNav = document.getElementById('mobile-menu');
     const iconOpen  = document.getElementById('icon-open');
@@ -276,7 +290,7 @@
 
       section.innerHTML = '';
       section.classList.remove('py-24');
-      section.style.cssText = 'padding-top:5rem;background:#f4f4f5;';
+      section.style.cssText = 'padding-top:5rem;padding-bottom:3rem;background:#f4f4f5;';
 
       // Header
       var hw = document.createElement('div');
