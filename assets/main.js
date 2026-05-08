@@ -1,16 +1,23 @@
-﻿    // ── Back/forward scroll restoration ─────────
-    // Disable smooth-scroll during browser history restore so the position
-    // snaps instantly instead of animating from the top.
-    if (performance && performance.getEntriesByType) {
-      var navEntry = performance.getEntriesByType('navigation')[0];
-      if (navEntry && navEntry.type === 'back_forward') {
-        document.documentElement.style.scrollBehavior = 'auto';
-        window.addEventListener('scroll', function () {
-          setTimeout(function () { document.documentElement.style.scrollBehavior = ''; }, 60);
-        }, { once: true, passive: true });
-      }
+﻿    // Re-enable smooth scroll after the browser finishes its back/forward
+    // scroll restoration (the inline <head> script disabled it before paint).
+    if (document.documentElement.style.scrollBehavior === 'auto') {
+      window.addEventListener('load', function () {
+        setTimeout(function () { document.documentElement.style.scrollBehavior = ''; }, 80);
+      });
     }
-    if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
+
+    // Prevent pinch-zoom and double-tap zoom on iOS (viewport meta alone is ignored by Safari).
+    document.addEventListener('touchstart', function (e) {
+      if (e.touches.length > 1) e.preventDefault();
+    }, { passive: false });
+    (function () {
+      var lastTap = 0;
+      document.addEventListener('touchend', function (e) {
+        var now = Date.now();
+        if (now - lastTap <= 300) e.preventDefault();
+        lastTap = now;
+      }, false);
+    })();
 
     // ── Mobile menu ──────────────────────────────
     const menuBtn   = document.getElementById('menu-btn');
