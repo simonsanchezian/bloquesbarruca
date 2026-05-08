@@ -535,6 +535,10 @@
 
       /* Section vertical padding: py-24 is too tall on mobile */
       section.py-24 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+
+      /* Banner +40 años: no overlap on mobile, taller image */
+      #banner-transicion { margin-top: 2rem !important; }
+      #banner-transicion img { min-height: 220px; object-fit: cover; object-position: center; }
     }
 
     @media (max-width: 540px) {
@@ -1310,10 +1314,10 @@
     <!-- ═══════════════════════════════════════════════
          BANNER TRANSICIÓN — antes de Nosotros
     ═══════════════════════════════════════════════ -->
-    <div class="relative z-[2]" style="margin-top:-90px;" role="presentation">
+    <div id="banner-transicion" class="relative z-[2]" style="margin-top:-90px;" role="presentation">
       <img src="/assets/Transicion-Seccion.png"
            alt=""
-           class="w-full h-auto block"
+           class="w-full block"
            loading="lazy" decoding="async">
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="text-center">
@@ -1598,7 +1602,7 @@
     <!-- ═══════════════════════════════════════════════
          BLOG
     ═══════════════════════════════════════════════ -->
-    <div class="brick-sep arq-sep arq-sep-bot" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 52" preserveAspectRatio="none" style="height:52px"><polygon points="0,0 1200,0 0,52" fill="#27272a"/><polygon points="0,52 1200,0 1200,52" fill="#fafaf9"/><line x1="0" y1="52" x2="1200" y2="0" stroke="#b91c1c" stroke-width="2" opacity="0.75"/></svg></div>
+    <div class="brick-sep arq-sep arq-sep-bot" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 52" preserveAspectRatio="none" style="height:52px"><rect x="0" y="0" width="1200" height="52" fill="#27272a"/><polygon points="0,52 1200,0 1200,52" fill="#fafaf9"/><line x1="0" y1="52" x2="1200" y2="0" stroke="#b91c1c" stroke-width="2" opacity="0.75"/></svg></div>
     </div><!-- /#arq-zone -->
     <section id="blog" class="py-24 bg-stone-50">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
