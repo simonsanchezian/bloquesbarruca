@@ -104,9 +104,9 @@
 
   <script>
     if (history.scrollRestoration) history.scrollRestoration = 'manual';
-    window.scrollTo(0, 0);
-    window.addEventListener('load',     function() { window.scrollTo(0, 0); });
-    window.addEventListener('pageshow', function() { window.scrollTo(0, 0); });
+    if (!window.location.hash) window.scrollTo(0, 0);
+    window.addEventListener('load',     function() { if (!window.location.hash) window.scrollTo(0, 0); });
+    window.addEventListener('pageshow', function() { if (!window.location.hash) window.scrollTo(0, 0); });
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -114,6 +114,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="/assets/tailwind.css" />
+  <link rel="stylesheet" href="/assets/extra.css" />
 
   <style>
     :root { --c-bg: #f7f6f2; }
@@ -223,7 +224,7 @@
       box-shadow: 0 8px 24px -6px rgba(0,0,0,0.09);
     }
 
-    /* ── Marquee ── */
+    /* ── Marquee stats ── */
     @keyframes marquee {
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
@@ -231,6 +232,19 @@
     .marquee-track { animation: marquee 28s linear infinite; }
     .marquee-track:hover { animation-play-state: paused; }
     .marquee-track .marquee-stat { text-shadow: 0 3px 14px rgba(255,255,255,0.55); }
+
+    /* ── Marquee reseñas ── */
+    @keyframes rv-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .rv-track { animation: rv-scroll 42s linear infinite; }
+    .rv-track:hover { animation-play-state: paused; }
+    .rv-wrap {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+      mask-image:         linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+    }
 
     /* ── Falling brick column ── */
     #brick-column {
@@ -678,7 +692,7 @@
        NAVIGATION
   ═══════════════════════════════════════════════ -->
   <header class="glass-nav fixed top-0 left-0 right-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
 
         <!-- Logo -->
@@ -708,8 +722,8 @@
           <a href="#nosotros"    class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Nosotros</a>
           <a href="#faq"         class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">FAQ</a>
           <a href="#arquitectos" class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Arquitectos</a>
-          <a href="blog.html"    class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Blog</a>
           <a href="proyectos.html" class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Proyectos</a>
+          <a href="blog.html"    class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Blog</a>
           <a href="#contacto"    class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Contacto</a>
         </nav>
 
@@ -744,7 +758,7 @@
 
     <!-- Mobile drawer -->
     <div id="mobile-menu" class="hidden lg:hidden bg-offwhite border-t border-zinc-100">
-      <div class="max-w-7xl mx-auto px-4 py-4 space-y-1">
+      <div class="max-w-6xl mx-auto px-4 py-4 space-y-1">
         <a href="#inicio"         class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Inicio</a>
         <!-- Productos accordion -->
         <div>
@@ -762,8 +776,8 @@
         <a href="#nosotros"       class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Nosotros</a>
         <a href="#faq"            class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">FAQ</a>
         <a href="#arquitectos"    class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Arquitectos</a>
-        <a href="blog.html"       class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Blog</a>
         <a href="proyectos.html"  class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Proyectos</a>
+        <a href="blog.html"       class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Blog</a>
         <a href="#contacto"       class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Contacto</a>
         <div class="pt-2">
           <a href="#contacto"
@@ -798,7 +812,7 @@
       </div>
 
       <!-- Content -->
-      <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
+      <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
         <div class="lg:flex lg:items-center lg:gap-16">
         <div class="flex-1 max-w-[54ch]">
 
@@ -924,57 +938,11 @@
 
 
     <!-- ═══════════════════════════════════════════════
-         VIDEO — Barruca en acción
-    ═══════════════════════════════════════════════ -->
-    <section id="video" class="py-24 bg-offwhite">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-center">
-
-          <!-- Left: text -->
-          <div class="reveal">
-            <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-700 mb-5">
-              <span class="w-1 h-4 rounded-sm bg-accent-600 flex-shrink-0"></span>Barruca en acción
-            </span>
-            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tighter leading-[1.05] text-zinc-900 mb-5">
-              Fabricación, calidad y<br/>compromiso desde 1980.
-            </h2>
-            <p class="text-zinc-500 leading-relaxed max-w-[48ch] mb-7">
-              Conoce nuestro proceso de fabricación, las instalaciones y los proyectos que dan vida a los bloques de hormigón prefabricado que construyen España.
-            </p>
-            <a href="#contacto"
-               class="inline-flex items-center gap-2 text-sm font-semibold text-accent-700 hover:text-accent-800 transition-colors">
-              Contactar con nosotros
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-          </div>
-
-          <!-- Right: YouTube embed -->
-          <div class="reveal delay-1">
-            <div class="relative rounded-2xl overflow-hidden bg-zinc-950 shadow-2xl shadow-zinc-900/25"
-                 style="aspect-ratio: 16/9;">
-              <iframe
-                src="https://www.youtube.com/embed/wm3uQPBQlFM?rel=0&modestbranding=1&color=white"
-                title="Bloques Barruca — Fabricación de hormigón prefabricado"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-                loading="lazy"
-                class="absolute inset-0 w-full h-full border-0">
-              </iframe>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ═══════════════════════════════════════════════
          PRODUCTOS
     ═══════════════════════════════════════════════ -->
     <div class="brick-sep" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 52" preserveAspectRatio="none" style="height:52px"><polygon points="0,0 1200,0 0,52" fill="#f7f6f2"/><polygon points="0,52 1200,0 1200,52" fill="#fafaf9"/><line x1="0" y1="52" x2="1200" y2="0" stroke="#b91c1c" stroke-width="1.5" opacity="0.22"/></svg></div>
     <section id="productos" class="py-24 bg-stone-50 relative z-[1]">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- Header -->
         <div class="mb-16 reveal">
@@ -1178,6 +1146,165 @@
         </div><!-- /white card -->
       </div>
     </section>
+    <!-- ═══════════════════════════════════════════════
+         RESEÑAS GOOGLE
+    ═══════════════════════════════════════════════ -->
+    <section id="resenas" class="py-20 bg-stone-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 reveal">
+        <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-700 mb-4">
+          <span class="w-1 h-4 rounded-sm bg-accent-600 flex-shrink-0"></span>Opiniones
+        </span>
+        <div class="flex items-end justify-between gap-4 flex-wrap">
+          <h2 class="text-3xl md:text-4xl font-extrabold tracking-tighter text-zinc-900 leading-none">Lo que dicen nuestros clientes.</h2>
+          <div class="flex items-center gap-2 text-sm text-zinc-500">
+            <!-- Google logo SVG -->
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-label="Google"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            <span class="font-medium text-zinc-600">Google Reviews</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marquee track — misma estructura que el marquee del hero -->
+      <div class="rv-wrap">
+        <div class="inline-flex whitespace-nowrap rv-track">
+
+          <!-- Set 1 (real) -->
+          <span class="inline-flex items-start gap-5 px-5 py-8">
+            <div class="rv-card">
+              <div class="rv-stars">★★★★★</div>
+              <p class="rv-text">"La señorita que nos atendió muy agradable, nos explicó todos los modelos que fabrican y todas sus características. También nos ayudó a cargarlos en el coche. Volveré y recomendaré sin duda."</p>
+              <span class="rv-name">Felisa Martín</span>
+            </div>
+            <div class="rv-card">
+              <div class="rv-stars">★★★★★</div>
+              <p class="rv-text">"Empresa muy recomendable, precios asequibles y competitivos. La chica de la oficina te orienta y recomienda en todo momento según tus necesidades. Muy amables tanto ella como su equipo."</p>
+              <span class="rv-name">Héctor García Montiel</span>
+            </div>
+            <div class="rv-card">
+              <div class="rv-stars">★★★★★</div>
+              <p class="rv-text">"Gran calidad. Muy buena atención al cliente. Productos innovadores."</p>
+              <span class="rv-name">Lis 2579</span>
+            </div>
+            <div class="rv-card">
+              <div class="rv-stars">★★★★★</div>
+              <p class="rv-text">"Los trabajadores, el trato, estupendos. Rápido en la carga, no pierdes tiempo."</p>
+              <span class="rv-name">Francisco Roda</span>
+            </div>
+            <div class="rv-card">
+              <div class="rv-stars">★★★★★</div>
+              <p class="rv-text">"Excelentes profesionales, innovación continua para aportar soluciones al sector."</p>
+              <span class="rv-name">Tony Afonso</span>
+            </div>
+            <div class="rv-card">
+              <div class="rv-stars">★★★★★</div>
+              <p class="rv-text">"Calidad garantizada y precios muy competitivos."</p>
+              <span class="rv-name">Carlos Obregón García</span>
+            </div>
+            <div class="rv-card">
+              <div class="rv-stars">★★★★★</div>
+              <p class="rv-text">"Muy buena atención al público."</p>
+              <span class="rv-name">Juan A. García</span>
+            </div>
+            <div class="rv-card">
+              <div class="rv-stars">★★★★★</div>
+              <p class="rv-text">"Buena gente. Buen trato."</p>
+              <span class="rv-name">Javier Izarra Romero</span>
+            </div>
+          </span>
+
+          <!-- Set 2 (duplicado para el bucle) -->
+          <span class="inline-flex items-start gap-5 px-5 py-8" aria-hidden="true">
+            <div class="rv-card">
+              <div class="rv-stars">★★★★★</div>
+              <p class="rv-text">"La señorita que nos atendió muy agradable, nos explicó todos los modelos que fabrican y todas sus características. También nos ayudó a cargarlos en el coche. Volveré y recomendaré sin duda."</p>
+              <span class="rv-name">Felisa Martín</span>
+            </div>
+            <div class="rv-card">
+              <div class="rv-stars">★★★★★</div>
+              <p class="rv-text">"Empresa muy recomendable, precios asequibles y competitivos. La chica de la oficina te orienta y recomienda en todo momento según tus necesidades. Muy amables tanto ella como su equipo."</p>
+              <span class="rv-name">Héctor García Montiel</span>
+            </div>
+            <div class="rv-card">
+              <div class="rv-stars">★★★★★</div>
+              <p class="rv-text">"Gran calidad. Muy buena atención al cliente. Productos innovadores."</p>
+              <span class="rv-name">Lis 2579</span>
+            </div>
+            <div class="rv-card">
+              <div class="rv-stars">★★★★★</div>
+              <p class="rv-text">"Los trabajadores, el trato, estupendos. Rápido en la carga, no pierdes tiempo."</p>
+              <span class="rv-name">Francisco Roda</span>
+            </div>
+            <div class="rv-card">
+              <div class="rv-stars">★★★★★</div>
+              <p class="rv-text">"Excelentes profesionales, innovación continua para aportar soluciones al sector."</p>
+              <span class="rv-name">Tony Afonso</span>
+            </div>
+            <div class="rv-card">
+              <div class="rv-stars">★★★★★</div>
+              <p class="rv-text">"Calidad garantizada y precios muy competitivos."</p>
+              <span class="rv-name">Carlos Obregón García</span>
+            </div>
+            <div class="rv-card">
+              <div class="rv-stars">★★★★★</div>
+              <p class="rv-text">"Muy buena atención al público."</p>
+              <span class="rv-name">Juan A. García</span>
+          </div>
+          <div class="rv-card" aria-hidden="true">
+            <div class="rv-stars">★★★★★</div>
+            <p class="rv-text">"Buena gente. Buen trato."</p>
+            <span class="rv-name">Javier Izarra Romero</span>
+            </div>
+          </span>
+
+        </div><!-- /.rv-track -->
+      </div><!-- /.rv-wrap -->
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════
+         VIDEO — Barruca en acción
+    ═══════════════════════════════════════════════ -->
+    <section id="video" class="py-24 bg-offwhite">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-20 items-center">
+
+          <!-- Left: text -->
+          <div class="reveal">
+            <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-700 mb-5">
+              <span class="w-1 h-4 rounded-sm bg-accent-600 flex-shrink-0"></span>Barruca en acción
+            </span>
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tighter leading-[1.05] text-zinc-900 mb-5">
+              Fabricación, calidad y<br/>compromiso desde 1980.
+            </h2>
+            <p class="text-zinc-500 leading-relaxed max-w-[48ch] mb-7">
+              Conoce nuestro proceso de fabricación, las instalaciones y los proyectos que dan vida a los bloques de hormigón prefabricado que construyen España.
+            </p>
+            <a href="#contacto"
+               class="inline-flex items-center gap-2 text-sm font-semibold text-accent-700 hover:text-accent-800 transition-colors">
+              Contactar con nosotros
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <!-- Right: YouTube embed -->
+          <div class="reveal delay-1">
+            <div class="relative rounded-2xl overflow-hidden bg-zinc-950 shadow-2xl shadow-zinc-900/25"
+                 style="aspect-ratio: 16/9;">
+              <iframe
+                src="https://www.youtube.com/embed/wm3uQPBQlFM?rel=0&modestbranding=1&color=white"
+                title="Bloques Barruca — Fabricación de hormigón prefabricado"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy"
+                class="absolute inset-0 w-full h-full border-0">
+              </iframe>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
 
 
     <!-- ═══════════════════════════════════════════════
@@ -1206,7 +1333,7 @@
          NOSOTROS
     ═══════════════════════════════════════════════ -->
     <section id="nosotros" class="py-24 bg-offwhite">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <!-- Text -->
           <div class="reveal max-w-3xl">
@@ -1250,12 +1377,39 @@
             </div>
           </div>
 
-        <!-- Photo: Los Cerros -->
-        <div class="mt-14 reveal rounded-2xl overflow-hidden">
-          <img src="/assets/Fotos-opt/LosCerros-01.jpg"
-               alt="Proyecto Los Cerros — edificio construido con bloques Barruca"
-               class="w-full h-auto block"
-               loading="lazy" decoding="async">
+        <!-- Carrusel proyectos -->
+        <div class="mt-14 reveal">
+          <div class="relative rounded-2xl overflow-hidden" style="aspect-ratio:16/9;">
+            <!-- Slides -->
+            <div id="nos-slides" style="position:absolute;inset:0;">
+              <img src="assets/Fotos-opt/Los%20Cerros/LosCerros-01.jpg"             alt="Proyecto Los Cerros"       style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" loading="lazy" decoding="async">
+              <img src="assets/Fotos-opt/IES%20Hu%C3%A9rcal%20Almer%C3%ADa/IESHu%C3%A9rcalAlmer%C3%ADa-22.jpg" alt="IES Huércal Almería"     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;" loading="lazy" decoding="async">
+              <img src="assets/Fotos-opt/Instituto%20Maracena/00-2334-0320.jpg"     alt="Instituto Maracena"        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;" loading="lazy" decoding="async">
+              <img src="assets/Fotos-opt/Casa%20Burgos/Casa%20K_bergeraphoto_04.jpg" alt="Casa Burgos"              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;" loading="lazy" decoding="async">
+              <img src="assets/Fotos-opt/KINA/Kina_1%20%283%29.jpg"                alt="Proyecto KINA"             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;" loading="lazy" decoding="async">
+            </div>
+            <!-- Flecha izquierda -->
+            <button id="nos-prev" aria-label="Proyecto anterior"
+                    style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,0.45);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background 0.2s">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <!-- Flecha derecha -->
+            <button id="nos-next" aria-label="Proyecto siguiente"
+                    style="position:absolute;right:12px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,0.45);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background 0.2s">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <!-- Contador -->
+            <span id="nos-counter" style="position:absolute;bottom:12px;right:16px;background:rgba(0,0,0,0.45);color:#fff;font-size:0.7rem;font-weight:600;padding:3px 10px;border-radius:999px;pointer-events:none">1 / 5</span>
+          </div>
+          <div class="mt-10 text-center">
+            <p class="text-sm text-zinc-500 mb-4">+40 años de proyectos por toda España — desde institutos hasta viviendas unifamiliares.</p>
+            <a href="proyectos.html"
+               class="btn-primary inline-flex items-center gap-2.5 bg-accent-700 text-white font-bold whitespace-nowrap px-8 py-3.5 rounded-xl hover:bg-accent-800 transition-colors"
+               style="font-size:0.9375rem">
+              Ver todos los proyectos
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
         </div>
 
       </div>
@@ -1353,9 +1507,10 @@
     </section>
 
 
-    <div class="brick-sep" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 52" preserveAspectRatio="none" style="height:52px"><polygon points="0,0 1200,0 0,52" fill="#fafaf9"/><polygon points="0,52 1200,0 1200,52" fill="#27272a"/><line x1="0" y1="52" x2="1200" y2="0" stroke="#b91c1c" stroke-width="2" opacity="0.75"/></svg></div>
+    <div id="arq-zone">
+    <div class="brick-sep arq-sep arq-sep-top" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 52" preserveAspectRatio="none" style="height:52px"><polygon points="0,0 1200,0 0,52" fill="#fafaf9"/><polygon points="0,52 1200,0 1200,52" fill="#27272a"/><line x1="0" y1="52" x2="1200" y2="0" stroke="#b91c1c" stroke-width="2" opacity="0.75"/></svg></div>
     <section id="arquitectos" class="py-24 bg-zinc-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="mb-14 reveal">
           <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-400 mb-4">
@@ -1370,7 +1525,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-800 rounded-3xl overflow-hidden arch-grid">
 
           <a href="ensayos.html"
-             class="reveal group bg-zinc-800 p-8 lg:p-10 hover:bg-zinc-700/80 transition-colors duration-300">
+             class="arch-card reveal group bg-zinc-800 p-8 lg:p-10 hover:bg-zinc-700/80 transition-colors duration-300">
             <div class="w-11 h-11 rounded-2xl bg-accent-700/15 border border-accent-700/25 flex items-center justify-center mb-6">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -1389,7 +1544,7 @@
           </a>
 
           <a href="prestaciones.html"
-             class="reveal delay-1 group bg-zinc-800 p-8 lg:p-10 hover:bg-zinc-700/80 transition-colors duration-300">
+             class="arch-card reveal delay-1 group bg-zinc-800 p-8 lg:p-10 hover:bg-zinc-700/80 transition-colors duration-300">
             <div class="w-11 h-11 rounded-2xl bg-accent-700/15 border border-accent-700/25 flex items-center justify-center mb-6">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
@@ -1405,7 +1560,7 @@
           </a>
 
           <a href="articulos.html"
-             class="reveal delay-2 group bg-zinc-800 p-8 lg:p-10 hover:bg-zinc-700/80 transition-colors duration-300">
+             class="arch-card reveal delay-2 group bg-zinc-800 p-8 lg:p-10 hover:bg-zinc-700/80 transition-colors duration-300">
             <div class="w-11 h-11 rounded-2xl bg-accent-700/15 border border-accent-700/25 flex items-center justify-center mb-6">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
@@ -1421,7 +1576,7 @@
           </a>
 
           <a href="prescripciones.html"
-             class="reveal delay-3 group bg-zinc-800 p-8 lg:p-10 hover:bg-zinc-700/80 transition-colors duration-300">
+             class="arch-card reveal delay-3 group bg-zinc-800 p-8 lg:p-10 hover:bg-zinc-700/80 transition-colors duration-300">
             <div class="w-11 h-11 rounded-2xl bg-accent-700/15 border border-accent-700/25 flex items-center justify-center mb-6">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c2410c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
@@ -1443,9 +1598,10 @@
     <!-- ═══════════════════════════════════════════════
          BLOG
     ═══════════════════════════════════════════════ -->
-    <div class="brick-sep" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 52" preserveAspectRatio="none" style="height:52px"><polygon points="0,0 1200,0 0,52" fill="#27272a"/><polygon points="0,52 1200,0 1200,52" fill="#fafaf9"/><line x1="0" y1="52" x2="1200" y2="0" stroke="#b91c1c" stroke-width="2" opacity="0.75"/></svg></div>
+    <div class="brick-sep arq-sep arq-sep-bot" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 52" preserveAspectRatio="none" style="height:52px"><polygon points="0,0 1200,0 0,52" fill="#27272a"/><polygon points="0,52 1200,0 1200,52" fill="#fafaf9"/><line x1="0" y1="52" x2="1200" y2="0" stroke="#b91c1c" stroke-width="2" opacity="0.75"/></svg></div>
+    </div><!-- /#arq-zone -->
     <section id="blog" class="py-24 bg-stone-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="flex items-end justify-between flex-wrap gap-4 mb-14">
           <div class="reveal">
@@ -1492,13 +1648,12 @@
       </div>
     </section>
 
-
     <!-- ═══════════════════════════════════════════════
          CONTACTO
     ═══════════════════════════════════════════════ -->
     <div class="brick-sep" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 52" preserveAspectRatio="none" style="height:52px"><polygon points="0,0 1200,0 0,52" fill="#fafaf9"/><polygon points="0,52 1200,0 1200,52" fill="#f7f6f2"/><line x1="0" y1="52" x2="1200" y2="0" stroke="#b91c1c" stroke-width="1.5" opacity="0.22"/></svg></div>
     <section id="contacto" class="py-24 bg-offwhite">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- Cabecera -->
         <div class="reveal mb-12">
@@ -1631,7 +1786,7 @@
        FOOTER
   ═══════════════════════════════════════════════ -->
   <footer class="bg-zinc-950 text-zinc-500">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr] gap-10 mb-14">
 
@@ -1712,6 +1867,47 @@
       var open = menu.classList.toggle('hidden') === false;
       icon.style.transform = open ? 'rotate(180deg)' : '';
     }
+  </script>
+
+  <script>
+    (function () {
+      var zone = document.getElementById('arq-zone');
+      if (!zone) return;
+      var s     = document.getElementById('arquitectos');
+      var seps  = zone.querySelectorAll('.arq-sep');
+      var cards = zone.querySelectorAll('.arch-card');
+      zone.addEventListener('mousemove', function (e) {
+        if (s) {
+          var sr = s.getBoundingClientRect();
+          s.style.setProperty('--mx', (e.clientX - sr.left) + 'px');
+          s.style.setProperty('--my', (e.clientY - sr.top)  + 'px');
+        }
+        for (var i = 0; i < seps.length; i++) {
+          var br = seps[i].getBoundingClientRect();
+          seps[i].style.setProperty('--bsx', (e.clientX - br.left) + 'px');
+          seps[i].style.setProperty('--bsy', (e.clientY - br.top)  + 'px');
+        }
+        for (var i = 0; i < cards.length; i++) {
+          var cr = cards[i].getBoundingClientRect();
+          cards[i].style.setProperty('--cx', (e.clientX - cr.left) + 'px');
+          cards[i].style.setProperty('--cy', (e.clientY - cr.top)  + 'px');
+        }
+      });
+      zone.addEventListener('mouseleave', function () {
+        if (s) {
+          s.style.setProperty('--mx', '-400px');
+          s.style.setProperty('--my', '-400px');
+        }
+        for (var i = 0; i < seps.length; i++) {
+          seps[i].style.setProperty('--bsx', '-400px');
+          seps[i].style.setProperty('--bsy', '-400px');
+        }
+        for (var i = 0; i < cards.length; i++) {
+          cards[i].style.setProperty('--cx', '-400px');
+          cards[i].style.setProperty('--cy', '-400px');
+        }
+      });
+    })();
   </script>
 
 </body>

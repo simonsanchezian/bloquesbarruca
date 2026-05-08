@@ -66,6 +66,9 @@
       const col = document.getElementById('brick-column');
       if (!col) return;
 
+      // Only run on screens 1920×1080 or larger
+      if (window.screen.width < 1920 || window.screen.height < 1080) return;
+
       // Only run on the homepage
       const p = window.location.pathname;
       if (p !== '/' && !p.endsWith('/index.html') && p !== '') return;
@@ -88,19 +91,19 @@
       probe.src = 'assets/ladrillo2.png';
 
       function computeLayout() {
-        const hdr = document.querySelector('header .max-w-7xl');
+        const hdr = document.querySelector('header .max-w-6xl');
         if (!hdr) return null;
         const rect          = hdr.getBoundingClientRect();
         const containerLeft = Math.max(0, rect.left);
         const innerPad      = window.innerWidth >= 1024 ? 32 : window.innerWidth >= 640 ? 24 : 16;
         const textStart     = containerLeft + innerPad;
         const gutterAvail   = textStart - 4;
-        if (gutterAvail < 50) return null;
+        if (gutterAvail < 70) return null;
 
         // Widest row = 3 bricks; leave ~25% of gutter as margin before text
-        const brickW  = Math.floor(gutterAvail / 4);
-        const brickH  = Math.max(1, Math.round(brickW / aspectRatio));
-        const numRows = Math.ceil(window.innerHeight / brickH);
+        const brickW  = Math.max(20, Math.floor(gutterAvail / 4));
+        const brickH  = Math.max(12, Math.round(brickW / aspectRatio));
+        const numRows = Math.min(Math.ceil(window.innerHeight / brickH), 65);
 
         return { brickW, brickH, numRows };
       }
@@ -261,7 +264,7 @@
 
       var IDS   = ['fireproof', 'coupe', 'hib', 'bloque-hormigon'];
       var n     = IDS.length;
-      var inner = section.querySelector('.max-w-7xl');
+      var inner = section.querySelector('.max-w-6xl');
       var hdr   = inner.querySelector('.mb-16');
       var cardCls = inner.querySelector('.productos-card').className;
       var pDivs = IDS.map(function (id) { return document.getElementById(id); });
@@ -436,6 +439,27 @@
       document.querySelectorAll('[data-post]').forEach(function(card) {
         card.addEventListener('click', function() { openPost(this.dataset.post); });
       });
+    })();
+
+    // ── Carrusel proyectos en #nosotros ──────────
+    (function () {
+      var slides  = document.querySelectorAll('#nos-slides img');
+      var counter = document.getElementById('nos-counter');
+      var prev    = document.getElementById('nos-prev');
+      var next    = document.getElementById('nos-next');
+      if (!slides.length || !prev || !next) return;
+
+      var cur = 0;
+
+      function goTo(idx) {
+        slides[cur].style.display = 'none';
+        cur = (idx + slides.length) % slides.length;
+        slides[cur].style.display = 'block';
+        if (counter) counter.textContent = (cur + 1) + ' / ' + slides.length;
+      }
+
+      prev.addEventListener('click', function () { goTo(cur - 1); });
+      next.addEventListener('click', function () { goTo(cur + 1); });
     })();
 
     // ── Contact form → mailto ───────────────────

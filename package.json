@@ -1,0 +1,21 @@
+{
+  "name": "web_barruca",
+  "version": "1.0.0",
+  "description": "<p>   <a href=\"https://tasteskill.dev\">     <img src=\"https://img.shields.io/badge/Official_Website-tasteskill.dev-black?style=for-the-badge&logo=vercel\" alt=\"Official Website\" />   </a> </p>",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.4",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.2.4"
+  }
+}

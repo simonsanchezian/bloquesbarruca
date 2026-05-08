@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/tailwind.css" />
+  <link rel="stylesheet" href="/assets/extra.css" />
 
   <style>
     :root { --c-bg: #f7f6f2; }
@@ -45,7 +46,7 @@
 
   <!-- ── NAV ── -->
   <header class="glass-nav fixed top-0 left-0 right-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <a href="/"><img src="https://www.barruca.es/images/logo-barruca-web.png" alt="Bloques Barruca" class="h-9 w-auto" /></a>
         <nav class="hidden lg:flex items-center gap-7">
@@ -62,8 +63,8 @@
             </div>
           </div>
           <a href="/#nosotros"    class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Nosotros</a>
-          <a href="blog.html"     class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Blog</a>
           <a href="proyectos.html" class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Proyectos</a>
+          <a href="blog.html"     class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Blog</a>
           <a href="/#contacto"    class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Contacto</a>
         </nav>
         <div class="flex items-center gap-3">
@@ -76,12 +77,24 @@
       </div>
     </div>
     <div id="mobile-menu" class="hidden lg:hidden bg-offwhite border-t border-zinc-100">
-      <div class="max-w-7xl mx-auto px-4 py-4 space-y-1">
+      <div class="max-w-6xl mx-auto px-4 py-4 space-y-1">
         <a href="/"             class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Inicio</a>
-        <a href="/#productos"   class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Productos</a>
+        <!-- Productos accordion -->
+        <div>
+          <button id="mob-prod-btn" onclick="toggleMobProducts()" class="w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">
+            Productos
+            <svg id="mob-prod-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.2s;flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div id="mob-prod-menu" class="hidden pl-3 mt-0.5 space-y-0.5 border-l-2 border-accent-200 ml-3">
+            <a href="producto-coupe.html"    class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">Coupe Caravista</a>
+            <a href="producto-fireproof.html" class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">Ladrillo Fireproof&#174;</a>
+            <a href="producto-hib.html"      class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">HIB</a>
+            <a href="producto-bloque.html"   class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">Bloque de Hormig&#243;n</a>
+          </div>
+        </div>
         <a href="/#nosotros"    class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Nosotros</a>
-        <a href="blog.html"     class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Blog</a>
         <a href="proyectos.html" class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Proyectos</a>
+        <a href="blog.html"     class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Blog</a>
         <a href="/#contacto"   class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Contacto</a>
         <div class="pt-2"><a href="/#contacto" class="m-link btn-primary block text-center bg-accent-700 hover:bg-accent-800 text-white text-sm font-medium px-4 py-3 rounded-xl">Contactar</a></div>
       </div>
@@ -155,7 +168,7 @@
 
   <!-- FOOTER -->
   <footer class="bg-zinc-950 text-zinc-500">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
       <div class="border-b border-zinc-800/70 pb-10 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
         <img src="https://www.barruca.es/images/logo-barruca-web.png" alt="Bloques Barruca" class="h-7 w-auto opacity-70" />
         <p class="text-sm text-zinc-500 max-w-[44ch]">Fabricantes de bloques de hormigón prefabricado en Burgos desde 1980.</p>
@@ -176,5 +189,13 @@
     menuBtn.addEventListener('click',()=>{const open=!mobileNav.classList.contains('hidden');mobileNav.classList.toggle('hidden',open);iconOpen.classList.toggle('hidden',!open);iconClose.classList.toggle('hidden',open);});
     document.querySelectorAll('.m-link').forEach(l=>l.addEventListener('click',()=>{mobileNav.classList.add('hidden');iconOpen.classList.remove('hidden');iconClose.classList.add('hidden');}));
   </script>
-</body>
+    <script>
+      function toggleMobProducts() {
+        var menu = document.getElementById('mob-prod-menu');
+        var icon = document.getElementById('mob-prod-icon');
+        var open = menu.classList.toggle('hidden') === false;
+        icon.style.transform = open ? 'rotate(180deg)' : '';
+      }
+    </script>
+  </body>
 </html>

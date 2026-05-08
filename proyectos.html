@@ -60,6 +60,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="/assets/tailwind.css" />
+  <link rel="stylesheet" href="/assets/extra.css" />
 
   <style>
     :root { --c-bg: #f7f6f2; }
@@ -113,21 +114,84 @@
       transform: translateY(0);
     }
 
-    /* ── Project tabs ── */
-    .proj-tab {
-      padding: 0.5rem 1.25rem;
-      border-radius: 2rem;
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.55);
-      border: 1px solid rgba(255,255,255,0.12);
-      background: transparent;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
-      white-space: nowrap;
+    /* ── Fan de proyectos en el hero ── */
+    .fan-container {
+      position: relative;
+      width: 510px;
+      height: 240px;
+      flex-shrink: 0;
     }
-    .proj-tab:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
-    .proj-tab.active { background: #b91c1c; color: #fff; border-color: #b91c1c; }
+    .fan-card {
+      position: absolute;
+      width: 155px;
+      height: 210px;
+      transform-origin: center center;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.55), 0 2px 6px rgba(0,0,0,0.4);
+      transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.35s;
+      text-decoration: none;
+    }
+    .fan-card:nth-child(1) { --r: -6deg;  left:   0px; top: 14px; z-index: 1; }
+    .fan-card:nth-child(2) { --r: -3deg;  left:  88px; top:  5px; z-index: 2; }
+    .fan-card:nth-child(3) { --r:  0deg;  left: 176px; top:  0px; z-index: 3; }
+    .fan-card:nth-child(4) { --r:  3deg;  left: 264px; top:  5px; z-index: 2; }
+    .fan-card:nth-child(5) { --r:  6deg;  left: 352px; top: 14px; z-index: 1; }
+    .fan-card              { transform: rotate(var(--r, 0deg)); }
+    .fan-card:hover {
+      transform: translateY(-8px) rotate(var(--r, 0deg)) scale(1.1);
+      z-index: 10;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.8), 0 4px 12px rgba(0,0,0,0.5);
+    }
+    .fan-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      display: block;
+    }
+    .fan-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.72));
+      padding: 28px 10px 9px;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1;
+      text-align: center;
+    }
+    @media (max-width: 767px) {
+      .hero-inner { flex-direction: column; align-items: flex-start; gap: 0 !important; }
+      .fan-outer {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        height: 185px;
+        padding-top: 14px;
+        margin-top: 20px;
+        flex-shrink: 0;
+      }
+      .fan-container {
+        flex-shrink: 0;
+        transform: scale(0.65);
+        transform-origin: top center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      #proj-bar > div > div {
+        flex-wrap: wrap;
+        overflow-x: visible;
+        gap: 0.3rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+      #proj-bar > div > div a { flex-shrink: 1; }
+    }
 
     /* ── Sticky project bar ── */
     #proj-bar {
@@ -138,6 +202,8 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(0,0,0,0.06);
+      overflow: hidden;
+      max-width: 100%;
     }
 
     /* ── Masonry photo grid ── */
@@ -182,6 +248,8 @@
       display: flex; align-items: center; justify-content: center;
       opacity: 0; pointer-events: none;
       transition: opacity 0.25s ease;
+      padding-top: 80px;
+      padding-bottom: 150px;
     }
     #lb.open { opacity: 1; pointer-events: auto; }
     #lb-bd { position: fixed; inset: 0; }
@@ -194,8 +262,8 @@
       max-height: 90vh;
     }
     #lb-img {
-      max-width: 100%; max-height: 86vh;
-      object-fit: contain; border-radius: 4px;
+      max-width: 100%; max-height: calc(100vh - 260px);
+      object-fit: contain; border-radius: 18px;
       transition: opacity 0.18s ease;
       display: block;
       user-select: none;
@@ -219,9 +287,9 @@
     #lb-prev, #lb-next {
       position: fixed; top: 50%; transform: translateY(-50%);
       z-index: 3; cursor: pointer;
-      width: 56px; height: 56px; border-radius: 50%;
-      background: rgba(255,255,255,0.13);
-      border: 1.5px solid rgba(255,255,255,0.22);
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.2);
       backdrop-filter: blur(6px);
       color: #fff;
       display: flex; align-items: center; justify-content: center;
@@ -231,25 +299,61 @@
       background: rgba(255,255,255,0.26);
       transform: translateY(-50%) scale(1.1);
     }
-    #lb-prev { left: 1.5rem; }
-    #lb-next { right: 1.5rem; }
+    #lb-prev { left: 1.25rem; }
+    #lb-next { right: 1.25rem; }
+
+    /* Bottom bar: filmstrip + counter */
+    #lb-bottom {
+      position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 3;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      max-width: calc(100vw - 140px);
+    }
+
+    /* Filmstrip */
+    #lb-strip {
+      display: flex; align-items: center; gap: 5px;
+      overflow-x: auto; scrollbar-width: none;
+      padding: 5px 8px;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 14px;
+      max-width: 100%;
+    }
+    #lb-strip::-webkit-scrollbar { display: none; }
+    .lb-thumb {
+      width: 52px; height: 52px; flex-shrink: 0;
+      object-fit: cover; border-radius: 8px;
+      opacity: 0.42; cursor: pointer;
+      border: 2px solid transparent;
+      transition: opacity 0.18s, transform 0.18s, border-color 0.18s;
+    }
+    .lb-thumb:hover { opacity: 0.75; }
+    .lb-thumb.active {
+      opacity: 1;
+      transform: scale(1.1);
+      border-color: #c2410c;
+    }
 
     /* Counter */
     #lb-counter {
-      position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
-      color: rgba(255,255,255,0.85);
+      color: rgba(255,255,255,0.8);
       font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.05em;
       background: rgba(0,0,0,0.55);
       border: 1px solid rgba(255,255,255,0.12);
-      padding: 0.35rem 1rem; border-radius: 2rem;
+      padding: 0.3rem 0.9rem; border-radius: 2rem;
       pointer-events: none; white-space: nowrap;
     }
 
     @media (max-width: 640px) {
+      #lb { padding-top: 60px; padding-bottom: 130px; }
       #lb-wrap { width: 100vw; }
-      #lb-img  { max-height: 80vh; max-width: 100vw; border-radius: 0; }
+      #lb-img  { max-height: calc(100vh - 210px); max-width: 100vw; border-radius: 12px; }
       #lb-prev { left: 0.5rem; width: 44px; height: 44px; }
       #lb-next { right: 0.5rem; width: 44px; height: 44px; }
+      #lb-bottom { max-width: calc(100vw - 100px); bottom: 1rem; }
+      .lb-thumb  { width: 44px; height: 44px; }
     }
 
     /* ── Cookie banner ── */
@@ -335,6 +439,56 @@
       .cookie-btns { width: 100%; justify-content: stretch; }
       .cookie-btn-accept, .cookie-btn-reject { flex: 1; text-align: center; }
     }
+
+    /* ── Fan de proyectos ── */
+    .fan-container {
+      position: relative;
+      width: 510px;
+      height: 240px;
+      flex-shrink: 0;
+    }
+    .fan-card {
+      position: absolute;
+      width: 155px;
+      height: 210px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, z-index 0s;
+      transform: rotate(var(--r, 0deg));
+    }
+    .fan-card:nth-child(1) { --r: -6deg;  left:   0px; top: 14px; z-index: 1; }
+    .fan-card:nth-child(2) { --r: -3deg;  left:  88px; top:  5px; z-index: 2; }
+    .fan-card:nth-child(3) { --r:  0deg;  left: 176px; top:  0px; z-index: 3; }
+    .fan-card:nth-child(4) { --r:  3deg;  left: 264px; top:  5px; z-index: 2; }
+    .fan-card:nth-child(5) { --r:  6deg;  left: 352px; top: 14px; z-index: 1; }
+    .fan-card:hover {
+      transform: translateY(-8px) rotate(var(--r, 0deg)) scale(1.1);
+      z-index: 10;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    }
+    .fan-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .fan-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0.5rem 0.6rem 0.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 <body class="bg-stone-50 text-zinc-900 font-sans antialiased">
@@ -385,7 +539,7 @@
        NAVIGATION
   ═══════════════════════════════════════════════ -->
   <header class="glass-nav fixed top-0 left-0 right-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
 
         <a href="/" class="flex-shrink-0">
@@ -412,7 +566,7 @@
           <a href="/#nosotros"    class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Nosotros</a>
           <a href="/#faq"         class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">FAQ</a>
           <a href="/#arquitectos" class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Arquitectos</a>
-          <a href="proyectos.html" class="nav-link text-sm font-semibold text-accent-700 hover:text-accent-900 transition-colors">Proyectos</a>
+          <a href="proyectos.html" class="nav-link text-sm font-medium text-accent-700 hover:text-accent-900 transition-colors">Proyectos</a>
           <a href="blog.html"     class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Blog</a>
           <a href="/#contacto"    class="nav-link text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors">Contacto</a>
         </nav>
@@ -446,13 +600,25 @@
 
     <!-- Mobile drawer -->
     <div id="mobile-menu" class="hidden lg:hidden bg-offwhite border-t border-zinc-100">
-      <div class="max-w-7xl mx-auto px-4 py-4 space-y-1">
+      <div class="max-w-6xl mx-auto px-4 py-4 space-y-1">
         <a href="/"             class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Inicio</a>
-        <a href="/#productos"   class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Productos</a>
+        <!-- Productos accordion -->
+        <div>
+          <button id="mob-prod-btn" onclick="toggleMobProducts()" class="w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">
+            Productos
+            <svg id="mob-prod-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.2s;flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div id="mob-prod-menu" class="hidden pl-3 mt-0.5 space-y-0.5 border-l-2 border-accent-200 ml-3">
+            <a href="producto-coupe.html"    class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">Coupe Caravista</a>
+            <a href="producto-fireproof.html" class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">Ladrillo Fireproof®</a>
+            <a href="producto-hib.html"      class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">HIB</a>
+            <a href="producto-bloque.html"   class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">Bloque de Hormig&#243;n</a>
+          </div>
+        </div>
         <a href="/#nosotros"    class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Nosotros</a>
         <a href="/#faq"         class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">FAQ</a>
         <a href="/#arquitectos" class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Arquitectos</a>
-        <a href="proyectos.html" class="m-link block px-3 py-2.5 text-sm font-semibold text-accent-700 hover:bg-stone-50 rounded-xl transition-colors">Proyectos</a>
+        <a href="proyectos.html" class="m-link block px-3 py-2.5 text-sm font-medium text-accent-700 hover:bg-stone-50 rounded-xl transition-colors">Proyectos</a>
         <a href="blog.html"     class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Blog</a>
         <a href="/#contacto"    class="m-link block px-3 py-2.5 text-sm font-medium text-zinc-700 hover:bg-stone-50 rounded-xl transition-colors">Contacto</a>
         <div class="pt-2">
@@ -469,36 +635,57 @@
 
     <!-- ── Hero ── -->
     <div class="bg-zinc-800 pt-28 pb-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <a href="/"
-           class="inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-300 transition-colors mb-8">
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-          Volver a inicio
-        </a>
-        <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-400 mb-4">
-          <span class="w-1 h-4 rounded-sm bg-accent-600 flex-shrink-0"></span>Portfolio de obras
-        </span>
-        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter leading-none text-white mb-5">
-          Proyectos.
-        </h1>
-        <p class="text-zinc-400 leading-relaxed max-w-[56ch] mb-10">
-          Obras reales construidas con bloques y ladrillos de hormigón prefabricado Barruca. Más de 40 años de producción desde Burgos, Castilla y León, presentes en toda España.
-        </p>
+      <div class="hero-inner max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-end justify-between gap-10">
 
-        <!-- Project jump tabs -->
-        <div class="flex flex-wrap gap-2.5">
-          <a href="#ies"      class="proj-tab">IES Huércal Almería <span class="ml-1 opacity-60 text-xs">32 fotos</span></a>
-          <a href="#cerros"   class="proj-tab">Los Cerros <span class="ml-1 opacity-60 text-xs">32 fotos</span></a>
-          <a href="#kina"     class="proj-tab">KINA <span class="ml-1 opacity-60 text-xs">16 fotos</span></a>
-          <a href="#maracena" class="proj-tab">Instituto Maracena <span class="ml-1 opacity-60 text-xs">9 fotos</span></a>
-          <a href="#burgos"   class="proj-tab">Casa Burgos <span class="ml-1 opacity-60 text-xs">8 fotos</span></a>
+        <div class="flex-1 min-w-0">
+          <a href="/"
+             class="inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-300 transition-colors mb-8">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Volver a inicio
+          </a>
+          <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-400 mb-4">
+            <span class="w-1 h-4 rounded-sm bg-accent-600 flex-shrink-0"></span>Portfolio de obras
+          </span>
+          <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter leading-none text-white mb-5">
+            Proyectos.
+          </h1>
+          <p class="text-zinc-400 leading-relaxed max-w-[56ch]">
+            Obras reales construidas con bloques y ladrillos de hormigón prefabricado Barruca. Más de 40 años de producción desde Burgos, Castilla y León, presentes en toda España.
+          </p>
         </div>
+
+        <!-- Abanico de proyectos -->
+        <div class="fan-outer" aria-hidden="true">
+        <div class="fan-container">
+          <a href="#ies" class="fan-card" title="IES Huércal Almería">
+            <img src="assets/Fotos-opt/IES%20Hu%C3%A9rcal%20Almer%C3%ADa/IESHu%C3%A9rcalAlmer%C3%ADa-22.jpg" alt="IES Huércal Almería" loading="eager" />
+            <div class="fan-label">IES Huércal</div>
+          </a>
+          <a href="#cerros" class="fan-card" title="Los Cerros">
+            <img src="assets/Fotos-opt/Los%20Cerros/LosCerros-01.jpg" alt="Los Cerros" loading="eager" />
+            <div class="fan-label">Los Cerros</div>
+          </a>
+          <a href="#kina" class="fan-card" title="KINA">
+            <img src="assets/Fotos-opt/KINA/Kina_1%20%283%29.jpg" alt="KINA" loading="eager" />
+            <div class="fan-label">KINA</div>
+          </a>
+          <a href="#maracena" class="fan-card" title="Instituto Maracena">
+            <img src="assets/Fotos-opt/Instituto%20Maracena/00-2334-0320.jpg" alt="Instituto Maracena" loading="eager" />
+            <div class="fan-label">Maracena</div>
+          </a>
+          <a href="#burgos" class="fan-card" title="Casa Burgos">
+            <img src="assets/Fotos-opt/Casa%20Burgos/Casa%20E1_bergeraphoto_02.jpg" alt="Casa Burgos" loading="eager" />
+            <div class="fan-label">Casa Burgos</div>
+          </a>
+        </div>
+        </div>
+
       </div>
     </div>
 
     <!-- ── Sticky project bar ── -->
     <div id="proj-bar">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex gap-1 overflow-x-auto scrollbar-hide py-3">
           <a href="#ies"      class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">IES Huércal Almería</a>
           <a href="#cerros"   class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Los Cerros</a>
@@ -513,7 +700,7 @@
          PROJECT 1 — IES HUÉRCAL ALMERÍA
     ══════════════════════════════════════ -->
     <section id="ies" class="py-16 scroll-mt-28">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
@@ -532,13 +719,13 @@
     </section>
 
     <!-- Separador -->
-    <div class="h-px bg-zinc-100 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"></div>
+    <div class="h-px bg-zinc-100 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"></div>
 
     <!-- ══════════════════════════════════════
          PROJECT 2 — LOS CERROS
     ══════════════════════════════════════ -->
     <section id="cerros" class="py-16 bg-stone-100/60 scroll-mt-28">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
@@ -560,7 +747,7 @@
          PROJECT 3 — KINA
     ══════════════════════════════════════ -->
     <section id="kina" class="py-16 scroll-mt-28">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
@@ -582,7 +769,7 @@
          PROJECT 4 — INSTITUTO MARACENA
     ══════════════════════════════════════ -->
     <section id="maracena" class="py-16 bg-stone-100/60 scroll-mt-28">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
@@ -604,7 +791,7 @@
          PROJECT 5 — CASA BURGOS
     ══════════════════════════════════════ -->
     <section id="burgos" class="py-16 scroll-mt-28">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
@@ -664,19 +851,22 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
     <button id="lb-prev" aria-label="Foto anterior">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
     <button id="lb-next" aria-label="Foto siguiente">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
     </button>
-    <div id="lb-counter"></div>
+    <div id="lb-bottom">
+      <div id="lb-strip"></div>
+      <div id="lb-counter"></div>
+    </div>
   </div>
 
   <!-- ═══════════════════════════════════════════════
        FOOTER
   ═══════════════════════════════════════════════ -->
   <footer class="bg-zinc-950 text-zinc-500">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr] gap-10 mb-14">
 
@@ -910,6 +1100,7 @@
   const lbImg   = document.getElementById('lb-img');
   const lbCount = document.getElementById('lb-counter');
   const lbBd    = document.getElementById('lb-bd');
+  const lbStrip = document.getElementById('lb-strip');
 
   let lbGallery = null;
   let lbIndex   = 0;
@@ -917,6 +1108,7 @@
   function openLb(gallery, index) {
     lbGallery = gallery;
     lbIndex   = index;
+    lbStrip.dataset.gallery = '';
     setLbImg();
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -936,7 +1128,37 @@
       lbImg.alt = p.alt;
       lbCount.textContent = (lbIndex + 1) + ' / ' + imgs.length;
       lbImg.classList.remove('fading');
+      updateStrip();
     }, 120);
+  }
+
+  function updateStrip() {
+    const imgs = galleryImgs[lbGallery];
+    if (lbStrip.dataset.gallery !== lbGallery) {
+      lbStrip.innerHTML = '';
+      lbStrip.dataset.gallery = lbGallery;
+      imgs.forEach(function(img, i) {
+        var t = document.createElement('img');
+        t.src = img.src;
+        t.alt = img.alt;
+        t.className = 'lb-thumb';
+        t.addEventListener('click', function(e) {
+          e.stopPropagation();
+          lbIndex = i;
+          setLbImg();
+        });
+        lbStrip.appendChild(t);
+      });
+    }
+    var thumbs = lbStrip.querySelectorAll('.lb-thumb');
+    thumbs.forEach(function(t, i) { t.classList.toggle('active', i === lbIndex); });
+    var active = thumbs[lbIndex];
+    if (active) {
+      lbStrip.scrollTo({
+        left: active.offsetLeft - lbStrip.clientWidth / 2 + active.offsetWidth / 2,
+        behavior: 'smooth'
+      });
+    }
   }
 
   function navLb(dir) {
@@ -1030,6 +1252,13 @@
     }
   });
   </script>
-
-</body>
+    <script>
+      function toggleMobProducts() {
+        var menu = document.getElementById('mob-prod-menu');
+        var icon = document.getElementById('mob-prod-icon');
+        var open = menu.classList.toggle('hidden') === false;
+        icon.style.transform = open ? 'rotate(180deg)' : '';
+      }
+    </script>
+  </body>
 </html>
