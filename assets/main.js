@@ -254,14 +254,19 @@
 
     // ── Cookie consent ──────────────────────────
     (function () {
-      const KEY    = 'barruca_cookie_consent';
+      const KEY     = 'barruca_cookie_consent';
       if (localStorage.getItem(KEY)) return;
-      const banner = document.getElementById('cookie-banner');
+      const banner  = document.getElementById('cookie-banner');
+      const overlay = document.getElementById('cookie-overlay');
       if (!banner) return;
-      setTimeout(function () { banner.classList.add('visible'); }, 900);
+      setTimeout(function () {
+        banner.classList.add('visible');
+        if (overlay) overlay.classList.add('visible');
+      }, 900);
       function dismiss(val) {
         banner.classList.remove('visible');
         banner.classList.add('hiding');
+        if (overlay) overlay.classList.remove('visible');
         localStorage.setItem(KEY, val);
         setTimeout(function () { banner.style.display = 'none'; }, 600);
       }

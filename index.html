@@ -362,23 +362,31 @@
     }
 
     /* ── Cookie banner ── */
+    #cookie-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 9998;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    #cookie-overlay.visible { opacity: 1; pointer-events: auto; }
     #cookie-banner {
       position: fixed;
       top: 50%;
       left: 50%;
-      transform: translateX(-50%) translateY(-50%) scale(0.92);
+      transform: translateX(-50%) translateY(-50%) scale(0.94);
       z-index: 9999;
       width: calc(100% - 2rem);
-      max-width: 740px;
-      background: #18181b;
-      border: 1px solid rgba(255,255,255,0.08);
+      max-width: 480px;
+      background: #fff;
       border-radius: 1rem;
-      padding: 1.25rem 1.5rem;
+      padding: 1.75rem 1.75rem 1.5rem;
       display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      flex-direction: column;
+      gap: 0;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.18);
       transition: transform 0.4s cubic-bezier(0.34,1.4,0.64,1), opacity 0.3s ease;
       opacity: 0;
       pointer-events: none;
@@ -389,51 +397,53 @@
       pointer-events: auto;
     }
     #cookie-banner.hiding {
-      transform: translateX(-50%) translateY(-50%) scale(0.92);
+      transform: translateX(-50%) translateY(-50%) scale(0.94);
       opacity: 0;
       pointer-events: none;
     }
     #cookie-banner p {
-      flex: 1;
-      min-width: 0;
-      font-size: 0.8125rem;
-      line-height: 1.55;
-      color: rgba(255,255,255,0.65);
-      margin: 0;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: #3d3d3f;
+      margin: 0 0 1.25rem;
     }
-    #cookie-banner p strong { color: #fff; font-weight: 600; }
     #cookie-banner p a {
-      color: #fca5a5;
+      color: #111;
+      font-weight: 600;
       text-decoration: underline;
       text-underline-offset: 2px;
     }
-    .cookie-btns { display: flex; gap: 0.625rem; flex-shrink: 0; }
-    .cookie-btn-accept {
-      background: #b91c1c;
-      color: #fff;
-      font-size: 0.8125rem;
+    #cookie-banner hr {
+      border: none;
+      border-top: 1px solid #e5e5e5;
+      margin: 0 0 1.25rem;
+    }
+    .cookie-btns {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .cookie-btn-accept,
+    .cookie-btn-reject {
+      flex: 1;
+      font-size: 0.875rem;
       font-weight: 600;
-      padding: 0.5rem 1.25rem;
-      border-radius: 0.5rem;
+      padding: 0.8rem 1rem;
+      border-radius: 2rem;
       border: none;
       cursor: pointer;
       white-space: nowrap;
-      transition: background 0.18s;
+      transition: background 0.18s, color 0.18s;
     }
-    .cookie-btn-accept:hover { background: #991b1b; }
+    .cookie-btn-accept {
+      background: #111;
+      color: #fff;
+    }
+    .cookie-btn-accept:hover { background: #333; }
     .cookie-btn-reject {
-      background: transparent;
-      color: rgba(255,255,255,0.45);
-      font-size: 0.8125rem;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      border: 1px solid rgba(255,255,255,0.12);
-      cursor: pointer;
-      white-space: nowrap;
-      transition: color 0.18s, border-color 0.18s;
+      background: #f5f5f5;
+      color: #111;
     }
-    .cookie-btn-reject:hover { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.28); }
+    .cookie-btn-reject:hover { background: #e8e8e8; }
 
     /* ── Social FAB ── */
     #social-fab {
@@ -641,13 +651,16 @@
   </div>
 
   <!-- ── Cookie consent banner ── -->
-  <div id="cookie-banner" role="dialog" aria-modal="false" aria-label="Aviso de cookies">
+  <div id="cookie-overlay" aria-hidden="true"></div>
+  <div id="cookie-banner" role="dialog" aria-modal="true" aria-label="Aviso de cookies">
     <p>
-      <strong>Usamos cookies</strong> — propias y de terceros para analizar el tráfico y mejorar tu experiencia de navegación.
-      Puedes aceptarlas o rechazarlas; tu elección se guarda para futuras visitas.
+      Utilizamos cookies propias y de terceros para analizar el tráfico y mejorar tu experiencia de navegación.
+      Puedes modificar tus preferencias en cualquier momento. Más información en nuestra
+      <a href="/politica-cookies.html">Política de cookies</a>.
     </p>
+    <hr>
     <div class="cookie-btns">
-      <button class="cookie-btn-reject" id="cookie-reject">Rechazar</button>
+      <button class="cookie-btn-reject" id="cookie-reject">Rechazar todas</button>
       <button class="cookie-btn-accept" id="cookie-accept">Aceptar todas</button>
     </div>
   </div>
