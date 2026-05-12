@@ -1,26 +1,28 @@
-﻿    // Save scroll position when leaving the page
-    window.addEventListener('pagehide', function () {
-      try { sessionStorage.setItem('sp:' + location.pathname, window.scrollY); } catch (e) {}
-    });
-
-    // Restore scroll position on back/forward navigation
+﻿    // ── Scroll save/restore for back/forward navigation ──────────────────
+    // history.state is preserved natively by the browser on back/forward,
+    // so we don't need to detect navigation type — fresh navigations always
+    // have null state, back/forward navigations have our saved scrollY.
     (function () {
-      function restoreScroll() {
+      var _t = null;
+      function save() {
+        try { history.replaceState({ scrollY: window.scrollY }, ''); } catch (e) {}
+      }
+      window.addEventListener('scroll', function () {
+        clearTimeout(_t); _t = setTimeout(save, 150);
+      }, { passive: true });
+      window.addEventListener('pagehide', save);
+
+      function restore() {
         try {
-          var bf = false;
-          var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
-          if (nav) bf = nav.type === 'back_forward';
-          else if (performance.navigation) bf = performance.navigation.type === 2;
-          if (!bf) return;
-          var y = sessionStorage.getItem('sp:' + location.pathname);
-          if (y === null) return;
+          var y = history.state && history.state.scrollY;
+          if (!y) return;
           document.documentElement.style.scrollBehavior = 'auto';
-          window.scrollTo(0, +y);
+          window.scrollTo(0, y);
           setTimeout(function () { document.documentElement.style.scrollBehavior = ''; }, 100);
         } catch (e) {}
       }
-      window.addEventListener('load', restoreScroll);
-      window.addEventListener('pageshow', function (e) { if (e.persisted) restoreScroll(); });
+      window.addEventListener('load', restore);
+      window.addEventListener('pageshow', function (e) { if (e.persisted) restore(); });
     })();
 
     // Prevent pinch-zoom and double-tap zoom on iOS (viewport meta alone is ignored by Safari).
