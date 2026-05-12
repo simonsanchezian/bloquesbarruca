@@ -1,13 +1,4 @@
-﻿    // Re-enable smooth scroll after browser finishes back/forward restoration.
-    // The inline <head> script disabled it (scrollBehavior='auto') so the
-    // browser-native scroll restoration snaps instantly instead of animating.
-    if (document.documentElement.style.scrollBehavior === 'auto') {
-      window.addEventListener('load', function () {
-        setTimeout(function () { document.documentElement.style.scrollBehavior = ''; }, 50);
-      });
-    }
-
-    // Prevent pinch-zoom and double-tap zoom on iOS (viewport meta alone is ignored by Safari).
+﻿    // Prevent pinch-zoom and double-tap zoom on iOS (viewport meta alone is ignored by Safari).
     document.addEventListener('touchstart', function (e) {
       if (e.touches.length > 1) e.preventDefault();
     }, { passive: false });
