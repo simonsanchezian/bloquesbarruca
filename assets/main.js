@@ -1,29 +1,11 @@
-﻿    // ── Scroll save/restore for back/forward navigation ──────────────────
-    // history.state is preserved natively by the browser on back/forward,
-    // so we don't need to detect navigation type — fresh navigations always
-    // have null state, back/forward navigations have our saved scrollY.
-    (function () {
-      var _t = null;
-      function save() {
-        try { history.replaceState({ scrollY: window.scrollY }, ''); } catch (e) {}
-      }
-      window.addEventListener('scroll', function () {
-        clearTimeout(_t); _t = setTimeout(save, 150);
-      }, { passive: true });
-      window.addEventListener('pagehide', save);
-
-      function restore() {
-        try {
-          var y = history.state && history.state.scrollY;
-          if (!y) return;
-          document.documentElement.style.scrollBehavior = 'auto';
-          window.scrollTo(0, y);
-          setTimeout(function () { document.documentElement.style.scrollBehavior = ''; }, 100);
-        } catch (e) {}
-      }
-      window.addEventListener('load', restore);
-      window.addEventListener('pageshow', function (e) { if (e.persisted) restore(); });
-    })();
+﻿    // Re-enable smooth scroll after browser finishes back/forward restoration.
+    // The inline <head> script disabled it (scrollBehavior='auto') so the
+    // browser-native scroll restoration snaps instantly instead of animating.
+    if (document.documentElement.style.scrollBehavior === 'auto') {
+      window.addEventListener('load', function () {
+        setTimeout(function () { document.documentElement.style.scrollBehavior = ''; }, 50);
+      });
+    }
 
     // Prevent pinch-zoom and double-tap zoom on iOS (viewport meta alone is ignored by Safari).
     document.addEventListener('touchstart', function (e) {
