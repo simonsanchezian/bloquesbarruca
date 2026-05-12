@@ -1,10 +1,27 @@
-﻿    // Re-enable smooth scroll after the browser finishes its back/forward
-    // scroll restoration (the inline <head> script disabled it before paint).
-    if (document.documentElement.style.scrollBehavior === 'auto') {
-      window.addEventListener('load', function () {
-        setTimeout(function () { document.documentElement.style.scrollBehavior = ''; }, 80);
-      });
-    }
+﻿    // Save scroll position when leaving the page
+    window.addEventListener('pagehide', function () {
+      try { sessionStorage.setItem('sp:' + location.pathname, window.scrollY); } catch (e) {}
+    });
+
+    // Restore scroll position on back/forward navigation
+    (function () {
+      function restoreScroll() {
+        try {
+          var bf = false;
+          var nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+          if (nav) bf = nav.type === 'back_forward';
+          else if (performance.navigation) bf = performance.navigation.type === 2;
+          if (!bf) return;
+          var y = sessionStorage.getItem('sp:' + location.pathname);
+          if (y === null) return;
+          document.documentElement.style.scrollBehavior = 'auto';
+          window.scrollTo(0, +y);
+          setTimeout(function () { document.documentElement.style.scrollBehavior = ''; }, 100);
+        } catch (e) {}
+      }
+      window.addEventListener('load', restoreScroll);
+      window.addEventListener('pageshow', function (e) { if (e.persisted) restoreScroll(); });
+    })();
 
     // Prevent pinch-zoom and double-tap zoom on iOS (viewport meta alone is ignored by Safari).
     document.addEventListener('touchstart', function (e) {
