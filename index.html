@@ -1016,58 +1016,75 @@
             <p class="text-white font-bold text-lg mb-1">Optimización en obra</p>
             <p class="text-zinc-400 text-sm mb-8">COUPE Barruca vs Ladrillo Tradicional</p>
 
-            <div class="space-y-6" id="coupe-chart">
+            <!-- leyenda -->
+            <div style="display:flex;justify-content:center;gap:1.5rem;margin-bottom:1.25rem;">
+              <span style="display:flex;align-items:center;gap:6px;font-size:0.7rem;color:#d4d4d8;font-weight:600;">
+                <span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#dc2626;flex-shrink:0;"></span>COUPE Barruca
+              </span>
+              <span style="display:flex;align-items:center;gap:6px;font-size:0.7rem;color:#d4d4d8;font-weight:600;">
+                <span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#52525b;flex-shrink:0;"></span>Ladrillo Tradicional
+              </span>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:1.25rem;" id="coupe-chart">
+
+              <!-- Rendimiento m²/día -->
               <div>
-                <p class="text-xs text-zinc-400 mb-2">Rendimiento m²/día</p>
-                <div class="space-y-1.5">
-                  <div class="flex items-center gap-2">
-                    <span style="width:4.5rem;flex-shrink:0;font-size:0.7rem;color:#f87171;font-weight:600;">COUPE</span>
-                    <div class="h-7 rounded-md bg-accent-600 coupe-bar flex items-center px-3 transition-all duration-700" style="width:0%" data-w="45%">
-                      <span class="text-white text-xs font-bold whitespace-nowrap">18 m²</span>
+                <p style="font-size:0.7rem;color:#a1a1aa;margin-bottom:0.5rem;text-align:center;">Rendimiento m²/día</p>
+                <div style="display:flex;align-items:center;gap:4px;height:32px;">
+                  <!-- COUPE: izq → der -->
+                  <div style="flex:1;display:flex;align-items:stretch;height:100%;overflow:hidden;border-radius:6px 0 0 6px;background:rgba(255,255,255,0.06);">
+                    <div class="coupe-bar" data-w="90%" style="width:0%;background:#dc2626;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;border-radius:6px 0 0 6px;transition:width 0.8s cubic-bezier(0.4,0,0.2,1);">
+                      <span style="color:#fff;font-size:0.7rem;font-weight:700;white-space:nowrap;">18 m²</span>
                     </div>
                   </div>
-                  <div class="flex items-center gap-2">
-                    <span style="width:4.5rem;flex-shrink:0;font-size:0.7rem;color:#a1a1aa;font-weight:600;">Trad.</span>
-                    <div class="h-7 rounded-md bg-zinc-600 coupe-bar flex items-center px-3 transition-all duration-700" style="width:0%" data-w="25%">
-                      <span class="text-white text-xs font-bold whitespace-nowrap">10 m²</span>
+                  <!-- divisor central -->
+                  <div style="width:2px;height:100%;background:rgba(255,255,255,0.15);flex-shrink:0;"></div>
+                  <!-- Trad: der → izq -->
+                  <div style="flex:1;display:flex;align-items:stretch;height:100%;overflow:hidden;border-radius:0 6px 6px 0;background:rgba(255,255,255,0.06);flex-direction:row-reverse;">
+                    <div class="coupe-bar" data-w="50%" style="width:0%;background:#52525b;display:flex;align-items:center;justify-content:flex-start;padding:0 8px;border-radius:0 6px 6px 0;transition:width 0.8s cubic-bezier(0.4,0,0.2,1);">
+                      <span style="color:#fff;font-size:0.7rem;font-weight:700;white-space:nowrap;">10 m²</span>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <!-- Ahorro de tiempo -->
               <div>
-                <p class="text-xs text-zinc-400 mb-2">Ahorro de tiempo en obra</p>
-                <div class="space-y-1.5">
-                  <div class="flex items-center gap-2">
-                    <span style="width:4.5rem;flex-shrink:0;font-size:0.7rem;color:#f87171;font-weight:600;">COUPE</span>
-                    <div class="h-7 rounded-md bg-accent-600 coupe-bar flex items-center px-3 transition-all duration-700" style="width:0%" data-w="87.5%">
-                      <span class="text-white text-xs font-bold whitespace-nowrap">35%</span>
+                <p style="font-size:0.7rem;color:#a1a1aa;margin-bottom:0.5rem;text-align:center;">Ahorro de tiempo en obra</p>
+                <div style="display:flex;align-items:center;gap:4px;height:32px;">
+                  <div style="flex:1;display:flex;align-items:stretch;height:100%;overflow:hidden;border-radius:6px 0 0 6px;background:rgba(255,255,255,0.06);">
+                    <div class="coupe-bar" data-w="87.5%" style="width:0%;background:#dc2626;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;border-radius:6px 0 0 6px;transition:width 0.8s cubic-bezier(0.4,0,0.2,1) 0.1s;">
+                      <span style="color:#fff;font-size:0.7rem;font-weight:700;white-space:nowrap;">35%</span>
                     </div>
                   </div>
-                  <div class="flex items-center gap-2">
-                    <span style="width:4.5rem;flex-shrink:0;font-size:0.7rem;color:#a1a1aa;font-weight:600;">Trad.</span>
-                    <div class="h-7 rounded-md bg-zinc-600 coupe-bar flex items-center px-3 transition-all duration-700" style="width:0%" data-w="50%">
-                      <span class="text-white text-xs font-bold whitespace-nowrap">20%</span>
+                  <div style="width:2px;height:100%;background:rgba(255,255,255,0.15);flex-shrink:0;"></div>
+                  <div style="flex:1;display:flex;align-items:stretch;height:100%;overflow:hidden;border-radius:0 6px 6px 0;background:rgba(255,255,255,0.06);flex-direction:row-reverse;">
+                    <div class="coupe-bar" data-w="50%" style="width:0%;background:#52525b;display:flex;align-items:center;justify-content:flex-start;padding:0 8px;border-radius:0 6px 6px 0;transition:width 0.8s cubic-bezier(0.4,0,0.2,1) 0.1s;">
+                      <span style="color:#fff;font-size:0.7rem;font-weight:700;white-space:nowrap;">20%</span>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <!-- Reducción de residuos -->
               <div>
-                <p class="text-xs text-zinc-400 mb-2">Reducción de residuos</p>
-                <div class="space-y-1.5">
-                  <div class="flex items-center gap-2">
-                    <span style="width:4.5rem;flex-shrink:0;font-size:0.7rem;color:#f87171;font-weight:600;">COUPE</span>
-                    <div class="h-7 rounded-md bg-accent-600 coupe-bar flex items-center px-3 transition-all duration-700" style="width:0%" data-w="100%">
-                      <span class="text-white text-xs font-bold whitespace-nowrap">40%</span>
+                <p style="font-size:0.7rem;color:#a1a1aa;margin-bottom:0.5rem;text-align:center;">Reducción de residuos</p>
+                <div style="display:flex;align-items:center;gap:4px;height:32px;">
+                  <div style="flex:1;display:flex;align-items:stretch;height:100%;overflow:hidden;border-radius:6px 0 0 6px;background:rgba(255,255,255,0.06);">
+                    <div class="coupe-bar" data-w="100%" style="width:0%;background:#dc2626;display:flex;align-items:center;justify-content:flex-end;padding:0 8px;border-radius:6px 0 0 6px;transition:width 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s;">
+                      <span style="color:#fff;font-size:0.7rem;font-weight:700;white-space:nowrap;">40%</span>
                     </div>
                   </div>
-                  <div class="flex items-center gap-2">
-                    <span style="width:4.5rem;flex-shrink:0;font-size:0.7rem;color:#a1a1aa;font-weight:600;">Trad.</span>
-                    <div class="h-7 rounded-md bg-zinc-600 coupe-bar flex items-center px-3 transition-all duration-700" style="width:0%" data-w="25%">
-                      <span class="text-white text-xs font-bold whitespace-nowrap">10%</span>
+                  <div style="width:2px;height:100%;background:rgba(255,255,255,0.15);flex-shrink:0;"></div>
+                  <div style="flex:1;display:flex;align-items:stretch;height:100%;overflow:hidden;border-radius:0 6px 6px 0;background:rgba(255,255,255,0.06);flex-direction:row-reverse;">
+                    <div class="coupe-bar" data-w="25%" style="width:0%;background:#52525b;display:flex;align-items:center;justify-content:flex-start;padding:0 8px;border-radius:0 6px 6px 0;transition:width 0.8s cubic-bezier(0.4,0,0.2,1) 0.2s;">
+                      <span style="color:#fff;font-size:0.7rem;font-weight:700;white-space:nowrap;">10%</span>
                     </div>
                   </div>
                 </div>
               </div>
+
             </div>
             <p class="text-zinc-500 text-xs mt-6 italic">Valores ilustrativos comparativos</p>
           </div>
