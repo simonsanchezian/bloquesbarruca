@@ -3,6 +3,8 @@ node_modules/
 
 # Fotos originales sin comprimir (usar assets/Fotos-opt/ en su lugar)
 assets/Fotos/
+assets/Fotos-opt/Fotos_Sin_opt/
+*.zip
 
 # Scripts y herramientas de desarrollo
 compress-fotos.js
