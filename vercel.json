@@ -40,6 +40,9 @@
     { "source": "/nosotros",             "destination": "/#nosotros",               "permanent": true },
     { "source": "/nosotros/",            "destination": "/#nosotros",               "permanent": true },
     { "source": "/contacto",             "destination": "/#contacto",               "permanent": true },
-    { "source": "/contacto/",            "destination": "/#contacto",               "permanent": true }
+    { "source": "/contacto/",            "destination": "/#contacto",               "permanent": true },
+    { "source": "/ladrillo-acustico",    "destination": "/producto-fireproof.html", "permanent": true },
+    { "source": "/ladrillo-acustico/",   "destination": "/producto-fireproof.html", "permanent": true },
+    { "source": "/ver-articulo.html",    "destination": "/blog.html",               "permanent": true }
   ]
 }
