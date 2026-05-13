@@ -334,6 +334,14 @@
     a.producto-cta:active { transform: translateY(1px) scale(0.98); }
 
     /* ── Hero logo glow ── */
+    @keyframes logo-breathe {
+      0%, 100% { opacity: 0.18; transform: scale(1); }
+      50%       { opacity: 0.38; transform: scale(1.08); }
+    }
+    @keyframes img-breathe {
+      0%, 100% { opacity: 0.82; filter: drop-shadow(0 0 60px rgba(255,255,255,0.10)) brightness(0) invert(1); }
+      50%       { opacity: 1;    filter: drop-shadow(0 0 100px rgba(255,255,255,0.22)) brightness(0) invert(1); }
+    }
     .hero-logo-wrap {
       position: relative;
       max-width: 360px;
@@ -343,21 +351,25 @@
       content: '';
       position: absolute;
       inset: -50px;
-      background: radial-gradient(circle, rgba(185,28,28,0.45) 0%, rgba(185,28,28,0.18) 38%, transparent 68%);
-      opacity: 0;
-      transition: opacity 0.65s ease;
+      background: radial-gradient(circle, rgba(185,28,28,0.55) 0%, rgba(185,28,28,0.22) 38%, transparent 68%);
       pointer-events: none;
       filter: blur(32px);
       border-radius: 50%;
+      animation: logo-breathe 3.2s ease-in-out infinite;
+      transition: opacity 0.4s ease, background 0.5s ease;
     }
-    .hero-logo-wrap:hover::before { opacity: 1; }
+    .hero-logo-wrap:hover::before {
+      animation: none;
+      opacity: 1;
+      background: radial-gradient(circle, rgba(185,28,28,0.75) 0%, rgba(185,28,28,0.35) 38%, transparent 68%);
+    }
     .hero-logo-img {
-      filter: drop-shadow(0 0 80px rgba(255,255,255,0.12)) brightness(0) invert(1);
-      opacity: 0.88;
-      transition: filter 0.55s ease, opacity 0.45s ease;
+      animation: img-breathe 3.2s ease-in-out infinite;
+      transition: filter 0.45s ease, opacity 0.35s ease;
     }
     .hero-logo-wrap:hover .hero-logo-img {
-      filter: drop-shadow(0 0 110px rgba(255,255,255,0.32)) brightness(0) invert(1);
+      animation: none;
+      filter: drop-shadow(0 0 0px rgba(0,0,0,0)) sepia(1) saturate(6) hue-rotate(320deg) brightness(0.9);
       opacity: 1;
     }
 
