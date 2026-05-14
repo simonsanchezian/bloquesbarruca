@@ -569,6 +569,46 @@
       text-decoration: none;
     }
     #wa-fab:hover { background: #1ebe57; transform: scale(1.08); }
+    .coupe-card { cursor: pointer; }
+    .coupe-card .card-expand-hint { transition: opacity 0.2s, transform 0.2s; opacity: 0; transform: translateY(4px); }
+    .coupe-card:hover .card-expand-hint { opacity: 1; transform: translateY(0); }
+    #coupe-modal {
+      position: fixed; inset: 0; z-index: 9100;
+      display: flex; align-items: flex-end; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.28s ease;
+    }
+    @media (min-width: 640px) { #coupe-modal { align-items: center; padding: 1.5rem; } }
+    #coupe-modal.open { opacity: 1; pointer-events: auto; }
+    #coupe-modal-bd { position: absolute; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(4px); }
+    #coupe-modal-panel {
+      position: relative; z-index: 1;
+      background: #fff; width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto;
+      border-radius: 1.5rem 1.5rem 0 0;
+      transform: translateY(40px) scale(0.98);
+      transition: transform 0.32s cubic-bezier(0.34,1.2,0.64,1);
+    }
+    @media (min-width: 640px) { #coupe-modal-panel { border-radius: 1.5rem; } }
+    #coupe-modal.open #coupe-modal-panel { transform: translateY(0) scale(1); }
+    #coupe-modal-close {
+      position: absolute; top: 1rem; right: 1rem; z-index: 2;
+      width: 2rem; height: 2rem; border-radius: 50%;
+      background: #f4f4f5; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #coupe-modal-close:hover { background: #e4e4e7; }
+    #coupe-modal-img-wrap { width: 100%; background: #f4f3ef; display: flex; align-items: center; justify-content: center; padding: 2.5rem; }
+    #coupe-modal-img-wrap img { max-height: 260px; max-width: 100%; object-fit: contain; }
+    #coupe-modal-body { padding: 1.75rem 2rem 2.5rem; }
+    @media (max-width: 540px) { #coupe-modal-body { padding: 1.25rem 1.25rem 2rem; } }
+    #coupe-modal-body table { width: 100%; border-collapse: collapse; }
+    #coupe-modal-body thead tr { background: #f4f3ef; }
+    #coupe-modal-body thead th { padding: 0.5rem 0.875rem; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #a1a1aa; text-align: left; }
+    #coupe-modal-body thead th:last-child { text-align: right; }
+    #coupe-modal-body tbody tr { border-top: 1px solid #f4f4f5; }
+    #coupe-modal-body tbody td { padding: 0.625rem 0.875rem; font-size: 0.8125rem; color: #52525b; }
+    #coupe-modal-body tbody td:first-child { font-weight: 600; color: #3f3f46; }
+    #coupe-modal-body tbody td:last-child { text-align: right; font-weight: 700; color: #18181b; }
   </style>
 </head>
 <body class="bg-stone-50 text-zinc-900 font-sans antialiased">
@@ -826,7 +866,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
           <!-- Caras Lisas -->
-          <div class="reveal card-lift bg-offwhite border border-zinc-100 rounded-2xl overflow-hidden">
+          <div class="reveal coupe-card card-lift bg-offwhite border border-zinc-100 rounded-2xl overflow-hidden" onclick="openCoupeModal('caraslisas')" role="button" tabindex="0" aria-label="Ver ficha Caras Lisas">
             <div class="aspect-video bg-stone-50 flex items-center justify-center p-8">
               <img src="/assets/images/caraslisas_copia.png" alt="Coupe Caras Lisas" class="h-full object-contain" />
             </div>
@@ -838,11 +878,12 @@
                 <div class="flex justify-between"><span class="text-zinc-500">Ud./palé</span><span class="font-medium text-zinc-800">210 ud.</span></div>
                 <div class="flex justify-between"><span class="text-zinc-500">Peso</span><span class="font-medium text-zinc-800">4 kg</span></div>
               </div>
+              <p class="card-expand-hint mt-4 text-xs font-semibold text-accent-700 flex items-center gap-1">Ver ficha completa <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></p>
             </div>
           </div>
 
           <!-- Esquina -->
-          <div class="reveal delay-1 card-lift bg-offwhite border border-zinc-100 rounded-2xl overflow-hidden">
+          <div class="reveal delay-1 coupe-card card-lift bg-offwhite border border-zinc-100 rounded-2xl overflow-hidden" onclick="openCoupeModal('esquina')" role="button" tabindex="0" aria-label="Ver ficha Esquina">
             <div class="aspect-video bg-stone-50 flex items-center justify-center p-8">
               <img src="/assets/images/esquinaPeq-296x300.png" alt="Coupe Esquina" class="h-full object-contain" />
             </div>
@@ -854,11 +895,12 @@
                 <div class="flex justify-between"><span class="text-zinc-500">Ud./palé</span><span class="font-medium text-zinc-800">180 ud.</span></div>
                 <div class="flex justify-between"><span class="text-zinc-500">Peso</span><span class="font-medium text-zinc-800">4 kg</span></div>
               </div>
+              <p class="card-expand-hint mt-4 text-xs font-semibold text-accent-700 flex items-center gap-1">Ver ficha completa <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></p>
             </div>
           </div>
 
           <!-- Zuncho -->
-          <div class="reveal delay-2 card-lift bg-offwhite border border-zinc-100 rounded-2xl overflow-hidden">
+          <div class="reveal delay-2 coupe-card card-lift bg-offwhite border border-zinc-100 rounded-2xl overflow-hidden" onclick="openCoupeModal('zuncho')" role="button" tabindex="0" aria-label="Ver ficha Zuncho">
             <div class="aspect-video bg-stone-50 flex items-center justify-center p-8">
               <img src="/assets/images/04-ZUNCHO.png" alt="Coupe Zuncho" class="h-full object-contain" />
             </div>
@@ -870,6 +912,7 @@
                 <div class="flex justify-between"><span class="text-zinc-500">Ud./palé</span><span class="font-medium text-zinc-800">210 ud.</span></div>
                 <div class="flex justify-between"><span class="text-zinc-500">Peso</span><span class="font-medium text-zinc-800">4 kg</span></div>
               </div>
+              <p class="card-expand-hint mt-4 text-xs font-semibold text-accent-700 flex items-center gap-1">Ver ficha completa <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></p>
             </div>
           </div>
 
@@ -982,5 +1025,73 @@
         icon.style.transform = open ? 'rotate(180deg)' : '';
       }
     </script>
+
+  <!-- ── Coupe product modal ── -->
+  <div id="coupe-modal" role="dialog" aria-modal="true" aria-labelledby="coupe-modal-title">
+    <div id="coupe-modal-bd" onclick="closeCoupeModal()"></div>
+    <div id="coupe-modal-panel">
+      <button id="coupe-modal-close" onclick="closeCoupeModal()" aria-label="Cerrar ficha">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#18181b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div id="coupe-modal-img-wrap"></div>
+      <div id="coupe-modal-body"></div>
+    </div>
+  </div>
+  <script>
+    const COUPE_DATA = {
+      caraslisas: {
+        name: 'Caras Lisas', badge: 'Superficies planas',
+        img: '/assets/images/caraslisas_copia.png',
+        desc: 'Variante del Coupe con ambas caras totalmente planas. Perfecta para proyectos donde se requiere uniformidad visual total con el mismo acabado caravista de hormigón.',
+        formats: [['Caras Lisas','390 × 140 × 50 mm','4 kg']],
+        stats: [['Ud./palé','210 ud.']],
+        colors: ['Blanco'],
+      },
+      esquina: {
+        name: 'Esquina', badge: 'Encuentros y esquinas',
+        img: '/assets/images/esquinaPeq-296x300.png',
+        desc: 'Pieza especial para resolver los encuentros y esquinas con acabado caravista continuo, sin cortes ni remiendos. Garantiza la continuidad estética del paramento.',
+        formats: [['Esquina','390 × 190 × 50 mm','4 kg']],
+        stats: [['Ud./palé','180 ud.']],
+        colors: ['Blanco'],
+      },
+      zuncho: {
+        name: 'Zuncho', badge: 'Remate y coronación',
+        img: '/assets/images/04-ZUNCHO.png',
+        desc: 'Pieza de coronación para rematar la parte superior de muros y paredes. Mantiene el mismo acabado caravista del paramento con una geometría plana y discreta.',
+        formats: [['Zuncho','390 × 140 × 5 mm','4 kg']],
+        stats: [['Ud./palé','210 ud.']],
+        colors: ['Blanco'],
+      },
+    };
+    function openCoupeModal(id) {
+      const d = COUPE_DATA[id];
+      if (!d) return;
+      document.getElementById('coupe-modal-img-wrap').innerHTML = '<img src="' + d.img + '" alt="' + d.name + '" />';
+      let formatsHtml = '';
+      if (d.formats && d.formats.length) {
+        const rows = d.formats.map(function(f) { return '<tr><td>' + f[0] + '</td><td>' + f[1] + '</td><td>' + f[2] + '</td></tr>'; }).join('');
+        formatsHtml = '<p style="font-size:0.625rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a1a1aa;margin-bottom:0.5rem;">Formatos disponibles</p><div style="border-radius:0.75rem;overflow:hidden;border:1px solid #e4e4e7;margin-bottom:1.25rem;"><table><thead><tr><th>Referencia</th><th>Dimensiones</th><th>Peso</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+      }
+      let statsHtml = '';
+      if (d.stats && d.stats.length) {
+        const chips = d.stats.map(function(s) { return '<div style="background:#f4f3ef;border-radius:0.75rem;padding:0.75rem;text-align:center;"><p style="font-size:0.625rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a1a1aa;margin-bottom:0.25rem;">' + s[0] + '</p><p style="font-size:1rem;font-weight:900;color:#18181b;margin:0;">' + s[1] + '</p></div>'; }).join('');
+        statsHtml = '<div style="display:grid;grid-template-columns:repeat(' + d.stats.length + ',1fr);gap:0.5rem;margin-bottom:1.25rem;">' + chips + '</div>';
+      }
+      const colorsHtml = '<p style="font-size:0.625rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a1a1aa;margin-bottom:0.5rem;">Color</p><div style="display:flex;flex-wrap:wrap;gap:0.5rem;">' + d.colors.map(function(c) { return '<span style="display:inline-flex;align-items:center;padding:0.35rem 0.9rem;background:#f4f4f5;border:1px solid #e4e4e7;border-radius:9999px;font-size:0.8125rem;font-weight:600;color:#3f3f46;">' + c + '</span>'; }).join('') + '</div>';
+      document.getElementById('coupe-modal-body').innerHTML =
+        '<div style="margin-bottom:0.75rem;"><span style="font-size:0.625rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#b91c1c;background:#fff1f0;border:1px solid #fecaca;padding:0.25rem 0.75rem;border-radius:9999px;">' + d.badge + '</span></div>' +
+        '<h2 id="coupe-modal-title" style="font-size:1.625rem;font-weight:800;letter-spacing:-0.03em;color:#18181b;margin:0 0 0.75rem;line-height:1.2;">' + d.name + '</h2>' +
+        '<p style="font-size:0.9375rem;color:#52525b;line-height:1.75;margin-bottom:1.25rem;">' + d.desc + '</p>' +
+        formatsHtml + statsHtml + colorsHtml;
+      document.getElementById('coupe-modal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCoupeModal() {
+      document.getElementById('coupe-modal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeCoupeModal(); });
+  </script>
   </body>
 </html>
