@@ -184,7 +184,21 @@
     }
 
     @media (max-width: 640px) {
-      #proj-bar > div > div { gap: 0.3rem; padding-top: 0.625rem; padding-bottom: 0.625rem; }
+      #proj-bar > div > div {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 0.35rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+      #proj-bar > div > div::-webkit-scrollbar { display: none; }
+      #proj-bar a {
+        flex-shrink: 0;
+        font-size: 0.68rem;
+        padding: 0.35rem 0.85rem;
+      }
     }
 
     /* ── Gallery collapse ── */
@@ -1449,13 +1463,18 @@
       btn.addEventListener('click', () => {
         const extras = grid.querySelectorAll('.gallery-extra');
         const isOpen = extras[0].classList.contains('open');
-        extras.forEach(el => el.classList.toggle('open', !isOpen));
-        grid.classList.toggle('collapsed', isOpen);
-        if (isOpen) {
-          btn.innerHTML = `Ver todas las fotos <span class="g-count">+${extra} más</span>`;
-          grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
+        if (!isOpen) {
+          const btnTop = btn.getBoundingClientRect().top;
+          extras.forEach(el => el.classList.add('open'));
+          grid.classList.remove('collapsed');
+          requestAnimationFrame(() => {
+            window.scrollBy({ top: btn.getBoundingClientRect().top - btnTop, behavior: 'instant' });
+          });
           btn.innerHTML = `Ver menos fotos <span class="g-count">−${extra}</span>`;
+        } else {
+          extras.forEach(el => el.classList.remove('open'));
+          grid.classList.add('collapsed');
+          btn.innerHTML = `Ver todas las fotos <span class="g-count">+${extra} más</span>`;
         }
       });
 
