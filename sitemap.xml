@@ -1,69 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://bloquesbarruca.netlify.app/</loc>
+    <loc>https://barruca.es/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>https://bloquesbarruca.netlify.app/producto-fireproof.html</loc>
+    <loc>https://barruca.es/producto-fireproof.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>https://bloquesbarruca.netlify.app/producto-coupe.html</loc>
+    <loc>https://barruca.es/producto-coupe.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>https://bloquesbarruca.netlify.app/producto-hib.html</loc>
+    <loc>https://barruca.es/producto-hib.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>https://bloquesbarruca.netlify.app/producto-bloque.html</loc>
+    <loc>https://barruca.es/producto-bloque.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>https://bloquesbarruca.netlify.app/proyectos.html</loc>
+    <loc>https://barruca.es/proyectos.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>https://bloquesbarruca.netlify.app/blog.html</loc>
+    <loc>https://barruca.es/blog.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>https://bloquesbarruca.netlify.app/ensayos.html</loc>
+    <loc>https://barruca.es/ensayos.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>https://bloquesbarruca.netlify.app/prestaciones.html</loc>
+    <loc>https://barruca.es/prestaciones.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>https://bloquesbarruca.netlify.app/articulos.html</loc>
+    <loc>https://barruca.es/articulos.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
-    <loc>https://bloquesbarruca.netlify.app/prescripciones.html</loc>
+    <loc>https://barruca.es/prescripciones.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-14</lastmod>
   </url>
 </urlset>
