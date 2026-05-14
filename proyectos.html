@@ -197,35 +197,49 @@
       display: block;
       animation: gReveal 0.35s cubic-bezier(0.16,1,0.3,1) both;
     }
+    .photo-grid.collapsed {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      columns: unset;
+    }
+    .photo-grid.collapsed .photo-item img {
+      height: 240px;
+      object-fit: cover;
+    }
     .gallery-expand-wrap {
-      margin-top: 1.5rem;
+      margin-top: 2rem;
       display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      gap: 1rem;
+      gap: 0.75rem;
     }
     .gallery-expand-btn {
       display: inline-flex;
       align-items: center;
       gap: 0.625rem;
-      padding: 0.65rem 1.5rem;
-      background: transparent;
-      border: 1.5px solid #e4e4e7;
+      padding: 0.8rem 2.25rem;
+      background: #b91c1c;
+      border: none;
       border-radius: 9999px;
-      font-size: 0.8125rem;
-      font-weight: 600;
-      color: #3f3f46;
-      cursor: pointer;
-      transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
-    }
-    .gallery-expand-btn:hover { background: #f4f4f5; border-color: #a1a1aa; color: #18181b; }
-    .gallery-expand-btn:active { transform: scale(0.98); }
-    .gallery-expand-btn .g-count {
-      font-size: 0.7rem;
+      font-size: 0.9rem;
       font-weight: 700;
-      color: #b91c1c;
-      background: #fef2f2;
-      border: 1px solid #fecaca;
-      padding: 0.1rem 0.45rem;
+      color: #fff;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      box-shadow: 0 4px 18px rgba(185,28,28,0.35);
+      transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+    }
+    .gallery-expand-btn:hover { background: #991b1b; box-shadow: 0 6px 22px rgba(185,28,28,0.45); }
+    .gallery-expand-btn:active { transform: scale(0.97); }
+    .gallery-expand-btn .g-count {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fecaca;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 0.1rem 0.5rem;
       border-radius: 9999px;
     }
     .gallery-expand-total {
@@ -292,6 +306,8 @@
 
     @media (max-width: 640px) {
       .photo-grid { columns: 2 120px; }
+      .photo-grid.collapsed { grid-template-columns: repeat(2, 1fr); }
+      .photo-grid.collapsed .photo-item img { height: 160px; }
     }
 
     /* ── Lightbox ── */
@@ -1355,11 +1371,11 @@
       base: 'assets/Fotos-opt/Viviendas%20Dona%20Sol/',
       alts: ALT_DONASOL,
       files: [
-        'ViviendasDonaSol-01.jpg','ViviendasDonaSol-02.jpg','ViviendasDonaSol-03.jpg',
         'ViviendasDonaSol-04.jpg','ViviendasDonaSol-05.jpg','ViviendasDonaSol-06.jpg',
         'ViviendasDonaSol-07.jpg','ViviendasDonaSol-08.jpg','ViviendasDonaSol-09.jpg',
         'ViviendasDonaSol-10.jpg','ViviendasDonaSol-11.jpg','ViviendasDonaSol-12.jpg',
-        'ViviendasDonaSol-13.jpg',
+        'ViviendasDonaSol-13.jpg','ViviendasDonaSol-01.jpg','ViviendasDonaSol-02.jpg',
+        'ViviendasDonaSol-03.jpg',
       ]
     },
     origen: {
@@ -1416,6 +1432,8 @@
     galleryImgs[key] = imgs;
 
     if (g.files.length > 4) {
+      grid.classList.add('collapsed');
+
       const extra = g.files.length - 4;
       const wrap = document.createElement('div');
       wrap.className = 'gallery-expand-wrap';
@@ -1432,6 +1450,7 @@
         const extras = grid.querySelectorAll('.gallery-extra');
         const isOpen = extras[0].classList.contains('open');
         extras.forEach(el => el.classList.toggle('open', !isOpen));
+        grid.classList.toggle('collapsed', isOpen);
         if (isOpen) {
           btn.innerHTML = `Ver todas las fotos <span class="g-count">+${extra} más</span>`;
           grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
