@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /auditoria-seo-barruca.html
+Disallow: /presentacion-estrategia-barruca.html
+Disallow: /analisis-redes-barruca.html
 
 Sitemap: https://barruca.es/sitemap.xml
