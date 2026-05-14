@@ -184,11 +184,8 @@
     }
 
     @media (max-width: 640px) {
-      #proj-bar > div > div {
-        gap: 0.3rem;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-      }
+      #proj-bar > div > div { gap: 0.3rem; padding-top: 0.625rem; padding-bottom: 0.625rem; }
+      #proj-bar-label { display: none; }
     }
 
     /* ── Sticky project bar ── */
@@ -196,10 +193,38 @@
       position: sticky;
       top: 64px;
       z-index: 40;
-      background: rgba(250,250,249,0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
+      background: #111113;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.45);
+    }
+    #proj-bar-label {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #71717a;
+      white-space: nowrap;
+      padding-right: 0.75rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      margin-right: 0.25rem;
+      align-self: flex-start;
+      padding-top: 0.45rem;
+    }
+    #proj-bar a {
+      color: #71717a;
+      border: 1px solid transparent;
+      transition: color 0.15s, background 0.15s, border-color 0.15s;
+    }
+    #proj-bar a:hover {
+      color: #fff;
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.1);
+    }
+    #proj-bar a.active-proj {
+      color: #fca5a5;
+      background: rgba(185,28,28,0.18);
+      border-color: rgba(185,28,28,0.35);
     }
 
     /* ── Masonry photo grid ── */
@@ -697,18 +722,19 @@
     <!-- ── Sticky project bar ── -->
     <div id="proj-bar">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-wrap gap-x-1 gap-y-1.5 py-3">
-          <a href="#ies"      class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Colegio IES Huércal-Almería</a>
-          <a href="#cerros"   class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Colegio los Cerros-Úbeda</a>
-          <a href="#kina"     class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Conservatorio Kina Jiménez-Almería</a>
-          <a href="#maracena" class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Instituto Maracena</a>
-          <a href="#burgos"      class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Vivienda Castañares-Burgos</a>
-          <a href="#almeria"     class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Centro de Salud Almería</a>
-          <a href="#mijas"       class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Colegio Mijas</a>
-          <a href="#valencia"    class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Restaurante Imood Valencia</a>
-          <a href="#donasol"     class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Viviendas Doña Sol — Burgos</a>
-          <a href="#origen"      class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Viviendas Origen — Burgos</a>
-          <a href="#burgoscoupe" class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Viviendas Coupe — Burgos</a>
+        <div class="flex flex-wrap items-start gap-x-1 gap-y-1.5 py-4">
+          <span id="proj-bar-label">Proyectos</span>
+          <a href="#ies"      class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Colegio IES Huércal-Almería</a>
+          <a href="#cerros"   class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Colegio los Cerros-Úbeda</a>
+          <a href="#kina"     class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Conservatorio Kina Jiménez-Almería</a>
+          <a href="#maracena" class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Instituto Maracena</a>
+          <a href="#burgos"      class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Vivienda Castañares-Burgos</a>
+          <a href="#almeria"     class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Centro de Salud Almería</a>
+          <a href="#mijas"       class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Colegio Mijas</a>
+          <a href="#valencia"    class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Restaurante Imood Valencia</a>
+          <a href="#donasol"     class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Viviendas Doña Sol — Burgos</a>
+          <a href="#origen"      class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Viviendas Origen — Burgos</a>
+          <a href="#burgoscoupe" class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Viviendas Coupe — Burgos</a>
         </div>
       </div>
     </div>
@@ -1483,6 +1509,24 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ── Active project highlight ── */
+  const projLinks = document.querySelectorAll('#proj-bar a');
+  const sectionIds = ['ies','cerros','kina','maracena','burgos','almeria','mijas','valencia','donasol','origen','burgoscoupe'];
+  const ioProj = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      const link = document.querySelector('#proj-bar a[href="#' + e.target.id + '"]');
+      if (!link) return;
+      if (e.isIntersecting) {
+        projLinks.forEach(l => l.classList.remove('active-proj'));
+        link.classList.add('active-proj');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) ioProj.observe(el);
+  });
 
   /* ═══════════════════════════════════════
      COOKIES
