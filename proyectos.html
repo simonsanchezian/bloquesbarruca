@@ -116,32 +116,52 @@
     }
 
     /* ── Fan de proyectos en el hero ── */
-    .fan-container {
-      position: relative;
-      width: 510px;
-      height: 240px;
+    .fan-outer {
       flex-shrink: 0;
+      overflow: hidden;
+      width: 510px;
     }
+    .fan-track {
+      display: flex;
+      align-items: flex-start;
+      overflow-x: scroll;
+      scrollbar-width: none;
+      cursor: grab;
+      -webkit-overflow-scrolling: touch;
+      user-select: none;
+      padding: 22px 16px 14px;
+    }
+    .fan-track.dragging { cursor: grabbing; }
+    .fan-track::-webkit-scrollbar { display: none; }
     .fan-card {
-      position: absolute;
-      width: 155px;
-      height: 210px;
-      transform-origin: center center;
+      flex-shrink: 0;
+      position: relative;
+      width: 130px;
+      height: 175px;
+      margin-left: -30px;
       border-radius: 10px;
       overflow: hidden;
       cursor: pointer;
       box-shadow: 0 8px 28px rgba(0,0,0,0.55), 0 2px 6px rgba(0,0,0,0.4);
-      transition: transform 0.35s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.35s;
+      transition: transform 0.3s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.3s;
       text-decoration: none;
+      transform: rotate(var(--r,0deg)) translateY(var(--ty,0px));
     }
-    .fan-card:nth-child(1) { --r: -6deg;  left:   0px; top: 14px; z-index: 1; }
-    .fan-card:nth-child(2) { --r: -3deg;  left:  88px; top:  5px; z-index: 2; }
-    .fan-card:nth-child(3) { --r:  0deg;  left: 176px; top:  0px; z-index: 3; }
-    .fan-card:nth-child(4) { --r:  3deg;  left: 264px; top:  5px; z-index: 2; }
-    .fan-card:nth-child(5) { --r:  6deg;  left: 352px; top: 14px; z-index: 1; }
-    .fan-card              { transform: rotate(var(--r, 0deg)); }
+    .fan-card:first-child { margin-left: 0; }
+    /* Rotación constante por proyecto (ciclo de 11) */
+    .fan-card:nth-child(11n+1)  { --r:-5deg;  --ty:8px; }
+    .fan-card:nth-child(11n+2)  { --r: 2deg;  --ty:2px; }
+    .fan-card:nth-child(11n+3)  { --r:-3deg;  --ty:6px; }
+    .fan-card:nth-child(11n+4)  { --r: 4deg;  --ty:0px; }
+    .fan-card:nth-child(11n+5)  { --r:-1deg;  --ty:5px; }
+    .fan-card:nth-child(11n+6)  { --r: 3deg;  --ty:2px; }
+    .fan-card:nth-child(11n+7)  { --r:-4deg;  --ty:7px; }
+    .fan-card:nth-child(11n+8)  { --r: 1deg;  --ty:3px; }
+    .fan-card:nth-child(11n+9)  { --r:-2deg;  --ty:5px; }
+    .fan-card:nth-child(11n+10) { --r: 5deg;  --ty:0px; }
+    .fan-card:nth-child(11n)    { --r:-1deg;  --ty:4px; }
     .fan-card:hover {
-      transform: translateY(-8px) rotate(var(--r, 0deg)) scale(1.1);
+      transform: translateY(-10px) rotate(var(--r,0deg)) scale(1.1);
       z-index: 10;
       box-shadow: 0 18px 44px rgba(0,0,0,0.8), 0 4px 12px rgba(0,0,0,0.5);
     }
@@ -166,21 +186,8 @@
     }
     @media (max-width: 767px) {
       .hero-inner { flex-direction: column; align-items: flex-start; gap: 0 !important; }
-      .fan-outer {
-        width: 100%;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        height: 185px;
-        padding-top: 14px;
-        margin-top: 20px;
-        flex-shrink: 0;
-      }
-      .fan-container {
-        flex-shrink: 0;
-        transform: scale(0.65);
-        transform-origin: top center;
-      }
+      .fan-outer { width: 100%; overflow: hidden; margin-top: 22px; }
+      .fan-track  { padding: 16px 10px 10px; }
     }
 
     @media (max-width: 640px) {
@@ -529,55 +536,7 @@
       .cookie-btn-accept, .cookie-btn-reject { flex: 1; text-align: center; }
     }
 
-    /* ── Fan de proyectos ── */
-    .fan-container {
-      position: relative;
-      width: 510px;
-      height: 240px;
-      flex-shrink: 0;
-    }
-    .fan-card {
-      position: absolute;
-      width: 155px;
-      height: 210px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, z-index 0s;
-      transform: rotate(var(--r, 0deg));
-    }
-    .fan-card:nth-child(1) { --r: -6deg;  left:   0px; top: 14px; z-index: 1; }
-    .fan-card:nth-child(2) { --r: -3deg;  left:  88px; top:  5px; z-index: 2; }
-    .fan-card:nth-child(3) { --r:  0deg;  left: 176px; top:  0px; z-index: 3; }
-    .fan-card:nth-child(4) { --r:  3deg;  left: 264px; top:  5px; z-index: 2; }
-    .fan-card:nth-child(5) { --r:  6deg;  left: 352px; top: 14px; z-index: 1; }
-    .fan-card:hover {
-      transform: translateY(-8px) rotate(var(--r, 0deg)) scale(1.1);
-      z-index: 10;
-      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
-    }
-    .fan-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .fan-label {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 0.5rem 0.6rem 0.5rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-      color: #fff;
-      font-size: 0.65rem;
-      font-weight: 600;
-      text-align: center;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
+    /* fan-card styles defined above */
   
     /* ── WhatsApp FAB ── */
     #wa-fab {
@@ -758,29 +717,45 @@
           </p>
         </div>
 
-        <!-- Abanico de proyectos -->
+        <!-- Abanico de proyectos (scrollable, bucle infinito) -->
         <div class="fan-outer" aria-hidden="true">
-        <div class="fan-container">
-          <a href="#ies" class="fan-card" title="Colegio IES Huércal-Almería">
-            <img src="assets/Fotos-opt/IES%20Hu%C3%A9rcal%20Almer%C3%ADa/IESHu%C3%A9rcalAlmer%C3%ADa-22.jpg" alt="Colegio IES Huércal-Almería" loading="eager" />
-            <div class="fan-label">IES Huércal-Almería</div>
-          </a>
-          <a href="#cerros" class="fan-card" title="Colegio los Cerros-Úbeda">
-            <img src="assets/Fotos-opt/Los%20Cerros/LosCerros-01.jpg" alt="Colegio los Cerros-Úbeda" loading="eager" />
-            <div class="fan-label">Los Cerros-Úbeda</div>
-          </a>
-          <a href="#kina" class="fan-card" title="Conservatorio Kina Jiménez-Almería">
-            <img src="assets/Fotos-opt/KINA/Kina_1%20%283%29.jpg" alt="Conservatorio Kina Jiménez-Almería" loading="eager" />
-            <div class="fan-label">Kina Jiménez</div>
-          </a>
-          <a href="#maracena" class="fan-card" title="Instituto Maracena">
-            <img src="assets/Fotos-opt/Instituto%20Maracena/00-2334-0320.jpg" alt="Instituto Maracena" loading="eager" />
-            <div class="fan-label">Maracena</div>
-          </a>
-          <a href="#burgos" class="fan-card" title="Vivienda Castañares-Burgos">
-            <img src="assets/Fotos-opt/Casa%20Burgos/Casa%20E1_bergeraphoto_02.jpg" alt="Vivienda Castañares-Burgos" loading="eager" />
-            <div class="fan-label">Castañares-Burgos</div>
-          </a>
+        <div class="fan-track" id="fan-track">
+          <!-- Set 1 -->
+          <a href="#ies"         class="fan-card"><img src="assets/Fotos-opt/IES%20Hu%C3%A9rcal%20Almer%C3%ADa/IESHu%C3%A9rcalAlmer%C3%ADa-22.jpg"  alt="" loading="eager"><div class="fan-label">IES Huércal</div></a>
+          <a href="#cerros"      class="fan-card"><img src="assets/Fotos-opt/Los%20Cerros/LosCerros-01.jpg"                                           alt="" loading="eager"><div class="fan-label">Los Cerros</div></a>
+          <a href="#kina"        class="fan-card"><img src="assets/Fotos-opt/KINA/Kina_1%20%283%29.jpg"                                               alt="" loading="eager"><div class="fan-label">Kina Jiménez</div></a>
+          <a href="#maracena"    class="fan-card"><img src="assets/Fotos-opt/Instituto%20Maracena/00-2334-0320.jpg"                                    alt="" loading="eager"><div class="fan-label">Maracena</div></a>
+          <a href="#burgos"      class="fan-card"><img src="assets/Fotos-opt/Casa%20Burgos/Casa%20E1_bergeraphoto_02.jpg"                              alt="" loading="eager"><div class="fan-label">Castañares</div></a>
+          <a href="#almeria"     class="fan-card"><img src="assets/Fotos-opt/Centro%20Salud%20Almeria/CentroSaludAlmeria-01.jpg"                       alt="" loading="lazy"><div class="fan-label">C. Salud Almería</div></a>
+          <a href="#mijas"       class="fan-card"><img src="assets/Fotos-opt/Colegio%20Mijas/ColegioMijas-01.jpg"                                      alt="" loading="lazy"><div class="fan-label">Colegio Mijas</div></a>
+          <a href="#valencia"    class="fan-card"><img src="assets/Fotos-opt/Restaurante%20Valencia/RestauranteValencia-01.jpg"                        alt="" loading="lazy"><div class="fan-label">Rte. Valencia</div></a>
+          <a href="#donasol"     class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Dona%20Sol/ViviendasDonaSol-04.jpg"                           alt="" loading="lazy"><div class="fan-label">Doña Sol</div></a>
+          <a href="#origen"      class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Origen%20Burgos/ViviendasOrigenBurgos-01.jpg"                 alt="" loading="lazy"><div class="fan-label">Origen Burgos</div></a>
+          <a href="#burgoscoupe" class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Burgos%20Coupe/ViviendasBurgosCOUPE-01.jpg"                   alt="" loading="lazy"><div class="fan-label">Coupe Burgos</div></a>
+          <!-- Set 2 -->
+          <a href="#ies"         class="fan-card"><img src="assets/Fotos-opt/IES%20Hu%C3%A9rcal%20Almer%C3%ADa/IESHu%C3%A9rcalAlmer%C3%ADa-22.jpg"  alt="" loading="lazy"><div class="fan-label">IES Huércal</div></a>
+          <a href="#cerros"      class="fan-card"><img src="assets/Fotos-opt/Los%20Cerros/LosCerros-01.jpg"                                           alt="" loading="lazy"><div class="fan-label">Los Cerros</div></a>
+          <a href="#kina"        class="fan-card"><img src="assets/Fotos-opt/KINA/Kina_1%20%283%29.jpg"                                               alt="" loading="lazy"><div class="fan-label">Kina Jiménez</div></a>
+          <a href="#maracena"    class="fan-card"><img src="assets/Fotos-opt/Instituto%20Maracena/00-2334-0320.jpg"                                    alt="" loading="lazy"><div class="fan-label">Maracena</div></a>
+          <a href="#burgos"      class="fan-card"><img src="assets/Fotos-opt/Casa%20Burgos/Casa%20E1_bergeraphoto_02.jpg"                              alt="" loading="lazy"><div class="fan-label">Castañares</div></a>
+          <a href="#almeria"     class="fan-card"><img src="assets/Fotos-opt/Centro%20Salud%20Almeria/CentroSaludAlmeria-01.jpg"                       alt="" loading="lazy"><div class="fan-label">C. Salud Almería</div></a>
+          <a href="#mijas"       class="fan-card"><img src="assets/Fotos-opt/Colegio%20Mijas/ColegioMijas-01.jpg"                                      alt="" loading="lazy"><div class="fan-label">Colegio Mijas</div></a>
+          <a href="#valencia"    class="fan-card"><img src="assets/Fotos-opt/Restaurante%20Valencia/RestauranteValencia-01.jpg"                        alt="" loading="lazy"><div class="fan-label">Rte. Valencia</div></a>
+          <a href="#donasol"     class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Dona%20Sol/ViviendasDonaSol-04.jpg"                           alt="" loading="lazy"><div class="fan-label">Doña Sol</div></a>
+          <a href="#origen"      class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Origen%20Burgos/ViviendasOrigenBurgos-01.jpg"                 alt="" loading="lazy"><div class="fan-label">Origen Burgos</div></a>
+          <a href="#burgoscoupe" class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Burgos%20Coupe/ViviendasBurgosCOUPE-01.jpg"                   alt="" loading="lazy"><div class="fan-label">Coupe Burgos</div></a>
+          <!-- Set 3 -->
+          <a href="#ies"         class="fan-card"><img src="assets/Fotos-opt/IES%20Hu%C3%A9rcal%20Almer%C3%ADa/IESHu%C3%A9rcalAlmer%C3%ADa-22.jpg"  alt="" loading="lazy"><div class="fan-label">IES Huércal</div></a>
+          <a href="#cerros"      class="fan-card"><img src="assets/Fotos-opt/Los%20Cerros/LosCerros-01.jpg"                                           alt="" loading="lazy"><div class="fan-label">Los Cerros</div></a>
+          <a href="#kina"        class="fan-card"><img src="assets/Fotos-opt/KINA/Kina_1%20%283%29.jpg"                                               alt="" loading="lazy"><div class="fan-label">Kina Jiménez</div></a>
+          <a href="#maracena"    class="fan-card"><img src="assets/Fotos-opt/Instituto%20Maracena/00-2334-0320.jpg"                                    alt="" loading="lazy"><div class="fan-label">Maracena</div></a>
+          <a href="#burgos"      class="fan-card"><img src="assets/Fotos-opt/Casa%20Burgos/Casa%20E1_bergeraphoto_02.jpg"                              alt="" loading="lazy"><div class="fan-label">Castañares</div></a>
+          <a href="#almeria"     class="fan-card"><img src="assets/Fotos-opt/Centro%20Salud%20Almeria/CentroSaludAlmeria-01.jpg"                       alt="" loading="lazy"><div class="fan-label">C. Salud Almería</div></a>
+          <a href="#mijas"       class="fan-card"><img src="assets/Fotos-opt/Colegio%20Mijas/ColegioMijas-01.jpg"                                      alt="" loading="lazy"><div class="fan-label">Colegio Mijas</div></a>
+          <a href="#valencia"    class="fan-card"><img src="assets/Fotos-opt/Restaurante%20Valencia/RestauranteValencia-01.jpg"                        alt="" loading="lazy"><div class="fan-label">Rte. Valencia</div></a>
+          <a href="#donasol"     class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Dona%20Sol/ViviendasDonaSol-04.jpg"                           alt="" loading="lazy"><div class="fan-label">Doña Sol</div></a>
+          <a href="#origen"      class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Origen%20Burgos/ViviendasOrigenBurgos-01.jpg"                 alt="" loading="lazy"><div class="fan-label">Origen Burgos</div></a>
+          <a href="#burgoscoupe" class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Burgos%20Coupe/ViviendasBurgosCOUPE-01.jpg"                   alt="" loading="lazy"><div class="fan-label">Coupe Burgos</div></a>
         </div>
         </div>
 
@@ -1704,43 +1679,46 @@
     </script>
 
     <script>
-    /* ── Fan: cicla los 11 proyectos por las 5 posiciones ── */
+    /* ── Fan: scroll infinito + drag ── */
     (function () {
-      var ALL = [
-        { href: '#ies',       src: 'assets/Fotos-opt/IES%20Hu%C3%A9rcal%20Almer%C3%ADa/IESHu%C3%A9rcalAlmer%C3%ADa-22.jpg',   label: 'IES Huércal-Almería' },
-        { href: '#cerros',    src: 'assets/Fotos-opt/Los%20Cerros/LosCerros-01.jpg',                                              label: 'Los Cerros-Úbeda' },
-        { href: '#kina',      src: 'assets/Fotos-opt/KINA/Kina_1%20%283%29.jpg',                                                  label: 'Kina Jiménez' },
-        { href: '#maracena',  src: 'assets/Fotos-opt/Instituto%20Maracena/00-2334-0320.jpg',                                      label: 'Maracena' },
-        { href: '#burgos',    src: 'assets/Fotos-opt/Casa%20Burgos/Casa%20E1_bergeraphoto_02.jpg',                                label: 'Castañares-Burgos' },
-        { href: '#almeria',   src: 'assets/Fotos-opt/Centro%20Salud%20Almeria/CentroSaludAlmeria-01.jpg',                        label: 'C. Salud Almería' },
-        { href: '#mijas',     src: 'assets/Fotos-opt/Colegio%20Mijas/ColegioMijas-01.jpg',                                       label: 'Colegio Mijas' },
-        { href: '#valencia',  src: 'assets/Fotos-opt/Restaurante%20Valencia/RestauranteValencia-01.jpg',                         label: 'Restaurante Valencia' },
-        { href: '#donasol',   src: 'assets/Fotos-opt/Viviendas%20Dona%20Sol/ViviendasDonaSol-04.jpg',                            label: 'Viviendas Doña Sol' },
-        { href: '#origen',    src: 'assets/Fotos-opt/Viviendas%20Origen%20Burgos/ViviendasOrigenBurgos-01.jpg',                  label: 'Viviendas Origen' },
-        { href: '#burgoscoupe', src: 'assets/Fotos-opt/Viviendas%20Burgos%20Coupe/ViviendasBurgosCOUPE-01.jpg',                  label: 'Viviendas Coupe' },
-      ];
-      var cards = Array.prototype.slice.call(document.querySelectorAll('.fan-card'));
-      if (!cards.length) return;
-      var next = cards.length; // primeras 5 ya cargadas, siguiente es índice 5
+      var track = document.getElementById('fan-track');
+      if (!track) return;
+      var SET_W = 11 * 100; // 11 proyectos × 100px de avance por carta
 
-      // Swap alternando entre la carta izquierda (índice 0) y derecha (índice 4)
-      var swapIdx = 0;
-      var sides = [0, cards.length - 1];
+      // Arrancar en el set 2 (centro) para poder ir a izquierda y derecha
+      track.scrollLeft = SET_W;
 
-      setInterval(function () {
-        var card = cards[sides[swapIdx % 2]];
-        swapIdx++;
-        var p = ALL[next % ALL.length];
-        next++;
-        card.style.transition = 'opacity 0.35s';
-        card.style.opacity = '0';
-        setTimeout(function () {
-          card.href = p.href;
-          card.querySelector('img').src = p.src;
-          card.querySelector('.fan-label').textContent = p.label;
-          card.style.opacity = '1';
-        }, 360);
-      }, 3800);
+      // Bucle infinito: saltar de set cuando se llega al borde
+      track.addEventListener('scroll', function () {
+        if (track.scrollLeft < SET_W * 0.5)   track.scrollLeft += SET_W;
+        if (track.scrollLeft > SET_W * 1.5)   track.scrollLeft -= SET_W;
+      }, { passive: true });
+
+      // Rueda del ratón → scroll horizontal
+      track.addEventListener('wheel', function (e) {
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+        e.preventDefault();
+        track.scrollLeft += e.deltaY * 0.8;
+      }, { passive: false });
+
+      // Drag con ratón
+      var dragging = false, startX, startScroll;
+      track.addEventListener('mousedown', function (e) {
+        dragging = true; startX = e.clientX; startScroll = track.scrollLeft;
+        track.classList.add('dragging'); e.preventDefault();
+      });
+      document.addEventListener('mousemove', function (e) {
+        if (!dragging) return;
+        track.scrollLeft = startScroll - (e.clientX - startX);
+      });
+      document.addEventListener('mouseup', function () {
+        dragging = false; track.classList.remove('dragging');
+      });
+
+      // Evitar que el click en una carta dispare el enlace si fue un drag
+      track.addEventListener('click', function (e) {
+        if (Math.abs(track.scrollLeft - startScroll) > 5) e.preventDefault();
+      });
     })();
     </script>
   </body>
