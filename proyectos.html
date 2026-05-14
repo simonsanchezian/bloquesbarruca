@@ -118,26 +118,9 @@
     /* ── Fan de proyectos en el hero ── */
     .fan-outer {
       flex-shrink: 0;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: visible;
       width: 510px;
-      position: relative;
-    }
-    .fan-outer::before,
-    .fan-outer::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      width: 60px;
-      z-index: 11;
-      pointer-events: none;
-    }
-    .fan-outer::before {
-      left: 0;
-      background: linear-gradient(to right, #27272a, transparent);
-    }
-    .fan-outer::after {
-      right: 0;
-      background: linear-gradient(to left, #27272a, transparent);
     }
     .fan-track {
       display: flex;
@@ -205,7 +188,7 @@
     }
     @media (max-width: 767px) {
       .hero-inner { flex-direction: column; align-items: flex-start; gap: 0 !important; }
-      .fan-outer { width: 100%; overflow: hidden; margin-top: 22px; }
+      .fan-outer { width: 100%; overflow-x: hidden; overflow-y: visible; margin-top: 22px; }
       .fan-track  { padding: 16px 10px 10px; }
     }
 
