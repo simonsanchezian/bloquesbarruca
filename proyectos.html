@@ -185,7 +185,53 @@
 
     @media (max-width: 640px) {
       #proj-bar > div > div { gap: 0.3rem; padding-top: 0.625rem; padding-bottom: 0.625rem; }
-      #proj-bar-label { display: none; }
+    }
+
+    /* ── Gallery collapse ── */
+    .gallery-extra { display: none; }
+    @keyframes gReveal {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .gallery-extra.open {
+      display: block;
+      animation: gReveal 0.35s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .gallery-expand-wrap {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .gallery-expand-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0.65rem 1.5rem;
+      background: transparent;
+      border: 1.5px solid #e4e4e7;
+      border-radius: 9999px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: #3f3f46;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
+    }
+    .gallery-expand-btn:hover { background: #f4f4f5; border-color: #a1a1aa; color: #18181b; }
+    .gallery-expand-btn:active { transform: scale(0.98); }
+    .gallery-expand-btn .g-count {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #b91c1c;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      padding: 0.1rem 0.45rem;
+      border-radius: 9999px;
+    }
+    .gallery-expand-total {
+      font-size: 0.75rem;
+      color: #a1a1aa;
+      font-weight: 500;
     }
 
     /* ── Sticky project bar ── */
@@ -197,19 +243,6 @@
       border-top: 1px solid rgba(255,255,255,0.06);
       border-bottom: 1px solid rgba(255,255,255,0.04);
       box-shadow: 0 4px 24px rgba(0,0,0,0.45);
-    }
-    #proj-bar-label {
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #71717a;
-      white-space: nowrap;
-      padding-right: 0.75rem;
-      border-right: 1px solid rgba(255,255,255,0.08);
-      margin-right: 0.25rem;
-      align-self: flex-start;
-      padding-top: 0.45rem;
     }
     #proj-bar a {
       color: #71717a;
@@ -723,7 +756,6 @@
     <div id="proj-bar">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-wrap items-start gap-x-1 gap-y-1.5 py-4">
-          <span id="proj-bar-label">Proyectos</span>
           <a href="#ies"      class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Colegio IES Huércal-Almería</a>
           <a href="#cerros"   class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Colegio los Cerros-Úbeda</a>
           <a href="#kina"     class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Conservatorio Kina Jiménez-Almería</a>
@@ -1364,7 +1396,7 @@
     g.files.forEach((file, i) => {
       const alt = g.alts[i % g.alts.length];
       const item = document.createElement('div');
-      item.className = 'photo-item';
+      item.className = i < 4 ? 'photo-item' : 'photo-item gallery-extra';
 
       const img = document.createElement('img');
       img.src = g.base + file;
@@ -1382,6 +1414,36 @@
     });
 
     galleryImgs[key] = imgs;
+
+    if (g.files.length > 4) {
+      const extra = g.files.length - 4;
+      const wrap = document.createElement('div');
+      wrap.className = 'gallery-expand-wrap';
+
+      const btn = document.createElement('button');
+      btn.className = 'gallery-expand-btn';
+      btn.innerHTML = `Ver todas las fotos <span class="g-count">+${extra} más</span>`;
+
+      const total = document.createElement('span');
+      total.className = 'gallery-expand-total';
+      total.textContent = `${g.files.length} fotos en total`;
+
+      btn.addEventListener('click', () => {
+        const extras = grid.querySelectorAll('.gallery-extra');
+        const isOpen = extras[0].classList.contains('open');
+        extras.forEach(el => el.classList.toggle('open', !isOpen));
+        if (isOpen) {
+          btn.innerHTML = `Ver todas las fotos <span class="g-count">+${extra} más</span>`;
+          grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          btn.innerHTML = `Ver menos fotos <span class="g-count">−${extra}</span>`;
+        }
+      });
+
+      wrap.appendChild(btn);
+      wrap.appendChild(total);
+      grid.parentElement.appendChild(wrap);
+    }
   });
 
   /* ═══════════════════════════════════════
