@@ -27,7 +27,7 @@
   <meta property="og:url" content="https://barruca.es/producto-bloque.html" />
   <meta property="og:title" content="Bloques de Hormigón Prefabricado en Burgos | Barruca" />
   <meta property="og:description" content="Bloques de hormigón fabricados en Burgos desde 1980. Alta resistencia para construcción en Castilla y León. Suministro a toda España." />
-  <meta property="og:image" content="https://barruca.es/assets/Muro.jpg" />
+  <meta property="og:image" content="https://barruca.es/assets/images/11-BLOQUE-MURO-PARA-ARMAR-H.webp" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Barruca Prefabricados" />
@@ -36,40 +36,43 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Bloques de Hormigón Prefabricado en Burgos | Barruca" />
   <meta name="twitter:description" content="Bloques de hormigón prefabricado fabricados en Burgos desde 1980. Más de 40 años de experiencia. Suministro a toda España." />
-  <meta name="twitter:image" content="https://barruca.es/assets/Muro.jpg" />
-  <meta name="twitter:image:alt" content="Muro de bloques de hormigón prefabricado Barruca en Burgos" />
+  <meta name="twitter:image" content="https://barruca.es/assets/images/11-BLOQUE-MURO-PARA-ARMAR-H.webp" />
+  <meta name="twitter:image:alt" content="Bloque de hormigón prefabricado Barruca para muro, fabricado en Burgos" />
 
   <!-- Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://barruca.es/#empresa",
-    "name": "Bloques Barruca",
-    "url": "https://barruca.es/",
-    "image": "https://barruca.es/assets/Muro.jpg",
-    "description": "Fabricante de bloques de hormigón prefabricado en Burgos. Más de 40 años de experiencia. Ladrillo Fireproof®, Coupe Caravista, HIB.",
-    "foundingDate": "1980",
-    "telephone": "+34947298278",
-    "email": "barruca@barruca.es",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "C/López Bravo n.º 14",
-      "postalCode": "09001",
-      "addressLocality": "Burgos",
-      "addressRegion": "Castilla y León",
-      "addressCountry": "ES"
-    },
-    "openingHours": [
-      "Mo-Th 08:30-13:00",
-      "Mo-Th 15:00-19:00",
-      "Fr 08:00-12:30"
-    ],
-    "sameAs": [
-      "https://www.facebook.com/BloquesBarruca",
-      "https://twitter.com/BloquesBarruca",
-      "https://www.linkedin.com/company/bloques-barruca",
-      "https://www.instagram.com/BloquesBarruca"
+    "@graph": [
+      {
+        "@type": "Product",
+        "name": "Bloque de Hormigón Prefabricado",
+        "description": "Bloques de hormigón prefabricado fabricados en Burgos desde 1980. Alta resistencia y durabilidad para construcción. Disponibles en múltiples formatos y colores. Suministro a toda España.",
+        "image": "https://barruca.es/assets/images/11-BLOQUE-MURO-PARA-ARMAR-H.webp",
+        "url": "https://barruca.es/producto-bloque.html",
+        "brand": { "@type": "Brand", "name": "Bloques Barruca" },
+        "manufacturer": {
+          "@type": "Organization",
+          "@id": "https://barruca.es/#empresa",
+          "name": "Bloques Barruca",
+          "url": "https://barruca.es/"
+        },
+        "category": "Ladrillos y bloques de hormigón prefabricado",
+        "material": "Hormigón prefabricado",
+        "countryOfOrigin": "ES",
+        "offers": {
+          "@type": "Offer",
+          "availability": "https://schema.org/InStock",
+          "seller": { "@type": "Organization", "name": "Bloques Barruca" }
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://barruca.es/" },
+          { "@type": "ListItem", "position": 2, "name": "Bloque de Hormigón Prefabricado", "item": "https://barruca.es/producto-bloque.html" }
+        ]
+      }
     ]
   }
   </script>
@@ -691,7 +694,7 @@
 
         <!-- Logo -->
         <a href="/" class="flex-shrink-0">
-          <img src="/assets/logo-barruca-web.png"
+          <img src="/assets/logo-barruca-web.webp"
                alt="Bloques Barruca" class="h-9 w-auto" />
         </a>
 
@@ -814,7 +817,7 @@
           <!-- ── 1 SPLIT ── -->
           <div class="reveal bloque-card card-lift bg-white border border-zinc-100 rounded-2xl overflow-hidden shadow-sm flex flex-col" onclick="openBloqueModal('split')" role="button" tabindex="0">
             <div class="aspect-video bg-stone-50 flex items-center justify-center p-8">
-              <img src="/assets/images/Split.png" alt="Bloque Split Barruca" class="h-full w-full object-contain transition-transform duration-500 hover:scale-105" loading="lazy" />
+              <img src="/assets/images/Split.webp" alt="Bloque Split Barruca" class="h-full w-full object-contain transition-transform duration-500 hover:scale-105" loading="lazy" />
             </div>
             <div class="p-6 flex flex-col flex-1">
               <span class="inline-block self-start text-[10px] font-bold uppercase tracking-widest text-accent-700 bg-accent-50 border border-accent-200 px-2.5 py-1 rounded-full mb-3">Textura rugosa</span>
@@ -859,7 +862,7 @@
           <!-- ── 2 LISO ── -->
           <div class="reveal delay-1 bloque-card card-lift bg-white border border-zinc-100 rounded-2xl overflow-hidden shadow-sm flex flex-col" onclick="openBloqueModal('liso')" role="button" tabindex="0" aria-label="Ver ficha Liso">
             <div class="aspect-video bg-stone-50 flex items-center justify-center p-8">
-              <img src="/assets/images/01-NORMAL-SIN-HIDROFUGO.png" alt="Bloque Liso Barruca" class="h-full w-full object-contain transition-transform duration-500 hover:scale-105" loading="lazy" />
+              <img src="/assets/images/01-NORMAL-SIN-HIDROFUGO.webp" alt="Bloque Liso Barruca" class="h-full w-full object-contain transition-transform duration-500 hover:scale-105" loading="lazy" />
             </div>
             <div class="p-6 flex flex-col flex-1">
               <span class="inline-block self-start text-[10px] font-bold uppercase tracking-widest text-accent-700 bg-accent-50 border border-accent-200 px-2.5 py-1 rounded-full mb-3">Acabado liso</span>
@@ -906,7 +909,7 @@
           <!-- ── 3 BLOQUE 520 ── -->
           <div class="reveal delay-2 bloque-card card-lift bg-white border border-zinc-100 rounded-2xl overflow-hidden shadow-sm flex flex-col" onclick="openBloqueModal('b520')" role="button" tabindex="0" aria-label="Ver ficha Bloque 520">
             <div class="aspect-video bg-stone-50 flex items-center justify-center p-8">
-              <img src="/assets/images/09-NORMAL-520.png" alt="Bloque 520 Barruca" class="h-full w-full object-contain transition-transform duration-500 hover:scale-105" loading="lazy" />
+              <img src="/assets/images/09-NORMAL-520.webp" alt="Bloque 520 Barruca" class="h-full w-full object-contain transition-transform duration-500 hover:scale-105" loading="lazy" />
             </div>
             <div class="p-6 flex flex-col flex-1">
               <span class="inline-block self-start text-[10px] font-bold uppercase tracking-widest text-zinc-500 bg-zinc-100 border border-zinc-200 px-2.5 py-1 rounded-full mb-3">Solo gris</span>
@@ -932,7 +935,7 @@
           <!-- ── 4 TABIQUERO ── -->
           <div class="reveal bloque-card card-lift bg-white border border-zinc-100 rounded-2xl overflow-hidden shadow-sm flex flex-col" onclick="openBloqueModal('tab490')" role="button" tabindex="0" aria-label="Ver ficha Tabiquero 512">
             <div class="aspect-video bg-stone-50 flex items-center justify-center p-8">
-              <img src="/assets/images/10-TABIQUERO.png" alt="Tabiquero 512 Barruca" class="h-full w-full object-contain transition-transform duration-500 hover:scale-105" loading="lazy" />
+              <img src="/assets/images/10-TABIQUERO.webp" alt="Tabiquero 512 Barruca" class="h-full w-full object-contain transition-transform duration-500 hover:scale-105" loading="lazy" />
             </div>
             <div class="p-6 flex flex-col flex-1">
               <span class="inline-block self-start text-[10px] font-bold uppercase tracking-widest text-zinc-500 bg-zinc-100 border border-zinc-200 px-2.5 py-1 rounded-full mb-3">Solo gris</span>
@@ -958,7 +961,7 @@
           <!-- ── 5 MURO PARA ARMAR ── -->
           <div class="reveal delay-2 bloque-card card-lift bg-white border border-zinc-100 rounded-2xl overflow-hidden shadow-sm flex flex-col" onclick="openBloqueModal('muro')" role="button" tabindex="0" aria-label="Ver ficha Muro para Armar">
             <div class="aspect-video bg-stone-50 flex items-center justify-center p-8">
-              <img src="/assets/images/11-BLOQUE-MURO-PARA-ARMAR-H.png" alt="Bloque muro para armar Barruca" class="h-full w-full object-contain transition-transform duration-500 hover:scale-105" loading="lazy" />
+              <img src="/assets/images/11-BLOQUE-MURO-PARA-ARMAR-H.webp" alt="Bloque muro para armar Barruca" class="h-full w-full object-contain transition-transform duration-500 hover:scale-105" loading="lazy" />
             </div>
             <div class="p-6 flex flex-col flex-1">
               <span class="inline-block self-start text-[10px] font-bold uppercase tracking-widest text-zinc-500 bg-zinc-100 border border-zinc-200 px-2.5 py-1 rounded-full mb-3">Estructural · Solo gris</span>
@@ -984,7 +987,7 @@
           <!-- ── 7 PILAR 30 ── -->
           <div class="reveal bloque-card card-lift bg-white border border-accent-100 rounded-2xl overflow-hidden shadow-sm flex flex-col" onclick="openBloqueModal('pilar30')" role="button" tabindex="0" aria-label="Ver ficha Pilar 30">
             <div class="aspect-video bg-stone-50 flex items-center justify-center p-8">
-              <img src="/assets/images/pilar.jpg" alt="Pilar 30 Barruca" class="h-full w-full object-contain transition-transform duration-500 hover:scale-105" loading="lazy" />
+              <img src="/assets/images/pilar.webp" alt="Pilar 30 Barruca" class="h-full w-full object-contain transition-transform duration-500 hover:scale-105" loading="lazy" />
             </div>
             <div class="p-6 flex flex-col flex-1">
               <span class="inline-block self-start text-[10px] font-bold uppercase tracking-widest text-accent-700 bg-accent-50 border border-accent-200 px-2.5 py-1 rounded-full mb-3">Pilares</span>
@@ -1065,7 +1068,7 @@
 
         <!-- Brand -->
         <div>
-          <img src="/assets/logo-barruca-web.png"
+          <img src="/assets/logo-barruca-web.webp"
                alt="Bloques Barruca" class="h-8 w-auto mb-5 opacity-80" />
           <p class="text-sm leading-relaxed max-w-[42ch] text-zinc-500 mb-6">
             Fabricantes de bloques y ladrillos de hormigón prefabricado en Burgos desde 1980. Más de 40 años al servicio de la construcción española.
@@ -1138,29 +1141,29 @@
     const BLOQUE_DATA = {
       split: {
         name: 'Split', badge: 'Textura rugosa',
-        img: '/assets/images/Split.png',
+        img: '/assets/images/Split.webp',
         desc: 'Cara vista de textura rugosa obtenida por corte en fresco. Idónea para fachadas y cerramientos exteriores que combinan acabado natural con alta resistencia a la intemperie.',
         formats: [['Split 390','390×190×190 mm','17 kg'],['Split 140','390×140×190 mm','14,5 kg'],['Albardilla lisa','25×20×8 cm','5 kg'],['Plaqueta lisa','39×19×4 cm','5 kg']],
         stats: [['Uds./m²','12,5'],['Uds./palé','75–84']],
-        colorImg: '/assets/images/colores_productos_en.png',
+        colorImg: '/assets/images/colores_productos_en.webp',
         colors: ['Blanco','Crema','Gris','Salmón','Rojo','Negro','Pineda'],
         extras: ['Esquinas','Pilares','Medios','Zunchos'],
         formatNote: '<div style="margin-top:-0.75rem;margin-bottom:1.25rem;padding:0.875rem 1rem;background:#f4f3ef;border-radius:0.75rem;"><p style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a1a1aa;margin-bottom:0.4rem;">Albardilla lisa — datos palé</p><div style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.8rem;color:#52525b;margin-bottom:0.6rem;"><span><b style="color:#3f3f46;">192</b> ud/palé</span><span><b style="color:#3f3f46;">960 kg</b> peso palé</span><span><b style="color:#3f3f46;">5</b> ud/ml</span></div><p style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a1a1aa;margin-bottom:0.4rem;">Plaqueta lisa — datos palé</p><div style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.8rem;color:#52525b;"><span><b style="color:#3f3f46;">750 kg</b> peso palé</span><span><b style="color:#3f3f46;">12,5</b> ud/m²</span></div></div>',
       },
       liso: {
         name: 'Liso', badge: 'Acabado liso',
-        img: '/assets/images/01-NORMAL-SIN-HIDROFUGO.png',
+        img: '/assets/images/01-NORMAL-SIN-HIDROFUGO.webp',
         desc: 'Cara plana y uniforme. Cuatro espesores — de 90 a 290 mm — para cualquier cerramiento, tabiquería o fachada. La referencia más versátil de la gama.',
         formats: [['Liso 290','390×290×190 mm','—'],['Liso 190','390×190×190 mm','18 kg'],['Liso 140','390×140×190 mm','14 kg'],['Liso 90','390×90×190 mm','10 kg'],['Albardilla lisa','25×20×8 cm','5 kg'],['Plaqueta lisa','39×19×4 cm','5 kg']],
         stats: [['Uds./m²','12,5'],['Uds./palé','45–132']],
-        colorImg: '/assets/images/colores_productos_en.png',
+        colorImg: '/assets/images/colores_productos_en.webp',
         colors: ['Blanco','Crema','Gris','Salmón','Rojo','Negro','Pineda'],
         extras: ['Esquinas','Pilares','Medios','Zunchos'],
         formatNote: '<div style="margin-top:-0.75rem;margin-bottom:1.25rem;padding:0.875rem 1rem;background:#f4f3ef;border-radius:0.75rem;"><p style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a1a1aa;margin-bottom:0.4rem;">Albardilla lisa — datos palé</p><div style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.8rem;color:#52525b;margin-bottom:0.6rem;"><span><b style="color:#3f3f46;">192</b> ud/palé</span><span><b style="color:#3f3f46;">960 kg</b> peso palé</span><span><b style="color:#3f3f46;">5</b> ud/ml</span></div><p style="font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a1a1aa;margin-bottom:0.4rem;">Plaqueta lisa — datos palé</p><div style="display:flex;gap:1.5rem;flex-wrap:wrap;font-size:0.8rem;color:#52525b;"><span><b style="color:#3f3f46;">750 kg</b> peso palé</span><span><b style="color:#3f3f46;">12,5</b> ud/m²</span></div></div>',
       },
       b520: {
         name: 'Bloque 520', badge: 'Solo gris',
-        img: '/assets/images/09-NORMAL-520.png',
+        img: '/assets/images/09-NORMAL-520.webp',
         desc: 'Formato especial de 490 mm que reduce el número de juntas verticales por metro cuadrado. Excelente para muros portantes y cerramientos de gran superficie.',
         formats: [['Bloque 520','490×190×190 mm','17 kg']],
         stats: [['Uds./m²','10'],['Uds./palé','60']],
@@ -1169,7 +1172,7 @@
       },
       tab490: {
         name: 'Tabiquero 512', badge: 'Solo gris',
-        img: '/assets/images/10-TABIQUERO.png',
+        img: '/assets/images/10-TABIQUERO.webp',
         desc: 'Bloque para divisiones interiores. 110 mm de espesor con alta ligereza y buen aislamiento acústico. Solución rápida para tabiquería no estructural.',
         formats: [['Tabiquero 512','490×110×190 mm','13 kg']],
         stats: [['Uds./m²','10'],['Uds./palé','90']],
@@ -1178,8 +1181,8 @@
       },
       muro: {
         name: 'Muro para Armar', badge: 'Estructural · Solo gris',
-        img: '/assets/images/11-BLOQUE-MURO-PARA-ARMAR-H.png',
-        detailImg: '/assets/images/detalle_bloque_H_0.jpg',
+        img: '/assets/images/11-BLOQUE-MURO-PARA-ARMAR-H.webp',
+        detailImg: '/assets/images/detalle_bloque_H_0.webp',
         desc: 'Bloque con alvéolos para hormigón armado in situ. Solución estructural para muros de contención, cimentaciones y sótanos. Permite el paso de armaduras verticales y horizontales.',
         formats: [['Muro para Armar','500×250×190 mm','21 kg']],
         stats: [['Uds./m²','10'],['Uds./palé','40']],
@@ -1188,11 +1191,11 @@
       },
       pilar30: {
         name: 'Pilar 30', badge: 'Pilares',
-        img: '/assets/images/pilar.jpg',
+        img: '/assets/images/pilar.webp',
         desc: 'Bloque cuadrado para pilares y columnas estructurales. Sección 290×290 mm con buena capacidad portante. Disponible en múltiples colores para integrarse visualmente con el resto de la obra.',
         formats: [['Pilar 30','290×290×190 mm','13 kg'],['Cubrepilar pirámide 4 aguas','50×50×8 cm','—'],['Cubrepilar pirámide 4 aguas','35×35×8 cm','—']],
         stats: [['Uds./palé','60']],
-        colorImg: '/assets/images/colores_productos_en.png',
+        colorImg: '/assets/images/colores_productos_en.webp',
         colors: ['Blanco','Crema','Gris','Salmón','Rojo','Negro','Pineda'],
       },
     };
