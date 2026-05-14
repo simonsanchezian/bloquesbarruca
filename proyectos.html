@@ -211,6 +211,11 @@
       display: block;
       animation: gReveal 0.35s cubic-bezier(0.16,1,0.3,1) both;
     }
+    .photo-grid-extras { display: none; margin-top: 6px; }
+    .photo-grid-extras.open {
+      display: block;
+      animation: gReveal 0.35s cubic-bezier(0.16,1,0.3,1) both;
+    }
     .photo-grid.collapsed {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -1428,11 +1433,22 @@
     const g = GALLERIES[key];
     const grid = document.getElementById(g.el);
     const imgs = [];
+    const hasExtra = g.files.length > 4;
+
+    // Preview grid (first 4): always stays as 4-col CSS grid
+    if (hasExtra) grid.classList.add('collapsed');
+
+    // Extra grid (items 5+): masonry, hidden until expanded
+    let extraGrid = null;
+    if (hasExtra) {
+      extraGrid = document.createElement('div');
+      extraGrid.className = 'photo-grid photo-grid-extras';
+    }
 
     g.files.forEach((file, i) => {
       const alt = g.alts[i % g.alts.length];
       const item = document.createElement('div');
-      item.className = i < 4 ? 'photo-item' : 'photo-item gallery-extra';
+      item.className = 'photo-item';
 
       const img = document.createElement('img');
       img.src = g.base + file;
@@ -1443,17 +1459,15 @@
       img.dataset.index = i;
 
       item.addEventListener('click', () => openLb(key, i));
-
       item.appendChild(img);
-      grid.appendChild(item);
       imgs.push({ src: g.base + file, alt });
+
+      (i < 4 || !hasExtra ? grid : extraGrid).appendChild(item);
     });
 
     galleryImgs[key] = imgs;
 
-    if (g.files.length > 4) {
-      grid.classList.add('collapsed');
-
+    if (hasExtra) {
       const extra = g.files.length - 4;
       const wrap = document.createElement('div');
       wrap.className = 'gallery-expand-wrap';
@@ -1467,26 +1481,21 @@
       total.textContent = `${g.files.length} fotos en total`;
 
       btn.addEventListener('click', () => {
-        const extras = grid.querySelectorAll('.gallery-extra');
-        const isOpen = extras[0].classList.contains('open');
+        const isOpen = extraGrid.classList.contains('open');
         if (!isOpen) {
-          const btnTop = btn.getBoundingClientRect().top;
-          extras.forEach(el => el.classList.add('open'));
-          grid.classList.remove('collapsed');
-          requestAnimationFrame(() => {
-            window.scrollBy({ top: btn.getBoundingClientRect().top - btnTop, behavior: 'instant' });
-          });
+          extraGrid.classList.add('open');
           btn.innerHTML = `Ver menos fotos <span class="g-count">−${extra}</span>`;
         } else {
-          extras.forEach(el => el.classList.remove('open'));
-          grid.classList.add('collapsed');
+          extraGrid.classList.remove('open');
           btn.innerHTML = `Ver todas las fotos <span class="g-count">+${extra} más</span>`;
         }
       });
 
       wrap.appendChild(btn);
       wrap.appendChild(total);
-      grid.parentElement.appendChild(wrap);
+      // DOM order: preview grid → extra masonry grid → button
+      grid.insertAdjacentElement('afterend', wrap);
+      grid.insertAdjacentElement('afterend', extraGrid);
     }
   });
 
