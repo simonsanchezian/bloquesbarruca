@@ -185,13 +185,10 @@
 
     @media (max-width: 640px) {
       #proj-bar > div > div {
-        flex-wrap: wrap;
-        overflow-x: visible;
         gap: 0.3rem;
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
       }
-      #proj-bar > div > div a { flex-shrink: 1; }
     }
 
     /* ── Sticky project bar ── */
@@ -203,8 +200,6 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(0,0,0,0.06);
-      overflow: hidden;
-      max-width: 100%;
     }
 
     /* ── Masonry photo grid ── */
@@ -702,18 +697,18 @@
     <!-- ── Sticky project bar ── -->
     <div id="proj-bar">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex gap-1 overflow-x-auto scrollbar-hide py-3">
-          <a href="#ies"      class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Colegio IES Huércal-Almería</a>
-          <a href="#cerros"   class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Colegio los Cerros-Úbeda</a>
-          <a href="#kina"     class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Conservatorio Kina Jiménez-Almería</a>
-          <a href="#maracena" class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Instituto Maracena</a>
-          <a href="#burgos"      class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Vivienda Castañares-Burgos</a>
-          <a href="#almeria"     class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Centro de Salud Almería</a>
-          <a href="#mijas"       class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Colegio Mijas</a>
-          <a href="#valencia"    class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Restaurante Imood Valencia</a>
-          <a href="#donasol"     class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Viviendas Doña Sol — Burgos</a>
-          <a href="#origen"      class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Viviendas Origen — Burgos</a>
-          <a href="#burgoscoupe" class="flex-shrink-0 text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Viviendas Coupe — Burgos</a>
+        <div class="flex flex-wrap gap-x-1 gap-y-1.5 py-3">
+          <a href="#ies"      class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Colegio IES Huércal-Almería</a>
+          <a href="#cerros"   class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Colegio los Cerros-Úbeda</a>
+          <a href="#kina"     class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Conservatorio Kina Jiménez-Almería</a>
+          <a href="#maracena" class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Instituto Maracena</a>
+          <a href="#burgos"      class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Vivienda Castañares-Burgos</a>
+          <a href="#almeria"     class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Centro de Salud Almería</a>
+          <a href="#mijas"       class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Colegio Mijas</a>
+          <a href="#valencia"    class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Restaurante Imood Valencia</a>
+          <a href="#donasol"     class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Viviendas Doña Sol — Burgos</a>
+          <a href="#origen"      class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Viviendas Origen — Burgos</a>
+          <a href="#burgoscoupe" class="text-xs font-semibold px-4 py-1.5 rounded-full text-zinc-600 hover:text-zinc-900 hover:bg-zinc-100 transition-colors">Viviendas Coupe — Burgos</a>
         </div>
       </div>
     </div>
