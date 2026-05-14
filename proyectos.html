@@ -1702,5 +1702,46 @@
         icon.style.transform = open ? 'rotate(180deg)' : '';
       }
     </script>
+
+    <script>
+    /* ── Fan: cicla los 11 proyectos por las 5 posiciones ── */
+    (function () {
+      var ALL = [
+        { href: '#ies',       src: 'assets/Fotos-opt/IES%20Hu%C3%A9rcal%20Almer%C3%ADa/IESHu%C3%A9rcalAlmer%C3%ADa-22.jpg',   label: 'IES Huércal-Almería' },
+        { href: '#cerros',    src: 'assets/Fotos-opt/Los%20Cerros/LosCerros-01.jpg',                                              label: 'Los Cerros-Úbeda' },
+        { href: '#kina',      src: 'assets/Fotos-opt/KINA/Kina_1%20%283%29.jpg',                                                  label: 'Kina Jiménez' },
+        { href: '#maracena',  src: 'assets/Fotos-opt/Instituto%20Maracena/00-2334-0320.jpg',                                      label: 'Maracena' },
+        { href: '#burgos',    src: 'assets/Fotos-opt/Casa%20Burgos/Casa%20E1_bergeraphoto_02.jpg',                                label: 'Castañares-Burgos' },
+        { href: '#almeria',   src: 'assets/Fotos-opt/Centro%20Salud%20Almeria/CentroSaludAlmeria-01.jpg',                        label: 'C. Salud Almería' },
+        { href: '#mijas',     src: 'assets/Fotos-opt/Colegio%20Mijas/ColegioMijas-01.jpg',                                       label: 'Colegio Mijas' },
+        { href: '#valencia',  src: 'assets/Fotos-opt/Restaurante%20Valencia/RestauranteValencia-01.jpg',                         label: 'Restaurante Valencia' },
+        { href: '#donasol',   src: 'assets/Fotos-opt/Viviendas%20Dona%20Sol/ViviendasDonaSol-04.jpg',                            label: 'Viviendas Doña Sol' },
+        { href: '#origen',    src: 'assets/Fotos-opt/Viviendas%20Origen%20Burgos/ViviendasOrigenBurgos-01.jpg',                  label: 'Viviendas Origen' },
+        { href: '#burgoscoupe', src: 'assets/Fotos-opt/Viviendas%20Burgos%20Coupe/ViviendasBurgosCOUPE-01.jpg',                  label: 'Viviendas Coupe' },
+      ];
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.fan-card'));
+      if (!cards.length) return;
+      var next = cards.length; // primeras 5 ya cargadas, siguiente es índice 5
+
+      // Swap alternando entre la carta izquierda (índice 0) y derecha (índice 4)
+      var swapIdx = 0;
+      var sides = [0, cards.length - 1];
+
+      setInterval(function () {
+        var card = cards[sides[swapIdx % 2]];
+        swapIdx++;
+        var p = ALL[next % ALL.length];
+        next++;
+        card.style.transition = 'opacity 0.35s';
+        card.style.opacity = '0';
+        setTimeout(function () {
+          card.href = p.href;
+          card.querySelector('img').src = p.src;
+          card.querySelector('.fan-label').textContent = p.label;
+          card.style.opacity = '1';
+        }, 360);
+      }, 3800);
+    })();
+    </script>
   </body>
 </html>
