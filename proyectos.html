@@ -1612,6 +1612,7 @@
 
   /* ── Active project highlight ── */
   const projLinks = document.querySelectorAll('#proj-bar a');
+  const projBarScroll = document.querySelector('#proj-bar > div > div');
   const sectionIds = ['ies','cerros','kina','maracena','burgos','almeria','mijas','valencia','donasol','origen','burgoscoupe'];
   const ioProj = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -1620,6 +1621,11 @@
       if (e.isIntersecting) {
         projLinks.forEach(l => l.classList.remove('active-proj'));
         link.classList.add('active-proj');
+        if (projBarScroll) {
+          const cr = projBarScroll.getBoundingClientRect();
+          const lr = link.getBoundingClientRect();
+          projBarScroll.scrollTo({ left: Math.max(0, projBarScroll.scrollLeft + lr.left - cr.left - 12), behavior: 'smooth' });
+        }
       }
     });
   }, { rootMargin: '-30% 0px -60% 0px' });
