@@ -1639,7 +1639,7 @@
   const projBarEl = document.getElementById('proj-bar');
   const projectSections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
   function updateScrollMargins() {
-    const buffer = window.innerWidth < 640 ? 12 : 24;
+    const buffer = window.innerWidth < 640 ? 6 : 24;
     const offset = (glassNav ? glassNav.offsetHeight : 64) + (projBarEl ? projBarEl.offsetHeight : 0) + buffer;
     projectSections.forEach(s => { s.style.scrollMarginTop = offset + 'px'; });
   }
