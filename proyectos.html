@@ -118,10 +118,21 @@
     /* ── Fan de proyectos en el hero ── */
     .fan-outer {
       flex-shrink: 0;
-      overflow-x: hidden;
-      overflow-y: visible;
+      position: relative;
       width: 510px;
+      padding-top: 14px;
     }
+    .fan-outer::before,
+    .fan-outer::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 60px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .fan-outer::before { left: 0;  background: linear-gradient(to right, #27272a, transparent); }
+    .fan-outer::after  { right: 0; background: linear-gradient(to left,  #27272a, transparent); }
     .fan-track {
       display: flex;
       align-items: flex-start;
@@ -131,7 +142,7 @@
       -webkit-overflow-scrolling: touch;
       touch-action: pan-x;
       user-select: none;
-      padding: 22px 16px 14px;
+      padding: 5px 16px 14px;
     }
     .fan-track.dragging { cursor: grabbing; }
     .fan-track::-webkit-scrollbar { display: none; }
@@ -188,8 +199,8 @@
     }
     @media (max-width: 767px) {
       .hero-inner { flex-direction: column; align-items: flex-start; gap: 0 !important; }
-      .fan-outer { width: 100%; overflow-x: hidden; overflow-y: visible; margin-top: 22px; }
-      .fan-track  { padding: 16px 10px 10px; }
+      .fan-outer { width: 100%; margin-top: 22px; padding-top: 14px; }
+      .fan-track  { padding: 5px 10px 10px; }
     }
 
     @media (max-width: 640px) {
@@ -1722,17 +1733,6 @@
         if (Math.abs(track.scrollLeft - startScroll) > 5) e.preventDefault();
       });
 
-      // Touch: bloquear scroll vertical cuando el gesto es horizontal
-      var touchStartX, touchStartY;
-      track.addEventListener('touchstart', function (e) {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-      }, { passive: true });
-      track.addEventListener('touchmove', function (e) {
-        var dx = Math.abs(e.touches[0].clientX - touchStartX);
-        var dy = Math.abs(e.touches[0].clientY - touchStartY);
-        if (dx > dy) e.preventDefault();
-      }, { passive: false });
     })();
     </script>
   </body>
