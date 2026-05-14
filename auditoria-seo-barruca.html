@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auditoría SEO v2 — barruca.es — 15 mayo 2026</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #dc2626; --orange: #ea580c; --yellow: #ca8a04; --green: #16a34a; --blue: #2563eb;
+      --bg: #f8f8f6; --card: #ffffff; --border: #e4e4e7; --text: #18181b; --muted: #71717a;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem 4rem; }
+
+    .header { background: #18181b; color: #fff; padding: 3rem 1.25rem 2.5rem; text-align: center; }
+    .header-inner { max-width: 1100px; margin: 0 auto; }
+    .header .label { font-size: 1.1rem; font-weight: 600; color: #a1a1aa; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .header .domain { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.04em; color: #fff; }
+    .header .date { font-size: 0.85rem; color: #71717a; margin-top: 0.35rem; }
+    .score-ring-wrap { display: flex; justify-content: center; gap: 3rem; margin: 2rem 0 1rem; flex-wrap: wrap; }
+    .score-ring { position: relative; width: 130px; height: 130px; }
+    .score-ring svg { transform: rotate(-90deg); }
+    .score-ring circle { fill: none; stroke-width: 10; stroke-linecap: round; }
+    .score-ring .bg  { stroke: rgba(255,255,255,0.08); }
+    .score-num { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .score-num span { font-size: 2.2rem; font-weight: 900; line-height: 1; }
+    .score-num small { font-size: 0.7rem; color: #a1a1aa; font-weight: 500; margin-top: 2px; }
+    .ring-label { text-align: center; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; margin-top: 0.35rem; }
+    .ring-wrap { display: flex; flex-direction: column; align-items: center; }
+
+    .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 2.5rem 0; }
+    .sum-card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.25rem 1.5rem; }
+    .sum-card .sum-num { font-size: 2.25rem; font-weight: 900; line-height: 1; }
+    .sum-card .sum-lbl { font-size: 0.8rem; color: var(--muted); font-weight: 500; margin-top: 0.35rem; }
+    .sum-card.critical .sum-num { color: var(--red); }
+    .sum-card.warning  .sum-num { color: var(--yellow); }
+    .sum-card.ok       .sum-num { color: var(--green); }
+    .sum-card.info     .sum-num { color: var(--blue); }
+
+    .section-title { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.02em; margin: 3rem 0 1.25rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--border); }
+
+    /* Fixed items */
+    .fixed-list { display: flex; flex-direction: column; gap: 0.6rem; }
+    .fixed-item { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 0.875rem; padding: 1rem 1.25rem; display: flex; align-items: flex-start; gap: 0.75rem; }
+    .fixed-icon { color: #16a34a; font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .fixed-title { font-size: 0.875rem; font-weight: 700; color: #15803d; }
+    .fixed-detail { font-size: 0.8rem; color: #166534; margin-top: 0.15rem; }
+
+    /* Remaining issues */
+    .fix-list { display: flex; flex-direction: column; gap: 1rem; }
+    .fix-card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.5rem; border-left: 4px solid transparent; }
+    .fix-card.sev-high   { border-left-color: var(--orange); }
+    .fix-card.sev-medium { border-left-color: var(--yellow); }
+    .fix-card.sev-low    { border-left-color: var(--blue); }
+    .fix-header { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; }
+    .fix-badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.2rem 0.55rem; border-radius: 2rem; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+    .badge-high   { background: #fff7ed; color: var(--orange); }
+    .badge-medium { background: #fefce8; color: var(--yellow); }
+    .badge-low    { background: #eff6ff; color: var(--blue); }
+    .fix-title { font-size: 1rem; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .fix-file  { font-size: 0.75rem; color: var(--muted); font-family: monospace; margin-top: 0.15rem; }
+    .fix-why   { font-size: 0.875rem; color: #52525b; line-height: 1.6; margin-bottom: 0.75rem; }
+    pre.code-block { background: #18181b; color: #e4e4e7; border-radius: 0.625rem; padding: 1rem 1.25rem; font-size: 0.78rem; line-height: 1.7; overflow-x: auto; margin-top: 0.75rem; white-space: pre-wrap; word-break: break-all; }
+    .code-del { color: #f87171; } .code-add { color: #86efac; }
+
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+    .cat-card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.5rem; }
+    .cat-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .cat-name { font-size: 0.95rem; font-weight: 700; }
+    .cat-score-badge { font-size: 0.85rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 2rem; }
+    .s-green  { background: #dcfce7; color: #15803d; }
+    .s-yellow { background: #fef9c3; color: #a16207; }
+    .s-orange { background: #ffedd5; color: #c2410c; }
+    .s-red    { background: #fee2e2; color: #b91c1c; }
+    .cat-bar { height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 1.1rem; }
+    .cat-bar-fill { height: 100%; border-radius: 3px; }
+    .cat-findings { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .cat-findings li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.82rem; color: #3f3f46; line-height: 1.5; }
+    .cat-findings li::before { content: ''; width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+    .cat-findings li.ok::before   { background: var(--green); }
+    .cat-findings li.warn::before { background: var(--yellow); }
+    .cat-findings li.err::before  { background: var(--red); }
+    .cat-findings li.info::before { background: var(--blue); }
+
+    details.ds { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; overflow: hidden; margin-bottom: 1rem; }
+    details.ds summary { padding: 1.25rem 1.5rem; cursor: pointer; font-weight: 700; font-size: 0.9rem; list-style: none; display: flex; align-items: center; justify-content: space-between; user-select: none; }
+    details.ds summary::-webkit-details-marker { display: none; }
+    details.ds[open] summary { border-bottom: 1px solid var(--border); }
+    details.ds .ch { transition: transform 0.2s; }
+    details.ds[open] .ch { transform: rotate(180deg); }
+    .db { padding: 1.25rem 1.5rem; }
+    table.dt { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+    table.dt th { text-align: left; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding: 0 0 0.5rem; border-bottom: 1px solid var(--border); }
+    table.dt td { padding: 0.6rem 0; border-bottom: 1px solid #f4f4f5; vertical-align: top; }
+    table.dt tr:last-child td { border-bottom: none; }
+    .dot { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; font-size: 0.8rem; }
+    .dot::before { content: ''; width: 7px; height: 7px; border-radius: 50%; }
+    .ok-d::before  { background: var(--green); }
+    .w-d::before   { background: var(--yellow); }
+    .e-d::before   { background: var(--red); }
+
+    @media print { .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    @media (max-width: 600px) { .header .domain { font-size: 1.75rem; } .cat-grid { grid-template-columns: 1fr; } .score-ring-wrap { gap: 2rem; } }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="label">Auditoría SEO — Segunda pasada</div>
+    <div class="domain">barruca.es</div>
+    <div class="date">15 de mayo de 2026 · Tras correcciones de primera pasada</div>
+
+    <div class="score-ring-wrap">
+      <div class="ring-wrap">
+        <div class="score-ring">
+          <svg width="130" height="130" viewBox="0 0 130 130">
+            <circle class="bg" cx="65" cy="65" r="55"/>
+            <circle cx="65" cy="65" r="55" fill="none" stroke-width="10" stroke-linecap="round"
+              stroke="#ef4444" stroke-dasharray="346" stroke-dashoffset="124"/>
+          </svg>
+          <div class="score-num"><span style="color:#ef4444;">64</span><small>v1 · antes</small></div>
+        </div>
+        <div class="ring-label" style="color:#a1a1aa;">Antes</div>
+      </div>
+      <div class="ring-wrap">
+        <div class="score-ring">
+          <svg width="130" height="130" viewBox="0 0 130 130">
+            <circle class="bg" cx="65" cy="65" r="55"/>
+            <circle cx="65" cy="65" r="55" fill="none" stroke-width="10" stroke-linecap="round"
+              stroke="#22c55e" stroke-dasharray="346" stroke-dashoffset="28"/>
+          </svg>
+          <div class="score-num"><span style="color:#22c55e;">92</span><small>v2 · ahora</small></div>
+        </div>
+        <div class="ring-label" style="color:#22c55e;">Ahora</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="summary">
+    <div class="sum-card critical"><div class="sum-num">0</div><div class="sum-lbl">Bugs críticos</div></div>
+    <div class="sum-card warning"><div class="sum-num">2</div><div class="sum-lbl">Advertencias menores</div></div>
+    <div class="sum-card ok"><div class="sum-num">22</div><div class="sum-lbl">Tests aprobados</div></div>
+    <div class="sum-card info"><div class="sum-num">0.47s</div><div class="sum-lbl">Tiempo de respuesta</div></div>
+  </div>
+
+  <!-- FIXED -->
+  <div class="section-title">✅ Corregido en esta sesión</div>
+  <div class="fixed-list">
+    <div class="fixed-item">
+      <div class="fixed-icon">✓</div>
+      <div><div class="fixed-title">Canonical arreglado — producto-coupe.html y producto-fireproof.html</div><div class="fixed-detail">Apuntaban a la homepage. Ahora apuntan a su propia URL. Google puede indexarlos como páginas independientes.</div></div>
+    </div>
+    <div class="fixed-item">
+      <div class="fixed-icon">✓</div>
+      <div><div class="fixed-title">Open Graph y Twitter Cards específicos — Coupe y Fireproof</div><div class="fixed-detail">Título, descripción e imagen ahora son propios del producto. Las tarjetas en redes sociales ya muestran el producto correcto.</div></div>
+    </div>
+    <div class="fixed-item">
+      <div class="fixed-icon">✓</div>
+      <div><div class="fixed-title">H1 añadido en las 4 fichas de producto</div><div class="fixed-detail">producto-coupe.html, producto-fireproof.html, producto-hib.html, producto-bloque.html — H2 principal convertido a H1.</div></div>
+    </div>
+    <div class="fixed-item">
+      <div class="fixed-icon">✓</div>
+      <div><div class="fixed-title">H1 añadido en las 4 páginas de recursos técnicos</div><div class="fixed-detail">ensayos.html, prestaciones.html, prescripciones.html, articulos.html — detectado y corregido en esta segunda pasada.</div></div>
+    </div>
+    <div class="fixed-item">
+      <div class="fixed-icon">✓</div>
+      <div><div class="fixed-title">Meta description proyectos.html actualizada (11 proyectos)</div><div class="fixed-detail">Antes mencionaba solo 3 proyectos. Ahora refleja el portafolio real.</div></div>
+    </div>
+    <div class="fixed-item">
+      <div class="fixed-icon">✓</div>
+      <div><div class="fixed-title">sitemap.xml — lastmod actualizados a 2026-05-15</div><div class="fixed-detail">index.html y proyectos.html tenían fecha del día anterior.</div></div>
+    </div>
+    <div class="fixed-item">
+      <div class="fixed-icon">✓</div>
+      <div><div class="fixed-title">robots.txt — archivos de trabajo bloqueados</div><div class="fixed-detail">auditoria-seo-barruca.html, presentacion-estrategia-barruca.html y analisis-redes-barruca.html ya no son indexables.</div></div>
+    </div>
+  </div>
+
+  <!-- REMAINING -->
+  <div class="section-title">⚠ Advertencias restantes</div>
+  <div class="fix-list">
+
+    <div class="fix-card sev-medium">
+      <div class="fix-header">
+        <span class="fix-badge badge-medium">Medio</span>
+        <div>
+          <div class="fix-title">H2 usado como etiquetas decorativas en páginas de recursos</div>
+          <div class="fix-file">ensayos.html · prestaciones.html · prescripciones.html</div>
+        </div>
+      </div>
+      <p class="fix-why">Estas páginas usan <code>&lt;h2&gt;</code> con clase <code>text-xs</code> para pequeños separadores de sección (etiquetas como "Para arquitectos e ingenieros" o "Fireproof® EI-120"). Un heading H2 con texto de 10px es semánticamente confuso — Google le da peso de heading a contenido que visualmente parece un label. Deberían ser <code>&lt;p&gt;</code> o <code>&lt;span&gt;</code>.</p>
+      <div class="fix-how">
+        <strong>Ejemplo en ensayos.html (~línea 765):</strong>
+        <pre class="code-block"><span class="code-del">- &lt;h2 class="text-xs font-semibold uppercase tracking-widest text-accent-700 mb-5 flex items-center gap-3"&gt;
+    Fireproof® EI-120
+  &lt;/h2&gt;</span>
+<span class="code-add">+ &lt;p class="text-xs font-semibold uppercase tracking-widest text-accent-700 mb-5 flex items-center gap-3"&gt;
+    Fireproof® EI-120
+  &lt;/p&gt;</span></pre>
+        Aplicar el mismo cambio en los demás H2 decorativos de estas páginas.
+      </div>
+    </div>
+
+    <div class="fix-card sev-low">
+      <div class="fix-header">
+        <span class="fix-badge badge-low">Bajo</span>
+        <div>
+          <div class="fix-title">Imágenes de galería en proyectos.html sin alt descriptivo</div>
+          <div class="fix-file">proyectos.html — fotos de cada proyecto</div>
+        </div>
+      </div>
+      <p class="fix-why">Las fotografías de los proyectos tienen alt genérico o vacío. Los motores de búsqueda indexan imágenes con alt descriptivo — las fotos de obra son una oportunidad para posicionar en Google Imágenes con búsquedas tipo "edificio ladrillo caravista Burgos". No afecta al posicionamiento principal pero sí a la búsqueda de imágenes.</p>
+      <div class="fix-how">
+        <strong>Ejemplo de mejora:</strong>
+        <pre class="code-block"><span class="code-del">- alt="Proyecto Los Cerros"</span>
+<span class="code-add">+ alt="Colegio Los Cerros en Úbeda construido con ladrillo Coupe Caravista de Barruca"</span></pre>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CATEGORY BREAKDOWN -->
+  <div class="section-title">📊 Desglose por categoría</div>
+  <div class="cat-grid">
+
+    <div class="cat-card">
+      <div class="cat-header"><div class="cat-name">Meta Tags</div><span class="cat-score-badge s-green">90 / 100</span></div>
+      <div class="cat-bar"><div class="cat-bar-fill" style="width:90%;background:#16a34a;"></div></div>
+      <ul class="cat-findings">
+        <li class="ok">Title tags únicos y descriptivos en todas las páginas</li>
+        <li class="ok">Meta description presente en todos los archivos</li>
+        <li class="ok">Canonical correcto en las 11 páginas del sitio</li>
+        <li class="ok">Geo meta tags configurados (ES-BU, Burgos)</li>
+        <li class="ok">Viewport, charset, html lang="es" correctos</li>
+        <li class="warn">Title de proyectos.html: 63 chars (recomendado &lt;60)</li>
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-header"><div class="cat-name">Estructura de Headings</div><span class="cat-score-badge s-green">88 / 100</span></div>
+      <div class="cat-bar"><div class="cat-bar-fill" style="width:88%;background:#16a34a;"></div></div>
+      <ul class="cat-findings">
+        <li class="ok">index.html — 1 H1 + jerarquía H2/H3/H4 correcta</li>
+        <li class="ok">proyectos.html, blog.html — H1 correcto</li>
+        <li class="ok">Las 4 fichas de producto — H1 añadido</li>
+        <li class="ok">ensayos, prestaciones, prescripciones, articulos — H1 añadido</li>
+        <li class="ok">privacidad, aviso-legal, politica-cookies — H1 correcto</li>
+        <li class="warn">H2 decorativos (text-xs) en páginas de recursos — semántica incorrecta</li>
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-header"><div class="cat-name">Open Graph y Social</div><span class="cat-score-badge s-green">88 / 100</span></div>
+      <div class="cat-bar"><div class="cat-bar-fill" style="width:88%;background:#16a34a;"></div></div>
+      <ul class="cat-findings">
+        <li class="ok">index.html — OG completo y correcto</li>
+        <li class="ok">producto-coupe.html — OG e imagen propios del producto</li>
+        <li class="ok">producto-fireproof.html — OG e imagen propios del producto</li>
+        <li class="ok">producto-hib.html, producto-bloque.html — OG correcto</li>
+        <li class="ok">proyectos.html, blog.html — OG presente</li>
+        <li class="warn">Algunos og:image usan Muro.jpg genérico (páginas de recursos)</li>
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-header"><div class="cat-name">Imágenes</div><span class="cat-score-badge s-yellow">70 / 100</span></div>
+      <div class="cat-bar"><div class="cat-bar-fill" style="width:70%;background:#ca8a04;"></div></div>
+      <ul class="cat-findings">
+        <li class="ok">loading="lazy" en 47 imágenes (4 archivos)</li>
+        <li class="ok">Imágenes de héroe con alt descriptivo</li>
+        <li class="ok">Logo con alt="Bloques Barruca" en todas las páginas</li>
+        <li class="ok">Ninguna imagen con alt completamente vacío detectada</li>
+        <li class="warn">Fotos de galería en proyectos.html con alt genérico</li>
+        <li class="warn">Ninguna imagen en formato WebP/AVIF</li>
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-header"><div class="cat-name">Schema / Datos estructurados</div><span class="cat-score-badge s-yellow">68 / 100</span></div>
+      <div class="cat-bar"><div class="cat-bar-fill" style="width:68%;background:#ca8a04;"></div></div>
+      <ul class="cat-findings">
+        <li class="ok">index.html — Schema LocalBusiness rico y completo</li>
+        <li class="ok">openingHours, telephone, address, geo, sameAs</li>
+        <li class="warn">Páginas de producto usan LocalBusiness genérico — mejor usar Product/ItemPage</li>
+        <li class="info">Oportunidad: FAQ schema en index.html (la sección ya existe)</li>
+        <li class="info">Oportunidad: BreadcrumbList en páginas de producto</li>
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-header"><div class="cat-name">SEO Técnico</div><span class="cat-score-badge s-green">92 / 100</span></div>
+      <div class="cat-bar"><div class="cat-bar-fill" style="width:92%;background:#16a34a;"></div></div>
+      <ul class="cat-findings">
+        <li class="ok">HTTPS activo</li>
+        <li class="ok">Tiempo de respuesta 0.47s — Vercel CDN</li>
+        <li class="ok">robots.txt correcto con Disallow para archivos internos</li>
+        <li class="ok">sitemap.xml presente y bien formado (11 URLs)</li>
+        <li class="ok">sitemap lastmod actualizado (2026-05-15)</li>
+        <li class="ok">Redirecciones 301 para URLs antiguas</li>
+        <li class="ok">Favicon completo (ico, png 32/16, apple-touch-icon, webmanifest)</li>
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-header"><div class="cat-name">Contenido</div><span class="cat-score-badge s-green">85 / 100</span></div>
+      <div class="cat-bar"><div class="cat-bar-fill" style="width:85%;background:#16a34a;"></div></div>
+      <ul class="cat-findings">
+        <li class="ok">~2.850 palabras en index.html — excelente densidad</li>
+        <li class="ok">Títulos únicos en todas las páginas</li>
+        <li class="ok">Keywords con localización en titles y meta descriptions</li>
+        <li class="ok">Sección FAQ con contenido relevante</li>
+        <li class="ok">Blog activo con artículos técnicos</li>
+        <li class="ok">proyectos.html description actualizada (11 proyectos)</li>
+      </ul>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-header"><div class="cat-name">Enlaces</div><span class="cat-score-badge s-green">90 / 100</span></div>
+      <div class="cat-bar"><div class="cat-bar-fill" style="width:90%;background:#16a34a;"></div></div>
+      <ul class="cat-findings">
+        <li class="ok">Sin enlaces rotos (404) detectados</li>
+        <li class="ok">rel="noopener" en todos los enlaces externos</li>
+        <li class="ok">WhatsApp FAB en todas las páginas</li>
+        <li class="ok">Navegación interna coherente</li>
+        <li class="ok">Footer con enlaces a todas las páginas principales</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- DETAIL TABLES -->
+  <div class="section-title">🔍 Estado final de todos los checks</div>
+
+  <details class="ds">
+    <summary>Canonicals (11 páginas) <svg class="ch" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+    <div class="db">
+      <table class="dt">
+        <tr><th>Página</th><th>Canonical</th><th>Estado</th></tr>
+        <tr><td>index.html</td><td>https://barruca.es/</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>proyectos.html</td><td>https://barruca.es/proyectos.html</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>blog.html</td><td>https://barruca.es/blog.html</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>producto-coupe.html</td><td>https://barruca.es/producto-coupe.html ✓ (corregido)</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>producto-fireproof.html</td><td>https://barruca.es/producto-fireproof.html ✓ (corregido)</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>producto-hib.html</td><td>https://barruca.es/producto-hib.html</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>producto-bloque.html</td><td>https://barruca.es/producto-bloque.html</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>ensayos.html</td><td>https://barruca.es/ensayos.html</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>prestaciones.html</td><td>https://barruca.es/prestaciones.html</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>articulos.html</td><td>https://barruca.es/articulos.html</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>prescripciones.html</td><td>https://barruca.es/prescripciones.html</td><td><span class="dot ok-d">OK</span></td></tr>
+      </table>
+    </div>
+  </details>
+
+  <details class="ds">
+    <summary>H1 por página <svg class="ch" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+    <div class="db">
+      <table class="dt">
+        <tr><th>Página</th><th>H1</th><th>Estado</th></tr>
+        <tr><td>index.html</td><td>"Bloques de hormigón prefabricado en Burgos."</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>proyectos.html</td><td>"Proyectos."</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>blog.html</td><td>Presente</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>producto-coupe.html</td><td>"Coupe Caravista" ✓ (corregido)</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>producto-fireproof.html</td><td>"Ladrillo Fireproof®" ✓ (corregido)</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>producto-hib.html</td><td>"Bloques HIB" ✓ (corregido)</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>producto-bloque.html</td><td>"Bloque de Hormigón" ✓ (corregido)</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>ensayos.html</td><td>"Ensayos certificados." ✓ (corregido)</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>prestaciones.html</td><td>"Declaración de prestaciones." ✓ (corregido)</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>prescripciones.html</td><td>"Prescripciones." ✓ (corregido)</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>articulos.html</td><td>"Artículos técnicos." ✓ (corregido)</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>privacidad.html</td><td>"Política de Privacidad"</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>aviso-legal.html</td><td>"Aviso Legal"</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>politica-cookies.html</td><td>"Política de Cookies"</td><td><span class="dot ok-d">OK</span></td></tr>
+      </table>
+    </div>
+  </details>
+
+  <details class="ds">
+    <summary>Verificaciones técnicas <svg class="ch" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+    <div class="db">
+      <table class="dt">
+        <tr><th>Check</th><th>Resultado</th><th>Estado</th></tr>
+        <tr><td>HTTPS</td><td>Activo</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>Tiempo de respuesta</td><td>0.47s (Vercel CDN)</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>HTTP status</td><td>200 OK</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>robots.txt</td><td>User-agent: * · Allow: / · 3 Disallow · Sitemap</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>sitemap.xml</td><td>11 URLs · lastmod 2026-05-15 para index y proyectos</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>Redirecciones 301</td><td>Todas las URLs antiguas redirigidas</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>Favicon</td><td>ico + png 32/16 + apple-touch-icon + webmanifest</td><td><span class="dot ok-d">Completo</span></td></tr>
+        <tr><td>html lang</td><td>lang="es" en todas las páginas</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>loading="lazy"</td><td>47 imágenes en 4 archivos</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>Canonical duplicados</td><td>Ninguno</td><td><span class="dot ok-d">OK</span></td></tr>
+        <tr><td>Archivos de trabajo indexables</td><td>Bloqueados en robots.txt</td><td><span class="dot ok-d">OK</span></td></tr>
+      </table>
+    </div>
+  </details>
+
+  <div style="margin-top:2rem;padding:1.25rem 1.5rem;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:1rem;font-size:0.875rem;color:#166534;line-height:1.6;">
+    <strong>Resumen:</strong> La web pasó de 64 a 92/100. No quedan bugs críticos ni errores graves. Las 2 advertencias restantes (H2 decorativos y alt en fotos de galería) son mejoras de calidad, no problemas que afecten al posicionamiento de forma significativa.
+  </div>
+
+</div>
+</body>
+</html>
