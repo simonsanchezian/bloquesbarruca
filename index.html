@@ -300,6 +300,13 @@
     }
     .productos-card:hover::after { opacity: 1; }
     .productos-card > * { position: relative; z-index: 1; }
+    @media (max-width: 767px) {
+      .productos-card::after {
+        opacity: 1;
+        -webkit-mask-image: none;
+        mask-image: none;
+      }
+    }
 
     /* text on red card */
     .productos-card .reveal > span.rounded-full {
