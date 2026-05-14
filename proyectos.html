@@ -118,9 +118,9 @@
     /* ── Fan de proyectos en el hero ── */
     .fan-outer {
       flex-shrink: 0;
-      position: relative;
+      overflow: hidden;
       width: 510px;
-      padding-top: 14px;
+      position: relative;
     }
     .fan-outer::before,
     .fan-outer::after {
@@ -128,11 +128,17 @@
       position: absolute;
       top: 0; bottom: 0;
       width: 60px;
-      z-index: 2;
+      z-index: 11;
       pointer-events: none;
     }
-    .fan-outer::before { left: 0;  background: linear-gradient(to right, #ffffff, transparent); }
-    .fan-outer::after  { right: 0; background: linear-gradient(to left,  #ffffff, transparent); }
+    .fan-outer::before {
+      left: 0;
+      background: linear-gradient(to right, #27272a, transparent);
+    }
+    .fan-outer::after {
+      right: 0;
+      background: linear-gradient(to left, #27272a, transparent);
+    }
     .fan-track {
       display: flex;
       align-items: flex-start;
@@ -142,7 +148,7 @@
       -webkit-overflow-scrolling: touch;
       touch-action: pan-x;
       user-select: none;
-      padding: 5px 16px 14px;
+      padding: 22px 16px 14px;
     }
     .fan-track.dragging { cursor: grabbing; }
     .fan-track::-webkit-scrollbar { display: none; }
@@ -199,8 +205,8 @@
     }
     @media (max-width: 767px) {
       .hero-inner { flex-direction: column; align-items: flex-start; gap: 0 !important; }
-      .fan-outer { width: 100%; margin-top: 22px; padding-top: 14px; }
-      .fan-track  { padding: 5px 10px 10px; }
+      .fan-outer { width: 100%; overflow: hidden; margin-top: 22px; }
+      .fan-track  { padding: 16px 10px 10px; }
     }
 
     @media (max-width: 640px) {
@@ -710,22 +716,22 @@
   <main>
 
     <!-- ── Hero ── -->
-    <div class="bg-white border-b border-zinc-100 pt-28 pb-10">
+    <div class="bg-zinc-800 pt-28 pb-20">
       <div class="hero-inner max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-end justify-between gap-10">
 
         <div class="flex-1 min-w-0">
           <a href="/"
-             class="inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-700 transition-colors mb-8">
+             class="inline-flex items-center gap-2 text-xs text-zinc-500 hover:text-zinc-300 transition-colors mb-8">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
             Volver a inicio
           </a>
-          <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-600 mb-4">
+          <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-accent-400 mb-4">
             <span class="w-1 h-4 rounded-sm bg-accent-600 flex-shrink-0"></span>Portfolio de obras
           </span>
-          <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter leading-none text-zinc-900 mb-5">
+          <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter leading-none text-white mb-5">
             Proyectos.
           </h1>
-          <p class="text-zinc-500 leading-relaxed max-w-[56ch]">
+          <p class="text-zinc-400 leading-relaxed max-w-[56ch]">
             Obras reales construidas con bloques y ladrillos de hormigón prefabricado Barruca. Más de 40 años de producción desde Burgos, Castilla y León, presentes en toda España.
           </p>
         </div>
@@ -1733,6 +1739,17 @@
         if (Math.abs(track.scrollLeft - startScroll) > 5) e.preventDefault();
       });
 
+      // Touch: bloquear scroll vertical cuando el gesto es horizontal
+      var touchStartX, touchStartY;
+      track.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      track.addEventListener('touchmove', function (e) {
+        var dx = Math.abs(e.touches[0].clientX - touchStartX);
+        var dy = Math.abs(e.touches[0].clientY - touchStartY);
+        if (dx > dy) e.preventDefault();
+      }, { passive: false });
     })();
     </script>
   </body>
