@@ -1634,6 +1634,17 @@
     if (el) ioProj.observe(el);
   });
 
+  /* ── Scroll margin dinámico (nav + proj-bar) ── */
+  const glassNav = document.querySelector('header.glass-nav');
+  const projBarEl = document.getElementById('proj-bar');
+  const projectSections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+  function updateScrollMargins() {
+    const offset = (glassNav ? glassNav.offsetHeight : 64) + (projBarEl ? projBarEl.offsetHeight : 0) + 8;
+    projectSections.forEach(s => { s.style.scrollMarginTop = offset + 'px'; });
+  }
+  updateScrollMargins();
+  window.addEventListener('resize', updateScrollMargins);
+
   /* ═══════════════════════════════════════
      COOKIES
   ═══════════════════════════════════════ */
