@@ -120,6 +120,24 @@
       flex-shrink: 0;
       overflow: hidden;
       width: 510px;
+      position: relative;
+    }
+    .fan-outer::before,
+    .fan-outer::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 60px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .fan-outer::before {
+      left: 0;
+      background: linear-gradient(to right, #27272a, transparent);
+    }
+    .fan-outer::after {
+      right: 0;
+      background: linear-gradient(to left, #27272a, transparent);
     }
     .fan-track {
       display: flex;
