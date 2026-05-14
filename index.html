@@ -982,12 +982,29 @@
 
         </div>
 
-        <!-- Logo hero derecho -->
+        <!-- Stats hero derecho -->
         <div class="hidden lg:flex flex-1 items-center justify-center">
-          <div class="hero-logo-wrap">
-            <img src="/assets/logo-barruca-web.webp"
-                 alt="Bloques Barruca"
-                 class="hero-logo-img reveal delay-2 w-full object-contain" /></div>
+          <div class="reveal delay-2" style="display:flex;flex-direction:column;align-items:center;gap:3rem;">
+
+            <div style="text-align:center;">
+              <div style="display:flex;align-items:baseline;justify-content:center;gap:0.05em;">
+                <span style="font-size:3.5rem;font-weight:900;color:#ef4444;line-height:1;">+</span>
+                <span class="hero-stat-num" data-target="200" style="font-size:6.5rem;font-weight:900;letter-spacing:-0.04em;color:#fff;line-height:1;">0</span>
+              </div>
+              <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.25em;color:#a1a1aa;margin-top:0.35rem;">proyectos</div>
+            </div>
+
+            <div style="width:1px;height:2.5rem;background:linear-gradient(to bottom,transparent,rgba(185,28,28,0.7),transparent);"></div>
+
+            <div style="text-align:center;">
+              <div style="display:flex;align-items:baseline;justify-content:center;gap:0.05em;">
+                <span style="font-size:3.5rem;font-weight:900;color:#ef4444;line-height:1;">+</span>
+                <span class="hero-stat-num" data-target="100" style="font-size:6.5rem;font-weight:900;letter-spacing:-0.04em;color:#fff;line-height:1;">0</span>
+              </div>
+              <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.25em;color:#a1a1aa;margin-top:0.35rem;">clientes</div>
+            </div>
+
+          </div>
         </div>
 
         </div><!-- /flex row -->
@@ -2232,6 +2249,32 @@
           cards[i].style.setProperty('--cx', '-400px');
           cards[i].style.setProperty('--cy', '-400px');
         }
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      function countUp(el, target, duration) {
+        var start = null;
+        function step(ts) {
+          if (!start) start = ts;
+          var t = Math.min((ts - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - t, 3);
+          el.textContent = Math.floor(eased * target);
+          if (t < 1) requestAnimationFrame(step);
+          else el.textContent = target;
+        }
+        requestAnimationFrame(step);
+      }
+      window.addEventListener('DOMContentLoaded', function () {
+        var els = document.querySelectorAll('.hero-stat-num');
+        if (!els.length) return;
+        setTimeout(function () {
+          els.forEach(function (el) {
+            countUp(el, parseInt(el.dataset.target, 10), 1400);
+          });
+        }, 900);
       });
     })();
   </script>
