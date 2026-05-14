@@ -646,6 +646,35 @@
       text-decoration: none;
     }
     #wa-fab:hover { background: #1ebe57; transform: scale(1.08); }
+
+    /* ── Hero Fan de Proyectos ── */
+    .hf-wrap { position: relative; width: 340px; height: 420px; flex-shrink: 0; }
+    .hf-card {
+      position: absolute;
+      width: 222px; height: 295px;
+      left: 50%; top: 30px; margin-left: -111px;
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 14px 44px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3);
+      will-change: transform, opacity;
+    }
+    .hf-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hf-lbl {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 28px 14px 12px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.72));
+      color: #fff; font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase;
+    }
+    .hf-ext-link {
+      display: block; text-align: center;
+      font-size: 0.72rem; font-weight: 600;
+      color: rgba(255,255,255,0.6); text-decoration: none;
+      letter-spacing: 0.04em; transition: color 0.2s; margin-top: 0.75rem;
+    }
+    .hf-ext-link:hover { color: #fff; }
+    /* Mobile variant */
+    .hf-wrap-sm { position: relative; width: 250px; height: 295px; flex-shrink: 0; }
+    .hf-wrap-sm .hf-card { width: 160px; height: 212px; margin-left: -80px; }
   </style>
 </head>
 
@@ -873,6 +902,16 @@
             </a>
           </div>
 
+          <!-- Fan móvil: solo visible en < lg -->
+          <div class="lg:hidden flex flex-col items-center mt-6 mb-4 gap-2">
+            <div class="hf-wrap hf-wrap-sm" id="hero-fan-mob">
+              <div class="hf-card"><img src="assets/Fotos-opt/Colegio%20Mijas/ColegioMijas-01.jpg" alt="Colegio Mijas" loading="lazy"><span class="hf-lbl">Colegio · Mijas</span></div>
+              <div class="hf-card"><img src="assets/Fotos-opt/Restaurante%20Valencia/RestauranteValencia-01.jpg" alt="Restaurante Valencia" loading="lazy"><span class="hf-lbl">Restaurante · Valencia</span></div>
+              <div class="hf-card"><img src="assets/Fotos-opt/Viviendas%20Dona%20Sol/ViviendasDonaSol-04.jpg" alt="Viviendas Burgos" loading="lazy"><span class="hf-lbl">Viviendas · Burgos</span></div>
+            </div>
+            <a href="proyectos.html" class="hf-ext-link">Ver todos los proyectos →</a>
+          </div>
+
           <!-- Certificaciones DAP/ADAP -->
           <div class="reveal delay-4 pt-7 border-t border-white/15">
             <p class="hero-body text-[10px] font-semibold uppercase tracking-widest text-zinc-300 mb-4">Certificación ambiental</p>
@@ -917,12 +956,18 @@
 
         </div>
 
-        <!-- Logo hero derecho -->
+        <!-- Fan de proyectos (escritorio) -->
         <div class="hidden lg:flex flex-1 items-center justify-center">
-          <div class="hero-logo-wrap">
-            <img src="/assets/logo-barruca-web.png"
-                 alt="Bloques Barruca"
-                 class="hero-logo-img reveal delay-2 w-full object-contain" /></div>
+          <div>
+            <div class="hf-wrap" id="hero-fan-desk">
+              <div class="hf-card"><img src="assets/Fotos-opt/Colegio%20Mijas/ColegioMijas-01.jpg" alt="Colegio Mijas" loading="lazy"><span class="hf-lbl">Colegio · Mijas</span></div>
+              <div class="hf-card"><img src="assets/Fotos-opt/Restaurante%20Valencia/RestauranteValencia-01.jpg" alt="Restaurante Valencia" loading="lazy"><span class="hf-lbl">Restaurante · Valencia</span></div>
+              <div class="hf-card"><img src="assets/Fotos-opt/Viviendas%20Dona%20Sol/ViviendasDonaSol-04.jpg" alt="Viviendas Doña Sol" loading="lazy"><span class="hf-lbl">Viviendas · Burgos</span></div>
+              <div class="hf-card"><img src="assets/Fotos-opt/Centro%20Salud%20Almeria/CentroSaludAlmeria-01.jpg" alt="Centro de Salud Almería" loading="lazy"><span class="hf-lbl">Centro de Salud · Almería</span></div>
+              <div class="hf-card"><img src="assets/Fotos-opt/Viviendas%20Origen%20Burgos/ViviendasOrigenBurgos-01.jpg" alt="Viviendas Origen Burgos" loading="lazy"><span class="hf-lbl">Viviendas · Burgos</span></div>
+            </div>
+            <a href="proyectos.html" class="hf-ext-link">Ver todos los proyectos →</a>
+          </div>
         </div>
 
         </div><!-- /flex row -->
@@ -2119,6 +2164,54 @@
 
   <!-- Falling brick column (fixed, left side) -->
   <div id="brick-column" aria-hidden="true"></div>
+
+  <!-- Hero Fan -->
+  <script>
+    (function () {
+      var POS = [
+        { r: 0,  tx: 0,   ty: 0,  z: 5, o: 1    },
+        { r: -5, tx: -14, ty: 7,  z: 4, o: 0.88 },
+        { r: 4,  tx: 11,  ty: 12, z: 3, o: 0.75 },
+        { r: -8, tx: -22, ty: 18, z: 2, o: 0.62 },
+        { r: 6,  tx: 17,  ty: 24, z: 1, o: 0.5  },
+      ];
+      function initFan(id) {
+        var wrap = document.getElementById(id);
+        if (!wrap) return;
+        var cards = Array.prototype.slice.call(wrap.querySelectorAll('.hf-card'));
+        var pos = POS.slice(0, cards.length);
+        function apply(anim) {
+          cards.forEach(function (c, i) {
+            var p = pos[i];
+            c.style.transition = anim ? 'transform 0.65s cubic-bezier(0.16,1,0.3,1),opacity 0.55s' : 'none';
+            c.style.transform = 'rotate(' + p.r + 'deg) translate(' + p.tx + 'px,' + p.ty + 'px)';
+            c.style.opacity = p.o;
+            c.style.zIndex = p.z;
+          });
+        }
+        function cycle() {
+          var front = cards[0];
+          front.style.transition = 'transform 0.4s ease-in,opacity 0.35s';
+          front.style.transform = 'rotate(20deg) translate(280px,-22px)';
+          front.style.opacity = 0;
+          setTimeout(function () {
+            cards.push(cards.shift());
+            var last = cards[cards.length - 1];
+            var lp = pos[cards.length - 1];
+            last.style.transition = 'none';
+            last.style.transform = 'rotate(' + lp.r + 'deg) translate(' + lp.tx + 'px,' + lp.ty + 'px)';
+            last.style.opacity = lp.o;
+            last.style.zIndex = lp.z;
+            requestAnimationFrame(function () { requestAnimationFrame(function () { apply(true); }); });
+          }, 430);
+        }
+        apply(false);
+        setInterval(cycle, 4200);
+      }
+      initFan('hero-fan-desk');
+      initFan('hero-fan-mob');
+    })();
+  </script>
 
   <script src="/assets/main.js" defer></script>
   <script>
