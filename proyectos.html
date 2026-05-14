@@ -1738,6 +1738,18 @@
       track.addEventListener('click', function (e) {
         if (Math.abs(track.scrollLeft - startScroll) > 5) e.preventDefault();
       });
+
+      // Touch: bloquear scroll vertical cuando el gesto es horizontal
+      var touchStartX, touchStartY;
+      track.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      track.addEventListener('touchmove', function (e) {
+        var dx = Math.abs(e.touches[0].clientX - touchStartX);
+        var dy = Math.abs(e.touches[0].clientY - touchStartY);
+        if (dx > dy) e.preventDefault();
+      }, { passive: false });
     })();
     </script>
   </body>
