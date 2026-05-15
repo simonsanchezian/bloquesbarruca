@@ -37,6 +37,8 @@
     { "source": "/aviso-legal/",         "destination": "/aviso-legal.html",        "permanent": true },
     { "source": "/legal",                "destination": "/aviso-legal.html",        "permanent": true },
     { "source": "/legal/",               "destination": "/aviso-legal.html",        "permanent": true },
+    { "source": "/productos",             "destination": "/#productos",              "permanent": true },
+    { "source": "/productos/",            "destination": "/#productos",              "permanent": true },
     { "source": "/nosotros",             "destination": "/#nosotros",               "permanent": true },
     { "source": "/nosotros/",            "destination": "/#nosotros",               "permanent": true },
     { "source": "/contacto",             "destination": "/#contacto",               "permanent": true },
