@@ -1719,25 +1719,32 @@
 
       track.scrollLeft = SET_W;
 
-      // Bucle infinito
+      // ── Autoplay ──────────────────────────────
+      var autoActive = true;
+      var interacting = false;
+      var autoPos = track.scrollLeft; // acumulador float independiente
+
+      // Bucle infinito — también sincroniza autoPos
       track.addEventListener('scroll', function () {
-        if (track.scrollLeft < SET_W * 0.5) track.scrollLeft += SET_W;
-        if (track.scrollLeft > SET_W * 1.5) track.scrollLeft -= SET_W;
+        if (track.scrollLeft < SET_W * 0.5) { track.scrollLeft += SET_W; autoPos += SET_W; }
+        if (track.scrollLeft > SET_W * 1.5) { track.scrollLeft -= SET_W; autoPos -= SET_W; }
       }, { passive: true });
 
       // Rueda del ratón → scroll horizontal
       track.addEventListener('wheel', function (e) {
         if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
         e.preventDefault();
-        track.scrollLeft += e.deltaY * 0.8;
+        autoPos = track.scrollLeft + e.deltaY * 0.8;
+        track.scrollLeft = autoPos;
       }, { passive: false });
 
-      // ── Autoplay ──────────────────────────────
-      var autoActive = true;
-      var interacting = false;
-
       (function tick() {
-        if (autoActive && !interacting) track.scrollLeft += 0.4;
+        if (autoActive && !interacting) {
+          autoPos += 0.4;
+          track.scrollLeft = autoPos;
+        } else {
+          autoPos = track.scrollLeft; // sincronizar cuando el usuario mueve
+        }
         requestAnimationFrame(tick);
       })();
 
