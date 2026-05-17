@@ -1715,15 +1715,14 @@
     (function () {
       var track = document.getElementById('fan-track');
       if (!track) return;
-      var SET_W = 11 * 100; // 11 proyectos × 100px de avance por carta
+      var SET_W = 11 * 100;
 
-      // Arrancar en el set 2 (centro) para poder ir a izquierda y derecha
       track.scrollLeft = SET_W;
 
-      // Bucle infinito: saltar de set cuando se llega al borde
+      // Bucle infinito
       track.addEventListener('scroll', function () {
-        if (track.scrollLeft < SET_W * 0.5)   track.scrollLeft += SET_W;
-        if (track.scrollLeft > SET_W * 1.5)   track.scrollLeft -= SET_W;
+        if (track.scrollLeft < SET_W * 0.5) track.scrollLeft += SET_W;
+        if (track.scrollLeft > SET_W * 1.5) track.scrollLeft -= SET_W;
       }, { passive: true });
 
       // Rueda del ratón → scroll horizontal
@@ -1733,10 +1732,20 @@
         track.scrollLeft += e.deltaY * 0.8;
       }, { passive: false });
 
-      // Drag con ratón
+      // ── Autoplay ──────────────────────────────
+      var autoActive = true;
+      var interacting = false;
+
+      (function tick() {
+        if (autoActive && !interacting) track.scrollLeft += 0.4;
+        requestAnimationFrame(tick);
+      })();
+
+      // ── Drag con ratón ────────────────────────
       var dragging = false, startX, startScroll;
       track.addEventListener('mousedown', function (e) {
-        dragging = true; startX = e.clientX; startScroll = track.scrollLeft;
+        dragging = true; interacting = true;
+        startX = e.clientX; startScroll = track.scrollLeft;
         track.classList.add('dragging'); e.preventDefault();
       });
       document.addEventListener('mousemove', function (e) {
@@ -1744,17 +1753,23 @@
         track.scrollLeft = startScroll - (e.clientX - startX);
       });
       document.addEventListener('mouseup', function () {
-        dragging = false; track.classList.remove('dragging');
+        dragging = false; interacting = false;
+        track.classList.remove('dragging');
       });
 
-      // Evitar que el click en una carta dispare el enlace si fue un drag
+      // Click: para el autoplay si fue clic real (no drag)
       track.addEventListener('click', function (e) {
-        if (Math.abs(track.scrollLeft - startScroll) > 5) e.preventDefault();
+        if (Math.abs(track.scrollLeft - startScroll) > 5) {
+          e.preventDefault();
+        } else {
+          autoActive = false;
+        }
       });
 
-      // Touch: scroll manual horizontal (como el drag de ratón)
+      // ── Touch ─────────────────────────────────
       var touchStartX, touchStartY, touchStartScroll;
       track.addEventListener('touchstart', function (e) {
+        interacting = true;
         touchStartX = e.touches[0].clientX;
         touchStartY = e.touches[0].clientY;
         touchStartScroll = track.scrollLeft;
@@ -1768,6 +1783,9 @@
           e.preventDefault();
         }
       }, { passive: false });
+      track.addEventListener('touchend', function () {
+        interacting = false;
+      }, { passive: true });
     })();
     </script>
   </body>
