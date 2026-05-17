@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Análisis de Redes Sociales — Bloques Barruca</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #b45309;
+    --accent2: #d97706;
+    --dark: #18181b;
+    --dark2: #27272a;
+    --zinc: #71717a;
+    --border: #e4e4e7;
+    --bg: #fafafa;
+    --white: #ffffff;
+    --green: #16a34a;
+    --red: #dc2626;
+    --yellow: #ca8a04;
+    --li: #0a66c2;
+    --ig: #e1306c;
+    --yt: #ff0000;
+    --tw: #000000;
+  }
+
+  body {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── PAGE LAYOUT ── */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto 24px;
+    background: var(--white);
+    box-shadow: 0 4px 32px rgba(0,0,0,.08);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--dark);
+    min-height: 297mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+  }
+  .cover-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: url('assets/Fotos-opt/IES Huércal Almería/IESHuércalAlmería-22.jpg') center/cover;
+    opacity: .12;
+  }
+  .cover-content { position: relative; z-index: 1; padding: 64px 56px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .cover-footer { position: relative; z-index: 1; padding: 32px 56px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; align-items: center; }
+  .cover-logo { height: 40px; filter: brightness(0) invert(1); }
+  .cover-tag { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent2); margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
+  .cover-tag::before { content: ''; width: 24px; height: 2px; background: var(--accent); display: inline-block; }
+  .cover h1 { font-size: 48px; font-weight: 900; color: #fff; letter-spacing: -.03em; line-height: 1.05; margin-bottom: 20px; }
+  .cover h1 span { color: var(--accent2); }
+  .cover-sub { font-size: 16px; color: rgba(255,255,255,.55); font-weight: 400; max-width: 400px; }
+  .cover-channels { display: flex; gap: 10px; margin-top: 48px; }
+  .cover-ch { padding: 8px 16px; border-radius: 100px; border: 1px solid rgba(255,255,255,.15); font-size: 12px; font-weight: 600; color: rgba(255,255,255,.7); }
+  .cover-date { font-size: 12px; color: rgba(255,255,255,.3); }
+
+  /* ── INNER PAGES ── */
+  .inner { padding: 52px 52px 48px; }
+  .page-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 36px; padding-bottom: 20px; border-bottom: 2px solid var(--border); }
+  .page-header-logo { height: 28px; opacity: .4; }
+  .section-tag { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .section-tag::before { content: ''; width: 16px; height: 2px; background: var(--accent); display: inline-block; }
+  h2 { font-size: 26px; font-weight: 800; letter-spacing: -.025em; color: var(--dark); line-height: 1.15; }
+  h3 { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+  p { color: #52525b; line-height: 1.7; }
+  .page-num { font-size: 11px; font-weight: 600; color: #a1a1aa; }
+
+  /* ── SUMMARY CARDS ── */
+  .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 28px 0; }
+  .s-card { border-radius: 14px; padding: 18px 16px; position: relative; overflow: hidden; }
+  .s-card .net-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 12px; opacity: .7; }
+  .s-card .big-num { font-size: 32px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+  .s-card .sub-num { font-size: 11px; font-weight: 500; opacity: .6; }
+  .s-card .status-pill { position: absolute; top: 14px; right: 14px; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 3px 8px; border-radius: 100px; }
+
+  .card-ig { background: #fff0f5; color: #9d174d; }
+  .card-ig .status-pill { background: #fce7f3; color: #be185d; }
+  .card-li { background: #eff6ff; color: #1e40af; }
+  .card-li .status-pill { background: #dbeafe; color: #1d4ed8; }
+  .card-yt { background: #fff7ed; color: #9a3412; }
+  .card-yt .status-pill { background: #ffedd5; color: #c2410c; }
+  .card-tw { background: #f4f4f5; color: #3f3f46; }
+  .card-tw .status-pill { background: #e4e4e7; color: #71717a; }
+
+  /* ── RADAR / BAR CHARTS ── */
+  .bar-chart { display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
+  .bar-row { display: flex; align-items: center; gap: 10px; }
+  .bar-label { font-size: 11px; font-weight: 600; color: #52525b; width: 110px; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 8px; background: #f4f4f5; border-radius: 100px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 100px; transition: width .3s; }
+  .bar-val { font-size: 11px; font-weight: 700; width: 36px; text-align: right; }
+
+  /* ── NETWORK SECTIONS ── */
+  .net-section { margin-bottom: 32px; }
+  .net-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .net-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .net-icon svg { width: 20px; height: 20px; }
+  .net-icon.li { background: #dbeafe; }
+  .net-icon.li svg { fill: var(--li); }
+  .net-icon.ig { background: #fce7f3; }
+  .net-icon.ig svg { fill: var(--ig); }
+  .net-icon.yt { background: #ffedd5; }
+  .net-icon.yt svg { fill: var(--yt); }
+  .net-icon.tw { background: #f4f4f5; }
+  .net-icon.tw svg { fill: #000; }
+  .net-meta { flex: 1; }
+  .net-meta .name { font-size: 16px; font-weight: 800; }
+  .net-meta .handle { font-size: 12px; color: #71717a; }
+  .net-stats-row { display: flex; gap: 8px; margin-top: 8px; }
+  .net-stat { background: #f4f4f5; border-radius: 8px; padding: 6px 12px; text-align: center; }
+  .net-stat .n { font-size: 15px; font-weight: 800; color: var(--dark); }
+  .net-stat .l { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: #71717a; }
+  .net-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 100px; }
+  .badge-green { background: #dcfce7; color: var(--green); }
+  .badge-yellow { background: #fef9c3; color: var(--yellow); }
+  .badge-red { background: #fee2e2; color: var(--red); }
+  .badge-gray { background: #f4f4f5; color: #52525b; }
+
+  .insight-box { border-radius: 12px; padding: 16px 18px; margin: 14px 0; border-left: 3px solid; }
+  .insight-box.good { background: #f0fdf4; border-color: var(--green); }
+  .insight-box.warn { background: #fefce8; border-color: var(--yellow); }
+  .insight-box.bad  { background: #fef2f2; border-color: var(--red); }
+  .insight-box.star { background: #fff7ed; border-color: var(--accent); }
+  .insight-box .title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
+  .insight-box.good .title { color: var(--green); }
+  .insight-box.warn .title { color: var(--yellow); }
+  .insight-box.bad  .title { color: var(--red); }
+  .insight-box.star .title { color: var(--accent); }
+  .insight-box p { font-size: 13px; color: #3f3f46; line-height: 1.6; margin: 0; }
+
+  /* ── HIGHLIGHT STAT ── */
+  .highlight-stat { background: var(--dark); border-radius: 16px; padding: 28px 24px; display: flex; align-items: center; gap: 24px; margin: 20px 0; }
+  .highlight-stat .hs-num { font-size: 56px; font-weight: 900; color: var(--accent2); line-height: 1; }
+  .highlight-stat .hs-text h3 { color: #fff; font-size: 16px; margin-bottom: 6px; }
+  .highlight-stat .hs-text p { color: rgba(255,255,255,.5); font-size: 13px; margin: 0; }
+
+  /* ── PRIORITY ACTIONS ── */
+  .priorities { display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+  .priority-row { display: flex; align-items: flex-start; gap: 16px; background: #fafafa; border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+  .priority-num { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .priority-row h3 { font-size: 13px; margin-bottom: 4px; }
+  .priority-row p { font-size: 12px; margin: 0; }
+  .priority-row .tag-row { display: flex; gap: 6px; margin-top: 8px; }
+  .p-tag { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 100px; }
+  .p-tag.urgente { background: #fee2e2; color: var(--red); }
+  .p-tag.alto    { background: #fff7ed; color: var(--accent); }
+  .p-tag.medio   { background: #fef9c3; color: var(--yellow); }
+
+  /* ── COMPARISON TABLE ── */
+  .comp-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 12px; }
+  .comp-table th { background: var(--dark); color: #fff; padding: 10px 14px; text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
+  .comp-table th:first-child { border-radius: 10px 0 0 0; }
+  .comp-table th:last-child { border-radius: 0 10px 0 0; }
+  .comp-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table tr:hover td { background: #fafafa; }
+  .score { display: inline-flex; align-items: center; gap: 4px; font-weight: 700; font-size: 13px; }
+  .score.high { color: var(--green); }
+  .score.mid  { color: var(--yellow); }
+  .score.low  { color: var(--red); }
+  .score.dead { color: #a1a1aa; }
+
+  /* ── FOOTER ── */
+  .page-footer { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 52px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background: var(--white); }
+  .page-footer span { font-size: 10px; color: #a1a1aa; font-weight: 500; }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; margin: 0; page-break-after: always; width: 100%; }
+    .page:last-child { page-break-after: auto; }
+  }
+  @page { size: A4; margin: 0; }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════ PÁGINA 1: PORTADA ════════════════════ -->
+<div class="page cover">
+  <div class="cover-bg"></div>
+  <div class="cover-content">
+    <div class="cover-tag">Informe de diagnóstico digital</div>
+    <h1>Análisis de<br/><span>Redes Sociales</span></h1>
+    <div class="cover-sub">Estado actual, oportunidades y plan de acción para Bloques Barruca</div>
+    <div class="cover-channels">
+      <div class="cover-ch">Instagram</div>
+      <div class="cover-ch">LinkedIn</div>
+      <div class="cover-ch">YouTube</div>
+      <div class="cover-ch">X / Twitter</div>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <img src="assets/logo-barruca-web.webp" alt="Barruca" class="cover-logo" />
+    <div class="cover-date" id="cover-date"></div>
+  </div>
+</div>
+
+<!-- ════════════════════ PÁGINA 2: RESUMEN EJECUTIVO ════════════════════ -->
+<div class="page">
+  <div class="inner">
+    <div class="page-header">
+      <div>
+        <div class="section-tag">Visión general</div>
+        <h2>Resumen ejecutivo</h2>
+      </div>
+      <img src="assets/logo-barruca-web.webp" class="page-header-logo" />
+    </div>
+
+    <div class="summary-grid">
+      <div class="s-card card-ig">
+        <div class="net-label">Instagram</div>
+        <div class="status-pill">Activa</div>
+        <div class="big-num">591</div>
+        <div class="sub-num">seguidores · 161 posts</div>
+      </div>
+      <div class="s-card card-li">
+        <div class="net-label">LinkedIn</div>
+        <div class="status-pill">Creciendo</div>
+        <div class="big-num">213</div>
+        <div class="sub-num">seguidores · 2-10 empleados</div>
+      </div>
+      <div class="s-card card-yt">
+        <div class="net-label">YouTube</div>
+        <div class="status-pill">⚡ Potencial</div>
+        <div class="big-num">60K</div>
+        <div class="sub-num">views · 2 suscriptores · 3 vídeos</div>
+      </div>
+      <div class="s-card card-tw">
+        <div class="net-label">X / Twitter</div>
+        <div class="status-pill">Inactiva</div>
+        <div class="big-num">214</div>
+        <div class="sub-num">seguidores · sin posts activos</div>
+      </div>
+    </div>
+
+    <div class="insight-box star" style="margin-bottom:20px;">
+      <div class="title">⚡ El hallazgo más importante</div>
+      <p>El canal de YouTube tiene <strong>60.000 visualizaciones</strong> en un solo vídeo publicado hace 3 meses, con apenas 2 suscriptores. Esto demuestra que el algoritmo ya distribuye el contenido de Barruca de forma orgánica. Sin ninguna estrategia activa, 60.000 personas encontraron ese vídeo. Es la oportunidad más grande y urgente del análisis.</p>
+    </div>
+
+    <div class="section-tag" style="margin-top:24px;">Madurez por canal</div>
+    <div class="bar-chart" style="margin-top:14px;">
+      <div class="bar-row">
+        <div class="bar-label">Instagram</div>
+        <div class="bar-track"><div class="bar-fill" style="width:52%;background:#e1306c;"></div></div>
+        <div class="bar-val" style="color:#e1306c;">52%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">LinkedIn</div>
+        <div class="bar-track"><div class="bar-fill" style="width:22%;background:#0a66c2;"></div></div>
+        <div class="bar-val" style="color:#0a66c2;">22%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">YouTube</div>
+        <div class="bar-track"><div class="bar-fill" style="width:15%;background:#ff0000;"></div></div>
+        <div class="bar-val" style="color:#ff0000;">15%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">X / Twitter</div>
+        <div class="bar-track"><div class="bar-fill" style="width:8%;background:#71717a;"></div></div>
+        <div class="bar-val" style="color:#71717a;">8%</div>
+      </div>
+    </div>
+    <p style="font-size:11px;color:#a1a1aa;margin-top:8px;">Índice de madurez: combina seguidores, frecuencia de publicación, calidad de contenido y engagement relativo.</p>
+
+    <table class="comp-table" style="margin-top:28px;">
+      <tr>
+        <th>Canal</th>
+        <th>Comunidad</th>
+        <th>Actividad</th>
+        <th>Contenido</th>
+        <th>Potencial B2B</th>
+        <th>Prioridad</th>
+      </tr>
+      <tr>
+        <td><strong>Instagram</strong></td>
+        <td><span class="score mid">▲ Media</span></td>
+        <td><span class="score mid">Regular</span></td>
+        <td><span class="score mid">Mejorable</span></td>
+        <td><span class="score mid">Media</span></td>
+        <td><span class="net-badge badge-yellow">Media-Alta</span></td>
+      </tr>
+      <tr>
+        <td><strong>LinkedIn</strong></td>
+        <td><span class="score low">▼ Baja</span></td>
+        <td><span class="score mid">Reciente</span></td>
+        <td><span class="score mid">Correcto</span></td>
+        <td><span class="score high">Alta</span></td>
+        <td><span class="net-badge badge-red">Urgente</span></td>
+      </tr>
+      <tr>
+        <td><strong>YouTube</strong></td>
+        <td><span class="score low">▼ Mínima</span></td>
+        <td><span class="score low">Escasa</span></td>
+        <td><span class="score high">Un hit viral</span></td>
+        <td><span class="score high">Muy alta</span></td>
+        <td><span class="net-badge badge-red">Urgente</span></td>
+      </tr>
+      <tr>
+        <td><strong>X / Twitter</strong></td>
+        <td><span class="score dead">Inactiva</span></td>
+        <td><span class="score dead">Cero</span></td>
+        <td><span class="score dead">Sin posts</span></td>
+        <td><span class="score dead">Ninguna</span></td>
+        <td><span class="net-badge badge-gray">Descartar</span></td>
+      </tr>
+    </table>
+  </div>
+  <div class="page-footer">
+    <span>Bloques Barruca — Análisis de Redes Sociales</span>
+    <span class="page-num">2 / 4</span>
+  </div>
+</div>
+
+<!-- ════════════════════ PÁGINA 3: ANÁLISIS POR CANAL ════════════════════ -->
+<div class="page">
+  <div class="inner" style="padding-bottom: 60px;">
+    <div class="page-header">
+      <div>
+        <div class="section-tag">Diagnóstico detallado</div>
+        <h2>Análisis por canal</h2>
+      </div>
+      <img src="assets/logo-barruca-web.webp" class="page-header-logo" />
+    </div>
+
+    <!-- Instagram -->
+    <div class="net-section">
+      <div class="net-header">
+        <div class="net-icon ig">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </div>
+        <div class="net-meta">
+          <div class="name">Instagram</div>
+          <div class="handle">@bloquesbarruca</div>
+        </div>
+        <div class="net-stats-row">
+          <div class="net-stat"><div class="n">591</div><div class="l">Seguidores</div></div>
+          <div class="net-stat"><div class="n">502</div><div class="l">Siguiendo</div></div>
+          <div class="net-stat"><div class="n">161</div><div class="l">Posts</div></div>
+        </div>
+        <span class="net-badge badge-yellow">Base existente</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="insight-box warn">
+          <div class="title">⚠ Alerta de crecimiento artificial</div>
+          <p>502 seguidos para 591 seguidores indica una estrategia de follow/unfollow. La audiencia conseguida así no genera engagement ni conversiones reales.</p>
+        </div>
+        <div class="insight-box bad">
+          <div class="title">✗ Contenido de catálogo</div>
+          <p>Las fotos de producto sobre fondo blanco y los posts estacionales genéricos (Feliz Navidad) no diferencian la marca ni generan interacción.</p>
+        </div>
+        <div class="insight-box good">
+          <div class="title">✓ Highlights organizados</div>
+          <p>Tienen destacados por producto (Coupe, Fireproof) y por obras. Buena estructura base para trabajar encima.</p>
+        </div>
+        <div class="insight-box warn">
+          <div class="title">⚠ Sin Reels</div>
+          <p>El formato Reel es el que más alcance orgánico genera en Instagram. No hay presencia clara de este formato en el perfil.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- LinkedIn -->
+    <div class="net-section">
+      <div class="net-header">
+        <div class="net-icon li">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </div>
+        <div class="net-meta">
+          <div class="name">LinkedIn</div>
+          <div class="handle">Bloques Barruca · 2-10 empleados</div>
+        </div>
+        <div class="net-stats-row">
+          <div class="net-stat"><div class="n">213</div><div class="l">Seguidores</div></div>
+          <div class="net-stat"><div class="n">1 sem</div><div class="l">Último post</div></div>
+        </div>
+        <span class="net-badge badge-red">Infrautilizado</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="insight-box bad">
+          <div class="title">✗ 213 seguidores es muy poco para B2B</div>
+          <p>Sus clientes (arquitectos, constructoras, promotoras) están en LinkedIn. Con 40 años de empresa, deberían tener 5-10× más seguidores.</p>
+        </div>
+        <div class="insight-box good">
+          <div class="title">✓ Dirección correcta en el contenido</div>
+          <p>El último post sobre sostenibilidad ("¿Puede un ladrillo ser parte de la construcción sostenible?") es exactamente el tipo de contenido que funciona en LinkedIn.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- YouTube -->
+    <div class="net-section">
+      <div class="net-header">
+        <div class="net-icon yt">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </div>
+        <div class="net-meta">
+          <div class="name">YouTube</div>
+          <div class="handle">@bloques_barruca</div>
+        </div>
+        <div class="net-stats-row">
+          <div class="net-stat"><div class="n">2</div><div class="l">Suscriptores</div></div>
+          <div class="net-stat"><div class="n">3</div><div class="l">Vídeos</div></div>
+          <div class="net-stat"><div class="n">60K</div><div class="l">Views</div></div>
+        </div>
+        <span class="net-badge" style="background:#fff7ed;color:#b45309;">⚡ Oportunidad clave</span>
+      </div>
+      <div class="highlight-stat">
+        <div class="hs-num">60.000</div>
+        <div class="hs-text">
+          <h3>"La sostenibilidad hecha ladrillo" — 3 meses, sin estrategia</h3>
+          <p>Con solo 2 suscriptores, este vídeo alcanzó 60K visualizaciones de forma orgánica. El algoritmo de YouTube ya posiciona el contenido de Barruca. Capitalizar este momentum es la acción más urgente de todo el análisis.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Twitter -->
+    <div class="net-section" style="margin-bottom:0;">
+      <div class="net-header">
+        <div class="net-icon tw">
+          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.741l7.732-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </div>
+        <div class="net-meta">
+          <div class="name">X / Twitter</div>
+          <div class="handle">@BloquesBarruca · desde oct. 2017</div>
+        </div>
+        <div class="net-stats-row">
+          <div class="net-stat"><div class="n">214</div><div class="l">Seguidores</div></div>
+          <div class="net-stat"><div class="n">376</div><div class="l">Posts hist.</div></div>
+          <div class="net-stat"><div class="n">0</div><div class="l">Posts activos</div></div>
+        </div>
+        <span class="net-badge badge-gray">Abandonada</span>
+      </div>
+      <div class="insight-box bad">
+        <div class="title">✗ Canal muerto — no invertir recursos</div>
+        <p>La cuenta tiene historial desde 2017 pero actualmente no tiene posts activos. X/Twitter no es relevante para el sector B2B de construcción en España. Recomendación: mantener el perfil visible pero sin asignar tiempo ni presupuesto.</p>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>Bloques Barruca — Análisis de Redes Sociales</span>
+    <span class="page-num">3 / 4</span>
+  </div>
+</div>
+
+<!-- ════════════════════ PÁGINA 4: PLAN DE ACCIÓN ════════════════════ -->
+<div class="page">
+  <div class="inner" style="padding-bottom:60px;">
+    <div class="page-header">
+      <div>
+        <div class="section-tag">Próximos pasos</div>
+        <h2>Plan de acción prioritario</h2>
+      </div>
+      <img src="assets/logo-barruca-web.webp" class="page-header-logo" />
+    </div>
+
+    <div class="priorities">
+      <div class="priority-row">
+        <div class="priority-num">1</div>
+        <div>
+          <h3>Capitalizar el vídeo viral de YouTube — ahora</h3>
+          <p>El vídeo "La sostenibilidad hecha ladrillo" tiene 60K views sin ninguna estrategia detrás. Hay que publicar al menos 2 vídeos más de temática similar, añadir CTA en el vídeo existente y optimizar la descripción del canal con keywords de búsqueda. El impulso algorítmico actual no durará para siempre.</p>
+          <div class="tag-row">
+            <span class="p-tag urgente">Urgente</span>
+            <span class="p-tag alto">YouTube</span>
+          </div>
+        </div>
+      </div>
+      <div class="priority-row">
+        <div class="priority-num">2</div>
+        <div>
+          <h3>Activar LinkedIn con contenido técnico consistente</h3>
+          <p>213 seguidores para una empresa B2B es el número más preocupante del análisis. Sus clientes directos (arquitectos, constructoras, promotoras) viven en LinkedIn. Con 2-3 posts semanales de contenido técnico real (casos de obra, fichas de producto, normativa CTE) se puede llegar a 500+ seguidores en 60-90 días.</p>
+          <div class="tag-row">
+            <span class="p-tag urgente">Urgente</span>
+            <span class="p-tag alto">LinkedIn</span>
+          </div>
+        </div>
+      </div>
+      <div class="priority-row">
+        <div class="priority-num">3</div>
+        <div>
+          <h3>Cambiar la estrategia de contenido en Instagram</h3>
+          <p>Eliminar las fotos de producto sobre fondo blanco y los posts estacionales genéricos. Sustituirlos por fotos de obra real (especialmente el Coupe Caravista, que es el más fotogénico), Reels cortos del proceso de fabricación y comparativas visuales de acabados. Parar el follow/unfollow manual.</p>
+          <div class="tag-row">
+            <span class="p-tag alto">Alta prioridad</span>
+            <span class="p-tag medio">Instagram</span>
+          </div>
+        </div>
+      </div>
+      <div class="priority-row">
+        <div class="priority-num">4</div>
+        <div>
+          <h3>Construir el archivo de material visual</h3>
+          <p>Sin fotos y vídeos de calidad de las obras reales, no hay estrategia posible. Organizar como mínimo 1 sesión fotográfica en obra y 1 sesión en fábrica. Con ese material se puede generar contenido para meses en todas las redes.</p>
+          <div class="tag-row">
+            <span class="p-tag alto">Alta prioridad</span>
+            <span class="p-tag medio">Todos los canales</span>
+          </div>
+        </div>
+      </div>
+      <div class="priority-row">
+        <div class="priority-num">5</div>
+        <div>
+          <h3>Dejar X / Twitter en segundo plano</h3>
+          <p>No asignar tiempo ni recursos. Mantener el perfil visible para que no parezca un perfil abandonado, pero sin publicar activamente. El tiempo que se dedicaría aquí vale mucho más invertido en LinkedIn o YouTube.</p>
+          <div class="tag-row">
+            <span class="p-tag" style="background:#f4f4f5;color:#71717a;">Sin prioridad</span>
+            <span class="p-tag" style="background:#f4f4f5;color:#71717a;">X / Twitter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px;">
+      <div style="background:#f0fdf4;border-radius:14px;padding:20px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin-bottom:10px;">Meses 1–3</div>
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:8px;">Construcción de base</div>
+        <p style="font-size:12px;">Archivo visual, primeros vídeos YouTube, LinkedIn activo, Instagram con nuevo contenido.</p>
+      </div>
+      <div style="background:#fefce8;border-radius:14px;padding:20px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--yellow);margin-bottom:10px;">Meses 3–6</div>
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:8px;">Primeras conversiones</div>
+        <p style="font-size:12px;">Contactos desde LinkedIn, arquitectos interesados vía YouTube, Instagram creciendo orgánicamente.</p>
+      </div>
+      <div style="background:#fff7ed;border-radius:14px;padding:20px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:10px;">Meses 6–12</div>
+        <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:8px;">Marca referente</div>
+        <p style="font-size:12px;">Presupuestos desde redes, reconocimiento sectorial, YouTube posicionando en búsquedas técnicas.</p>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>Bloques Barruca — Análisis de Redes Sociales</span>
+    <span class="page-num">4 / 4</span>
+  </div>
+</div>
+
+<script>
+  const d = new Date();
+  document.getElementById('cover-date').textContent =
+    d.toLocaleDateString('es-ES', { day:'numeric', month:'long', year:'numeric' });
+</script>
+</body>
+</html>

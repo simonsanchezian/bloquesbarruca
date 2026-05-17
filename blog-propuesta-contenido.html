@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta de Contenido — Blog Bloques Barruca</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f7f6f2; color: #18181b; line-height: 1.6; }
+
+  .page-wrap { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+  /* Header */
+  .doc-header { border-left: 4px solid #b91c1c; padding-left: 1.5rem; margin-bottom: 3rem; }
+  .doc-header .label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: #b91c1c; margin-bottom: 0.5rem; }
+  .doc-header h1 { font-size: 2rem; font-weight: 800; letter-spacing: -.03em; color: #18181b; line-height: 1.15; margin-bottom: 0.5rem; }
+  .doc-header .meta { font-size: 0.85rem; color: #71717a; }
+
+  /* Intro */
+  .intro { background: #fff; border: 1px solid #e4e4e7; border-radius: 1rem; padding: 1.5rem 2rem; margin-bottom: 3rem; }
+  .intro p { color: #52525b; font-size: 0.9375rem; }
+  .intro strong { color: #18181b; }
+
+  /* Section headers */
+  h2 { font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; color: #18181b; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 2px solid #e4e4e7; display: flex; align-items: center; gap: 0.6rem; }
+  h2 .num { background: #b91c1c; color: white; font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: .375rem; }
+
+  /* Post cards (existing) */
+  .post-card { background: #fff; border: 1px solid #e4e4e7; border-radius: .875rem; padding: 1.5rem; margin-bottom: 1rem; }
+  .post-card:hover { border-color: #fca5a5; }
+  .post-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+  .post-title { font-size: 1rem; font-weight: 700; color: #18181b; }
+  .post-cat { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #b91c1c; background: #fff1f2; border: 1px solid #fecdd3; padding: 0.2rem 0.6rem; border-radius: .375rem; white-space: nowrap; flex-shrink: 0; }
+  .post-current { margin-bottom: 1rem; }
+  .post-current .label-sm { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #a1a1aa; margin-bottom: 0.35rem; }
+  .post-current p { font-size: 0.85rem; color: #71717a; font-style: italic; background: #fafafa; border: 1px solid #f4f4f5; border-radius: .5rem; padding: 0.75rem 1rem; }
+  .word-count { display: inline-block; font-size: 0.7rem; font-weight: 600; color: #ef4444; background: #fef2f2; border: 1px solid #fecaca; padding: 0.15rem 0.5rem; border-radius: .375rem; margin-bottom: 0.75rem; }
+  .word-count.ok { color: #16a34a; background: #f0fdf4; border-color: #bbf7d0; }
+  .improvements { }
+  .improvements .label-sm { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #16a34a; margin-bottom: 0.5rem; }
+  .improvements ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .improvements li { font-size: 0.875rem; color: #3f3f46; padding-left: 1.25rem; position: relative; }
+  .improvements li::before { content: "→"; position: absolute; left: 0; color: #b91c1c; font-weight: 700; }
+
+  /* New ideas */
+  .idea-card { background: #fff; border: 1px solid #e4e4e7; border-radius: .875rem; padding: 1.5rem; margin-bottom: 1rem; display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+  .idea-card:hover { border-color: #fca5a5; }
+  .idea-header { display: flex; align-items: flex-start; gap: 0.75rem; }
+  .idea-number { width: 32px; height: 32px; border-radius: 50%; background: #b91c1c; color: white; font-size: 0.8rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .idea-title { font-size: 1rem; font-weight: 700; color: #18181b; line-height: 1.3; }
+  .idea-subtitle { font-size: 0.8rem; color: #71717a; margin-top: 0.2rem; }
+  .idea-body { padding-left: 2.75rem; }
+  .idea-why { font-size: 0.875rem; color: #52525b; margin-bottom: 0.75rem; }
+  .idea-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; padding: 0.2rem 0.6rem; border-radius: .375rem; }
+  .tag-audience { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+  .tag-difficulty { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+  .tag-difficulty.med { background: #fffbeb; color: #b45309; border-color: #fde68a; }
+  .tag-difficulty.hard { background: #fef2f2; color: #b91c1c; border-color: #fecaca; }
+
+  /* Priority banner */
+  .priority-box { background: #18181b; color: #fff; border-radius: 1rem; padding: 1.5rem 2rem; margin-bottom: 3rem; }
+  .priority-box h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: #fca5a5; }
+  .priority-box ol { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .priority-box li { font-size: 0.875rem; color: #d4d4d8; }
+  .priority-box li strong { color: #fff; }
+
+  /* Footer */
+  .doc-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #e4e4e7; font-size: 0.8rem; color: #a1a1aa; text-align: center; }
+
+  @media print {
+    body { background: white; }
+    .page-wrap { padding: 1.5rem; }
+    .post-card, .idea-card { break-inside: avoid; }
+  }
+  @media (max-width: 600px) {
+    .post-header { flex-direction: column; }
+    .page-wrap { padding: 1.5rem 1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="doc-header">
+    <div class="label">Bloques Barruca — Propuesta interna</div>
+    <h1>Plan de Contenido<br>para el Blog</h1>
+    <div class="meta">Mayo 2026 · Preparado por Ian Sestao</div>
+  </div>
+
+  <div class="intro">
+    <p>
+      Este documento recoge dos cosas: <strong>qué mejorar en los artículos que ya están publicados</strong>
+      y <strong>qué artículos nuevos escribir</strong> para que la web aparezca en Google cuando
+      arquitectos, constructoras y promotores busquen información sobre ladrillos de hormigón prefabricado.
+    </p>
+    <p style="margin-top:.75rem;">
+      El objetivo no es publicar por publicar — un artículo bien escrito de 400-600 palabras puede traer
+      visitas durante años sin coste adicional. Actualmente los textos del blog son demasiado cortos
+      (la mayoría vienen de publicaciones de LinkedIn) y Google no los indexa como contenido relevante.
+    </p>
+  </div>
+
+
+  <!-- ═══════════════════════════════ PARTE 1 ═══════════════════════════════ -->
+  <h2><span class="num">PARTE 1</span> Artículos existentes — qué mejorar</h2>
+
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-title">Ladrillo Fireproof®</div>
+      <div class="post-cat">Producto</div>
+    </div>
+    <div class="post-current">
+      <div class="label-sm">Texto actual</div>
+      <p>"Poco a poco nuestro ladrillo Fireproof® va ganando espacio... Obra de la Constructora RFS en sus 38 Viviendas en el Paseo de la Isla, #Burgos..."</p>
+    </div>
+    <div class="word-count">~40 palabras — muy corto</div>
+    <div class="improvements">
+      <div class="label-sm">Qué añadir para que funcione en Google</div>
+      <ul>
+        <li>Descripción técnica del Fireproof: EI-120 + 78 dBA, qué significa y por qué importa en obra</li>
+        <li>Por qué lo eligió la Constructora RFS para esas 38 viviendas (¿cumplimiento CTE DB-SI y DB-HR en una sola pieza?)</li>
+        <li>Comparativa concreta: con ladrillo estándar hubieran necesitado trasdosados, lana mineral y sellados — el Fireproof lo resuelve solo</li>
+        <li>Cómo solicitar la ficha técnica y las muestras</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-title">Colegio Indira Gandhi, Málaga</div>
+      <div class="post-cat">Proyecto</div>
+    </div>
+    <div class="post-current">
+      <div class="label-sm">Texto actual</div>
+      <p>"La pasada semana os traíamos unas fotos del trabajo que realizamos en Málaga... reseña en la revista onDiseño."</p>
+    </div>
+    <div class="word-count">~35 palabras — muy corto</div>
+    <div class="improvements">
+      <div class="label-sm">Qué añadir</div>
+      <ul>
+        <li>Nombre del arquitecto o estudio responsable del proyecto</li>
+        <li>Qué producto se usó exactamente (¿HIB, Coupe, Bloque?) y por qué fue la elección correcta para un colegio</li>
+        <li>Superficie aproximada, localización concreta, año de construcción</li>
+        <li>Transcribir o resumir los puntos clave del artículo de onDiseño (en lugar de solo enlazarlo)</li>
+        <li>4-6 fotos del resultado final con pies de foto descriptivos</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-title">Revista Cemento de Hormigón</div>
+      <div class="post-cat">Prensa</div>
+    </div>
+    <div class="post-current">
+      <div class="label-sm">Texto actual</div>
+      <p>Solo un enlace externo. Sin texto propio.</p>
+    </div>
+    <div class="word-count">~5 palabras — inutilizable para SEO</div>
+    <div class="improvements">
+      <div class="label-sm">Qué añadir</div>
+      <ul>
+        <li>Resumen de 300-400 palabras del artículo de la revista: de qué trata, qué proyectos se destacan, qué dice sobre Barruca</li>
+        <li>Por qué aparecer en esa revista es relevante para el sector</li>
+        <li>Enlazar también a otros artículos técnicos o proyectos relacionados dentro de la web</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-title">Mercado Provisional de Burgos</div>
+      <div class="post-cat">Proyecto</div>
+    </div>
+    <div class="post-current">
+      <div class="label-sm">Texto actual</div>
+      <p>"@diariodeburgos avanza la inauguración del #mercadoprovisional en el que @acuellar_com ha estado suministrando bloques Barruca..." (con hashtags de LinkedIn)</p>
+    </div>
+    <div class="word-count">~60 palabras — contenido de red social, no de web</div>
+    <div class="improvements">
+      <div class="label-sm">Qué añadir</div>
+      <ul>
+        <li>Limpiar los @menciones y #hashtags — no tienen lugar en un artículo web</li>
+        <li>Describir el proyecto: ¿qué tipo de mercado? ¿qué producto se usó? ¿cuántos metros?</li>
+        <li>Desarrollar el ángulo de sostenibilidad: qué significa que los bloques sean 100% reciclables, qué pasará con ellos cuando el mercado provisional se desmonte</li>
+        <li>Mencionar a Acuellar como constructora colaboradora</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-title">Centro de Salud en El Ejido, Almería</div>
+      <div class="post-cat">Proyecto</div>
+    </div>
+    <div class="post-current">
+      <div class="label-sm">Texto actual</div>
+      <p>"Estamos dando vida a un nuevo y moderno Centro de Salud en El Ejido... Construyendo con nuestro ladrillo caravista coupe..." (con hashtags)</p>
+    </div>
+    <div class="word-count">~55 palabras — contenido de red social</div>
+    <div class="improvements">
+      <div class="label-sm">Qué añadir</div>
+      <ul>
+        <li>Nombre y perfil breve de ORDAZ Arquitectura e Ingeniería y Vialterra Infraestructuras</li>
+        <li>Por qué el Coupe Caravista es adecuado para un edificio sanitario (durabilidad, facilidad de limpieza, estética que transmite confianza)</li>
+        <li>Superficie aproximada de fachada, colores utilizados</li>
+        <li>Más fotos del proceso y del resultado final</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-title">Conservatorio Kina Jiménez, Almería</div>
+      <div class="post-cat">Proyecto</div>
+    </div>
+    <div class="post-current">
+      <div class="label-sm">Texto actual</div>
+      <p>"Puesta de largo del conservatorio Kina Jiménez... Con nuestro ladrillo coupe caravista, hemos contribuido..." (con @menciones y #hashtags)</p>
+    </div>
+    <div class="word-count">~70 palabras — contenido de red social</div>
+    <div class="improvements">
+      <div class="label-sm">Qué añadir</div>
+      <ul>
+        <li>Este es uno de los proyectos más fotogénicos — merece un artículo en profundidad con la historia del edificio</li>
+        <li>Descripción arquitectónica: programa del edificio, por qué se eligió el Coupe Caravista como material de fachada</li>
+        <li>Citar la reseña de La Voz de Almería y resumir qué destaca del proyecto</li>
+        <li>Galería completa con las fotos de Javier Callejas (son excelentes)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-title">35 Aniversario de Bloques Barruca</div>
+      <div class="post-cat">Empresa</div>
+    </div>
+    <div class="post-current">
+      <div class="label-sm">Texto actual</div>
+      <p>"Celebramos 35 años de trayectoria... #Aniversario #35Años #ConstruyendoFuturo #BloquesBarruca #OrgullosamenteBurgaleses"</p>
+    </div>
+    <div class="word-count">~65 palabras — contenido de red social</div>
+    <div class="improvements">
+      <div class="label-sm">Qué añadir</div>
+      <ul>
+        <li>Contar la historia de la empresa desde 1980: cómo empezó, cómo ha evolucionado el catálogo, los hitos más importantes</li>
+        <li>Mencionar los productos que más han cambiado (el Fireproof, el Coupe) y cuándo se desarrollaron</li>
+        <li>Una foto de los primeros años de la fábrica si existe</li>
+        <li><strong>Nota:</strong> ya han pasado 10 años desde que se escribió esto — podría actualizarse como "45 aniversario"</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-title">Nuevo Ladrillo Coupe Caravista</div>
+      <div class="post-cat">Producto</div>
+    </div>
+    <div class="word-count ok">~80 palabras + vídeo — el mejor de los actuales</div>
+    <div class="improvements">
+      <div class="label-sm">Pequeñas mejoras</div>
+      <ul>
+        <li>Añadir las especificaciones técnicas: dimensiones, formatos (Normal, Caras Lisas, Esquina, Zuncho), colores disponibles</li>
+        <li>Añadir un párrafo sobre aplicaciones habituales: fachadas residenciales, comerciales, rehabilitación</li>
+        <li>Enlazar a la ficha técnica del producto en la web</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <div class="post-title">Congreso Proyecta y Construye / Ciclos ANDECE</div>
+      <div class="post-cat">Sector</div>
+    </div>
+    <div class="word-count ok">~120 palabras + vídeo — bien orientado</div>
+    <div class="improvements">
+      <div class="label-sm">Pequeñas mejoras</div>
+      <ul>
+        <li>Resumir en 3-4 puntos concretos qué dijo Francisco Barruca en la ponencia (los datos y argumentos clave)</li>
+        <li>Añadir contexto sobre ANDECE para lectores que no conozcan la asociación</li>
+        <li>Enlazar a la ficha del Fireproof y del Coupe desde el texto cuando se mencionen</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════ PARTE 2 ═══════════════════════════════ -->
+  <h2 style="margin-top:3rem;"><span class="num">PARTE 2</span> Ideas para artículos nuevos</h2>
+
+  <p style="font-size:.9rem;color:#52525b;margin-bottom:1.5rem;">
+    Estos temas son los que los arquitectos, aparejadores y constructoras buscan actualmente en Google.
+    Un artículo de 500 palabras bien escrito puede traer visitas durante años.
+  </p>
+
+  <div class="idea-card">
+    <div class="idea-header">
+      <div class="idea-number">1</div>
+      <div>
+        <div class="idea-title">CTE DB-SI y DB-HR: cómo cumplir resistencia al fuego y aislamiento acústico con una sola pieza</div>
+        <div class="idea-subtitle">El artículo más importante que se puede escribir</div>
+      </div>
+    </div>
+    <div class="idea-body">
+      <div class="idea-why">
+        Cada vez que un arquitecto empieza un proyecto residencial tiene que justificar ante la dirección de obra que cumple el Código Técnico. Este artículo explica exactamente cómo el Fireproof resuelve dos normativas a la vez y ahorra partidas en el presupuesto. Es el argumento de venta más potente de Barruca, escrito como guía técnica en lugar de como anuncio.
+      </div>
+      <div class="idea-tags">
+        <span class="tag tag-audience">Arquitectos · Aparejadores</span>
+        <span class="tag tag-difficulty">Fácil de escribir</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="idea-card">
+    <div class="idea-header">
+      <div class="idea-number">2</div>
+      <div>
+        <div class="idea-title">Ladrillo caravista de hormigón vs ladrillo cerámico: comparativa real de costes, plazos y mantenimiento</div>
+        <div class="idea-subtitle">Alto volumen de búsquedas — arquitectos y promotores lo comparan constantemente</div>
+      </div>
+    </div>
+    <div class="idea-body">
+      <div class="idea-why">
+        "Ladrillo caravista hormigón vs cerámico" es una búsqueda habitual. Un artículo honesto con datos reales (m²/día de colocación, precio orientativo, vida útil, mantenimiento a 20 años) posicionaría muy bien y llegaría exactamente a quien está decidiendo qué material usar.
+      </div>
+      <div class="idea-tags">
+        <span class="tag tag-audience">Promotores · Arquitectos</span>
+        <span class="tag tag-difficulty med">Requiere datos internos de Barruca</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="idea-card">
+    <div class="idea-header">
+      <div class="idea-number">3</div>
+      <div>
+        <div class="idea-title">Qué es una Declaración de Prestaciones (DoP) y por qué la necesitas en tu proyecto</div>
+        <div class="idea-subtitle">Pregunta frecuente entre arquitectos — Barruca tiene las suyas publicadas</div>
+      </div>
+    </div>
+    <div class="idea-body">
+      <div class="idea-why">
+        Muchos técnicos jóvenes buscan en Google qué es exactamente una DoP y para qué sirve. Este artículo explica el concepto, enlaza a las DoPs de Barruca disponibles en la web, y genera tráfico cualificado de personas que ya están en fase de proyecto.
+      </div>
+      <div class="idea-tags">
+        <span class="tag tag-audience">Arquitectos · Ingenieros</span>
+        <span class="tag tag-difficulty">Fácil de escribir</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="idea-card">
+    <div class="idea-header">
+      <div class="idea-number">4</div>
+      <div>
+        <div class="idea-title">Hormigón prefabricado en rehabilitación de fachadas: cuándo usarlo y cómo especificarlo</div>
+        <div class="idea-subtitle">Mercado en crecimiento — Ley de Rehabilitación está impulsando este tipo de obras</div>
+      </div>
+    </div>
+    <div class="idea-body">
+      <div class="idea-why">
+        La rehabilitación de edificios es uno de los sectores con mayor crecimiento ahora mismo gracias a las ayudas europeas. Muchos técnicos no saben que el Coupe Caravista o el Fireproof también son válidos para rehabilitación. Un artículo sobre este tema llegaría a un público que quizá nunca había pensado en Barruca.
+      </div>
+      <div class="idea-tags">
+        <span class="tag tag-audience">Arquitectos · Promotores</span>
+        <span class="tag tag-difficulty med">Requiere 2-3 casos reales como ejemplos</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="idea-card">
+    <div class="idea-header">
+      <div class="idea-number">5</div>
+      <div>
+        <div class="idea-title">Aislamiento acústico en viviendas: cómo cumplir el DB-HR sin complicar la obra</div>
+        <div class="idea-subtitle">Una de las búsquedas técnicas más frecuentes en construcción residencial</div>
+      </div>
+    </div>
+    <div class="idea-body">
+      <div class="idea-why">
+        Las quejas por ruido entre vecinos son el problema más habitual en edificios residenciales nuevos. Los arquitectos buscan soluciones que sean fáciles de ejecutar. Este artículo puede posicionar en búsquedas como "aislamiento acústico tabiquería" o "cumplir DB-HR" y llevar a la ficha del Fireproof como solución.
+      </div>
+      <div class="idea-tags">
+        <span class="tag tag-audience">Arquitectos · Constructoras</span>
+        <span class="tag tag-difficulty">Fácil de escribir</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="idea-card">
+    <div class="idea-header">
+      <div class="idea-number">6</div>
+      <div>
+        <div class="idea-title">5 proyectos de arquitectura donde el bloque de hormigón fue el protagonista</div>
+        <div class="idea-subtitle">Formato muy compartible — ideal para redes sociales y referencias visuales</div>
+      </div>
+    </div>
+    <div class="idea-body">
+      <div class="idea-why">
+        Un recopilatorio de los mejores proyectos con fotos de calidad (Kina Jiménez, Colegio Indira Gandhi, Centro de Salud El Ejido, Castañares Burgos, etc.). Este tipo de contenido se comparte mucho entre arquitectos y estudiantes de arquitectura, y da visibilidad sin parecer publicidad.
+      </div>
+      <div class="idea-tags">
+        <span class="tag tag-audience">Arquitectos · Estudiantes</span>
+        <span class="tag tag-difficulty">Fácil — usar fotos ya existentes</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="idea-card">
+    <div class="idea-header">
+      <div class="idea-number">7</div>
+      <div>
+        <div class="idea-title">Qué significa que un bloque de hormigón sea 100% reciclable: economía circular en construcción</div>
+        <div class="idea-subtitle">Tema en auge — proyectos con criterios sostenibles cada vez más frecuentes</div>
+      </div>
+    </div>
+    <div class="idea-body">
+      <div class="idea-why">
+        Los promotores y administraciones públicas exigen cada vez más criterios de sostenibilidad. Barruca tiene la certificación ADAP y el certificado verde CERTINALIA del Coupe. Un artículo que explique qué significa en términos prácticos (no en lenguaje de marketing) diferencia a Barruca de la competencia.
+      </div>
+      <div class="idea-tags">
+        <span class="tag tag-audience">Promotores · Administraciones</span>
+        <span class="tag tag-difficulty med">Requiere datos del certificado CERTINALIA</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="idea-card">
+    <div class="idea-header">
+      <div class="idea-number">8</div>
+      <div>
+        <div class="idea-title">Cómo especificar el Ladrillo Coupe Caravista en un proyecto: guía práctica para arquitectos</div>
+        <div class="idea-subtitle">Contenido muy concreto y útil — genera contacto directo</div>
+      </div>
+    </div>
+    <div class="idea-body">
+      <div class="idea-why">
+        Un arquitecto que quiere usar el Coupe necesita saber: dimensiones exactas, modulación, cómo resolver esquinas y zunchos, colores disponibles, cómo pedir muestras, qué poner en el pliego de condiciones. Un artículo que responda todas estas preguntas convierte visitas en consultas directas.
+      </div>
+      <div class="idea-tags">
+        <span class="tag tag-audience">Arquitectos</span>
+        <span class="tag tag-difficulty med">Requiere datos técnicos de la ficha del producto</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════ PRIORIDAD ═══════════════════════════════ -->
+  <div class="priority-box" style="margin-top:3rem;">
+    <h3>Por dónde empezar — orden sugerido</h3>
+    <ol>
+      <li><strong>Kina Jiménez y Centro de Salud El Ejido</strong> — los proyectos con mejores fotos. Convertirlos en artículos completos es rápido si se tienen los datos.</li>
+      <li><strong>Artículo CTE DB-SI + DB-HR</strong> (idea nº1) — el de mayor impacto para atraer arquitectos. Francisco Barruca puede dictar este artículo casi de memoria.</li>
+      <li><strong>Comparativa hormigón vs cerámico</strong> (idea nº2) — requiere honestidad y datos reales, pero posicionaría muy bien.</li>
+      <li>El resto se puede ir publicando uno al mes sin prisas.</li>
+    </ol>
+  </div>
+
+  <div class="doc-footer">
+    Propuesta elaborada por Ian Sestao · Mayo 2026 · Para uso interno de Bloques Barruca
+  </div>
+
+</div>
+</body>
+</html>

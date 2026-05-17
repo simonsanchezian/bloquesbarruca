@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Estrategia Digital — Barruca</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #b45309;
+    --accent-light: #d97706;
+    --dark: #18181b;
+    --dark2: #27272a;
+    --mid: #3f3f46;
+    --zinc: #71717a;
+    --light: #f4f4f5;
+    --white: #ffffff;
+    --li: #0a66c2;
+    --ig1: #833ab4;
+    --ig2: #fd1d1d;
+    --ig3: #fcb045;
+    --yt: #ff0000;
+  }
+
+  html, body { height: 100%; overflow: hidden; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--dark); color: var(--white); }
+
+  /* ── Slides ── */
+  .deck { width: 100vw; height: 100vh; position: relative; }
+  .slide {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 60px;
+    opacity: 0; pointer-events: none;
+    transition: opacity .45s ease, transform .45s ease;
+    transform: translateY(24px);
+  }
+  .slide.active { opacity: 1; pointer-events: all; transform: translateY(0); }
+  .slide.exit { opacity: 0; transform: translateY(-24px); }
+
+  /* ── Nav ── */
+  .nav {
+    position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 16px; z-index: 100;
+    background: rgba(24,24,27,.7); backdrop-filter: blur(12px);
+    padding: 10px 20px; border-radius: 100px; border: 1px solid rgba(255,255,255,.08);
+  }
+  .nav button {
+    background: none; border: none; color: var(--white); cursor: pointer;
+    width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; transition: background .2s;
+  }
+  .nav button:hover { background: rgba(255,255,255,.1); }
+  .nav button:disabled { opacity: .25; cursor: default; }
+  .dots { display: flex; gap: 6px; }
+  .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: rgba(255,255,255,.25); cursor: pointer;
+    transition: background .2s, transform .2s;
+  }
+  .dot.on { background: var(--accent); transform: scale(1.3); }
+  .slide-counter {
+    position: fixed; top: 24px; right: 32px;
+    font-size: 12px; font-weight: 600; color: rgba(255,255,255,.3);
+    letter-spacing: .05em; z-index: 100;
+  }
+
+  /* ── Shared elements ── */
+  .tag {
+    display: inline-flex; align-items: center; gap-8px;
+    font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 16px;
+  }
+  .tag::before { content: ''; display: inline-block; width: 3px; height: 14px; background: var(--accent); border-radius: 2px; margin-right: 8px; }
+  h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; letter-spacing: -.03em; line-height: 1.05; }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.6rem); font-weight: 800; letter-spacing: -.025em; line-height: 1.1; }
+  h3 { font-size: 1.15rem; font-weight: 700; }
+  p { color: rgba(255,255,255,.65); line-height: 1.65; }
+  .accent { color: var(--accent); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%; max-width: 1000px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; width: 100%; max-width: 1100px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; width: 100%; max-width: 1100px; }
+  .card {
+    background: var(--dark2); border: 1px solid rgba(255,255,255,.07);
+    border-radius: 16px; padding: 24px;
+  }
+  .card-accent { border-color: var(--accent); }
+  .img-cover { width: 100%; height: 100%; object-fit: cover; }
+  .pill {
+    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .06em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+    background: rgba(180,83,9,.2); color: var(--accent-light);
+  }
+  .divider { width: 48px; height: 3px; background: var(--accent); border-radius: 2px; margin: 16px 0; }
+
+  /* ── Slide 1: Portada ── */
+  #s1 { background: var(--dark); }
+  #s1 .bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: url('assets/Fotos-opt/Los Cerros/LosCerros-01.jpg') center/cover no-repeat;
+    filter: brightness(.18);
+  }
+  #s1 .content { position: relative; z-index: 1; text-align: center; }
+  #s1 .logo { height: 52px; margin-bottom: 48px; filter: brightness(0) invert(1); }
+  #s1 h1 { font-size: clamp(2.8rem,6vw,5rem); margin-bottom: 16px; }
+  #s1 .channels {
+    display: flex; gap: 12px; justify-content: center; margin-top: 32px;
+  }
+  #s1 .ch {
+    font-size: 13px; font-weight: 600; padding: 8px 20px; border-radius: 100px;
+    border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.75);
+  }
+  #s1 .date { margin-top: 48px; font-size: 13px; color: rgba(255,255,255,.35); font-weight: 500; }
+
+  /* ── Slide 2: Empresa ── */
+  #s2 { background: var(--dark); }
+  #s2 .layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; width: 100%; }
+  #s2 .photo { border-radius: 20px; overflow: hidden; aspect-ratio: 4/3; }
+  #s2 .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+  #s2 .stat { background: var(--dark2); border-radius: 14px; padding: 20px; }
+  #s2 .stat .num { font-size: 2.2rem; font-weight: 800; color: var(--accent); line-height: 1; }
+  #s2 .stat .lbl { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 6px; font-weight: 500; }
+
+  /* ── Slide 3: Reto ── */
+  #s3 { background: var(--dark); }
+  #s3 .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; max-width: 1000px; width: 100%; margin-top: 40px; }
+  #s3 .reto-card { background: var(--dark2); border-radius: 16px; padding: 32px 28px; border: 1px solid rgba(255,255,255,.07); }
+  #s3 .reto-card .icon { font-size: 2.2rem; margin-bottom: 16px; }
+  #s3 .reto-card h3 { margin-bottom: 12px; }
+  #s3 .reto-card p { font-size: 14px; }
+
+  /* ── Slide 4: LinkedIn ── */
+  #s4 { background: var(--dark); }
+  #s4 .layout { display: grid; grid-template-columns: 340px 1fr; gap: 48px; align-items: start; max-width: 1100px; width: 100%; }
+  .li-badge { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+  .li-icon { width: 48px; height: 48px; background: var(--li); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .li-icon svg { width: 26px; height: 26px; fill: white; }
+  .content-list { display: flex; flex-direction: column; gap: 12px; }
+  .content-item { display: flex; align-items: flex-start; gap: 12px; background: var(--dark2); border-radius: 12px; padding: 14px 16px; }
+  .content-item .bullet { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 7px; }
+  .content-item p { font-size: 14px; color: rgba(255,255,255,.8); margin: 0; line-height: 1.5; }
+  .meta-block { background: var(--dark2); border-radius: 14px; padding: 20px; }
+  .meta-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .meta-row:last-child { border-bottom: none; }
+  .meta-row .lbl { font-size: 12px; color: rgba(255,255,255,.4); font-weight: 500; text-transform: uppercase; letter-spacing: .06em; }
+  .meta-row .val { font-size: 13px; font-weight: 700; }
+  .goal-box { background: rgba(180,83,9,.1); border: 1px solid rgba(180,83,9,.3); border-radius: 14px; padding: 16px 20px; margin-top: 16px; }
+  .goal-box .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin-bottom: 6px; }
+  .goal-box p { font-size: 14px; color: rgba(255,255,255,.8); margin: 0; }
+
+  /* ── Slide 5: Instagram ── */
+  #s5 { background: var(--dark); }
+  #s5 .layout { display: grid; grid-template-columns: 340px 1fr; gap: 48px; align-items: start; max-width: 1100px; width: 100%; }
+  .ig-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: linear-gradient(135deg, var(--ig1), var(--ig2), var(--ig3)); }
+  .ig-icon svg { width: 26px; height: 26px; fill: white; }
+  #s5 .photo-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; border-radius: 12px; overflow: hidden; }
+  #s5 .photo-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+
+  /* ── Slide 6: YouTube ── */
+  #s6 { background: var(--dark); }
+  #s6 .layout { display: grid; grid-template-columns: 340px 1fr; gap: 48px; align-items: start; max-width: 1100px; width: 100%; }
+  .yt-icon { width: 48px; height: 48px; background: var(--yt); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .yt-icon svg { width: 28px; height: 28px; fill: white; }
+  .video-card { background: var(--dark2); border-radius: 12px; overflow: hidden; }
+  .video-thumb { position: relative; }
+  .video-thumb img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; filter: brightness(.7); }
+  .play-btn { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .play-btn svg { width: 44px; height: 44px; fill: white; opacity: .9; filter: drop-shadow(0 2px 8px rgba(0,0,0,.5)); }
+  .video-card .info { padding: 14px; }
+  .video-card .info h3 { font-size: 13px; font-weight: 600; line-height: 1.4; }
+  .video-card .info span { font-size: 11px; color: rgba(255,255,255,.4); }
+  #s6 .vids { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* ── Slide 7: Calendario ── */
+  #s7 { background: var(--dark); }
+  #s7 .cal { max-width: 980px; width: 100%; margin-top: 40px; }
+  .cal-head { display: grid; grid-template-columns: 100px repeat(3,1fr); gap: 1px; margin-bottom: 4px; }
+  .cal-head .ch-label { text-align: center; }
+  .ch-label-li { color: #70a8e0; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: 8px; }
+  .ch-label-ig { background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: 8px; }
+  .ch-label-yt { color: #ff6b6b; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: 8px; }
+  .cal-row { display: grid; grid-template-columns: 100px repeat(3,1fr); gap: 1px; background: rgba(255,255,255,.05); border-radius: 0; }
+  .cal-row:first-child { border-radius: 12px 12px 0 0; }
+  .cal-row:last-child { border-radius: 0 0 12px 12px; }
+  .cal-row + .cal-row { margin-top: 1px; }
+  .cal-day { background: var(--dark2); padding: 16px 14px; }
+  .cal-day .day-name { font-size: 12px; font-weight: 700; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .06em; }
+  .cal-cell { background: var(--dark2); padding: 16px 14px; font-size: 13px; color: rgba(255,255,255,.75); line-height: 1.4; }
+  .cal-cell.empty { background: var(--dark2); }
+  .cal-cell .dot-li { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--li); margin-right: 6px; vertical-align: middle; }
+  .cal-cell .dot-ig { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--ig2); margin-right: 6px; vertical-align: middle; }
+  .cal-cell .dot-yt { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--yt); margin-right: 6px; vertical-align: middle; }
+
+  /* ── Slide 8: Fases ── */
+  #s8 { background: var(--dark); }
+  #s8 .timeline { display: flex; gap: 0; max-width: 1000px; width: 100%; margin-top: 48px; position: relative; }
+  #s8 .timeline::before { content: ''; position: absolute; top: 32px; left: 0; right: 0; height: 2px; background: rgba(255,255,255,.08); z-index: 0; }
+  .phase { flex: 1; position: relative; z-index: 1; padding: 0 20px; }
+  .phase-dot { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 0 auto 24px; border: 2px solid; }
+  .phase-dot.p1 { background: rgba(180,83,9,.15); border-color: var(--accent); }
+  .phase-dot.p2 { background: rgba(180,83,9,.25); border-color: var(--accent); }
+  .phase-dot.p3 { background: rgba(180,83,9,.4); border-color: var(--accent-light); }
+  .phase-period { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); text-align: center; margin-bottom: 12px; }
+  .phase h3 { text-align: center; margin-bottom: 16px; }
+  .phase ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .phase ul li { font-size: 13px; color: rgba(255,255,255,.6); padding-left: 14px; position: relative; line-height: 1.45; }
+  .phase ul li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+
+  /* ── Slide 9: Necesitamos ── */
+  #s9 { background: var(--dark); }
+  #s9 .needs { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; max-width: 800px; width: 100%; margin-top: 40px; }
+  .need-card { background: var(--dark2); border-radius: 16px; padding: 28px; display: flex; gap: 20px; align-items: flex-start; border: 1px solid rgba(255,255,255,.07); }
+  .need-icon { font-size: 2rem; flex-shrink: 0; }
+  .need-card h3 { margin-bottom: 8px; font-size: 1rem; }
+  .need-card p { font-size: 13px; color: rgba(255,255,255,.55); margin: 0; line-height: 1.5; }
+
+  /* ── Slide 10: Cierre ── */
+  #s10 { background: var(--dark); }
+  #s10 .bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: url('assets/Fotos-opt/IES Huércal Almería/IESHuércalAlmería-22.jpg') center/cover no-repeat;
+    filter: brightness(.15);
+  }
+  #s10 .content { position: relative; z-index: 1; text-align: center; }
+  #s10 .logo { height: 48px; margin-bottom: 48px; filter: brightness(0) invert(1); }
+  #s10 .quote { font-size: clamp(1.2rem,2.5vw,1.8rem); font-weight: 300; color: rgba(255,255,255,.8); max-width: 600px; line-height: 1.5; margin-bottom: 48px; }
+  #s10 .quote strong { font-weight: 800; color: white; }
+  #s10 .contact { display: flex; gap: 24px; justify-content: center; }
+  #s10 .contact-item { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 14px 24px; text-align: left; }
+  #s10 .contact-item .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: rgba(255,255,255,.4); margin-bottom: 4px; }
+  #s10 .contact-item .val { font-size: 14px; font-weight: 600; }
+
+  @media print {
+    .nav, .slide-counter { display: none; }
+    .slide { position: relative; opacity: 1; transform: none; page-break-after: always; height: 100vh; }
+    html, body { overflow: visible; height: auto; }
+    .deck { height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- ── SLIDE 1: PORTADA ── -->
+  <div class="slide active" id="s1">
+    <div class="bg"></div>
+    <div class="content">
+      <img src="assets/logo-barruca-web.webp" alt="Barruca" class="logo" />
+      <div class="tag">Propuesta de colaboración</div>
+      <h1>Estrategia de<br/><span class="accent">Contenido Digital</span></h1>
+      <div class="channels">
+        <div class="ch">LinkedIn</div>
+        <div class="ch">Instagram</div>
+        <div class="ch">YouTube</div>
+      </div>
+      <div class="date" id="date-display"></div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 2: LA EMPRESA ── -->
+  <div class="slide" id="s2">
+    <div class="layout">
+      <div>
+        <div class="tag">La empresa</div>
+        <h2>Barruca,<br/>40 años de oficio</h2>
+        <div class="divider"></div>
+        <p style="font-size:15px;">Fabricante de bloques y ladrillos de hormigón prefabricado en Burgos. Productos certificados por TECNALIA y reconocidos por el Ministerio de Economía.</p>
+        <div class="stats">
+          <div class="stat"><div class="num">+40</div><div class="lbl">Años en el sector</div></div>
+          <div class="stat"><div class="num">4</div><div class="lbl">Líneas de producto</div></div>
+          <div class="stat"><div class="num">🇪🇸</div><div class="lbl">Distribución nacional</div></div>
+          <div class="stat"><div class="num">EI‑120</div><div class="lbl">Resistencia al fuego</div></div>
+        </div>
+      </div>
+      <div class="photo">
+        <img src="assets/kina1.webp" alt="Instalaciones Barruca" class="img-cover" style="border-radius:20px;" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 3: EL RETO ── -->
+  <div class="slide" id="s3">
+    <div class="tag">El punto de partida</div>
+    <h2 style="text-align:center;max-width:700px;">De empresa consolidada<br/>a <span class="accent">marca referente</span></h2>
+    <div class="cards">
+      <div class="reto-card">
+        <div class="icon">🔍</div>
+        <h3>Visibilidad</h3>
+        <p>Arquitectos y constructoras de toda España que aún no os conocen. El contenido digital acorta esa distancia.</p>
+      </div>
+      <div class="reto-card">
+        <div class="icon">🏅</div>
+        <h3>Confianza técnica</h3>
+        <p>Tenéis certificaciones reales (TECNALIA, ANDECE, CPR) que muy pocos competidores pueden mostrar. Hay que comunicarlas.</p>
+      </div>
+      <div class="reto-card">
+        <div class="icon">📞</div>
+        <h3>Conversión</h3>
+        <p>Que el contenido genere solicitudes de presupuesto, consultas técnicas y relaciones con estudios de arquitectura.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 4: LINKEDIN ── -->
+  <div class="slide" id="s4">
+    <div class="layout">
+      <div>
+        <div class="li-badge">
+          <div class="li-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+          <div>
+            <div class="tag" style="margin-bottom:2px;">Canal B2B</div>
+            <h2 style="font-size:1.8rem;">LinkedIn</h2>
+          </div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-row"><span class="lbl">Público</span><span class="val">Arquitectos · Constructoras · Promotoras</span></div>
+          <div class="meta-row"><span class="lbl">Frecuencia</span><span class="val">2–3 publicaciones / semana</span></div>
+          <div class="meta-row"><span class="lbl">Formato</span><span class="val">Posts, documentos PDF, carruseles</span></div>
+        </div>
+        <div class="goal-box">
+          <div class="lbl">Objetivo</div>
+          <p>Posicionar Barruca como referencia técnica en materiales de hormigón prefabricado en España</p>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:13px;margin-bottom:16px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);">Tipos de contenido</p>
+        <div class="content-list">
+          <div class="content-item"><div class="bullet"></div><p><strong>Ficha técnica simplificada</strong> — "¿Qué resistencia al fuego necesita tu proyecto? Esto es lo que certifica el Fireproof®"</p></div>
+          <div class="content-item"><div class="bullet"></div><p><strong>Casos de obra reales</strong> — proyecto, producto utilizado, resultado, cliente (si autoriza)</p></div>
+          <div class="content-item"><div class="bullet"></div><p><strong>Contenido educativo CTE</strong> — normativa de construcción explicada con vuestros productos como solución</p></div>
+          <div class="content-item"><div class="bullet"></div><p><strong>Novedades sectoriales</strong> — eficiencia energética, sostenibilidad, nuevas normativas</p></div>
+          <div class="content-item"><div class="bullet"></div><p><strong>Testimonios de profesionales</strong> — arquitectos y constructoras que hayan trabajado con Barruca</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 5: INSTAGRAM ── -->
+  <div class="slide" id="s5">
+    <div class="layout">
+      <div>
+        <div class="li-badge">
+          <div class="ig-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </div>
+          <div>
+            <div class="tag" style="margin-bottom:2px;">Marca visual</div>
+            <h2 style="font-size:1.8rem;">Instagram</h2>
+          </div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-row"><span class="lbl">Público</span><span class="val">Arquitectos jóvenes · Interioristas · Particulares</span></div>
+          <div class="meta-row"><span class="lbl">Frecuencia</span><span class="val">4–5 publicaciones / semana</span></div>
+          <div class="meta-row"><span class="lbl">Formato</span><span class="val">Fotos, Reels, Stories</span></div>
+        </div>
+        <div class="goal-box">
+          <div class="lbl">Objetivo</div>
+          <p>Que Barruca aparezca cuando alguien busca inspiración en construcción o materiales de hormigón</p>
+        </div>
+      </div>
+      <div>
+        <div class="photo-grid" style="margin-bottom:16px;">
+          <img src="assets/Fotos-opt/Los Cerros/LosCerros-03.jpg" alt="" />
+          <img src="assets/Fotos-opt/Los Cerros/LosCerros-04.jpg" alt="" />
+          <img src="assets/Fotos-opt/Los Cerros/LosCerros-06.jpg" alt="" />
+          <img src="assets/Fotos-opt/IES Huércal Almería/IESHuércalAlmería-16.jpg" alt="" />
+          <img src="assets/Fotos-opt/Instituto Maracena/2334-0255.jpg" alt="" />
+          <img src="assets/Fotos-opt/KINA/KINA 1.jpg" alt="" />
+        </div>
+        <div class="content-list">
+          <div class="content-item"><div class="bullet"></div><p><strong>Obra terminada</strong> — el Coupe Caravista es el producto más fotogénico para Instagram</p></div>
+          <div class="content-item"><div class="bullet"></div><p><strong>Reels de proceso</strong> — 30-60 seg de fábrica a muro terminado</p></div>
+          <div class="content-item"><div class="bullet"></div><p><strong>Comparativas visuales</strong> — acabados, colores disponibles, texturas</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 6: YOUTUBE ── -->
+  <div class="slide" id="s6">
+    <div class="layout">
+      <div>
+        <div class="li-badge">
+          <div class="yt-icon">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </div>
+          <div>
+            <div class="tag" style="margin-bottom:2px;">Autoridad técnica</div>
+            <h2 style="font-size:1.8rem;">YouTube</h2>
+          </div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-row"><span class="lbl">Público</span><span class="val">Arquitectos · Técnicos · Estudiantes</span></div>
+          <div class="meta-row"><span class="lbl">Frecuencia</span><span class="val">1 vídeo cada 2–3 semanas</span></div>
+          <div class="meta-row"><span class="lbl">Duración</span><span class="val">5–10 minutos por vídeo</span></div>
+        </div>
+        <div class="goal-box">
+          <div class="lbl">Objetivo</div>
+          <p>Aparecer en búsquedas técnicas de profesionales: "bloque hormigón resistencia fuego", "HIB vs ladrillo CTE"</p>
+        </div>
+      </div>
+      <div class="vids">
+        <div class="video-card">
+          <div class="video-thumb">
+            <img src="assets/Fotos-opt/KINA/Kina_1 (3).jpg" alt="" />
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="info"><h3>Visita a fábrica: así se fabrica un bloque Barruca</h3><span>12 min · documental de fábrica</span></div>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb">
+            <img src="assets/Fotos-opt/Los Cerros/LosCerros-01.jpg" alt="" />
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="info"><h3>Obra real: urbanización Los Cerros desde cero</h3><span>8 min · case study</span></div>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb">
+            <img src="assets/images/02-LADRILLO-BARRUCA-50-dBA.webp" alt="" style="background:#27272a;" />
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="info"><h3>Fireproof® EI-120: qué certifica TECNALIA y por qué importa</h3><span>6 min · producto técnico</span></div>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb">
+            <img src="assets/Fotos-opt/IES Huércal Almería/IESHuércalAlmería-22.jpg" alt="" />
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="info"><h3>IES Huércal Almería: el bloque Barruca en un instituto</h3><span>7 min · proyecto educativo</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 7: CALENDARIO ── -->
+  <div class="slide" id="s7">
+    <div class="tag">Planificación semanal</div>
+    <h2>Ejemplo de semana tipo</h2>
+    <div class="cal">
+      <div class="cal-head">
+        <div></div>
+        <div class="ch-label"><div class="ch-label-li">LinkedIn</div></div>
+        <div class="ch-label"><div class="ch-label-ig">Instagram</div></div>
+        <div class="ch-label"><div class="ch-label-yt">YouTube</div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1px;border-radius:12px;overflow:hidden;background:rgba(255,255,255,.05);">
+        <div class="cal-row">
+          <div class="cal-day"><div class="day-name">Lunes</div></div>
+          <div class="cal-cell"><span class="dot-li"></span>Ficha técnica de producto</div>
+          <div class="cal-cell"><span class="dot-ig"></span>Foto de obra terminada</div>
+          <div class="cal-cell empty" style="color:rgba(255,255,255,.2);">—</div>
+        </div>
+        <div class="cal-row">
+          <div class="cal-day"><div class="day-name">Miércoles</div></div>
+          <div class="cal-cell"><span class="dot-li"></span>Artículo educativo CTE</div>
+          <div class="cal-cell"><span class="dot-ig"></span>Reel proceso fabricación</div>
+          <div class="cal-cell empty" style="color:rgba(255,255,255,.2);">—</div>
+        </div>
+        <div class="cal-row">
+          <div class="cal-day"><div class="day-name">Viernes</div></div>
+          <div class="cal-cell"><span class="dot-li"></span>Testimonio de cliente</div>
+          <div class="cal-cell"><span class="dot-ig"></span>Post inspiracional / proyecto</div>
+          <div class="cal-cell"><span class="dot-yt"></span>Publicación vídeo nuevo</div>
+        </div>
+        <div class="cal-row">
+          <div class="cal-day"><div class="day-name">Domingo</div></div>
+          <div class="cal-cell empty" style="color:rgba(255,255,255,.2);">—</div>
+          <div class="cal-cell"><span class="dot-ig"></span>Story: curiosidad o dato técnico</div>
+          <div class="cal-cell empty" style="color:rgba(255,255,255,.2);">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 8: FASES ── -->
+  <div class="slide" id="s8">
+    <div class="tag">Expectativas reales</div>
+    <h2>¿Cuándo veremos resultados?</h2>
+    <div class="timeline">
+      <div class="phase">
+        <div class="phase-dot p1">🌱</div>
+        <div class="phase-period">Meses 1 – 3</div>
+        <h3>Construcción de base</h3>
+        <ul>
+          <li>Coherencia visual en todos los canales</li>
+          <li>Archivo fotográfico y de vídeo</li>
+          <li>Primeras publicaciones regulares</li>
+          <li>Comunidad inicial de seguidores</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-dot p2">📈</div>
+        <div class="phase-period">Meses 3 – 6</div>
+        <h3>Primeras conversiones</h3>
+        <ul>
+          <li>Arquitectos contactando por DM o LinkedIn</li>
+          <li>Peticiones de catálogo o muestras</li>
+          <li>Alcance orgánico creciendo</li>
+          <li>Primeras colaboraciones con estudios</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="phase-dot p3">🏆</div>
+        <div class="phase-period">Meses 6 – 12</div>
+        <h3>Marca referente</h3>
+        <ul>
+          <li>Presupuestos llegando desde redes</li>
+          <li>Reconocimiento en el sector</li>
+          <li>YouTube posicionando en búsquedas técnicas</li>
+          <li>Comunidad activa y fidelizada</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 9: NECESITAMOS ── -->
+  <div class="slide" id="s9">
+    <div class="tag">Para empezar</div>
+    <h2>Lo que necesitamos<br/>de <span class="accent">vuestro lado</span></h2>
+    <div class="needs">
+      <div class="need-card">
+        <div class="need-icon">📸</div>
+        <div>
+          <h3>Material visual de obras</h3>
+          <p>Fotos y vídeos de proyectos recientes, o presupuesto para organizar una sesión fotográfica en obra.</p>
+        </div>
+      </div>
+      <div class="need-card">
+        <div class="need-icon">👤</div>
+        <div>
+          <h3>Una cara para el contenido</h3>
+          <p>En LinkedIn y YouTube funciona mucho mejor una persona real de la empresa que solo el logotipo.</p>
+        </div>
+      </div>
+      <div class="need-card">
+        <div class="need-icon">📋</div>
+        <div>
+          <h3>Acceso a proyectos realizados</h3>
+          <p>Para documentar obras pasadas y convertirlas en casos de éxito publicables.</p>
+        </div>
+      </div>
+      <div class="need-card">
+        <div class="need-icon">✅</div>
+        <div>
+          <h3>Aprobación ágil de contenido</h3>
+          <p>Revisar y aprobar el contenido en un máximo de 24h antes de cada publicación.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 10: PREGUNTAS ── -->
+  <div class="slide" id="s10q">
+    <div class="tag">Antes de empezar</div>
+    <h2 style="margin-bottom:32px;">Preguntas para la reunión</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1180px;width:100%;">
+
+      <div class="card" style="display:flex;flex-direction:column;gap:14px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:4px;">🌐 Dominio y web</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);">¿Con quién tienen registrado el dominio? <span style="color:rgba(255,255,255,.35);">(Arsys, GoDaddy, OVH…)</span></div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);">¿Tienen acceso al panel DNS o necesito que me lo den?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);">¿Hay una web actual en ese dominio que tiene que seguir funcionando durante la transición?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;">¿Quién gestiona el hosting actual?</div>
+      </div>
+
+      <div class="card" style="display:flex;flex-direction:column;gap:14px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:4px;">📝 Proyectos y blog</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);">¿Con qué frecuencia terminan obras nuevas?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);">¿Quién manda las fotos y datos de cada proyecto? ¿Ellos o yo los genero?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);">¿Quieren escribir los blogs ellos o lo hago yo?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;">¿Tienen ya proyectos pendientes de publicar o empezamos desde cero?</div>
+      </div>
+
+      <div class="card" style="display:flex;flex-direction:column;gap:14px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:4px;">📱 Redes sociales</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);">¿Tienen ya cuentas en LinkedIn, Instagram y YouTube o hay que crearlas?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);">¿Cuántos seguidores tienen ahora? ¿Hay algo publicado?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);">¿Tienen a alguien que grabe vídeos en obra o lo organizo yo?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);">¿Cuánto tiempo a la semana puede dedicar alguien de su equipo a aprobar contenido?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;">¿El objetivo es marca, leads, o los dos? ¿Hay presupuesto para publicidad de pago?</div>
+      </div>
+
+      <div class="card card-accent" style="display:flex;flex-direction:column;gap:14px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:4px;">💼 Colaboración</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);">¿Quieren precio cerrado mensual, por proyecto, o por horas?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);">¿Esperan que yo genere el contenido al 100% o solo que lo publique y gestione?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);">¿Necesitan informes mensuales de resultados?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.06);">¿Cuántos meses mínimo quieren comprometerse?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;">¿Necesitan disponibilidad para urgencias? ¿En cuánto tiempo esperan respuesta?</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── SLIDE 11: CIERRE ── -->
+  <div class="slide" id="s11">
+    <div class="bg"></div>
+    <div class="content">
+      <img src="assets/logo-barruca-web.webp" alt="Barruca" class="logo" />
+      <div class="quote">
+        "Más de 40 años <strong>construyendo</strong>.<br/>Ahora también <strong>en digital</strong>."
+      </div>
+      <div class="contact">
+        <div class="contact-item">
+          <div class="lbl">Nombre</div>
+          <div class="val" contenteditable="true" style="outline:none;min-width:160px;">Tu nombre aquí</div>
+        </div>
+        <div class="contact-item">
+          <div class="lbl">Email</div>
+          <div class="val" contenteditable="true" style="outline:none;min-width:160px;">tu@email.com</div>
+        </div>
+        <div class="contact-item">
+          <div class="lbl">Teléfono</div>
+          <div class="val" contenteditable="true" style="outline:none;min-width:140px;">+34 000 000 000</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Navegación ── -->
+<div class="slide-counter" id="counter">1 / 10</div>
+<div class="nav">
+  <button id="prev" disabled aria-label="Anterior">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <div class="dots" id="dots"></div>
+  <button id="next" aria-label="Siguiente">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  let current = 0;
+
+  // Date
+  const d = new Date();
+  document.getElementById('date-display').textContent =
+    d.toLocaleDateString('es-ES', { day:'numeric', month:'long', year:'numeric' });
+
+  // Dots
+  const dotsEl = document.getElementById('dots');
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' on' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(dot);
+  });
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= total) return;
+    slides[current].classList.remove('active');
+    slides[current].classList.add('exit');
+    setTimeout(() => slides[current].classList.remove('exit'), 450);
+    current = idx;
+    slides[current].classList.add('active');
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('on', i === current));
+    document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('prev').disabled = current === 0;
+    document.getElementById('next').disabled = current === total - 1;
+  }
+
+  document.getElementById('prev').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('next').addEventListener('click', () => goTo(current + 1));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(current + 1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(current - 1);
+  });
+</script>
+</body>
+</html>
