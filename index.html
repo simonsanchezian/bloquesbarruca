@@ -886,10 +886,10 @@
             <button id="mob-prod-btn" onclick="toggleMobProducts()" aria-label="Ver productos individuales"
               style="margin-right:6px;display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:#f4f4f5;border:none;cursor:pointer;flex-shrink:0;transition:background 0.15s;"
               onmouseenter="this.style.background='#fee2e2'" onmouseleave="this.style.background='#f4f4f5'">
-              <svg id="mob-prod-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.2s;flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg>
+              <svg id="mob-prod-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.2s;flex-shrink:0;transform:rotate(180deg);"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
           </div>
-          <div id="mob-prod-menu" class="hidden pl-3 mt-0.5 space-y-0.5 border-l-2 border-accent-200 ml-3">
+          <div id="mob-prod-menu" class="pl-3 mt-0.5 space-y-0.5 border-l-2 border-accent-200 ml-3">
             <a href="producto-coupe.html"    class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">Coupe Caravista <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1" style="display:inline-block;vertical-align:middle;margin-left:3px;margin-bottom:2px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></a>
             <a href="producto-fireproof.html" class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">Ladrillo Fireproof®</a>
             <a href="producto-hib.html"      class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">HIB</a>
@@ -2238,7 +2238,7 @@
       var menu = document.getElementById('mob-prod-menu');
       var icon = document.getElementById('mob-prod-icon');
       var open = menu.classList.toggle('hidden') === false;
-      icon.style.transform = open ? 'rotate(180deg)' : '';
+      icon.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
     }
   </script>
 
