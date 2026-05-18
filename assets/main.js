@@ -285,7 +285,7 @@
       var section = document.getElementById('productos');
       if (!section) return;
 
-      var IDS   = ['fireproof', 'coupe', 'hib', 'bloque-hormigon'];
+      var IDS   = ['coupe', 'fireproof', 'hib', 'bloque-hormigon'];
       var n     = IDS.length;
       var inner = section.querySelector('.max-w-6xl');
       var hdr   = inner.querySelector('.mb-16');
