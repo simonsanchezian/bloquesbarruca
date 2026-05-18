@@ -314,6 +314,9 @@
       /* left / width / height set by JS */
       z-index: 45;
       pointer-events: none;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
 
@@ -322,6 +325,8 @@
       opacity: 0;
       will-change: transform, opacity;
       filter: grayscale(30%) drop-shadow(-5px 0px 7px rgba(0,0,0,0.5));
+      pointer-events: none;
+      -webkit-tap-highlight-color: transparent;
     }
     .brick-item.landed {
       animation: brickDrop var(--brick-dur, 0.72s) linear var(--brick-delay, 0s) forwards;
@@ -365,7 +370,7 @@
       pointer-events: none;
       z-index: 0;
     }
-    .productos-card:hover::after { opacity: 1; }
+    @media (hover: hover) { .productos-card:hover::after { opacity: 1; } }
     .productos-card > * { position: relative; z-index: 1; }
     @media (max-width: 767px) {
       .productos-card::after {
