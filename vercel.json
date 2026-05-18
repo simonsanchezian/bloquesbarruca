@@ -45,6 +45,8 @@
     { "source": "/contacto/",            "destination": "/#contacto",               "permanent": true },
     { "source": "/ladrillo-acustico",    "destination": "/producto-fireproof.html", "permanent": true },
     { "source": "/ladrillo-acustico/",   "destination": "/producto-fireproof.html", "permanent": true },
-    { "source": "/ver-articulo.html",    "destination": "/blog.html",               "permanent": true }
+    { "source": "/ver-articulo.html",    "destination": "/blog.html",               "permanent": true },
+    { "source": "/outlet",              "destination": "/",                        "permanent": true },
+    { "source": "/outlet/",             "destination": "/",                        "permanent": true }
   ]
 }
