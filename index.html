@@ -341,8 +341,8 @@
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
     }
-    .rv-track { animation: rv-scroll 42s linear infinite; }
-    .rv-track:hover { animation-play-state: paused; }
+    .rv-track.rv-playing { animation: rv-scroll 42s linear infinite; }
+    .rv-track.rv-playing:hover { animation-play-state: paused; }
     .rv-wrap {
       overflow: hidden;
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
@@ -2458,6 +2458,19 @@
       }, { threshold: 0.4 });
 
       cards.forEach(function (card) { io.observe(card); });
+    })();
+
+    /* ── Reseñas: arrancar carrusel al llegar a la sección ── */
+    (function () {
+      var section = document.getElementById('resenas');
+      if (!section) return;
+      var io = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) {
+          document.querySelectorAll('.rv-track').forEach(function (t) { t.classList.add('rv-playing'); });
+          io.disconnect();
+        }
+      }, { threshold: 0.15 });
+      io.observe(section);
     })();
   </script>
 
