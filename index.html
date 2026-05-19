@@ -2237,7 +2237,7 @@
 
           <!-- Form -->
           <div class="reveal delay-1">
-            <form id="contact-form" class="space-y-5">
+            <form id="contact-form" class="space-y-5" action="https://formspree.io/f/mnjrjzzr" method="POST">
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="flex flex-col gap-1.5">
                   <label for="nombre" class="text-sm font-medium text-zinc-700">Nombre</label>
@@ -2478,6 +2478,39 @@
       }, { threshold: 0.4 });
 
       cards.forEach(function (card) { io.observe(card); });
+    })();
+
+    /* ── Formulario de contacto → Formspree ── */
+    (function () {
+      var form = document.getElementById('contact-form');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        btn.textContent = 'Enviando…';
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        }).then(function (res) {
+          if (res.ok) {
+            form.innerHTML = '<div style="text-align:center;padding:2.5rem 1rem">'
+              + '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 1rem"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>'
+              + '<p style="font-size:1.25rem;font-weight:800;color:#18181b;margin-bottom:.5rem">Mensaje enviado</p>'
+              + '<p style="color:#52525b;font-size:.95rem">Nos pondremos en contacto contigo lo antes posible.</p>'
+              + '</div>';
+          } else {
+            btn.disabled = false;
+            btn.textContent = 'Enviar mensaje';
+            alert('Ha ocurrido un error. Por favor inténtalo de nuevo.');
+          }
+        }).catch(function () {
+          btn.disabled = false;
+          btn.textContent = 'Enviar mensaje';
+          alert('Ha ocurrido un error. Por favor inténtalo de nuevo.');
+        });
+      });
     })();
 
     /* ── Reseñas: centrar Felisa+Héctor y arrancar al llegar a la sección ── */
