@@ -942,7 +942,7 @@
       <!-- Content -->
       <div class="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
         <div class="lg:flex lg:items-center lg:gap-16">
-        <div class="flex-1 max-w-[54ch]">
+        <div class="flex-1 max-w-[54ch] mx-auto lg:mx-0">
 
           <div class="reveal">
             <span class="hero-body inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white bg-accent-700 px-3 py-1.5 rounded-full mb-5 hero-btn-shadow">
@@ -973,6 +973,32 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
               Escríbenos
             </a>
+          </div>
+
+          <!-- Stats móvil (solo < lg) -->
+          <div class="lg:hidden reveal grid grid-cols-3 gap-4 mb-8 pt-6 border-t border-white/15">
+
+            <div class="stats-card" data-target="50">
+              <p class="font-extrabold tracking-tighter text-white leading-none mb-1" style="font-size:2.4rem;text-shadow:0 2px 20px rgba(0,0,0,0.8);">
+                <span class="text-accent-400">+</span><span class="stats-num">0</span>
+              </p>
+              <p class="text-[10px] font-semibold uppercase tracking-wider text-zinc-300 leading-tight" style="text-shadow:0 1px 6px rgba(0,0,0,0.7);">proyectos en España</p>
+            </div>
+
+            <div class="stats-card" data-target="16">
+              <p class="font-extrabold tracking-tighter text-white leading-none mb-1" style="font-size:2.4rem;text-shadow:0 2px 20px rgba(0,0,0,0.8);">
+                <span class="text-accent-400">+</span><span class="stats-num">0</span><span class="text-accent-400">M</span>
+              </p>
+              <p class="text-[10px] font-semibold uppercase tracking-wider text-zinc-300 leading-tight" style="text-shadow:0 1px 6px rgba(0,0,0,0.7);">ladrillos vendidos</p>
+            </div>
+
+            <div class="stats-card" data-target="40">
+              <p class="font-extrabold tracking-tighter text-white leading-none mb-1" style="font-size:2.4rem;text-shadow:0 2px 20px rgba(0,0,0,0.8);">
+                <span class="text-accent-400">+</span><span class="stats-num">0</span>
+              </p>
+              <p class="text-[10px] font-semibold uppercase tracking-wider text-zinc-300 leading-tight" style="text-shadow:0 1px 6px rgba(0,0,0,0.7);">años de experiencia</p>
+            </div>
+
           </div>
 
           <!-- Certificaciones DAP/ADAP -->
@@ -1019,13 +1045,33 @@
 
         </div>
 
-        <!-- Logo hero derecho -->
-        <div class="hidden lg:flex flex-1 items-center justify-center">
-          <div class="hero-logo-wrap">
-            <img src="/assets/logo-barruca-web.webp"
-                 alt="Bloques Barruca"
-                 class="hero-logo-img reveal delay-2 w-full object-contain" /></div>
-        </div>
+          <!-- Stats hero derecho (solo desktop) -->
+          <div class="hidden lg:flex flex-1 items-center justify-center">
+            <div class="reveal delay-2">
+
+              <div class="stats-card pb-8" data-target="50">
+                <p class="font-extrabold tracking-tighter text-white leading-none mb-1" style="font-size:5.5rem;text-shadow:0 2px 30px rgba(0,0,0,0.7);">
+                  <span class="text-accent-400">+</span><span class="stats-num">0</span>
+                </p>
+                <p class="text-sm font-semibold uppercase tracking-widest text-zinc-300" style="text-shadow:0 1px 8px rgba(0,0,0,0.6);">proyectos en toda España</p>
+              </div>
+
+              <div class="stats-card pb-8" data-target="16">
+                <p class="font-extrabold tracking-tighter text-white leading-none mb-1" style="font-size:5.5rem;text-shadow:0 2px 30px rgba(0,0,0,0.7);">
+                  <span class="text-accent-400">+</span><span class="stats-num">0</span><span class="text-accent-400">M</span>
+                </p>
+                <p class="text-sm font-semibold uppercase tracking-widest text-zinc-300" style="text-shadow:0 1px 8px rgba(0,0,0,0.6);">ladrillos vendidos</p>
+              </div>
+
+              <div class="stats-card" data-target="40">
+                <p class="font-extrabold tracking-tighter text-white leading-none mb-1" style="font-size:5.5rem;text-shadow:0 2px 30px rgba(0,0,0,0.7);">
+                  <span class="text-accent-400">+</span><span class="stats-num">0</span>
+                </p>
+                <p class="text-sm font-semibold uppercase tracking-widest text-zinc-300" style="text-shadow:0 1px 8px rgba(0,0,0,0.6);">años de experiencia</p>
+              </div>
+
+            </div>
+          </div>
 
         </div><!-- /flex row -->
       </div>
@@ -1151,12 +1197,12 @@
           <!-- gráfico -->
           <div class="bg-white/5 border border-white/10 rounded-3xl p-8">
             <p class="text-white font-bold text-lg mb-1">Optimización en obra</p>
-            <p class="text-zinc-400 text-sm mb-8">COUPE Barruca vs Ladrillo Tradicional</p>
+            <p class="text-zinc-400 text-sm mb-8">Coupe Caravista vs Ladrillo Tradicional</p>
 
             <!-- leyenda -->
             <div style="display:flex;justify-content:center;gap:1.5rem;margin-bottom:1.25rem;">
               <span style="display:flex;align-items:center;gap:6px;font-size:0.7rem;color:#d4d4d8;font-weight:600;">
-                <span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#dc2626;flex-shrink:0;"></span>COUPE Barruca
+                <span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#dc2626;flex-shrink:0;"></span>Coupe Caravista
               </span>
               <span style="display:flex;align-items:center;gap:6px;font-size:0.7rem;color:#d4d4d8;font-weight:600;">
                 <span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#52525b;flex-shrink:0;"></span>Ladrillo Tradicional
@@ -2285,6 +2331,44 @@
           cards[i].style.setProperty('--cy', '-400px');
         }
       });
+    })();
+  </script>
+
+  <!-- Stats count-up animation -->
+  <script>
+    (function () {
+      var cards = document.querySelectorAll('.stats-card');
+      if (!cards.length) return;
+
+      function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+
+      function animateCard(card) {
+        var target = parseInt(card.getAttribute('data-target'), 10);
+        var numEl  = card.querySelector('.stats-num');
+        if (!numEl) return;
+        var duration = 1800;
+        var start    = null;
+        function step(ts) {
+          if (!start) start = ts;
+          var elapsed  = ts - start;
+          var progress = Math.min(elapsed / duration, 1);
+          numEl.textContent = Math.round(easeOutQuart(progress) * target);
+          if (progress < 1) requestAnimationFrame(step);
+          else numEl.textContent = target;
+        }
+        requestAnimationFrame(step);
+      }
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateCard(entry.target);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
+
+      cards.forEach(function (card) { io.observe(card); });
     })();
   </script>
 
