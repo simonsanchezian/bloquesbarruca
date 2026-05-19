@@ -338,8 +338,8 @@
 
     /* ── Marquee reseñas ── */
     @keyframes rv-scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+      from { transform: translateX(var(--rv-start, 0px)); }
+      to   { transform: translateX(calc(var(--rv-start, 0px) - 50%)); }
     }
     .rv-track.rv-playing { animation: rv-scroll 42s linear infinite; }
     .rv-track.rv-playing:hover { animation-play-state: paused; }
@@ -2460,15 +2460,33 @@
       cards.forEach(function (card) { io.observe(card); });
     })();
 
-    /* ── Reseñas: arrancar carrusel al llegar a la sección ── */
+    /* ── Reseñas: centrar Felisa+Héctor y arrancar al llegar a la sección ── */
     (function () {
       var section = document.getElementById('resenas');
       if (!section) return;
       var io = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting) {
-          document.querySelectorAll('.rv-track').forEach(function (t) { t.classList.add('rv-playing'); });
-          io.disconnect();
+        if (!entries[0].isIntersecting) return;
+        io.disconnect();
+        var tracks = document.querySelectorAll('.rv-track');
+        if (window.innerWidth >= 1024) {
+          var wrap  = document.querySelector('.rv-wrap');
+          var track = tracks[0];
+          if (wrap && track) {
+            var cards     = track.querySelectorAll('.rv-card');
+            var c1        = cards[0];
+            var c2        = cards[1];
+            if (c1 && c2) {
+              var wrapRect  = wrap.getBoundingClientRect();
+              var c1Rect    = c1.getBoundingClientRect();
+              var c2Rect    = c2.getBoundingClientRect();
+              var cardsCenter = (c1Rect.left + c2Rect.right) / 2;
+              var wrapCenter  = wrapRect.left + wrapRect.width / 2;
+              var offset      = wrapCenter - cardsCenter;
+              tracks.forEach(function (t) { t.style.setProperty('--rv-start', offset + 'px'); });
+            }
+          }
         }
+        tracks.forEach(function (t) { t.classList.add('rv-playing'); });
       }, { threshold: 0.15 });
       io.observe(section);
     })();
