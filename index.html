@@ -322,16 +322,13 @@
     /* ── Footer ── */
     footer { display: flex; flex-direction: column; }
     #footer-inner {
-      flex: 1; display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 0 1rem 3rem;
+      flex: 1; display: flex; flex-direction: column;
+      padding: 3rem 1rem 3rem;
     }
     #footer-grid  { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
     #footer-brand { grid-column: span 2; }
     #footer-desc  { display: none; }
     #footer-legal { margin-top: 2rem; }
-    @media (max-width: 1023px) {
-      footer { min-height: 100dvh; }
-    }
     @media (min-width: 1024px) {
       footer { min-height: unset; }
       #footer-inner { padding: 4rem 0 2rem; justify-content: flex-start; }
