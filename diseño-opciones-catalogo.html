@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Opciones diseño — Catálogo Barruca</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #e4e4e7; color: #18181b; }
+
+    .page { max-width: 1400px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+    h1 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.3rem; }
+    .subtitle { font-size: 0.82rem; color: #71717a; margin-bottom: 0.75rem; }
+
+    /* Toggle */
+    .toggle-row { display: flex; gap: 0.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+    .toggle-btn { font-size: 0.78rem; font-weight: 600; padding: 0.4rem 1rem; border-radius: 999px; border: 1.5px solid #d4d4d8; background: #fff; cursor: pointer; transition: all 0.15s; color: #52525b; }
+    .toggle-btn.active { background: #18181b; color: #fff; border-color: #18181b; }
+
+    /* Grid de opciones */
+    .options-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+    @media (max-width: 900px)  { .options-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px)  { .options-grid { grid-template-columns: 1fr; } }
+
+    .option-col { display: flex; flex-direction: column; gap: 0.75rem; }
+    .option-badge-row { display: flex; align-items: center; gap: 0.6rem; }
+    .option-badge { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 999px; white-space: nowrap; }
+    .option-title { font-size: 0.88rem; font-weight: 700; letter-spacing: -0.01em; }
+    .option-desc  { font-size: 0.73rem; color: #71717a; line-height: 1.4; }
+
+    /* ── DESKTOP mockup ── */
+    .desktop-mock { border-radius: 1rem; padding: 1.5rem; display: none; }
+    .desktop-mock.show { display: block; }
+    .desk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .demo-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; color: #a1a1aa; }
+    .img-mock { aspect-ratio: 4/3; border-radius: 0.75rem; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .img-mock img { width: 75%; height: 75%; object-fit: contain; }
+    .spec-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem; }
+    .spec-card { border-radius: 0.6rem; padding: 0.6rem; }
+    .spec-label { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 0.2rem; }
+    .spec-value { font-size: 0.72rem; font-weight: 700; }
+    .spec-table { border-radius: 0.75rem; overflow: hidden; margin-top: 0.45rem; }
+    .spec-table-header { display: grid; grid-template-columns: 1fr 2fr; padding: 0.4rem 0.75rem; }
+    .spec-table-row { display: grid; grid-template-columns: 1fr 2fr; padding: 0.45rem 0.75rem; font-size: 0.7rem; }
+    .spec-th { font-size: 0.55rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
+
+    /* ── PHONE frame ── */
+    .phone-wrap { display: none; justify-content: center; }
+    .phone-wrap.show { display: flex; }
+    .phone-frame {
+      width: 320px;
+      background: #18181b;
+      border-radius: 2.5rem;
+      padding: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+    .phone-notch {
+      width: 80px; height: 10px; background: #18181b;
+      border-radius: 999px; margin: 0 auto 8px;
+    }
+    .phone-screen {
+      border-radius: 2rem;
+      overflow: hidden;
+      background: #f7f6f2;
+    }
+
+    /* Contenido dentro del teléfono */
+    .mob-section { background: #f4f4f5; padding: 1.25rem 0.875rem 1.5rem; }
+    .mob-pill { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-radius: 999px; padding: 0.2rem 0.6rem; margin-bottom: 0.6rem; }
+    .mob-title { font-size: 1rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.3rem; color: #18181b; }
+    .mob-desc { font-size: 0.65rem; color: #71717a; line-height: 1.4; margin-bottom: 0.875rem; }
+    .mob-img-box { aspect-ratio: 4/3; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem; overflow: hidden; }
+    .mob-img-box img { width: 70%; height: 70%; object-fit: contain; }
+    .mob-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; margin-bottom: 0.75rem; }
+    .mob-spec-card { border-radius: 0.55rem; padding: 0.55rem; }
+    .mob-spec-label { font-size: 0.52rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 0.15rem; }
+    .mob-spec-value { font-size: 0.68rem; font-weight: 700; }
+    .mob-cta { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.7rem; font-weight: 700; color: #b91c1c; }
+
+    /* Dots */
+    .mob-dots { display: flex; justify-content: center; gap: 0.35rem; padding: 0.6rem 0 0; }
+    .mob-dot { width: 6px; height: 6px; border-radius: 50%; }
+
+    /* ════ ESTILOS POR OPCIÓN ════ */
+
+    /* A — Dark Frosted */
+    .opt-a .desktop-mock { background: #ffffff; }
+    .opt-a .img-mock { background: rgba(0,0,0,0.07); border: 1px solid rgba(0,0,0,0.1); }
+    .opt-a .spec-card { background: rgba(0,0,0,0.42); border: 1px solid rgba(255,255,255,0.12); }
+    .opt-a .spec-label { color: rgba(255,255,255,0.65); }
+    .opt-a .spec-value { color: #fff; }
+    .opt-a .spec-table { background: rgba(0,0,0,0.42); border: 1px solid rgba(255,255,255,0.12); }
+    .opt-a .spec-table-header { background: rgba(255,255,255,0.07); }
+    .opt-a .spec-th { color: rgba(255,255,255,0.65); }
+    .opt-a .spec-table-row { color: #fff; border-top: 1px solid rgba(255,255,255,0.07); }
+    .opt-a .option-badge { background: #27272a; color: #fff; }
+    /* mobile */
+    .opt-a .mob-pill { background: rgba(255,255,255,0.15); color: #b91c1c; border: 1px solid rgba(185,28,28,0.2); }
+    .opt-a .mob-img-box { background: rgba(0,0,0,0.07); border: 1px solid rgba(0,0,0,0.1); }
+    .opt-a .mob-spec-card { background: rgba(0,0,0,0.42); border: 1px solid rgba(255,255,255,0.12); }
+    .opt-a .mob-spec-label { color: rgba(255,255,255,0.65); }
+    .opt-a .mob-spec-value { color: #fff; }
+    .opt-a .mob-dot:first-child { background: #b91c1c; transform: scale(1.4); }
+    .opt-a .mob-dot:not(:first-child) { background: #d4d4d8; }
+
+    /* B — Clean Light */
+    .opt-b .desktop-mock { background: #ffffff; }
+    .opt-b .img-mock { background: #f4f4f5; border: 1px solid #e4e4e7; }
+    .opt-b .spec-card { background: #fff; border: 1px solid #e4e4e7; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .opt-b .spec-label { color: #71717a; }
+    .opt-b .spec-value { color: #18181b; }
+    .opt-b .spec-table { background: #fff; border: 1px solid #e4e4e7; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    .opt-b .spec-table-header { background: #f9f9f9; border-bottom: 1px solid #e4e4e7; }
+    .opt-b .spec-th { color: #71717a; }
+    .opt-b .spec-table-row { color: #18181b; border-top: 1px solid #f4f4f5; }
+    .opt-b .option-badge { background: #e4e4e7; color: #3f3f46; }
+    /* mobile */
+    .opt-b .mob-pill { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+    .opt-b .mob-img-box { background: #f4f4f5; border: 1px solid #e4e4e7; }
+    .opt-b .mob-spec-card { background: #fff; border: 1px solid #e4e4e7; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .opt-b .mob-spec-label { color: #71717a; }
+    .opt-b .mob-spec-value { color: #18181b; }
+    .opt-b .mob-dot:first-child { background: #b91c1c; transform: scale(1.4); }
+    .opt-b .mob-dot:not(:first-child) { background: #d4d4d8; }
+
+    /* C — Dark Sólido */
+    .opt-c .desktop-mock { background: #ffffff; }
+    .opt-c .img-mock { background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.07); }
+    .opt-c .spec-card { background: #27272a; border: 1px solid #3f3f46; }
+    .opt-c .spec-label { color: #a1a1aa; }
+    .opt-c .spec-value { color: #fff; }
+    .opt-c .spec-table { background: #27272a; border: 1px solid #3f3f46; }
+    .opt-c .spec-table-header { background: rgba(255,255,255,0.05); border-bottom: 1px solid #3f3f46; }
+    .opt-c .spec-th { color: #a1a1aa; }
+    .opt-c .spec-table-row { color: #fff; border-top: 1px solid #3f3f46; }
+    .opt-c .option-badge { background: #27272a; color: #d4d4d8; }
+    /* mobile */
+    .opt-c .mob-pill { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+    .opt-c .mob-img-box { background: rgba(0,0,0,0.05); border: 1px solid #e4e4e7; }
+    .opt-c .mob-spec-card { background: #27272a; border: 1px solid #3f3f46; }
+    .opt-c .mob-spec-label { color: #a1a1aa; }
+    .opt-c .mob-spec-value { color: #fff; }
+    .opt-c .mob-dot:first-child { background: #b91c1c; transform: scale(1.4); }
+    .opt-c .mob-dot:not(:first-child) { background: #d4d4d8; }
+
+    /* D — Acento Rojo */
+    .opt-d .desktop-mock { background: #ffffff; }
+    .opt-d .img-mock { background: #fef2f2; border: 1.5px solid #fecaca; }
+    .opt-d .spec-card { background: #fff; border: 1.5px solid #fecaca; box-shadow: 0 1px 6px rgba(185,28,28,0.08); }
+    .opt-d .spec-label { color: #b91c1c; }
+    .opt-d .spec-value { color: #18181b; }
+    .opt-d .spec-table { background: #fff; border: 1.5px solid #fecaca; box-shadow: 0 1px 6px rgba(185,28,28,0.08); }
+    .opt-d .spec-table-header { background: #fef2f2; border-bottom: 1.5px solid #fecaca; }
+    .opt-d .spec-th { color: #b91c1c; }
+    .opt-d .spec-table-row { color: #18181b; border-top: 1px solid #fee2e2; }
+    .opt-d .option-badge { background: #fee2e2; color: #b91c1c; }
+    /* mobile */
+    .opt-d .mob-pill { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+    .opt-d .mob-img-box { background: #fef2f2; border: 1.5px solid #fecaca; }
+    .opt-d .mob-spec-card { background: #fff; border: 1.5px solid #fecaca; box-shadow: 0 1px 4px rgba(185,28,28,0.08); }
+    .opt-d .mob-spec-label { color: #b91c1c; }
+    .opt-d .mob-spec-value { color: #18181b; }
+    .opt-d .mob-dot:first-child { background: #b91c1c; transform: scale(1.4); }
+    .opt-d .mob-dot:not(:first-child) { background: #d4d4d8; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <h1>Opciones diseño — Catálogo Barruca</h1>
+  <p class="subtitle">Cambia entre vista desktop y móvil para comparar las 4 opciones.</p>
+
+  <div class="toggle-row">
+    <button class="toggle-btn" id="btn-desk" onclick="setView('desktop')">Desktop</button>
+    <button class="toggle-btn active" id="btn-mob" onclick="setView('mobile')">Móvil</button>
+  </div>
+
+  <div class="options-grid">
+
+    <!-- ── OPCIÓN A ── -->
+    <div class="option-col opt-a">
+      <div class="option-badge-row">
+        <span class="option-badge">Opción A</span>
+      </div>
+      <div class="option-title">Dark Frosted — actual</div>
+      <div class="option-desc">Fondo oscuro semitransparente, texto blanco. El blur no se aprecia sobre blanco sólido.</div>
+
+      <div class="desktop-mock" id="desk-a">
+        <div class="desk-grid">
+          <div>
+            <div class="demo-label">Imagen producto</div>
+            <div class="img-mock"><img src="assets/images/ladrillo_coupe_0.webp" alt="" onerror="this.style.opacity=0.15" /></div>
+          </div>
+          <div>
+            <div class="demo-label">Especificaciones</div>
+            <div class="spec-grid-2">
+              <div class="spec-card"><div class="spec-label">Dimensiones</div><div class="spec-value">250×115×100</div></div>
+              <div class="spec-card"><div class="spec-label">Rendimiento</div><div class="spec-value">39 pzs/m²</div></div>
+              <div class="spec-card"><div class="spec-label">Peso</div><div class="spec-value">4 kg · gris</div></div>
+              <div class="spec-card"><div class="spec-label">Ud/palé</div><div class="spec-value">256 ud.</div></div>
+            </div>
+            <div class="spec-table" style="margin-top:0.6rem;">
+              <div class="spec-table-header"><span class="spec-th">Modelo</span><span class="spec-th">Dimensiones</span></div>
+              <div class="spec-table-row"><span>Normal</span><span style="font-weight:700">390×140×50</span></div>
+              <div class="spec-table-row"><span>Esquina</span><span style="font-weight:700">390×190×50</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-wrap show" id="mob-a">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="mob-section">
+              <span class="mob-pill">Acabado caravista ⭐</span>
+              <div class="mob-title">Coupe Caravista</div>
+              <div class="mob-desc">Ladrillo caravista de hormigón con acabado decorativo de alta calidad.</div>
+              <div class="mob-img-box"><img src="assets/images/ladrillo_coupe_0.webp" alt="" onerror="this.style.opacity=0.1" /></div>
+              <div class="mob-specs">
+                <div class="mob-spec-card"><div class="mob-spec-label">Dimensiones</div><div class="mob-spec-value">250×115×100</div></div>
+                <div class="mob-spec-card"><div class="mob-spec-label">Rendimiento</div><div class="mob-spec-value">39 pzs/m²</div></div>
+                <div class="mob-spec-card"><div class="mob-spec-label">Peso</div><div class="mob-spec-value">4 kg · gris</div></div>
+                <div class="mob-spec-card"><div class="mob-spec-label">Ud/palé</div><div class="mob-spec-value">256 ud.</div></div>
+              </div>
+              <div class="mob-cta">Ver producto completo →</div>
+              <div class="mob-dots">
+                <div class="mob-dot"></div><div class="mob-dot"></div><div class="mob-dot"></div><div class="mob-dot"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── OPCIÓN B ── -->
+    <div class="option-col opt-b">
+      <div class="option-badge-row">
+        <span class="option-badge">Opción B ★ rec.</span>
+      </div>
+      <div class="option-title">Clean Light</div>
+      <div class="option-desc">Fondo blanco, borde gris, sombra sutil. Consistente con el resto de la página.</div>
+
+      <div class="desktop-mock" id="desk-b">
+        <div class="desk-grid">
+          <div>
+            <div class="demo-label">Imagen producto</div>
+            <div class="img-mock"><img src="assets/images/ladrillo_coupe_0.webp" alt="" onerror="this.style.opacity=0.15" /></div>
+          </div>
+          <div>
+            <div class="demo-label">Especificaciones</div>
+            <div class="spec-grid-2">
+              <div class="spec-card"><div class="spec-label">Dimensiones</div><div class="spec-value">250×115×100</div></div>
+              <div class="spec-card"><div class="spec-label">Rendimiento</div><div class="spec-value">39 pzs/m²</div></div>
+              <div class="spec-card"><div class="spec-label">Peso</div><div class="spec-value">4 kg · gris</div></div>
+              <div class="spec-card"><div class="spec-label">Ud/palé</div><div class="spec-value">256 ud.</div></div>
+            </div>
+            <div class="spec-table" style="margin-top:0.6rem;">
+              <div class="spec-table-header"><span class="spec-th">Modelo</span><span class="spec-th">Dimensiones</span></div>
+              <div class="spec-table-row"><span>Normal</span><span style="font-weight:700">390×140×50</span></div>
+              <div class="spec-table-row"><span>Esquina</span><span style="font-weight:700">390×190×50</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-wrap show" id="mob-b">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="mob-section">
+              <span class="mob-pill">Acabado caravista ⭐</span>
+              <div class="mob-title">Coupe Caravista</div>
+              <div class="mob-desc">Ladrillo caravista de hormigón con acabado decorativo de alta calidad.</div>
+              <div class="mob-img-box"><img src="assets/images/ladrillo_coupe_0.webp" alt="" onerror="this.style.opacity=0.1" /></div>
+              <div class="mob-specs">
+                <div class="mob-spec-card"><div class="mob-spec-label">Dimensiones</div><div class="mob-spec-value">250×115×100</div></div>
+                <div class="mob-spec-card"><div class="mob-spec-label">Rendimiento</div><div class="mob-spec-value">39 pzs/m²</div></div>
+                <div class="mob-spec-card"><div class="mob-spec-label">Peso</div><div class="mob-spec-value">4 kg · gris</div></div>
+                <div class="mob-spec-card"><div class="mob-spec-label">Ud/palé</div><div class="mob-spec-value">256 ud.</div></div>
+              </div>
+              <div class="mob-cta">Ver producto completo →</div>
+              <div class="mob-dots">
+                <div class="mob-dot"></div><div class="mob-dot"></div><div class="mob-dot"></div><div class="mob-dot"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── OPCIÓN C ── -->
+    <div class="option-col opt-c">
+      <div class="option-badge-row">
+        <span class="option-badge">Opción C</span>
+      </div>
+      <div class="option-title">Dark Sólido zinc-900</div>
+      <div class="option-desc">Oscuro puro sin blur, texto blanco. Más consistente que el frosted y aspecto premium.</div>
+
+      <div class="desktop-mock" id="desk-c">
+        <div class="desk-grid">
+          <div>
+            <div class="demo-label">Imagen producto</div>
+            <div class="img-mock"><img src="assets/images/ladrillo_coupe_0.webp" alt="" onerror="this.style.opacity=0.15" /></div>
+          </div>
+          <div>
+            <div class="demo-label">Especificaciones</div>
+            <div class="spec-grid-2">
+              <div class="spec-card"><div class="spec-label">Dimensiones</div><div class="spec-value">250×115×100</div></div>
+              <div class="spec-card"><div class="spec-label">Rendimiento</div><div class="spec-value">39 pzs/m²</div></div>
+              <div class="spec-card"><div class="spec-label">Peso</div><div class="spec-value">4 kg · gris</div></div>
+              <div class="spec-card"><div class="spec-label">Ud/palé</div><div class="spec-value">256 ud.</div></div>
+            </div>
+            <div class="spec-table" style="margin-top:0.6rem;">
+              <div class="spec-table-header"><span class="spec-th">Modelo</span><span class="spec-th">Dimensiones</span></div>
+              <div class="spec-table-row"><span>Normal</span><span style="font-weight:700">390×140×50</span></div>
+              <div class="spec-table-row"><span>Esquina</span><span style="font-weight:700">390×190×50</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-wrap show" id="mob-c">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="mob-section">
+              <span class="mob-pill">Acabado caravista ⭐</span>
+              <div class="mob-title">Coupe Caravista</div>
+              <div class="mob-desc">Ladrillo caravista de hormigón con acabado decorativo de alta calidad.</div>
+              <div class="mob-img-box"><img src="assets/images/ladrillo_coupe_0.webp" alt="" onerror="this.style.opacity=0.1" /></div>
+              <div class="mob-specs">
+                <div class="mob-spec-card"><div class="mob-spec-label">Dimensiones</div><div class="mob-spec-value">250×115×100</div></div>
+                <div class="mob-spec-card"><div class="mob-spec-label">Rendimiento</div><div class="mob-spec-value">39 pzs/m²</div></div>
+                <div class="mob-spec-card"><div class="mob-spec-label">Peso</div><div class="mob-spec-value">4 kg · gris</div></div>
+                <div class="mob-spec-card"><div class="mob-spec-label">Ud/palé</div><div class="mob-spec-value">256 ud.</div></div>
+              </div>
+              <div class="mob-cta">Ver producto completo →</div>
+              <div class="mob-dots">
+                <div class="mob-dot"></div><div class="mob-dot"></div><div class="mob-dot"></div><div class="mob-dot"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── OPCIÓN D ── -->
+    <div class="option-col opt-d">
+      <div class="option-badge-row">
+        <span class="option-badge">Opción D</span>
+      </div>
+      <div class="option-title">Acento Rojo Barruca</div>
+      <div class="option-desc">Blanco con borde y labels en rojo marca. Refuerza la identidad visual.</div>
+
+      <div class="desktop-mock" id="desk-d">
+        <div class="desk-grid">
+          <div>
+            <div class="demo-label">Imagen producto</div>
+            <div class="img-mock"><img src="assets/images/ladrillo_coupe_0.webp" alt="" onerror="this.style.opacity=0.15" /></div>
+          </div>
+          <div>
+            <div class="demo-label">Especificaciones</div>
+            <div class="spec-grid-2">
+              <div class="spec-card"><div class="spec-label">Dimensiones</div><div class="spec-value">250×115×100</div></div>
+              <div class="spec-card"><div class="spec-label">Rendimiento</div><div class="spec-value">39 pzs/m²</div></div>
+              <div class="spec-card"><div class="spec-label">Peso</div><div class="spec-value">4 kg · gris</div></div>
+              <div class="spec-card"><div class="spec-label">Ud/palé</div><div class="spec-value">256 ud.</div></div>
+            </div>
+            <div class="spec-table" style="margin-top:0.6rem;">
+              <div class="spec-table-header"><span class="spec-th">Modelo</span><span class="spec-th">Dimensiones</span></div>
+              <div class="spec-table-row"><span>Normal</span><span style="font-weight:700">390×140×50</span></div>
+              <div class="spec-table-row"><span>Esquina</span><span style="font-weight:700">390×190×50</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-wrap show" id="mob-d">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="mob-section">
+              <span class="mob-pill">Acabado caravista ⭐</span>
+              <div class="mob-title">Coupe Caravista</div>
+              <div class="mob-desc">Ladrillo caravista de hormigón con acabado decorativo de alta calidad.</div>
+              <div class="mob-img-box"><img src="assets/images/ladrillo_coupe_0.webp" alt="" onerror="this.style.opacity=0.1" /></div>
+              <div class="mob-specs">
+                <div class="mob-spec-card"><div class="mob-spec-label">Dimensiones</div><div class="mob-spec-value">250×115×100</div></div>
+                <div class="mob-spec-card"><div class="mob-spec-label">Rendimiento</div><div class="mob-spec-value">39 pzs/m²</div></div>
+                <div class="mob-spec-card"><div class="mob-spec-label">Peso</div><div class="mob-spec-value">4 kg · gris</div></div>
+                <div class="mob-spec-card"><div class="mob-spec-label">Ud/palé</div><div class="mob-spec-value">256 ud.</div></div>
+              </div>
+              <div class="mob-cta">Ver producto completo →</div>
+              <div class="mob-dots">
+                <div class="mob-dot"></div><div class="mob-dot"></div><div class="mob-dot"></div><div class="mob-dot"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /options-grid -->
+</div>
+
+<script>
+  function setView(v) {
+    var desks = document.querySelectorAll('.desktop-mock');
+    var mobs  = document.querySelectorAll('.phone-wrap');
+    if (v === 'desktop') {
+      desks.forEach(function(e){ e.classList.add('show'); });
+      mobs.forEach(function(e){ e.classList.remove('show'); });
+      document.getElementById('btn-desk').classList.add('active');
+      document.getElementById('btn-mob').classList.remove('active');
+    } else {
+      desks.forEach(function(e){ e.classList.remove('show'); });
+      mobs.forEach(function(e){ e.classList.add('show'); });
+      document.getElementById('btn-mob').classList.add('active');
+      document.getElementById('btn-desk').classList.remove('active');
+    }
+  }
+</script>
+</body>
+</html>
