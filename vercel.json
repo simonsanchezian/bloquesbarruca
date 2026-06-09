@@ -9,6 +9,8 @@
     { "source": "/ladrillo-fireproof/",  "destination": "/producto-fireproof.html", "permanent": true },
     { "source": "/coupe-caravista",      "destination": "/producto-coupe.html",     "permanent": true },
     { "source": "/coupe-caravista/",     "destination": "/producto-coupe.html",     "permanent": true },
+    { "source": "/coupe",                "destination": "/producto-coupe.html",     "permanent": true },
+    { "source": "/coupe/",               "destination": "/producto-coupe.html",     "permanent": true },
     { "source": "/hib",                  "destination": "/producto-hib.html",       "permanent": true },
     { "source": "/hib/",                 "destination": "/producto-hib.html",       "permanent": true },
     { "source": "/blog",                 "destination": "/blog.html",               "permanent": true },

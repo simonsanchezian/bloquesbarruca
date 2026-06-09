@@ -12,6 +12,16 @@ compress-fotos.js
 input.css
 skill.sh
 
+# Generadores de contenido para redes (no forman parte del sitio web)
+generate-*.js
+
+# Material de marketing / redes sociales (no se despliega en la web)
+instagram-slides/
+assets/logo-in-festival-blanco.png
+assets/Logo/
+assets/Fotos-opt/Muro_Caravista/
+*ChatGPT Image*
+
 # Carpetas de skills de Claude Code
 examples/
 skills/
@@ -23,3 +33,5 @@ research/
 Thumbs.db
 *.log
 assets/Documento/
+
+.vercel

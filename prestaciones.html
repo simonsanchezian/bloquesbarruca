@@ -657,7 +657,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mt-px"><polyline points="6 9 12 15 18 9"/></svg>
             </a>
             <div class="dropdown-menu absolute top-full left-1/2 -translate-x-1/2 mt-4 w-56 bg-offwhite border border-zinc-100 rounded-2xl shadow-xl shadow-zinc-200/50 py-2">
-              <a href="producto-coupe.html"     class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">Coupe Caravista</a>
+              <a href="producto-coupe.html"     class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">Coupe Caravista <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1" style="display:inline-block;vertical-align:middle;margin-left:3px;margin-bottom:2px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></a>
               <a href="producto-fireproof.html" class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">Ladrillo Fireproof®</a>
               <a href="producto-hib.html"       class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">HIB</a>
               <a href="producto-bloque.html"    class="block px-4 py-2.5 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 transition-colors rounded-lg mx-1">Bloque de Hormigón</a>
@@ -712,7 +712,7 @@
             <svg id="mob-prod-icon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.2s;flex-shrink:0;"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div id="mob-prod-menu" class="hidden pl-3 mt-0.5 space-y-0.5 border-l-2 border-accent-200 ml-3">
-            <a href="producto-coupe.html"    class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">Coupe Caravista</a>
+            <a href="producto-coupe.html"    class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">Coupe Caravista <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="#f59e0b" stroke="#f59e0b" stroke-width="1" style="display:inline-block;vertical-align:middle;margin-left:3px;margin-bottom:2px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></a>
             <a href="producto-fireproof.html" class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">Ladrillo Fireproof®</a>
             <a href="producto-hib.html"      class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">HIB</a>
             <a href="producto-bloque.html"   class="m-link block px-3 py-2 text-sm text-zinc-600 hover:text-zinc-900 hover:bg-stone-50 rounded-xl transition-colors">Bloque de Hormig&#243;n</a>
@@ -761,42 +761,61 @@
     <div class="bg-stone-50 py-16">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-14">
 
+        <!-- helper macro: tarjeta vertical PDF -->
+        <!-- estructura: imagen arriba (área fija) + franja inferior con nombre + icono descarga -->
+
         <!-- Ladrillos -->
         <div>
           <p class="text-xs font-semibold uppercase tracking-widest text-accent-700 mb-5 flex items-center gap-3">
             <span class="w-6 h-px bg-accent-600"></span>Ladrillos
           </p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            <a href="/assets/documents/prestaciones/Declaracion-de-prestaciones-coupe.pdf" target="_blank" rel="noopener" class="pdf-dl group flex items-center gap-3 bg-offwhite border border-zinc-100 hover:border-accent-200 rounded-xl px-4 py-4">
-              <div class="w-12 h-12 rounded-xl bg-stone-50 border border-zinc-100 flex items-center justify-center flex-shrink-0 overflow-hidden p-1">
-                <img src="/assets/images/ladrillo_coupe_0.webp" alt="Ladrillo Coupe" class="w-full h-full object-contain" />
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+
+            <div class="pdf-dl group flex flex-col bg-white border border-zinc-100 hover:border-accent-300 hover:shadow-md rounded-2xl overflow-hidden transition-all">
+              <a href="/assets/documents/prestaciones/Declaracion-de-prestaciones-coupe.pdf" target="_blank" rel="noopener" class="flex flex-col flex-1">
+                <div class="flex items-center justify-center bg-stone-50 p-6" style="height:160px;">
+                  <img src="/assets/images/ladrillo_coupe_0.webp" alt="Ladrillo Coupe" class="max-h-full max-w-full object-contain" />
+                </div>
+                <div class="px-4 py-3 flex items-center justify-between border-t border-zinc-100">
+                  <div>
+                    <div class="text-sm font-semibold text-zinc-800 leading-tight">Ladrillo Coupe</div>
+                    <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
+                  </div>
+                  <svg class="flex-shrink-0 text-accent-500 opacity-40 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </div>
+              </a>
+              <a href="http://www.bimetica.com/es/objeto-bim-bloques-barruca-bloque-coupe-gris-perla-5878.html" target="_blank" rel="noopener" class="px-4 py-2 flex items-center gap-1.5 border-t border-zinc-100 text-[11px] text-blue-500 hover:text-blue-700 hover:bg-blue-50 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Objeto BIM · BIMÉTICA
+              </a>
+            </div>
+
+            <a href="/assets/documents/prestaciones/Declaracion-de-prestaciones-ladrillo-fireproof-r_0.pdf" target="_blank" rel="noopener" class="pdf-dl group flex flex-col bg-white border border-zinc-100 hover:border-accent-300 hover:shadow-md rounded-2xl overflow-hidden transition-all">
+              <div class="flex items-center justify-center bg-stone-50 p-6" style="height:160px;">
+                <img src="/assets/images/02-LADRILLO-BARRUCA-50-dBA.webp" alt="Ladrillo Fireproof" class="max-h-full max-w-full object-contain" />
               </div>
-              <div class="flex-1 min-w-0">
-                <div class="text-sm font-semibold text-zinc-800 leading-tight">Ladrillo Coupe</div>
-                <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
+              <div class="px-4 py-3 flex items-center justify-between border-t border-zinc-100">
+                <div>
+                  <div class="text-sm font-semibold text-zinc-800 leading-tight">Ladrillo Fireproof®</div>
+                  <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
+                </div>
+                <svg class="flex-shrink-0 text-accent-500 opacity-40 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               </div>
-              <svg class="flex-shrink-0 text-accent-600 opacity-0 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
-            <a href="/assets/documents/prestaciones/Declaracion-de-prestaciones-ladrillo-fireproof-r_0.pdf" target="_blank" rel="noopener" class="pdf-dl group flex items-center gap-3 bg-offwhite border border-zinc-100 hover:border-accent-200 rounded-xl px-4 py-4">
-              <div class="w-12 h-12 rounded-xl bg-stone-50 border border-zinc-100 flex items-center justify-center flex-shrink-0 overflow-hidden p-1">
-                <img src="/assets/images/02-LADRILLO-BARRUCA-50-dBA.webp" alt="Ladrillo Fireproof" class="w-full h-full object-contain" />
+
+            <a href="/assets/documents/prestaciones/Declaracion_de_prestaciones_lacusbar.pdf" target="_blank" rel="noopener" class="pdf-dl group flex flex-col bg-white border border-zinc-100 hover:border-accent-300 hover:shadow-md rounded-2xl overflow-hidden transition-all">
+              <div class="flex items-center justify-center bg-stone-50 p-6" style="height:160px;">
+                <img src="/assets/images/1-LACUSBAR-59-DB_0.webp" alt="Ladrillo Lacusbar" class="max-h-full max-w-full object-contain" />
               </div>
-              <div class="flex-1 min-w-0">
-                <div class="text-sm font-semibold text-zinc-800 leading-tight">Ladrillo Fireproof®</div>
-                <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
+              <div class="px-4 py-3 flex items-center justify-between border-t border-zinc-100">
+                <div>
+                  <div class="text-sm font-semibold text-zinc-800 leading-tight">Ladrillo Lacusbar</div>
+                  <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
+                </div>
+                <svg class="flex-shrink-0 text-accent-500 opacity-40 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               </div>
-              <svg class="flex-shrink-0 text-accent-600 opacity-0 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
-            <a href="/assets/documents/prestaciones/Declaracion_de_prestaciones_lacusbar.pdf" target="_blank" rel="noopener" class="pdf-dl group flex items-center gap-3 bg-offwhite border border-zinc-100 hover:border-accent-200 rounded-xl px-4 py-4">
-              <div class="w-12 h-12 rounded-xl bg-stone-50 border border-zinc-100 flex items-center justify-center flex-shrink-0 overflow-hidden p-1">
-                <img src="/assets/images/1-LACUSBAR-59-DB_0.webp" alt="Ladrillo Lacusbar" class="w-full h-full object-contain" />
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="text-sm font-semibold text-zinc-800 leading-tight">Ladrillo Lacusbar</div>
-                <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
-              </div>
-              <svg class="flex-shrink-0 text-accent-600 opacity-0 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            </a>
+
           </div>
         </div>
 
@@ -805,37 +824,65 @@
           <p class="text-xs font-semibold uppercase tracking-widest text-accent-700 mb-5 flex items-center gap-3">
             <span class="w-6 h-px bg-accent-600"></span>HIB — Hormigón In-situ Barruca
           </p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            <a href="/assets/documents/prestaciones/Declaracion-de-prestaciones-HIB-14-r_2.pdf" target="_blank" rel="noopener" class="pdf-dl group flex items-center gap-3 bg-offwhite border border-zinc-100 hover:border-accent-200 rounded-xl px-4 py-4">
-              <div class="w-12 h-12 rounded-xl bg-stone-50 border border-zinc-100 flex items-center justify-center flex-shrink-0 overflow-hidden p-1">
-                <img src="/assets/images/14-NBLOC.webp" alt="HIB-14" class="w-full h-full object-contain" />
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="text-sm font-semibold text-zinc-800 leading-tight">HIB-14</div>
-                <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
-              </div>
-              <svg class="flex-shrink-0 text-accent-600 opacity-0 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            </a>
-            <a href="/assets/documents/prestaciones/Declaracion-de-prestaciones-HIB-20_2.pdf" target="_blank" rel="noopener" class="pdf-dl group flex items-center gap-3 bg-offwhite border border-zinc-100 hover:border-accent-200 rounded-xl px-4 py-4">
-              <div class="w-12 h-12 rounded-xl bg-stone-50 border border-zinc-100 flex items-center justify-center flex-shrink-0 overflow-hidden p-1">
-                <img src="/assets/images/19-NBLOC.webp" alt="HIB-20" class="w-full h-full object-contain" />
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="text-sm font-semibold text-zinc-800 leading-tight">HIB-20</div>
-                <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
-              </div>
-              <svg class="flex-shrink-0 text-accent-600 opacity-0 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            </a>
-            <a href="/assets/documents/prestaciones/Declaracion-de-prestaciones-HIB-24.pdf" target="_blank" rel="noopener" class="pdf-dl group flex items-center gap-3 bg-offwhite border border-zinc-100 hover:border-accent-200 rounded-xl px-4 py-4">
-              <div class="w-12 h-12 rounded-xl bg-stone-50 border border-zinc-100 flex items-center justify-center flex-shrink-0 overflow-hidden p-1">
-                <img src="/assets/images/24-NB.webp" alt="HIB-24" class="w-full h-full object-contain" />
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="text-sm font-semibold text-zinc-800 leading-tight">HIB-24</div>
-                <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
-              </div>
-              <svg class="flex-shrink-0 text-accent-600 opacity-0 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            </a>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+
+            <div class="pdf-dl group flex flex-col bg-white border border-zinc-100 hover:border-accent-300 hover:shadow-md rounded-2xl overflow-hidden transition-all">
+              <a href="/assets/documents/prestaciones/Declaracion-de-prestaciones-HIB-14-r_2.pdf" target="_blank" rel="noopener" class="flex flex-col flex-1">
+                <div class="flex items-center justify-center bg-stone-50 p-6" style="height:160px;">
+                  <img src="/assets/images/14-NBLOC.webp" alt="HIB-14" class="max-h-full max-w-full object-contain" />
+                </div>
+                <div class="px-4 py-3 flex items-center justify-between border-t border-zinc-100">
+                  <div>
+                    <div class="text-sm font-semibold text-zinc-800 leading-tight">HIB-14</div>
+                    <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
+                  </div>
+                  <svg class="flex-shrink-0 text-accent-500 opacity-40 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </div>
+              </a>
+              <a href="http://www.bimetica.com/es/objetos-bim-bloques-barruca-bloque-hib-14.html" target="_blank" rel="noopener" class="px-4 py-2 flex items-center gap-1.5 border-t border-zinc-100 text-[11px] text-blue-500 hover:text-blue-700 hover:bg-blue-50 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Objeto BIM · BIMÉTICA
+              </a>
+            </div>
+
+            <div class="pdf-dl group flex flex-col bg-white border border-zinc-100 hover:border-accent-300 hover:shadow-md rounded-2xl overflow-hidden transition-all">
+              <a href="/assets/documents/prestaciones/Declaracion-de-prestaciones-HIB-20_2.pdf" target="_blank" rel="noopener" class="flex flex-col flex-1">
+                <div class="flex items-center justify-center bg-stone-50 p-6" style="height:160px;">
+                  <img src="/assets/images/19-NBLOC.webp" alt="HIB-20" class="max-h-full max-w-full object-contain" />
+                </div>
+                <div class="px-4 py-3 flex items-center justify-between border-t border-zinc-100">
+                  <div>
+                    <div class="text-sm font-semibold text-zinc-800 leading-tight">HIB-20</div>
+                    <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
+                  </div>
+                  <svg class="flex-shrink-0 text-accent-500 opacity-40 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </div>
+              </a>
+              <a href="http://www.bimetica.com/es/objetos-bim-bloques-barruca-bloque-hib-20.html" target="_blank" rel="noopener" class="px-4 py-2 flex items-center gap-1.5 border-t border-zinc-100 text-[11px] text-blue-500 hover:text-blue-700 hover:bg-blue-50 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Objeto BIM · BIMÉTICA
+              </a>
+            </div>
+
+            <div class="pdf-dl group flex flex-col bg-white border border-zinc-100 hover:border-accent-300 hover:shadow-md rounded-2xl overflow-hidden transition-all">
+              <a href="/assets/documents/prestaciones/Declaracion-de-prestaciones-HIB-24.pdf" target="_blank" rel="noopener" class="flex flex-col flex-1">
+                <div class="flex items-center justify-center bg-stone-50 p-6" style="height:160px;">
+                  <img src="/assets/images/24-NB.webp" alt="HIB-24" class="max-h-full max-w-full object-contain" />
+                </div>
+                <div class="px-4 py-3 flex items-center justify-between border-t border-zinc-100">
+                  <div>
+                    <div class="text-sm font-semibold text-zinc-800 leading-tight">HIB-24</div>
+                    <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
+                  </div>
+                  <svg class="flex-shrink-0 text-accent-500 opacity-40 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </div>
+              </a>
+              <a href="http://www.bimetica.com/es/objetos-bim-bloques-barruca-bloque-hib-24.html" target="_blank" rel="noopener" class="px-4 py-2 flex items-center gap-1.5 border-t border-zinc-100 text-[11px] text-blue-500 hover:text-blue-700 hover:bg-blue-50 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Objeto BIM · BIMÉTICA
+              </a>
+            </div>
+
           </div>
         </div>
 
@@ -844,29 +891,37 @@
           <p class="text-xs font-semibold uppercase tracking-widest text-accent-700 mb-5 flex items-center gap-3">
             <span class="w-6 h-px bg-accent-600"></span>Bloque de Hormigón
           </p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            <a href="/assets/documents/prestaciones/Declaracion_de_prestaciones_bloque_split.pdf" target="_blank" rel="noopener" class="pdf-dl group flex items-center gap-3 bg-offwhite border border-zinc-100 hover:border-accent-200 rounded-xl px-4 py-4">
-              <div class="w-12 h-12 rounded-xl bg-stone-50 border border-zinc-100 flex items-center justify-center flex-shrink-0 overflow-hidden p-1">
-                <img src="/assets/images/edificacion.webp" alt="Bloque Split" class="w-full h-full object-contain" />
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+
+            <a href="/assets/documents/prestaciones/Declaracion_de_prestaciones_bloque_split.pdf" target="_blank" rel="noopener" class="pdf-dl group flex flex-col bg-white border border-zinc-100 hover:border-accent-300 hover:shadow-md rounded-2xl overflow-hidden transition-all">
+              <div class="flex items-center justify-center bg-stone-50 p-6" style="height:160px;">
+                <img src="/assets/images/edificacion.webp" alt="Bloque Split" class="max-h-full max-w-full object-contain" />
               </div>
-              <div class="flex-1 min-w-0">
-                <div class="text-sm font-semibold text-zinc-800 leading-tight">Bloque Split</div>
-                <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
+              <div class="px-4 py-3 flex items-center justify-between border-t border-zinc-100">
+                <div>
+                  <div class="text-sm font-semibold text-zinc-800 leading-tight">Bloque Split</div>
+                  <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
+                </div>
+                <svg class="flex-shrink-0 text-accent-500 opacity-40 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               </div>
-              <svg class="flex-shrink-0 text-accent-600 opacity-0 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
-            <a href="/assets/documents/prestaciones/Declaracion-de-prestaciones-bloque-liso-420.pdf" target="_blank" rel="noopener" class="pdf-dl group flex items-center gap-3 bg-offwhite border border-zinc-100 hover:border-accent-200 rounded-xl px-4 py-4">
-              <div class="w-12 h-12 rounded-xl bg-stone-50 border border-zinc-100 flex items-center justify-center flex-shrink-0 overflow-hidden p-1">
-                <img src="/assets/images/edificacion.webp" alt="Bloque Liso 420" class="w-full h-full object-contain" />
+
+            <a href="/assets/documents/prestaciones/Declaracion-de-prestaciones-bloque-liso-420.pdf" target="_blank" rel="noopener" class="pdf-dl group flex flex-col bg-white border border-zinc-100 hover:border-accent-300 hover:shadow-md rounded-2xl overflow-hidden transition-all">
+              <div class="flex items-center justify-center bg-stone-50 p-6" style="height:160px;">
+                <img src="/assets/images/edificacion.webp" alt="Bloque Liso 420" class="max-h-full max-w-full object-contain" />
               </div>
-              <div class="flex-1 min-w-0">
-                <div class="text-sm font-semibold text-zinc-800 leading-tight">Bloque Liso 420</div>
-                <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
+              <div class="px-4 py-3 flex items-center justify-between border-t border-zinc-100">
+                <div>
+                  <div class="text-sm font-semibold text-zinc-800 leading-tight">Bloque Liso 420</div>
+                  <div class="text-[10px] text-zinc-400 mt-0.5">Declaración de Prestaciones · PDF</div>
+                </div>
+                <svg class="flex-shrink-0 text-accent-500 opacity-40 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               </div>
-              <svg class="flex-shrink-0 text-accent-600 opacity-0 group-hover:opacity-100 transition-opacity" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
+
           </div>
         </div>
+
 
       </div>
     </div>
