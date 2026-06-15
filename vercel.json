@@ -3,6 +3,8 @@
   "outputDirectory": ".",
   "framework": null,
   "redirects": [
+    { "source": "/:path*", "has": [{ "type": "host", "value": "bloquesbarruca.es" }],     "destination": "https://barruca.es/:path*", "permanent": true },
+    { "source": "/:path*", "has": [{ "type": "host", "value": "www.bloquesbarruca.es" }], "destination": "https://barruca.es/:path*", "permanent": true },
     { "source": "/bloque-hormigon",      "destination": "/producto-bloque.html",    "permanent": true },
     { "source": "/bloque-hormigon/",     "destination": "/producto-bloque.html",    "permanent": true },
     { "source": "/ladrillo-fireproof",   "destination": "/producto-fireproof.html", "permanent": true },
