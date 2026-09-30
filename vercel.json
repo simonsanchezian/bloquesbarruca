@@ -51,6 +51,21 @@
     { "source": "/ladrillo-acustico/",   "destination": "/producto-fireproof.html", "permanent": true },
     { "source": "/ver-articulo.html",    "destination": "/blog.html",               "permanent": true },
     { "source": "/outlet",              "destination": "/",                        "permanent": true },
-    { "source": "/outlet/",             "destination": "/",                        "permanent": true }
+    { "source": "/outlet/",             "destination": "/",                        "permanent": true },
+
+    { "source": "/index",                "destination": "/",                        "permanent": true },
+    { "source": "/index/",               "destination": "/",                        "permanent": true },
+    { "source": "/arquitectos",          "destination": "/#arquitectos",            "permanent": true },
+    { "source": "/arquitectos/",         "destination": "/#arquitectos",            "permanent": true }
+  ],
+  "headers": [
+    { "source": "/assets/Fotos-opt/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
+    { "source": "/assets/images/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
+    { "source": "/assets/tailwind.css",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }] },
+    { "source": "/(.*).html",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] }
   ]
 }

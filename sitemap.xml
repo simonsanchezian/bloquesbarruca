@@ -4,66 +4,144 @@
     <loc>https://barruca.es/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <lastmod>2026-05-15</lastmod>
-  </url>
-  <url>
-    <loc>https://barruca.es/producto-fireproof.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <lastmod>2026-05-15</lastmod>
-  </url>
-  <url>
-    <loc>https://barruca.es/producto-coupe.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <lastmod>2026-05-15</lastmod>
-  </url>
-  <url>
-    <loc>https://barruca.es/producto-hib.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-09</lastmod>
   </url>
   <url>
     <loc>https://barruca.es/producto-bloque.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-09-30</lastmod>
   </url>
   <url>
-    <loc>https://barruca.es/proyectos.html</loc>
+    <loc>https://barruca.es/producto-coupe.html</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-    <lastmod>2026-05-15</lastmod>
+    <priority>0.9</priority>
+    <lastmod>2026-07-07</lastmod>
   </url>
   <url>
-    <loc>https://barruca.es/blog.html</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2026-05-15</lastmod>
-  </url>
-  <url>
-    <loc>https://barruca.es/ensayos.html</loc>
+    <loc>https://barruca.es/producto-fireproof.html</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-05-15</lastmod>
+    <priority>0.9</priority>
+    <lastmod>2026-06-03</lastmod>
   </url>
   <url>
-    <loc>https://barruca.es/prestaciones.html</loc>
+    <loc>https://barruca.es/producto-hib.html</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <lastmod>2026-05-15</lastmod>
+    <priority>0.9</priority>
+    <lastmod>2026-06-03</lastmod>
   </url>
   <url>
     <loc>https://barruca.es/articulos.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-03</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/blog.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <lastmod>2026-06-09</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/ensayos.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-06-03</lastmod>
   </url>
   <url>
     <loc>https://barruca.es/prescripciones.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <lastmod>2026-05-15</lastmod>
+    <lastmod>2026-06-03</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/prestaciones.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-06-03</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/proyectos.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <lastmod>2026-06-03</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/blog-35-aniversario-barruca.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-06-03</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/blog-centro-salud-el-ejido.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-06-03</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/blog-ciclo-conferencias-andece.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-06-03</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/blog-colegio-indira-gandhi.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-06-03</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/blog-congreso-proyecta-construye.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-06-03</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/blog-conservatorio-kina-jimenez.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-06-03</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/blog-coupe-caravista-nuevo.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-06-03</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/blog-coupe-certificacion-verde.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-06-05</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/blog-fireproof-ei120.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-06-03</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/blog-fireproof-masa-termica.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-06-03</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/blog-foro-andece-sostenible.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-06-03</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/blog-mercado-provisional-burgos.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-06-03</lastmod>
+  </url>
+  <url>
+    <loc>https://barruca.es/blog-revista-cemento-hormigon.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2026-06-03</lastmod>
   </url>
 </urlset>
