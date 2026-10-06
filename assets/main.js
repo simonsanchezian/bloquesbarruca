@@ -396,31 +396,59 @@
       next.addEventListener('click', function () { goTo(cur + 1); });
     })();
 
-    // ── Contact form → mailto ───────────────────
+    // ── Formulario de contacto → Formspree ──────
+    // Antes abría el programa de correo del visitante con el mensaje preparado
+    // y no enviaba nada: quien usaba Gmail en el navegador, o un móvil sin app
+    // de correo configurada, se quedaba sin poder escribir y no lo sabíamos.
+    // Ahora se envía de verdad. Si falla (sin conexión, servicio caído), se
+    // abre el correo como antes, para no perder el mensaje.
+    // El evento `barruca:lead` solo salta con un envío conseguido; analytics.js
+    // lo recoge como conversión (generate_lead).
     (function () {
       var form = document.getElementById('contact-form');
       if (!form) return;
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var nombre   = document.getElementById('nombre').value;
-        var email    = document.getElementById('email').value;
-        var telefono = document.getElementById('telefono').value;
-        var mensaje  = document.getElementById('mensaje').value;
-        var subject  = encodeURIComponent('Consulta web — ' + nombre);
-        var body     = encodeURIComponent(
-          'Nombre: '   + nombre  + '\n' +
-          'Email: '    + email   + '\n' +
-          (telefono ? 'Teléfono: ' + telefono + '\n' : '') +
-          '\nMensaje:\n' + mensaje
-        );
+      var boton = form.querySelector('button[type="submit"]');
+      var textoBoton = boton ? boton.textContent : '';
+      var trampa = document.createElement('input');   // anti-spam: los robots lo rellenan
+      trampa.type = 'text'; trampa.name = '_gotcha'; trampa.tabIndex = -1; trampa.autocomplete = 'off';
+      trampa.setAttribute('aria-hidden', 'true');
+      trampa.style.cssText = 'position:absolute;left:-9999px;opacity:0;height:0;width:0';
+      form.appendChild(trampa);
+
+      function fin(titulo, texto, color) {
         form.innerHTML =
           '<div style="text-align:center;padding:2.5rem 1rem">' +
-          '<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 1rem"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
-          '<p style="font-weight:700;font-size:1.125rem;color:#18181b;margin-bottom:.5rem">¡Mensaje preparado!</p>' +
-          '<p style="color:#71717a;font-size:.9375rem">Se ha abierto tu cliente de correo con los datos listos para enviar a <strong>barruca@barruca.es</strong>.</p>' +
-          '</div>';
-        setTimeout(function () {
-          window.location.href = 'mailto:barruca@barruca.es?subject=' + subject + '&body=' + body;
-        }, 200);
+          '<svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="' + color + '" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 1rem"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
+          '<p style="font-weight:700;font-size:1.125rem;color:#18181b;margin-bottom:.5rem">' + titulo + '</p>' +
+          '<p style="color:#71717a;font-size:.9375rem">' + texto + '</p></div>';
+      }
+      function porCorreo(d) {
+        var subject = encodeURIComponent('Consulta web — ' + d.nombre);
+        var body = encodeURIComponent(
+          'Nombre: ' + d.nombre + '\n' + 'Email: ' + d.email + '\n' +
+          (d.telefono ? 'Teléfono: ' + d.telefono + '\n' : '') + '\nMensaje:\n' + d.mensaje);
+        fin('No hemos podido enviarlo', 'Se ha abierto tu cliente de correo con los datos listos para enviar a <strong>barruca@barruca.es</strong>. También puedes escribirnos por WhatsApp.', '#b45309');
+        setTimeout(function () { window.location.href = 'mailto:barruca@barruca.es?subject=' + subject + '&body=' + body; }, 200);
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var d = {
+          nombre:   document.getElementById('nombre').value,
+          email:    document.getElementById('email').value,
+          telefono: document.getElementById('telefono').value,
+          mensaje:  document.getElementById('mensaje').value
+        };
+        if (boton) { boton.disabled = true; boton.textContent = 'Enviando…'; }
+        var datos = new FormData(form);
+        datos.append('_subject', 'Consulta web — ' + d.nombre);
+        fetch(form.action, { method: 'POST', body: datos, headers: { 'Accept': 'application/json' } })
+          .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+          .then(function (r) {
+            if (!r.ok) throw new Error('formspree');
+            fin('¡Mensaje enviado!', 'Gracias, ' + d.nombre.split(' ')[0] + '. Te responderemos lo antes posible.', '#16a34a');
+            document.dispatchEvent(new CustomEvent('barruca:lead'));
+          })
+          .catch(function () { porCorreo(d); });
       });
     })();

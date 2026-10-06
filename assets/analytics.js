@@ -16,8 +16,8 @@
  * EVENTOS. Analytics ya mide por sí solo páginas, desplazamiento, clics en
  * enlaces externos y descargas de PDF (medición mejorada). Aquí se añaden los
  * que importan al negocio:
- *   generate_lead     envío del formulario de contacto (¡es intención: el
- *                     formulario abre el correo del visitante, no lo envía!)
+ *   generate_lead     mensaje del formulario de contacto ENVIADO (main.js lo
+ *                     envía a Formspree y avisa con el evento barruca:lead)
  *   contact_whatsapp  clic en WhatsApp
  *   contact_phone     clic en un teléfono
  *   contact_email     clic en un correo
@@ -90,8 +90,8 @@
       else if (/^tel:/.test(h)) evento('contact_phone');
       else if (/^mailto:/.test(h)) evento('contact_email');
     }, true);
-    var f = document.getElementById('contact-form');
-    if (f) f.addEventListener('submit', function () { evento('generate_lead', { form: 'contacto' }); });
+    // main.js lanza este evento solo cuando el mensaje se ha enviado de verdad
+    document.addEventListener('barruca:lead', function () { evento('generate_lead', { form: 'contacto' }); });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar);
