@@ -1,0 +1,37 @@
+{
+  "slug": "blog-cuantos-bloques-por-metro-cuadrado.html",
+  "cuerpo": "blog-fuentes/m2.html",
+  "title": "Cuántos bloques de hormigón hay en un m² · Bloques Barruca",
+  "desc": "Cuántos bloques de hormigón entran en un metro cuadrado (12,5 en el de 40×20), cómo calcular un muro, bloques por palé y m² por palé de cada formato.",
+  "h1": "Cuántos bloques de hormigón hay en un metro cuadrado y cómo calcular un muro",
+  "miga": "Bloques por metro cuadrado",
+  "tag": "Guía técnica",
+  "fecha": "2026-11-03",
+  "img": "/assets/images/blog/muro-bloque-hormigon-obra.webp",
+  "alt": "Muro de bloques de hormigón en obra",
+  "fit": "object-cover",
+  "resumen": "La cuenta de los bloques por m² (12,5 en el de 40×20), un ejemplo de muro completo y cuántos metros cubre cada palé.",
+  "kw": "bloques",
+  "cta": [
+    "¿Ya tienes las medidas del muro?",
+    "Te ayudamos a calcular el pedido"
+  ],
+  "faq": [
+    [
+      "¿Cuántos bloques de hormigón de 40×20 hay en un metro cuadrado?",
+      "12,5. El bloque de 40×20 (390×190 mm de pieza más la junta) ocupa 0,08 m²."
+    ],
+    [
+      "¿Cuántos bloques hay en un palé?",
+      "Depende del formato: de 40 piezas (Muro para armar) a 256 (ladrillo Fireproof®)."
+    ],
+    [
+      "¿Cuántos bloques necesito para un muro de 20 m²?",
+      "250 bloques de 390×190 mm, o 200 si el bloque es de 490 mm, sin contar huecos ni el margen para cortes."
+    ],
+    [
+      "¿Cuántas hiladas lleva un metro de altura?",
+      "Cinco hiladas de bloque de 190 mm, porque cada una ocupa 20 cm con la junta."
+    ]
+  ]
+}

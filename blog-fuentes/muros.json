@@ -1,0 +1,37 @@
+{
+  "slug": "blog-bloques-para-muros.html",
+  "cuerpo": "blog-fuentes/muros.html",
+  "title": "Bloques para muros de hormigón: contención y carga · Barruca",
+  "desc": "Qué bloque de hormigón usar en cada muro: de contención y carga (Muro para armar, sin encofrado), portante (520) y de cerramiento (Split y Liso).",
+  "h1": "Bloques para muros: cuál usar en un muro de contención, portante o de cerramiento",
+  "miga": "Bloques para muros",
+  "tag": "Guía técnica",
+  "fecha": "2026-10-20",
+  "img": "/assets/images/11-BLOQUE-MURO-PARA-ARMAR-H.webp",
+  "alt": "Bloque de hormigón para muros de contención",
+  "fit": "object-contain bg-white",
+  "resumen": "Muro para armar para contención y carga (elimina el encofrado), Bloque 520 para muros portantes y Split o Liso para cerramientos.",
+  "kw": "bloques para muros",
+  "cta": [
+    "¿Vas a levantar un muro?",
+    "Pide formatos, cantidades y plazos"
+  ],
+  "faq": [
+    [
+      "¿Qué bloque se usa para un muro de contención?",
+      "El bloque Muro para armar: tiene alveolos para hormigón armado in situ, deja pasar armaduras verticales y horizontales y elimina el encofrado."
+    ],
+    [
+      "¿El bloque de muro necesita mortero?",
+      "En los muros de mediana altura no necesita mortero. La altura y el armado de cada muro los define el proyecto."
+    ],
+    [
+      "¿Cuántos bloques de muro entran en un metro cuadrado?",
+      "Del Muro para armar y del Bloque 520 entran 10 por m². Del Split y del Liso, de 390 mm, entran 12,5 por m²."
+    ],
+    [
+      "¿Se pueden pedir hidrofugados?",
+      "Sí, los bloques de muro se pueden servir hidrofugados bajo pedido."
+    ]
+  ]
+}
