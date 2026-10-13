@@ -8,7 +8,10 @@
 name: Publicar artículos programados
 on:
   schedule:
-    - cron: '0 7 * * *'   # 09:00 en horario de verano peninsular (08:00 en invierno)
+    # GitHub retrasa las tareas en hora en punto (el 13-10 salió a las 16:48).
+    # Minutos poco usados y dos intentos: el segundo no hace nada si ya se publicó.
+    - cron: '23 5 * * *'  # 07:23 en verano peninsular (06:23 en invierno)
+    - cron: '41 6 * * *'  # 08:41 en verano (07:41 en invierno)
   workflow_dispatch:       # para lanzarla a mano desde la pestaña Actions
 permissions:
   contents: write
