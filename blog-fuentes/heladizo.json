@@ -1,0 +1,25 @@
+{
+  "slug": "blog-ladrillo-no-heladizo.html",
+  "cuerpo": "blog-fuentes/heladizo.html",
+  "title": "Ladrillo no heladizo: qué es y cómo se ensaya · Barruca",
+  "desc": "Ladrillo no heladizo: qué significa, por qué el hielo rompe las piezas y cómo se ensaya según la UNE-EN 772-18, con 50 ciclos de hielo y deshielo.",
+  "h1": "Ladrillo no heladizo: qué significa y cómo se ensaya",
+  "miga": "Ladrillo no heladizo",
+  "tag": "Guía técnica",
+  "fecha": "2026-11-10",
+  "img": "/assets/images/blog/fachada-caravista-no-heladiza.webp",
+  "alt": "Fachada de viviendas en Burgos con ladrillo caravista de hormigón no heladizo",
+  "fit": "object-cover",
+  "resumen": "Qué significa que un ladrillo sea no heladizo, por qué el hielo rompe las piezas y cómo se ensaya: 50 ciclos de hielo y deshielo según la UNE-EN 772-18.",
+  "kw": "no heladizo",
+  "cta": [
+    "¿Tu fachada pasa inviernos fríos?",
+    "Pide los ensayos y una muestra"
+  ],
+  "faq": [
+    ["¿Qué significa que un ladrillo sea no heladizo?", "Que resiste los ciclos de hielo y deshielo sin fisurarse, desconcharse ni deformarse, y que así lo demuestra un ensayo de laboratorio."],
+    ["¿Con qué norma se ensaya la heladicidad del Coupe Caravista?", "Con la UNE-EN 772-18: cinco piezas enteras sometidas a 50 ciclos de hielo y deshielo en el Laboratorio de Control de Calidad de la Junta de Castilla y León."],
+    ["¿Por qué el hielo rompe los ladrillos?", "Porque el agua que entra en los poros aumenta de volumen al congelarse, alrededor de un 9 %, y empuja contra la pieza. La repetición de los ciclos es lo que acaba abriendo fisuras en una pieza heladiza."],
+    ["¿Hay que tratar una fachada de ladrillo no heladizo?", "En el Coupe Caravista, no. El color va en la masa, así que no se pinta ni se trata; basta una limpieza periódica con agua."]
+  ]
+}
