@@ -36,6 +36,13 @@ s = re.sub(r'(<h1 class="[^"]*">).*?(</h1>)', lambda m: m.group(1) + sp['h1'] + 
 s = re.sub(r'(<span class="inline-flex items-center text-\[10px\][^>]*>)Guía técnica(</span>)', lambda m: m.group(1) + sp['tag'] + m.group(2), s, count=1)
 i = s.index('<div class="prose">') + len('<div class="prose">'); j = s.index('</div>\n\n          <div class="mt-10 bg-zinc-900')
 s = s[:i] + '\n\n' + cuerpo + '\n          ' + s[j:]
+# Estilos de los dibujos SVG (<figure class="dib">): la plantilla no los trae
+DIB = ('    .dib { margin:1.4rem 0 1.6rem; padding:1.1rem 1rem .8rem; border:1px solid #e4e4e7; border-radius:.9rem; background:#fff; }\n'
+       '    .dib svg { width:100%; height:auto; display:block; }\n'
+       '    .dib figcaption { font-size:.8rem; color:#71717a; text-align:center; margin-top:.5rem; }\n')
+if 'class="dib"' in cuerpo and '.dib {' not in s:
+    s = s.replace('    .faq-q {', DIB + '    .faq-q {', 1)
+    assert '.dib {' in s
 s = s.replace('¿Qué bloque necesita tu obra?', sp['cta'][0]).replace('Pide formatos, cantidades y plazos', sp['cta'][1])
 for m in re.findall(r'<script type="application/ld\+json">(.*?)</script>', s, re.S): json.loads(m)
 escribir(sp['slug'], s)
