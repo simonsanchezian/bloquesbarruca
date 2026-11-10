@@ -1,0 +1,25 @@
+{
+  "slug": "blog-muro-cortafuegos.html",
+  "cuerpo": "blog-fuentes/cortafuegos.html",
+  "title": "Muro cortafuegos: qué exige el CTE y cómo se hace · Barruca",
+  "desc": "Muro cortafuegos: qué significa EI 120, qué resistencia exige el CTE a medianeras y separaciones entre viviendas, y un ejemplo real en obra en Burgos.",
+  "h1": "Muro cortafuegos: qué exige el CTE y cómo se resuelve con ladrillo EI 120",
+  "miga": "Muro cortafuegos",
+  "tag": "Guía técnica",
+  "fecha": "2026-12-01",
+  "img": "/assets/images/blog/medianera-cortafuegos-fireproof-obra.webp",
+  "alt": "Muro cortafuegos de ladrillo Fireproof entre bloques de viviendas en obra",
+  "fit": "object-cover",
+  "resumen": "Qué es un muro cortafuegos, qué significa EI 120 y qué exige el CTE a las medianeras, con un ejemplo real: medianeras de Fireproof® en una obra de Burgos.",
+  "kw": "cortafuegos",
+  "cta": [
+    "¿Tienes que sectorizar un edificio?",
+    "Pide la ficha y el ensayo EI 120"
+  ],
+  "faq": [
+    ["¿Qué es un muro cortafuegos?", "Una pared que separa dos sectores de incendio y evita, durante un tiempo determinado, que el fuego, el humo y el calor pasen de uno a otro."],
+    ["¿Qué resistencia al fuego exige el CTE a una medianera?", "Los elementos verticales que separan un edificio de otro deben ser al menos EI 120, según el CTE DB-SI, sección SI 2. Entre viviendas del mismo edificio, la exigencia es de al menos EI 60."],
+    ["¿Qué significa EI 120?", "Que el muro mantiene la integridad (E), sin dejar pasar llamas ni gases calientes, y el aislamiento (I), sin que la cara no expuesta se caliente, durante 120 minutos."],
+    ["¿Qué ladrillo sirve para un muro cortafuegos EI 120?", "El ladrillo Fireproof®, clasificado EI 120 en el ensayo del laboratorio AFITI-LICOF, con 122 minutos en integridad y en aislamiento."]
+  ]
+}
