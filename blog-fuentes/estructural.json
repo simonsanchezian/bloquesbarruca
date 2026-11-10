@@ -1,0 +1,25 @@
+{
+  "slug": "blog-bloque-estructural.html",
+  "cuerpo": "blog-fuentes/estructural.html",
+  "title": "Bloque estructural de hormigón: qué es y cuál usar · Barruca",
+  "desc": "Bloque estructural de hormigón: qué lo hace estructural, la diferencia entre la resistencia de la pieza y la de la fábrica, y qué bloque usar para armar.",
+  "h1": "Bloque estructural de hormigón: qué es, qué resistencia mirar y cuál usar",
+  "miga": "Bloque estructural",
+  "tag": "Guía técnica",
+  "fecha": "2026-12-08",
+  "img": "/assets/images/blog/bloque-estructural-estadio-plantio.webp",
+  "alt": "Muros de bloque estructural bajo la grada del estadio de El Plantío",
+  "fit": "object-cover",
+  "resumen": "Qué hace estructural a un bloque de hormigón, por qué la resistencia de la pieza y la de la fábrica no se mezclan, y qué bloque usar para un muro armado.",
+  "kw": "estructural",
+  "cta": [
+    "¿Tu muro tiene que cargar?",
+    "Te ayudamos a elegir el bloque"
+  ],
+  "faq": [
+    ["¿Qué es un bloque estructural?", "Un bloque de hormigón que forma parte de la estructura del edificio, ya sea como fábrica resistente (bloques y mortero) o como fábrica armada (alvéolos rellenos de hormigón con armaduras)."],
+    ["¿Qué diferencia hay entre la resistencia de la pieza y la de la fábrica?", "La de la pieza es la del bloque suelto; la de la fábrica, la del muro de bloques con su mortero, y es menor. En el Coupe Caravista, 15,10 N/mm² la pieza y 4,8 N/mm² la fábrica. En el cálculo se usa la de la fábrica."],
+    ["¿Qué bloque se usa para un muro de hormigón armado?", "Un bloque con alvéolos para armar, como nuestro Muro para armar de 500×250×190 mm: las armaduras pasan por los alvéolos y se rellenan de hormigón in situ, sin encofrado."],
+    ["¿Qué normas se aplican a la fábrica de bloque estructural?", "En España, el CTE DB SE-F (Seguridad estructural: Fábrica) y el Eurocódigo 6."]
+  ]
+}
