@@ -1,0 +1,71 @@
+  <script>
+  /* Formulario de la muestra gratuita del Coupe (11-2026). Mismo Formspree que
+   * el de contacto: llega a bloquesbarruca@gmail.com con el asunto «Solicitud
+   * de muestra Coupe — Nombre». Guarda de dónde viene la visita (utm_source o
+   * la web de procedencia) y lo cuenta en Analytics: generate_lead (vía el
+   * evento barruca:lead que ya escucha analytics.js) y solicitud_muestra con
+   * los colores y el origen. */
+  (function () {
+    'use strict';
+    var form = document.getElementById('muestra-form');
+    if (!form) return;
+    var boton = form.querySelector('button[type="submit"]');
+    var origen = (function () {
+      try {
+        var q = new URLSearchParams(location.search);
+        var u = [q.get('utm_source'), q.get('utm_medium'), q.get('utm_campaign')].filter(Boolean).join(' / ');
+        if (u) return u;
+        return document.referrer ? new URL(document.referrer).hostname : 'directo';
+      } catch (e) { return 'desconocido'; }
+    })();
+    document.getElementById('mu-origen').value = origen;
+    var trampa = document.createElement('input');   // anti-spam: los robots lo rellenan
+    trampa.type = 'text'; trampa.name = '_gotcha'; trampa.tabIndex = -1; trampa.autocomplete = 'off';
+    trampa.setAttribute('aria-hidden', 'true');
+    trampa.style.cssText = 'position:absolute;left:-9999px;opacity:0;height:0;width:0';
+    form.appendChild(trampa);
+
+    function colores() { return [].slice.call(form.querySelectorAll('input[name="colores"]:checked')).map(function (i) { return i.value; }); }
+    function fin(titulo, texto, color) {
+      form.innerHTML = '<div class="mu-ok">' +
+        '<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="' + color + '" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 1rem"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
+        '<p style="font-weight:800;font-size:1.2rem;color:#18181b;margin-bottom:.5rem">' + titulo + '</p>' +
+        '<p style="color:#71717a;font-size:.95rem;line-height:1.55">' + texto + '</p></div>';
+      form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    function porCorreo(d) {
+      var subject = encodeURIComponent('Solicitud de muestra Coupe — ' + d.nombre);
+      var body = encodeURIComponent('Colores: ' + d.colores + '\nNombre: ' + d.nombre + '\nEmail: ' + d.email + '\n' +
+        (d.telefono ? 'Teléfono: ' + d.telefono + '\n' : '') + (d.empresa ? 'Estudio o empresa: ' + d.empresa + '\n' : '') +
+        'Dirección de envío: ' + d.direccion + '\n' + (d.proyecto ? 'Proyecto: ' + d.proyecto + '\n' : ''));
+      fin('No hemos podido enviarlo', 'Se ha abierto tu correo con los datos listos para enviar a <strong>barruca@barruca.es</strong>. También puedes escribirnos por WhatsApp.', '#b45309');
+      setTimeout(function () { location.href = 'mailto:barruca@barruca.es?subject=' + subject + '&body=' + body; }, 200);
+    }
+    function val(id) { return document.getElementById(id).value.trim(); }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var c = colores();
+      var errC = document.getElementById('mu-error-color'), errF = document.getElementById('mu-error-campos');
+      errC.style.display = c.length ? 'none' : 'block';
+      var okCampos = form.checkValidity();
+      errF.style.display = okCampos ? 'none' : 'block';
+      if (!c.length) { errC.scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+      if (!okCampos) { form.reportValidity(); return; }
+      var d = { colores: c.join(', '), nombre: val('mu-nombre'), email: val('mu-email'), telefono: val('mu-tel'),
+                empresa: val('mu-empresa'), direccion: val('mu-dir'), proyecto: val('mu-proyecto') };
+      boton.disabled = true; boton.textContent = 'Enviando…';
+      var datos = new FormData(form);
+      datos.delete('colores'); datos.append('colores', d.colores);
+      datos.append('_subject', 'Solicitud de muestra Coupe — ' + d.nombre);
+      fetch(form.action, { method: 'POST', body: datos, headers: { 'Accept': 'application/json' } })
+        .then(function (r) { if (!r.ok) throw new Error('formspree'); })
+        .then(function () {
+          fin('¡Muestra pedida!', 'Gracias, ' + d.nombre.split(' ')[0] + '. Te enviaremos el Coupe en ' + d.colores.toLowerCase().replace(/, ([^,]*)$/, ' y $1') + ' y te escribiremos a ' + d.email + ' para confirmar el envío.', '#16a34a');
+          document.dispatchEvent(new CustomEvent('barruca:lead'));
+          if (window.gtag) window.gtag('event', 'solicitud_muestra', { colores: d.colores, origen: origen });
+        })
+        .catch(function () { porCorreo(d); });
+    });
+  })();
+  </script>

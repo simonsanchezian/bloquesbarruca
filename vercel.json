@@ -3,6 +3,7 @@
   "outputDirectory": ".",
   "framework": null,
   "git": { "deploymentEnabled": { "programado/*": false } },
+  "rewrites": [ { "source": "/muestra", "destination": "/muestra.html" } ],
   "redirects": [
     { "source": "/(.*)", "has": [{ "type": "host", "value": "bloquesbarruca.es" }],     "destination": "https://barruca.es/$1", "permanent": true },
     { "source": "/(.*)", "has": [{ "type": "host", "value": "www.bloquesbarruca.es" }], "destination": "https://barruca.es/$1", "permanent": true },

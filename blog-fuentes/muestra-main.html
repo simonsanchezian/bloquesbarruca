@@ -1,0 +1,107 @@
+  <main class="mu">
+    <style>
+      .mu { --rojo:#e73029; --tinta:#18181b; --gris:#71717a; --linea:#e4e4e7; background:#f7f6f2; }
+      .mu-wrap { max-width:1080px; margin:0 auto; padding:7.5rem 1.25rem 4rem; display:grid; gap:2.5rem; }
+      @media (min-width:900px){ .mu-wrap { grid-template-columns: 1fr 1.05fr; align-items:start; padding-top:8.5rem; } }
+      .mu-kk { font-size:.72rem; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--rojo); margin-bottom:.9rem; }
+      .mu h1 { font-size:clamp(2.1rem, 6vw, 3.4rem); line-height:1.02; letter-spacing:-.035em; font-weight:900; color:var(--tinta); margin:0 0 1.1rem; }
+      .mu h1 em { font-style:normal; color:var(--rojo); }
+      .mu-lead { font-size:1.08rem; line-height:1.6; color:#3f3f46; margin:0 0 1.6rem; max-width:34rem; }
+      .mu-pasos { display:flex; gap:.6rem; flex-wrap:wrap; margin:0 0 1.8rem; padding:0; list-style:none; }
+      .mu-pasos li { display:flex; align-items:center; gap:.5rem; background:#fff; border:1px solid var(--linea); border-radius:999px; padding:.45rem .9rem .45rem .45rem; font-size:.88rem; font-weight:700; color:var(--tinta); }
+      .mu-pasos b { display:grid; place-items:center; width:1.6rem; height:1.6rem; border-radius:50%; background:var(--rojo); color:#fff; font-size:.8rem; }
+      .mu-puntos { display:grid; gap:.75rem; margin:0; padding:0; list-style:none; }
+      .mu-puntos li { display:flex; gap:.7rem; font-size:.95rem; line-height:1.5; color:#3f3f46; }
+      .mu-puntos svg { flex:0 0 auto; margin-top:.15rem; }
+      .mu-puntos a { color:var(--tinta); font-weight:700; text-decoration:underline; text-underline-offset:2px; }
+      .mu-card { background:#fff; border:1px solid var(--linea); border-radius:1.25rem; padding:1.5rem; box-shadow:0 10px 30px rgba(0,0,0,.05); }
+      @media (min-width:640px){ .mu-card { padding:2rem; } }
+      .mu-card h2 { font-size:1.15rem; font-weight:800; color:var(--tinta); margin:0 0 .3rem; }
+      .mu-sub { font-size:.88rem; color:var(--gris); margin:0 0 1rem; }
+      .mu-colores { display:grid; grid-template-columns:repeat(5, 1fr); gap:.5rem; margin-bottom:1.4rem; }
+      @media (max-width:420px){ .mu-colores { grid-template-columns:repeat(3, 1fr); } }
+      .mu-color { position:relative; cursor:pointer; border:2px solid var(--linea); border-radius:.9rem; padding:.45rem .3rem .5rem; text-align:center; background:#fafaf9; transition:border-color .15s, background .15s, transform .15s; }
+      .mu-color input { position:absolute; opacity:0; inset:0; cursor:pointer; }
+      .mu-color img { width:100%; height:auto; display:block; }
+      .mu-color span { display:block; font-size:.78rem; font-weight:700; color:var(--tinta); margin-top:.2rem; }
+      .mu-color:has(input:checked) { border-color:var(--rojo); background:#fff5f4; transform:translateY(-2px); }
+      .mu-color:has(input:checked)::after { content:'✓'; position:absolute; top:.3rem; right:.4rem; width:1.2rem; height:1.2rem; border-radius:50%; background:var(--rojo); color:#fff; font-size:.72rem; line-height:1.2rem; font-weight:900; }
+      .mu-color:has(input:focus-visible) { outline:3px solid #fca5a5; outline-offset:2px; }
+      .mu-fila { display:grid; gap:.9rem; margin-bottom:.9rem; }
+      @media (min-width:640px){ .mu-fila.dos { grid-template-columns:1fr 1fr; } }
+      .mu label.t { display:block; font-size:.8rem; font-weight:700; color:var(--tinta); margin-bottom:.35rem; }
+      .mu label.t i { font-style:normal; font-weight:500; color:var(--gris); }
+      .mu input[type=text], .mu input[type=email], .mu input[type=tel], .mu textarea {
+        width:100%; font:inherit; font-size:16px; color:var(--tinta); background:#fafaf9; border:1.5px solid var(--linea); border-radius:.75rem; padding:.75rem .9rem; transition:border-color .15s, background .15s; }
+      .mu input:focus, .mu textarea:focus { outline:none; border-color:var(--tinta); background:#fff; }
+      .mu textarea { resize:vertical; min-height:4.5rem; }
+      .mu-rgpd { display:flex; gap:.6rem; align-items:flex-start; font-size:.75rem; line-height:1.5; color:var(--gris); margin:1rem 0 1.2rem; }
+      .mu-rgpd input { margin-top:.2rem; width:1.05rem; height:1.05rem; accent-color:var(--rojo); flex:0 0 auto; }
+      .mu-rgpd a { color:var(--tinta); text-decoration:underline; }
+      .mu-btn { width:100%; border:0; border-radius:999px; background:var(--rojo); color:#fff; font:inherit; font-size:1.02rem; font-weight:800; padding:1rem 1.4rem; cursor:pointer; transition:background .15s, transform .15s; }
+      .mu-btn:hover { background:#c81f18; }
+      .mu-btn:active { transform:scale(.98); }
+      .mu-btn[disabled] { opacity:.7; cursor:wait; }
+      .mu-error { display:none; color:#b91c1c; font-size:.82rem; font-weight:700; margin:-.8rem 0 1rem; }
+      .mu-ok { text-align:center; padding:2.5rem 1rem; }
+      .mu-ok p { margin:0; }
+    </style>
+
+    <div class="mu-wrap">
+      <section>
+        <div class="mu-kk">Coupe Caravista · Muestra gratis</div>
+        <h1>El color no se elige <em>en una pantalla.</em></h1>
+        <p class="mu-lead">Elige los colores que quieres ver y te enviamos una muestra gratis del Coupe Caravista a tu obra o a tu estudio, en cualquier punto de España. Mírala con la luz de tu obra: por la mañana, a mediodía y a última hora.</p>
+        <ol class="mu-pasos">
+          <li><b>1</b> Elige color</li>
+          <li><b>2</b> Dinos dónde</li>
+          <li><b>3</b> Te la enviamos</li>
+        </ol>
+        <ul class="mu-puntos">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e73029" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Cinco colores:</strong> blanco, gris, salmón, rojo y negro.</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e73029" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>El color va en la masa:</strong> no se pinta ni se trata. Lo que ves en la muestra es lo que tendrá tu fachada.</span></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e73029" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Gratis, y a toda España.</strong> Toda la ficha técnica, en <a href="/producto-coupe.html">Coupe Caravista</a>.</span></li>
+        </ul>
+      </section>
+
+      <section class="mu-card" aria-labelledby="mu-form-titulo">
+        <form id="muestra-form" action="https://formspree.io/f/mnjrjzzr" method="POST" novalidate>
+          <h2 id="mu-form-titulo">1 · ¿Qué colores quieres ver?</h2>
+          <p class="mu-sub">Marca uno o varios.</p>
+          <div class="mu-colores" role="group" aria-label="Colores del Coupe Caravista">
+            <label class="mu-color"><input type="checkbox" name="colores" value="Blanco"><img src="/assets/images/muestra/coupe-blanco.webp" alt="" width="360" height="240"><span>Blanco</span></label>
+            <label class="mu-color"><input type="checkbox" name="colores" value="Gris"><img src="/assets/images/muestra/coupe-gris.webp" alt="" width="360" height="240"><span>Gris</span></label>
+            <label class="mu-color"><input type="checkbox" name="colores" value="Salmón"><img src="/assets/images/muestra/coupe-salmon.webp" alt="" width="360" height="240"><span>Salmón</span></label>
+            <label class="mu-color"><input type="checkbox" name="colores" value="Rojo"><img src="/assets/images/muestra/coupe-rojo.webp" alt="" width="360" height="240"><span>Rojo</span></label>
+            <label class="mu-color"><input type="checkbox" name="colores" value="Negro"><img src="/assets/images/muestra/coupe-negro.webp" alt="" width="360" height="240"><span>Negro</span></label>
+          </div>
+          <p class="mu-error" id="mu-error-color">Elige al menos un color.</p>
+
+          <h2>2 · ¿A dónde te la enviamos?</h2>
+          <p class="mu-sub">A tu obra o a tu estudio, en cualquier punto de España.</p>
+          <div class="mu-fila dos">
+            <div><label class="t" for="mu-nombre">Nombre</label><input type="text" id="mu-nombre" name="nombre" autocomplete="name" required></div>
+            <div><label class="t" for="mu-email">Email</label><input type="email" id="mu-email" name="email" autocomplete="email" required></div>
+          </div>
+          <div class="mu-fila dos">
+            <div><label class="t" for="mu-tel">Teléfono <i>(opcional, para el transporte)</i></label><input type="tel" id="mu-tel" name="telefono" autocomplete="tel"></div>
+            <div><label class="t" for="mu-empresa">Estudio o empresa <i>(opcional)</i></label><input type="text" id="mu-empresa" name="empresa" autocomplete="organization"></div>
+          </div>
+          <div class="mu-fila">
+            <div><label class="t" for="mu-dir">Dirección de envío</label><textarea id="mu-dir" name="direccion" rows="2" autocomplete="street-address" placeholder="Calle y número, código postal, población y provincia" required></textarea></div>
+          </div>
+          <div class="mu-fila">
+            <div><label class="t" for="mu-proyecto">¿Para qué proyecto es? <i>(opcional)</i></label><textarea id="mu-proyecto" name="proyecto" rows="2" placeholder="Viviendas, colegio, nave… y en qué fase estáis"></textarea></div>
+          </div>
+          <div class="mu-rgpd">
+            <input type="checkbox" id="mu-rgpd" name="rgpd" required>
+            <label for="mu-rgpd">He leído y acepto la <a href="/privacidad.html">Política de Privacidad</a>. Los datos facilitados serán tratados por Bloques Barruca S.L. para enviarte la muestra y atender tu consulta, conforme al RGPD 2016/679 y la LOPDGDD.</label>
+          </div>
+          <p class="mu-error" id="mu-error-campos">Rellena los campos marcados y acepta la política de privacidad.</p>
+          <input type="hidden" name="tipo" value="Solicitud de muestra Coupe">
+          <input type="hidden" name="origen" id="mu-origen" value="">
+          <button type="submit" class="mu-btn">Pedir mi muestra gratis</button>
+        </form>
+      </section>
+    </div>
+  </main>
