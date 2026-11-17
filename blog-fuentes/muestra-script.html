@@ -10,15 +10,28 @@
     var form = document.getElementById('muestra-form');
     if (!form) return;
     var boton = form.querySelector('button[type="submit"]');
-    var origen = (function () {
+    // ORIGEN = por dónde entró la visita a la web (utm del anuncio, web de
+    // procedencia o «directo»), que analytics.js guarda en la primera página
+    // de la visita y no se pisa al navegar. BOTÓN = el enlace de la web que la
+    // trajo aquí (?desde=cabecera, ficha-coupe…). Los enlaces internos NO
+    // llevan utm: pisarían el origen real aquí y en Analytics.
+    var q = new URLSearchParams(location.search);
+    var desde = q.get('desde') || '';
+    function calcOrigen() {
       try {
-        var q = new URLSearchParams(location.search);
+        var g = sessionStorage.getItem('barruca_origen');
+        if (g) return g;
+      } catch (e) {}
+      try {
         var u = [q.get('utm_source'), q.get('utm_medium'), q.get('utm_campaign')].filter(Boolean).join(' / ');
         if (u) return u;
-        return document.referrer ? new URL(document.referrer).hostname : 'directo';
+        var h = document.referrer ? new URL(document.referrer).hostname.replace(/^www\./, '') : '';
+        return h && h !== location.hostname.replace(/^www\./, '') ? h : 'directo';
       } catch (e) { return 'desconocido'; }
-    })();
+    }
+    var origen = calcOrigen();
     document.getElementById('mu-origen').value = origen;
+    if (desde) { var hd = document.createElement('input'); hd.type = 'hidden'; hd.name = 'boton'; hd.value = desde; form.appendChild(hd); }
     var trampa = document.createElement('input');   // anti-spam: los robots lo rellenan
     trampa.type = 'text'; trampa.name = '_gotcha'; trampa.tabIndex = -1; trampa.autocomplete = 'off';
     trampa.setAttribute('aria-hidden', 'true');
@@ -57,13 +70,14 @@
       boton.disabled = true; boton.textContent = 'Enviando…';
       var datos = new FormData(form);
       datos.delete('colores'); datos.append('colores', d.colores);
+      origen = calcOrigen(); datos.set('origen', origen);
       datos.append('_subject', 'Solicitud de muestra Coupe — ' + d.nombre);
       fetch(form.action, { method: 'POST', body: datos, headers: { 'Accept': 'application/json' } })
         .then(function (r) { if (!r.ok) throw new Error('formspree'); })
         .then(function () {
           fin('¡Muestra pedida!', 'Gracias, ' + d.nombre.split(' ')[0] + '. Te enviaremos el Coupe en ' + d.colores.toLowerCase().replace(/, ([^,]*)$/, ' y $1') + ' y te escribiremos a ' + d.email + ' para confirmar el envío.', '#16a34a');
           document.dispatchEvent(new CustomEvent('barruca:lead'));
-          if (window.gtag) window.gtag('event', 'solicitud_muestra', { colores: d.colores, origen: origen });
+          if (window.gtag) window.gtag('event', 'solicitud_muestra', { colores: d.colores, origen: origen, boton: desde });
         })
         .catch(function () { porCorreo(d); });
     });

@@ -27,6 +27,21 @@
   'use strict';
   var ID = 'G-TX3V7KP3ZW', KEY = 'barruca_cookie_consent', activo = false;
 
+  // ORIGEN DE LA VISITA (17-11-2026). En la primera página de cada visita se
+  // apunta por dónde entró (utm del anuncio, web de procedencia o «directo»)
+  // y en qué página aterrizó. Lo lee el formulario de la muestra para que el
+  // correo diga si la petición viene del anuncio aunque la persona haya
+  // navegado antes por la web. Solo en sessionStorage (se borra al cerrar la
+  // pestaña): no es una cookie y no sale del navegador salvo en el formulario.
+  try {
+    if (!sessionStorage.getItem('barruca_origen')) {
+      var q = new URLSearchParams(location.search), aqui = location.hostname.replace(/^www\./, '');
+      var o = [q.get('utm_source'), q.get('utm_medium'), q.get('utm_campaign')].filter(Boolean).join(' / ');
+      if (!o && document.referrer) { var h = new URL(document.referrer).hostname.replace(/^www\./, ''); if (h !== aqui) o = h; }
+      sessionStorage.setItem('barruca_origen', (o || 'directo') + ' (entró por ' + location.pathname + ')');
+    }
+  } catch (e) {}
+
   function cargar() {
     if (activo) return;
     activo = true;
