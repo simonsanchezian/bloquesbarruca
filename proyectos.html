@@ -5,7 +5,7 @@
   <script>(function(){try{var bf=(performance&&((performance.navigation&&performance.navigation.type===2)||(performance.getEntriesByType&&(performance.getEntriesByType('navigation')[0]||{}).type==='back_forward')));if('scrollRestoration'in history)history.scrollRestoration=bf?'auto':'manual';if(!bf){if(window.location.hash)history.replaceState(null,'',location.pathname+location.search);window.scrollTo(0,0);}}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Proyectos con Hormigón Prefabricado en Burgos | Barruca</title>
-  <meta name="description" content="11 proyectos construidos con bloques y ladrillos Barruca en toda España: colegios, conservatorios, viviendas y centros de salud. Hormigón prefabricado fabricado en Burgos desde 1980." />
+  <meta name="description" content="17 proyectos construidos con bloques y ladrillos Barruca en toda España: colegios, conservatorios, viviendas, centros de salud y el estadio El Plantío. Hormigón prefabricado fabricado en Burgos desde 1980." />
 
   <link rel="icon" href="/assets/favicon/favicon.ico" type="image/x-icon" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
@@ -166,18 +166,24 @@
       transform: rotate(var(--r,0deg)) translateY(var(--ty,0px));
     }
     .fan-card:first-child { margin-left: 0; }
-    /* Rotación constante por proyecto (ciclo de 11) */
-    .fan-card:nth-child(11n+1)  { --r:-5deg;  --ty:8px; }
-    .fan-card:nth-child(11n+2)  { --r: 2deg;  --ty:2px; }
-    .fan-card:nth-child(11n+3)  { --r:-3deg;  --ty:6px; }
-    .fan-card:nth-child(11n+4)  { --r: 4deg;  --ty:0px; }
-    .fan-card:nth-child(11n+5)  { --r:-1deg;  --ty:5px; }
-    .fan-card:nth-child(11n+6)  { --r: 3deg;  --ty:2px; }
-    .fan-card:nth-child(11n+7)  { --r:-4deg;  --ty:7px; }
-    .fan-card:nth-child(11n+8)  { --r: 1deg;  --ty:3px; }
-    .fan-card:nth-child(11n+9)  { --r:-2deg;  --ty:5px; }
-    .fan-card:nth-child(11n+10) { --r: 5deg;  --ty:0px; }
-    .fan-card:nth-child(11n)    { --r:-1deg;  --ty:4px; }
+    /* Rotación constante por proyecto (ciclo de 17: una por obra) */
+    .fan-card:nth-child(17n+1) { --r:-5deg; --ty:8px; }
+    .fan-card:nth-child(17n+2) { --r:2deg; --ty:2px; }
+    .fan-card:nth-child(17n+3) { --r:-3deg; --ty:6px; }
+    .fan-card:nth-child(17n+4) { --r:4deg; --ty:0px; }
+    .fan-card:nth-child(17n+5) { --r:-1deg; --ty:5px; }
+    .fan-card:nth-child(17n+6) { --r:3deg; --ty:2px; }
+    .fan-card:nth-child(17n+7) { --r:-4deg; --ty:7px; }
+    .fan-card:nth-child(17n+8) { --r:1deg; --ty:3px; }
+    .fan-card:nth-child(17n+9) { --r:-2deg; --ty:5px; }
+    .fan-card:nth-child(17n+10) { --r:5deg; --ty:0px; }
+    .fan-card:nth-child(17n+11) { --r:-1deg; --ty:4px; }
+    .fan-card:nth-child(17n+12) { --r:-3deg; --ty:3px; }
+    .fan-card:nth-child(17n+13) { --r:2deg; --ty:6px; }
+    .fan-card:nth-child(17n+14) { --r:-5deg; --ty:1px; }
+    .fan-card:nth-child(17n+15) { --r:4deg; --ty:5px; }
+    .fan-card:nth-child(17n+16) { --r:-2deg; --ty:2px; }
+    .fan-card:nth-child(17n) { --r:3deg; --ty:7px; }
     .fan-card:hover {
       transform: translateY(-10px) rotate(var(--r,0deg)) scale(1.1);
       z-index: 10;
@@ -751,6 +757,12 @@
           <a href="#donasol"     class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Dona%20Sol/ViviendasDonaSol-04.webp"                           alt="" loading="lazy"><div class="fan-label">Doña Sol</div></a>
           <a href="#origen"      class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Origen%20Burgos/ViviendasOrigenBurgos-01.webp"                 alt="" loading="lazy"><div class="fan-label">Origen Burgos</div></a>
           <a href="#burgoscoupe" class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Burgos%20Coupe/ViviendasBurgosCOUPE-01.webp"                   alt="" loading="lazy"><div class="fan-label">Coupe Burgos</div></a>
+          <a href="#condelucanor" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/CondeLucanor/CondeLucanor-01.webp" alt="" loading="lazy"><div class="fan-label">Conde Lucanor</div></a>
+          <a href="#fuenteovejuna" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/Fuenteovejuna/Fuenteovejuna-01.webp" alt="" loading="lazy"><div class="fan-label">Obra Burgos</div></a>
+          <a href="#albacete" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/Albacete/Albacete-01.webp" alt="" loading="lazy"><div class="fan-label">Albacete</div></a>
+          <a href="#plantio" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/Plantio/Plantio-01.webp" alt="" loading="lazy"><div class="fan-label">El Plantío</div></a>
+          <a href="#valla" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/Valla/Valla-01.webp" alt="" loading="lazy"><div class="fan-label">Valla Burgos</div></a>
+          <a href="#split" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/Split/Split-01.webp" alt="" loading="lazy"><div class="fan-label">Bloque Split</div></a>
           <!-- Set 2 -->
           <a href="#ies"         class="fan-card"><img src="assets/Fotos-opt/IES%20Hu%C3%A9rcal%20Almer%C3%ADa/IESHu%C3%A9rcalAlmer%C3%ADa-22.webp"  alt="" loading="lazy"><div class="fan-label">IES Huércal</div></a>
           <a href="#cerros"      class="fan-card"><img src="assets/Fotos-opt/Los%20Cerros/LosCerros-01.webp"                                           alt="" loading="lazy"><div class="fan-label">Los Cerros</div></a>
@@ -763,6 +775,12 @@
           <a href="#donasol"     class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Dona%20Sol/ViviendasDonaSol-04.webp"                           alt="" loading="lazy"><div class="fan-label">Doña Sol</div></a>
           <a href="#origen"      class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Origen%20Burgos/ViviendasOrigenBurgos-01.webp"                 alt="" loading="lazy"><div class="fan-label">Origen Burgos</div></a>
           <a href="#burgoscoupe" class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Burgos%20Coupe/ViviendasBurgosCOUPE-01.webp"                   alt="" loading="lazy"><div class="fan-label">Coupe Burgos</div></a>
+          <a href="#condelucanor" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/CondeLucanor/CondeLucanor-01.webp" alt="" loading="lazy"><div class="fan-label">Conde Lucanor</div></a>
+          <a href="#fuenteovejuna" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/Fuenteovejuna/Fuenteovejuna-01.webp" alt="" loading="lazy"><div class="fan-label">Obra Burgos</div></a>
+          <a href="#albacete" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/Albacete/Albacete-01.webp" alt="" loading="lazy"><div class="fan-label">Albacete</div></a>
+          <a href="#plantio" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/Plantio/Plantio-01.webp" alt="" loading="lazy"><div class="fan-label">El Plantío</div></a>
+          <a href="#valla" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/Valla/Valla-01.webp" alt="" loading="lazy"><div class="fan-label">Valla Burgos</div></a>
+          <a href="#split" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/Split/Split-01.webp" alt="" loading="lazy"><div class="fan-label">Bloque Split</div></a>
           <!-- Set 3 -->
           <a href="#ies"         class="fan-card"><img src="assets/Fotos-opt/IES%20Hu%C3%A9rcal%20Almer%C3%ADa/IESHu%C3%A9rcalAlmer%C3%ADa-22.webp"  alt="" loading="lazy"><div class="fan-label">IES Huércal</div></a>
           <a href="#cerros"      class="fan-card"><img src="assets/Fotos-opt/Los%20Cerros/LosCerros-01.webp"                                           alt="" loading="lazy"><div class="fan-label">Los Cerros</div></a>
@@ -775,6 +793,12 @@
           <a href="#donasol"     class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Dona%20Sol/ViviendasDonaSol-04.webp"                           alt="" loading="lazy"><div class="fan-label">Doña Sol</div></a>
           <a href="#origen"      class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Origen%20Burgos/ViviendasOrigenBurgos-01.webp"                 alt="" loading="lazy"><div class="fan-label">Origen Burgos</div></a>
           <a href="#burgoscoupe" class="fan-card"><img src="assets/Fotos-opt/Viviendas%20Burgos%20Coupe/ViviendasBurgosCOUPE-01.webp"                   alt="" loading="lazy"><div class="fan-label">Coupe Burgos</div></a>
+          <a href="#condelucanor" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/CondeLucanor/CondeLucanor-01.webp" alt="" loading="lazy"><div class="fan-label">Conde Lucanor</div></a>
+          <a href="#fuenteovejuna" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/Fuenteovejuna/Fuenteovejuna-01.webp" alt="" loading="lazy"><div class="fan-label">Obra Burgos</div></a>
+          <a href="#albacete" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/Albacete/Albacete-01.webp" alt="" loading="lazy"><div class="fan-label">Albacete</div></a>
+          <a href="#plantio" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/Plantio/Plantio-01.webp" alt="" loading="lazy"><div class="fan-label">El Plantío</div></a>
+          <a href="#valla" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/Valla/Valla-01.webp" alt="" loading="lazy"><div class="fan-label">Valla Burgos</div></a>
+          <a href="#split" class="fan-card"><img src="assets/Fotos-opt/Web-proyectos/Split/Split-01.webp" alt="" loading="lazy"><div class="fan-label">Bloque Split</div></a>
         </div>
         </div>
 
@@ -796,6 +820,12 @@
           <a href="#donasol"     class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Viviendas Doña Sol — Burgos</a>
           <a href="#origen"      class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Viviendas Origen — Burgos</a>
           <a href="#burgoscoupe" class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Viviendas Coupe — Burgos</a>
+          <a href="#condelucanor" class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Viviendas Conde Lucanor — Burgos</a>
+          <a href="#fuenteovejuna" class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Viviendas en construcción — Burgos</a>
+          <a href="#albacete" class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Viviendas Albacete</a>
+          <a href="#plantio" class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Estadio Municipal El Plantío — Burgos</a>
+          <a href="#valla" class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Valla Coupe — Burgos</a>
+          <a href="#split" class="text-xs font-semibold px-3.5 py-1.5 rounded-full">Bloque Split</a>
         </div>
       </div>
     </div>
@@ -1064,6 +1094,171 @@
           <span class="text-sm text-zinc-400 font-medium flex-shrink-0">5 fotografías</span>
         </div>
         <div class="reveal delay-1 photo-grid" id="grid-burgoscoupe"></div>
+      </div>
+    </section>
+
+    <!-- Separador -->
+    <div class="h-px bg-zinc-100 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"></div>
+
+    <!-- ══════════════════════════════════════
+         PROJECT 12 — VIVIENDAS CONDE LUCANOR — BURGOS
+    ══════════════════════════════════════ -->
+    <section id="condelucanor" class="py-16 bg-stone-100/60 scroll-mt-28">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div>
+            <span class="inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-full mb-3">Residencial</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-900 leading-tight">Viviendas Conde Lucanor — Burgos</h2>
+            <p class="text-zinc-500 text-sm mt-2 flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Burgos, Castilla y León
+            </p>
+          </div>
+          <span class="text-sm text-zinc-400 font-medium flex-shrink-0">17 fotografías</span>
+        </div>
+
+        <div class="reveal delay-1 photo-grid" id="grid-condelucanor"></div>
+      </div>
+    </section>
+
+    <!-- Separador -->
+    <div class="h-px bg-zinc-100 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"></div>
+
+    <!-- ══════════════════════════════════════
+         PROJECT 13 — VIVIENDAS EN CONSTRUCCIÓN — BURGOS
+    ══════════════════════════════════════ -->
+    <section id="fuenteovejuna" class="py-16 scroll-mt-28">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div>
+            <span class="inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-amber-700 bg-amber-50 border border-amber-100 px-2.5 py-1 rounded-full mb-3">Obra en ejecución</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-900 leading-tight">Viviendas en construcción — Burgos</h2>
+            <p class="text-zinc-500 text-sm mt-2 flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              C. Fuenteovejuna, Distrito Este de Burgos
+            </p>
+          </div>
+          <span class="text-sm text-zinc-400 font-medium flex-shrink-0">13 fotografías</span>
+        </div>
+
+        <div class="reveal delay-1 mb-8 max-w-3xl bg-zinc-50 border border-zinc-200 rounded-2xl p-5 flex gap-4">
+          <div class="flex-shrink-0 mt-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e73029" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <p class="text-sm text-zinc-600 leading-relaxed">Promoción de viviendas fotografiada <strong class="text-zinc-800">durante la obra</strong>: <strong class="text-zinc-800">Coupe Caravista</strong> en la fachada a la calle y <strong class="text-zinc-800">Fireproof®</strong> en los muros grises de las medianeras.</p>
+        </div>
+
+        <div class="reveal delay-2 photo-grid" id="grid-fuenteovejuna"></div>
+      </div>
+    </section>
+
+    <!-- Separador -->
+    <div class="h-px bg-zinc-100 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"></div>
+
+    <!-- ══════════════════════════════════════
+         PROJECT 14 — VIVIENDAS ALBACETE
+    ══════════════════════════════════════ -->
+    <section id="albacete" class="py-16 bg-stone-100/60 scroll-mt-28">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div>
+            <span class="inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-100 px-2.5 py-1 rounded-full mb-3">Residencial</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-900 leading-tight">Viviendas Albacete</h2>
+            <p class="text-zinc-500 text-sm mt-2 flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Albacete, Castilla-La Mancha
+            </p>
+          </div>
+          <span class="text-sm text-zinc-400 font-medium flex-shrink-0">17 fotografías</span>
+        </div>
+
+        <div class="reveal delay-1 mb-8 max-w-3xl bg-zinc-50 border border-zinc-200 rounded-2xl p-5 flex gap-4">
+          <div class="flex-shrink-0 mt-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e73029" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <p class="text-sm text-zinc-600 leading-relaxed">Obra recogida en la serie de artículos de <strong class="text-zinc-800">ANDECE</strong> sobre proyectos españoles con prefabricado (2026), publicada también en la revista brasileña <strong class="text-zinc-800">ABCIC</strong>.</p>
+        </div>
+
+        <div class="reveal delay-2 photo-grid" id="grid-albacete"></div>
+      </div>
+    </section>
+
+    <!-- Separador -->
+    <div class="h-px bg-zinc-100 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"></div>
+
+    <!-- ══════════════════════════════════════
+         PROJECT 15 — ESTADIO MUNICIPAL EL PLANTÍO — BURGOS
+    ══════════════════════════════════════ -->
+    <section id="plantio" class="py-16 scroll-mt-28">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div>
+            <span class="inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-accent-700 bg-accent-50 border border-accent-100 px-2.5 py-1 rounded-full mb-3">Deportivo</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-900 leading-tight">Estadio Municipal El Plantío — Burgos</h2>
+            <p class="text-zinc-500 text-sm mt-2 flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Burgos, Castilla y León
+            </p>
+          </div>
+          <span class="text-sm text-zinc-400 font-medium flex-shrink-0">14 fotografías</span>
+        </div>
+
+        <div class="reveal delay-1 mb-8 max-w-3xl bg-zinc-50 border border-zinc-200 rounded-2xl p-5 flex gap-4">
+          <div class="flex-shrink-0 mt-0.5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e73029" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <p class="text-sm text-zinc-600 leading-relaxed">Remodelación del estadio con <strong class="text-zinc-800">bloque de hormigón gris liso</strong> de Barruca, con resistencia a compresión de 10 N/mm² (R10) y resistencia al fuego EI-180. La remodelación fue premiada en los <strong class="text-zinc-800">Premios COAM 2020</strong> y la obra se publicó en la revista alemana <strong class="text-zinc-800">BFT International</strong> (10·2021).</p>
+        </div>
+
+        <div class="reveal delay-2 photo-grid" id="grid-plantio"></div>
+      </div>
+    </section>
+
+    <!-- Separador -->
+    <div class="h-px bg-zinc-100 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"></div>
+
+    <!-- ══════════════════════════════════════
+         PROJECT 16 — VALLA COUPE — BURGOS
+    ══════════════════════════════════════ -->
+    <section id="valla" class="py-16 bg-stone-100/60 scroll-mt-28">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div>
+            <span class="inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-violet-700 bg-violet-50 border border-violet-100 px-2.5 py-1 rounded-full mb-3">Cerramiento</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-900 leading-tight">Valla Coupe — Burgos</h2>
+            <p class="text-zinc-500 text-sm mt-2 flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Burgos, Castilla y León
+            </p>
+          </div>
+          <span class="text-sm text-zinc-400 font-medium flex-shrink-0">7 fotografías</span>
+        </div>
+
+        <div class="reveal delay-1 photo-grid" id="grid-valla"></div>
+      </div>
+    </section>
+
+    <!-- Separador -->
+    <div class="h-px bg-zinc-100 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"></div>
+
+    <!-- ══════════════════════════════════════
+         PROJECT 17 — BLOQUE SPLIT
+    ══════════════════════════════════════ -->
+    <section id="split" class="py-16 scroll-mt-28">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div>
+            <span class="inline-flex items-center text-[10px] font-bold uppercase tracking-widest text-accent-700 bg-accent-50 border border-accent-100 px-2.5 py-1 rounded-full mb-3">Bloque Split</span>
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-900 leading-tight">Bloque Split</h2>
+            <p class="text-zinc-500 text-sm mt-2 flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+              Viviendas, naves e interiores con bloque Split
+            </p>
+          </div>
+          <span class="text-sm text-zinc-400 font-medium flex-shrink-0">17 fotografías</span>
+        </div>
+
+        <div class="reveal delay-1 photo-grid" id="grid-split"></div>
       </div>
     </section>
 
@@ -1430,6 +1625,102 @@
         'ViviendasBurgosCOUPE-04.jpg','ViviendasBurgosCOUPE-05.jpg',
       ]
     },
+    condelucanor: {
+      el: 'grid-condelucanor',
+      base: 'assets/Fotos-opt/Web-proyectos/CondeLucanor/',
+      alts: [
+        'Edificio de viviendas en la calle Conde Lucanor de Burgos con fachada de Coupe Caravista Barruca',
+        'Fachada de Coupe Caravista crema en viviendas con bajos comerciales, Burgos',
+        'Detalle de la textura del Coupe Caravista Barruca en Conde Lucanor, Burgos',
+        'Esquina del edificio Conde Lucanor en Burgos resuelta con Coupe Caravista',
+      ],
+      files: [
+        'CondeLucanor-01.jpg','CondeLucanor-02.jpg','CondeLucanor-03.jpg','CondeLucanor-04.jpg',
+        'CondeLucanor-05.jpg','CondeLucanor-06.jpg','CondeLucanor-07.jpg','CondeLucanor-08.jpg',
+        'CondeLucanor-09.jpg','CondeLucanor-10.jpg','CondeLucanor-11.jpg','CondeLucanor-12.jpg',
+        'CondeLucanor-13.jpg','CondeLucanor-14.jpg','CondeLucanor-15.jpg','CondeLucanor-16.jpg',
+        'CondeLucanor-17.jpg',
+      ]
+    },
+    fuenteovejuna: {
+      el: 'grid-fuenteovejuna',
+      base: 'assets/Fotos-opt/Web-proyectos/Fuenteovejuna/',
+      alts: [
+        'Promoción de viviendas en construcción en el Distrito Este de Burgos con Coupe Caravista Barruca',
+        'Medianera de ladrillo Fireproof Barruca durante la obra, Burgos',
+        'Fachada de Coupe Caravista en ejecución, calle Fuenteovejuna de Burgos',
+        'Detalle de Coupe Caravista y huecos de ventana en obra, Burgos',
+      ],
+      files: [
+        'Fuenteovejuna-01.jpg','Fuenteovejuna-02.jpg','Fuenteovejuna-03.jpg','Fuenteovejuna-04.jpg',
+        'Fuenteovejuna-05.jpg','Fuenteovejuna-06.jpg','Fuenteovejuna-07.jpg','Fuenteovejuna-08.jpg',
+        'Fuenteovejuna-09.jpg','Fuenteovejuna-10.jpg','Fuenteovejuna-11.jpg','Fuenteovejuna-12.jpg',
+        'Fuenteovejuna-13.jpg',
+      ]
+    },
+    albacete: {
+      el: 'grid-albacete',
+      base: 'assets/Fotos-opt/Web-proyectos/Albacete/',
+      alts: [
+        'Edificio de viviendas en Albacete con fachada de Coupe Caravista Barruca',
+        'Patio interior de viviendas en Albacete revestido con Coupe Caravista',
+        'Terraza con petos de Coupe Caravista Barruca, viviendas Albacete',
+        'Detalle de la textura del Coupe Caravista en viviendas de Albacete',
+      ],
+      files: [
+        'Albacete-01.jpg','Albacete-02.jpg','Albacete-03.jpg','Albacete-04.jpg',
+        'Albacete-05.jpg','Albacete-06.jpg','Albacete-07.jpg','Albacete-08.jpg',
+        'Albacete-09.jpg','Albacete-10.jpg','Albacete-11.jpg','Albacete-12.jpg',
+        'Albacete-13.jpg','Albacete-14.jpg','Albacete-15.jpg','Albacete-16.jpg',
+        'Albacete-17.jpg',
+      ]
+    },
+    plantio: {
+      el: 'grid-plantio',
+      base: 'assets/Fotos-opt/Web-proyectos/Plantio/',
+      alts: [
+        'Grada del Estadio Municipal El Plantío de Burgos iluminada de noche',
+        'Graderío y accesos del estadio El Plantío con bloque de hormigón gris Barruca',
+        'Muros de bloque de hormigón gris liso Barruca bajo la grada de El Plantío, Burgos',
+        'Obra de remodelación del estadio El Plantío con bloque Barruca',
+      ],
+      files: [
+        'Plantio-01.jpg','Plantio-02.jpg','Plantio-03.jpg','Plantio-04.jpg',
+        'Plantio-05.jpg','Plantio-06.jpg','Plantio-07.jpg','Plantio-08.jpg',
+        'Plantio-09.jpg','Plantio-10.jpg','Plantio-11.jpg','Plantio-12.jpg',
+        'Plantio-13.jpg','Plantio-14.jpg',
+      ]
+    },
+    valla: {
+      el: 'grid-valla',
+      base: 'assets/Fotos-opt/Web-proyectos/Valla/',
+      alts: [
+        'Valla de parcela en Burgos construida con Coupe Caravista blanco Barruca',
+        'Cerramiento exterior de Coupe Caravista a pie de calle, Burgos',
+        'Detalle de la textura del Coupe Caravista en una valla de Burgos',
+      ],
+      files: [
+        'Valla-01.jpg','Valla-02.jpg','Valla-03.jpg','Valla-04.jpg',
+        'Valla-05.jpg','Valla-06.jpg','Valla-07.jpg',
+      ]
+    },
+    split: {
+      el: 'grid-split',
+      base: 'assets/Fotos-opt/Web-proyectos/Split/',
+      alts: [
+        'Vivienda unifamiliar con fachada de bloque Split Barruca',
+        'Bloque Split Barruca de cara rugosa en fachada',
+        'Interior con bloque Split visto, pasillo y escalera',
+        'Nave con cerramiento de bloque Split Barruca',
+      ],
+      files: [
+        'Split-01.jpg','Split-02.jpg','Split-03.jpg','Split-04.jpg',
+        'Split-05.jpg','Split-06.jpg','Split-07.jpg','Split-08.jpg',
+        'Split-09.jpg','Split-10.jpg','Split-11.jpg','Split-12.jpg',
+        'Split-13.jpg','Split-14.jpg','Split-15.jpg','Split-16.jpg',
+        'Split-17.jpg',
+      ]
+    },
   };
 
   /* ═══════════════════════════════════════
@@ -1716,7 +2007,7 @@
     (function () {
       var track = document.getElementById('fan-track');
       if (!track) return;
-      var SET_W = 11 * 100;
+      var SET_W = (track.children.length / 3) * 100; // 3 sets de tarjetas de 100 px
 
       track.scrollLeft = SET_W;
 
